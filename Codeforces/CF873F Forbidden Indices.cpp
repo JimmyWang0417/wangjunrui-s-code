@@ -1,0 +1,100 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define ull unsigned ll
+#define lowbit(x) (x & (-x))
+using namespace std;
+template <typename T>
+inline void read(T &x)
+{
+    x = 0;
+    char s = (char)getchar();
+    bool f = false;
+    while (!(s >= '0' && s <= '9'))
+    {
+        if (s == '-')
+            f = true;
+        s = (char)getchar();
+    }
+    while (s >= '0' && s <= '9')
+    {
+        x = (x << 1) + (x << 3) + s - '0';
+        s = (char)getchar();
+    }
+    if (f)
+        x = (~x) + 1;
+}
+template <typename T, typename... T1>
+inline void read(T &x, T1 &...x1)
+{
+    read(x);
+    read(x1...);
+}
+using namespace std;
+const int N = 4e5 + 5;
+template <typename T>
+inline void ckmax(T &x, T y)
+{
+    if (x < y)
+        x = y;
+}
+struct SAM
+{
+    int ch[26];
+    int len, fa;
+} point[N];
+int dp[N];
+int las = 1, tot = 1;
+inline void insert(int c, int v)
+{
+    int p = las, np = las = ++tot;
+    point[np].len = point[p].len + 1;
+    dp[np] = v;
+    for (; p && !point[p].ch[c]; p = point[p].fa)
+        point[p].ch[c] = np;
+    if (!p)
+        point[np].fa = 1;
+    else
+    {
+        int q = point[p].ch[c];
+        if (point[q].len == point[p].len + 1)
+            point[np].fa = q;
+        else
+        {
+            int nq = ++tot;
+            point[nq] = point[q];
+            point[nq].len = point[p].len + 1;
+            point[np].fa = point[q].fa = nq;
+            for (; p && point[p].ch[c] == q; p = point[p].fa)
+                point[p].ch[c] = nq;
+        }
+    }
+}
+int n;
+char str1[N], str2[N];
+int nmsl[N], a[N];
+inline void work()
+{
+    for (int i = 1; i <= tot; ++i)
+        ++nmsl[point[i].len];
+    for (int i = 1; i <= n; ++i)
+        nmsl[i] += nmsl[i - 1];
+    for (int i = tot; i >= 1; --i)
+        a[nmsl[point[i].len]--] = i;
+    ll ans = 0;
+    for (int i = tot; i >= 1; --i)
+    {
+        int u = a[i];
+        dp[point[u].fa] += dp[u];
+        ckmax(ans, (ll)point[u].len * dp[u]);
+    }
+    printf("%lld\n", ans);
+}
+signed main()
+{
+    read(n);
+    scanf("%s%s", str1, str2);
+    for (int i = 0; str1[i]; ++i)
+        insert(str1[i] - 'a', '1' - str2[i]);
+    work();
+    return 0;
+}

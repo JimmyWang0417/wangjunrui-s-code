@@ -1,0 +1,18 @@
+{
+	"checker edition": {
+		"prefix": "checker",
+		"body": [
+            "#include \"testlib.h\"
+            "#include <bits\/stdc++.h>"
+            "#include <bits\/extc++.h>"
+            "using namespace std;"
+            "signed main(int argc, char *argv[])"
+            "{"
+            "\tregisterTestlibCmd(argc, argv);"
+            "\t$0"
+            "}"
+
+		],
+		"description": "Log output to console"
+	}
+}
