@@ -30,6 +30,4 @@
 *.exe
 *.out
 *.app
-project
-project.cpp
-project.py
+project*

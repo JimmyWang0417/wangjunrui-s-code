@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <random>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -43,19 +42,29 @@ inline void ckmax(T &x, T y)
 }
 using namespace std;
 constexpr int N = 1e5 + 5;
-mt19937 rnd((random_device())());
+constexpr int mod = 19491001;
+constexpr int inv2 = (mod + 1) / 2;
+constexpr int root5 = 5485845;
+constexpr int invroot5 = 1097169;
+inline ll quickpow(ll a, ll b)
+{
+    ll res = 1;
+    while (b)
+    {
+        if (b & 1)
+            (res *= a) %= mod;
+        (a *= a) %= mod;
+        b >>= 1;
+    }
+    return res;
+}
 signed main()
 {
-    freopen("project.out", "w", stdout);
-    int n = 20, m = 5000;
-    uniform_int_distribution<int> dis(1, n);
-    printf("%d %d 0\n", m, n);
-    for (int i = 1; i <= m; ++i)
-    {
-        if (rnd() & 1)
-            printf("1 %d %d %d\n", dis(rnd), dis(rnd), dis(rnd));
-        else
-            printf("2 %d %d\n", dis(rnd), dis(rnd));
-    }
+    freopen("water.in", "r", stdin);
+    freopen("water.out", "w", stdout);
+    ll n;
+    read(n);
+    ++n;
+    printf("%lld\n", ((quickpow((ll)(1 + root5) * inv2 % mod, n) - quickpow((ll)(1 - root5) * inv2 % mod, n) + mod) % mod * invroot5 % mod + mod - 1) % mod);
     return 0;
 }
