@@ -1,5 +1,5 @@
+#include <algorithm>
 #include <cstdio>
-#include <random>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -42,20 +42,32 @@ inline void ckmax(T &x, T y)
         x = y;
 }
 using namespace std;
-constexpr int N = 1e5 + 5;
-mt19937 rnd((random_device())());
+constexpr int N = 1e3 + 5, M = 2e5 + 5;
+int n, m;
+int dp[N][N];
+int answer[M];
 signed main()
 {
-    freopen("project.out", "w", stdout);
-    int n = 20, m = 5000;
-    uniform_int_distribution<int> dis(1, n);
-    printf("%d %d 0\n", m, n);
+    read(n, m);
     for (int i = 1; i <= m; ++i)
     {
-        if (rnd() & 1)
-            printf("1 %d %d %d\n", dis(rnd), dis(rnd), dis(rnd));
-        else
-            printf("2 %d %d\n", dis(rnd), dis(rnd));
+        int u, v;
+        read(u, v);
+        dp[u][v] = i;
     }
+    answer[m + 1] = n;
+    for (int k = n; k >= 1; --k)
+    {
+        for (int i = k + 1; i <= n; ++i)
+            ++answer[min(dp[k][i], dp[i][k])];
+        for (int i = 1; i <= n; ++i)
+            for (int j = 1; j <= n; ++j)
+                ckmax(dp[i][j], min(dp[i][k], dp[k][j]));
+    }
+    for (int i = m; i >= 1; --i)
+        answer[i] += answer[i + 1];
+    for (int i = 1; i <= m + 1; ++i)
+        printf("%d ", answer[i]);
+    putchar('\n');
     return 0;
 }
