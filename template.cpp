@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -29,7 +29,20 @@ inline void read(T &x, T1 &...x1)
     read(x);
     read(x1...);
 }
+template <typename T>
+inline void ckmin(T &x, T y)
+{
+    if (x > y)
+        x = y;
+}
+template <typename T>
+inline void ckmax(T &x, T y)
+{
+    if (x < y)
+        x = y;
+}
 using namespace std;
+constexpr int N = 1e5 + 5;
 signed main()
 {
     return 0;
