@@ -3,7 +3,6 @@
 		"prefix": "ACM",
 		"body": [
             "#include <bits\/stdc++.h>"
-            "#include <bits\/extc++.h>"
             "#define int ll"
             "#define ll long long"
             "#define ull unsigned ll"

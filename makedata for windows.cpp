@@ -1,11 +1,11 @@
-#include <cmath>
-#include <sstream>
-#include <cstdio>
-#include <bitset>
-#include <cstring>
 #include <algorithm>
-#include <windows.h>
+#include <bitset>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
 #include <fstream>
+#include <sstream>
+#include <windows.h>
 #define lowbit(x) (x & (-x))
 #define re register
 #define ll long long
@@ -53,6 +53,7 @@ signed main()
 {
     int l, r;
     read(l, r);
+    cerr << "begin" << ends;
     for (re int i = l; i <= r; ++i)
         work(i);
     return 0;

@@ -2,7 +2,7 @@
 	"generator edition": {
 		"prefix": "generator",
 		"body": [
-            "#include \"testlib.h\"
+            "#include \"testlib.h\""
             "#include <bits\/stdc++.h>"
             "#include <bits\/extc++.h>"
             "using namespace std;"

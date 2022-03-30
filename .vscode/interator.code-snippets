@@ -3,9 +3,8 @@
         "interator edition": {
             "prefix": "interator",
             "body": [
-                "#include \"testlib.h\"
+                "#include \"testlib.h\""
                 "#include <bits\/stdc++.h>"
-                "#include <bits\/extc++.h>"
                 "using namespace std;"
                 "signed main(int argc, char *argv[])"
                 "{"
