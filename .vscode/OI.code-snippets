@@ -4,6 +4,7 @@
             "body": [
                   "#include <bits\/stdc++.h>",
                   "#define ll long long",
+                  "#define lll __int128",
                   "#define ull unsigned ll",
                   "#define lowbit(x) (x & (-x))",
                   "template <typename T>",

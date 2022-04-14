@@ -29,5 +29,6 @@
 # Executables
 *.exe
 *.app
-project*
-make*
+project.in
+project.out
+project.ans

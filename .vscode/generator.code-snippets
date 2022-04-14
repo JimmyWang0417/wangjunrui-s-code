@@ -1,17 +1,17 @@
 {
-	"generator edition": {
-		"prefix": "generator",
-		"body": [
-            "#include \"testlib.h\"",
-            "#include <bits\/stdc++.h>",
-            "#include <bits\/extc++.h>",
-            "using namespace std;",
-            "signed main(int argc, char *argv[])",
-            "{",
-            "\tregisterGen(argc, argv, 1);",
-            "\t$0",
-            "}"
-		],
-		"description": "Log output to console"
-	}
+      "generator edition": {
+            "prefix": "generator",
+            "body": [
+                  "#include \"testlib.h\"",
+                  "#include <bits\/stdc++.h>",
+                  "#include <bits\/extc++.h>",
+                  "using namespace std;",
+                  "signed main(int argc, char *argv[])",
+                  "{",
+                  "\tregisterGen(argc, argv, 1);",
+                  "\t$0",
+                  "}"
+            ],
+            "description": "Log output to console"
+      }
 }
