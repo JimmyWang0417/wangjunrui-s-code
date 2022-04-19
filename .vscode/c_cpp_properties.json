@@ -20,7 +20,7 @@
             "defines": [],
             "compilerPath": "/usr/bin/g++",
             "cStandard": "gnu17",
-            "cppStandard": "c++17",
+            "cppStandard": "c++14",
             "intelliSenseMode": "linux-gcc-x64",
             "compilerArgs": [
                 "-Wall",
@@ -31,7 +31,7 @@
                 "-lm",
                 "-W",
                 "-Wconversion",
-                "-std=c++17",
+                "-std=c++14",
                 "-O2",
                 "-pthread"
             ]

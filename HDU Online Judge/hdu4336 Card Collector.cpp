@@ -1,6 +1,7 @@
 #include <cstdio>
-#include <random>
+#include <cstring>
 #define ll long long
+#define lll __int128
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
 template <typename T>
@@ -42,19 +43,30 @@ inline void ckmax(T &x, T y)
         x = y;
 }
 using namespace std;
-constexpr int N = 1e5 + 5;
-mt19937 rnd((random_device())());
+constexpr int N = 20 + 5, M = (1 << 20) + 5;
+int n;
+double p[N];
+double dp[M];
+int Log[M];
 signed main()
 {
-    freopen("project.in", "w", stdout);
-    uniform_int_distribution<int> dis(0, 2e5);
-    printf("10000\n");
-    for (int i = 1; i <= 200; ++i)
+    while (scanf("%d", &n) != EOF)
     {
-        int l = dis(rnd), r = dis(rnd);
-        if (l > r)
-            swap(l, r);
-        printf("%d %d\n", l, r);
+        for (int i = 0; i < n; ++i)
+        {
+            scanf("%lf", &p[i]);
+            Log[1 << i] = i;
+        }
+        double answer = 0;
+        for (int S = 1; S < (1 << n); ++S)
+        {
+            dp[S] = dp[S ^ lowbit(S)] + p[Log[lowbit(S)]];
+            if (__builtin_popcount(S) & 1)
+                answer += 1 / dp[S];
+            else
+                answer -= 1 / dp[S];
+        }
+        printf("%.10lf\n", answer);
     }
     return 0;
 }

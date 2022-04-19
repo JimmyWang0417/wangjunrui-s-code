@@ -24,7 +24,7 @@ inline void read(T &x)
         x = (~x) + 1;
 }
 template <typename T, typename... T1>
-inline void read(T &x, T1 &...x1)
+inline void read(T &x, T1 &... x1)
 {
     read(x);
     read(x1...);
@@ -72,8 +72,9 @@ inline void dec(T &x, T y)
 }
 int m, n;
 int a[N], b[N];
-int f[N][N], g[N];
+int f[N][N], g[N][N], s[N][N];
 int answer[N];
+int pre[N], suf[N];
 signed main()
 {
     read(m, n);
@@ -83,8 +84,12 @@ signed main()
         read(a[i]);
         add(sum, a[i]);
     }
+    ll times = 1;
     for (int i = 1; i <= n; ++i)
+    {
         read(b[i]);
+        (times *= b[i]) %= mod;
+    }
     int inv = quickpow(sum, mod - 2);
     f[0][0] = (int)((ll)a[0] * inv % mod);
     for (int i = 1; i <= m; ++i)
@@ -101,23 +106,31 @@ signed main()
             dec(f[i][j], del);
         }
     }
-    g[m] = 1;
-    for (int i = n; i >= 1; i--)
-    {
-        int res = 0;
-        for (int j = i; j <= m; j++)
+    for (int i = 0; i < n; ++i)
+        for (int j = 0, las = 0; j <= m; ++j)
         {
-            add(res, g[j]);
-            g[j] = (int)((ll)b[i] * g[j] % mod * quickpow(f[i - 1][j], b[i] - 1) % mod);
+            dec(s[i][j], las);
+            add(s[i][j], las = quickpow(f[i][j], b[i + 1] - 1));
         }
-        dec(g[i - 1], (int)((ll)b[i] * res % mod * quickpow(f[i - 1][i - 1], b[i] - 1) % mod));
-    }
-    for (int i = m; i >= 0; --i)
+    for (int i = n; i <= m; ++i)
+        g[n][i] = 1;
+    for (int i = n - 1; i >= 0; --i)
     {
-        answer[i] = answer[i + 1];
-        add(answer[i], g[i]);
+        pre[0] = s[i][0];
+        for (int j = 1; j <= m; ++j)
+        {
+            pre[j] = pre[j - 1];
+            add(pre[j], s[i][j]);
+        }
+        for (int j = m; j >= 0; --j)
+        {
+            suf[j] = suf[j + 1];
+            add(suf[j], (int)((ll)s[i][j] * g[i + 1][j] % mod));
+        }
+        for (int j = i; j <= m; ++j)
+            g[i][j] = (int)(((ll)g[i + 1][j] * pre[j] + suf[j + 1]) % mod);
     }
     for (int i = 0; i <= m; ++i)
-        printf("%lld\n", ((ll)answer[i] * a[i] % mod * inv % mod + mod) % mod);
+        printf("%lld\n", g[0][i] * times % mod * a[i] % mod * inv % mod);
     return 0;
 }

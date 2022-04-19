@@ -11,7 +11,7 @@
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
-                "-std=c++17",
+                "-std=c++14",
                 "-pthread"
             ],
             "options": {

@@ -1,6 +1,6 @@
 #include <cstdio>
-#include <random>
 #define ll long long
+#define lll __int128
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
 template <typename T>
@@ -42,19 +42,36 @@ inline void ckmax(T &x, T y)
         x = y;
 }
 using namespace std;
-constexpr int N = 1e5 + 5;
-mt19937 rnd((random_device())());
+constexpr int N = 25, M = (1 << 20) + 5;
+int n;
+double f[M];
+inline void FWT(double *dp)
+{
+    for (int i = 0; i < n; ++i)
+        for (int S = 0; S < (1 << n); ++S)
+            if ((S >> i) & 1)
+                dp[S] += dp[S ^ (1 << i)];
+}
 signed main()
 {
-    freopen("project.in", "w", stdout);
-    uniform_int_distribution<int> dis(0, 2e5);
-    printf("10000\n");
-    for (int i = 1; i <= 200; ++i)
+    read(n);
+    for (int i = 0; i < (1 << n); ++i)
+        scanf("%lf", &f[i]);
+    FWT(f);
+    int all = (1 << n) - 1;
+    double answer = 0;
+    for (int S = 1; S < (1 << n); ++S)
     {
-        int l = dis(rnd), r = dis(rnd);
-        if (l > r)
-            swap(l, r);
-        printf("%d %d\n", l, r);
+        if (1 - f[all ^ S] < 1e-8)
+        {
+            printf("INF\n");
+            return 0;
+        }
+        if (__builtin_popcount(S) & 1)
+            answer += 1 / (1 - f[all ^ S]);
+        else
+            answer -= 1 / (1 - f[all ^ S]);
     }
+    printf("%.10lf\n", answer);
     return 0;
 }
