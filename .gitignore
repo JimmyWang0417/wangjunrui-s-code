@@ -29,6 +29,4 @@
 # Executables
 *.exe
 *.app
-project.in
-project.out
-project.ans
+project.*

@@ -72,7 +72,23 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "rope": "cpp",
-        "slist": "cpp"
+        "slist": "cpp",
+        "climits": "cpp",
+        "any": "cpp",
+        "source_location": "cpp",
+        "variant": "cpp",
+        "barrier": "cpp",
+        "bit": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "coroutine": "cpp",
+        "latch": "cpp",
+        "numbers": "cpp",
+        "ranges": "cpp",
+        "semaphore": "cpp",
+        "span": "cpp",
+        "stop_token": "cpp",
+        "syncstream": "cpp"
     },
     "python.testing.pytestArgs": [
         "UVA"
