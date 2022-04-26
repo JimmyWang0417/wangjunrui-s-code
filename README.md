@@ -48,7 +48,7 @@
 
 [<img src="https://uoj.ac/pictures/UOJ.png" width="40px" height = "40px" alt="Universal Online Judge"/>](https://uoj.ac)
 
-[<img src="https://icpcarchive.ecs.baylor.edu/images/favicon.ico" width="40px" height = "40px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
+[<img src="https://vjudge.net/static/images/remote_oj/UVA_favicon.ico" width="40px" height = "40px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
 
 [YbtOJ](https://www.ybtoj.com.cn)
 
