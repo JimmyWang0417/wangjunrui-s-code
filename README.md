@@ -23,7 +23,7 @@
 
 [<img src="https://www.acwing.com/favicon.ico" width="40px" height = "40px" alt="AcWing"/>](https://www.acwing.com)
 
-[<img src="https://vjudge.net/static/images/remote_oj/HYSBZ_icon.png" width="40px" height = "40px" alt="BZOJ"/>](https://darkbzoj.tk)
+[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/HYSBZ_icon.png" width="40px" height = "40px" alt="BZOJ"/>](https://darkbzoj.tk)
 
 
 [CLOJ](http://265ep45199.wicp.vip)
@@ -36,9 +36,9 @@
 
 [<img src="https://static.hihocoder.com/images/hiho.ico" width="40px" height = "40px" alt="HDU Online Judge"/>](https://hihocoder.com)
 
-[<img src="https://vjudge.net/static/images/remote_oj/libreoj.ico" width="40px" height = "40px" alt="LibreOJ"/>](https://loj.ac)
+[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/libreoj.ico" width="40px" height = "40px" alt="LibreOJ"/>](https://loj.ac)
 
-[<img src="https://vjudge.net/static/images/remote_oj/poj.ico" width="40px" height = "40px" alt="POJ"/>](http://poj.org)
+[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/poj.ico" width="40px" height = "40px" alt="POJ"/>](http://poj.org)
 
 
 [Public Judge](http://pjudge.ac)
@@ -49,8 +49,8 @@
 
 [<img src="https://uoj.ac/pictures/UOJ.png" width="40px" height = "40px" alt="Universal Online Judge"/>](https://uoj.ac)
 
-[<img src="https://vjudge.net/static/images/remote_oj/UVA_favicon.ico" width="40px" height = "40px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
+[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/UVA_favicon.ico" width="40px" height = "40px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
 
 [YbtOJ](https://www.ybtoj.com.cn)
 
-[<img src="https://vjudge.net/static/images/remote_oj/ZOJ_favicon.ico" width="40px" height = "40px" alt="Universal Online Judge"/>](https://zoj.pintia.cn)
+[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/ZOJ_favicon.ico" width="40px" height = "40px" alt="Universal Online Judge"/>](https://zoj.pintia.cn)
