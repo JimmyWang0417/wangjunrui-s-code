@@ -9,6 +9,7 @@
 
 
 各大OJ地址（按照字典序排序）：
+
 [<img src="http://www.51nod.com/favicon.ico" width="40px" height = "40px" alt="51Nod"/>](http://www.51nod.com)
 
 [<img src="https://www.luogu.com.cn/favicon.ico" width="40px" height = "40px" alt="洛谷"/>](https://www.luogu.com.cn)
@@ -47,7 +48,7 @@
 
 [<img src="https://uoj.ac/pictures/UOJ.png" width="40px" height = "40px" alt="Universal Online Judge"/>](https://uoj.ac)
 
-[<img src="https://icpcarchive.ecs.baylor.edu/images/favicon.ico" width="40px" height = "40px" alt="Universal Online Judge"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
+[<img src="https://icpcarchive.ecs.baylor.edu/images/favicon.ico" width="40px" height = "40px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
 
 [YbtOJ](https://www.ybtoj.com.cn)
 
