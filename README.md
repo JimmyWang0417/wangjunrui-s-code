@@ -23,7 +23,8 @@
 
 [<img src="https://www.acwing.com/favicon.ico" width="40px" height = "40px" alt="AcWing"/>](https://www.acwing.com)
 
-[BZOJ](https://darkbzoj.tk)
+[<img src="https://vjudge.net/static/images/remote_oj/HYSBZ_icon.png" width="40px" height = "40px" alt="BZOJ"/>](https://darkbzoj.tk)
+
 
 [CLOJ](http://265ep45199.wicp.vip)
 
@@ -37,7 +38,7 @@
 
 [<img src="https://vjudge.net/static/images/remote_oj/libreoj.ico" width="40px" height = "40px" alt="LibreOJ"/>](https://loj.ac)
 
-[POJ](http://poj.org)
+[<img src="https://vjudge.net/static/images/remote_oj/poj.ico" width="40px" height = "40px" alt="POJ"/>](http://poj.org)
 
 
 [Public Judge](http://pjudge.ac)
