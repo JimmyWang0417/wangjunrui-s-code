@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
+#include <cstdio>
 #define ll long long
+#define lll __int128
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
 template <typename T>
@@ -41,8 +42,35 @@ inline void ckmax(T &x, T y)
         x = y;
 }
 using namespace std;
-constexpr int N = 1e5 + 5;
+constexpr int N = 2e6 + 5;
+int n, d, a[N];
+ll p, sum[N], g[N];
+int q[N], head = 1, tail;
 signed main()
 {
+    read(n, p, d);
+    for (int i = 1; i <= n; ++i)
+        read(a[i]);
+    for (int i = 1; i <= n; ++i)
+        sum[i] = sum[i - 1] + a[i];
+    for (int i = d; i <= n; ++i)
+        g[i] = sum[i] - sum[i - d];
+    int res = 0;
+    for (int i = 1, j = 0; i <= n; ++i)
+    {
+        if (i - j < d)
+            continue;
+        while (head <= tail && g[q[tail]] < g[i])
+            --tail;
+        q[++tail] = i;
+        while (j <= i && sum[i] - sum[j] - g[q[head]] > p)
+        {
+            ++j;
+            while (head <= tail && q[head] < j + d)
+                ++head;
+        }
+        ckmax(res, i - j);
+    }
+    printf("%d\n", res);
     return 0;
 }

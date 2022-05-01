@@ -23,7 +23,7 @@
 
 [<img src="https://www.acwing.com/favicon.ico" width="40px" height = "40px" alt="AcWing"/>](https://www.acwing.com)
 
-[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/HYSBZ_icon.png" width="40px" height = "40px" alt="BZOJ"/>](https://darkbzoj.tk)
+[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/HYSBZ_icon.png" width="40px" height = "40px" alt="BZOJ"/>](https://darkbzoj.cc)
 
 
 [CLOJ](http://265ep45199.wicp.vip)

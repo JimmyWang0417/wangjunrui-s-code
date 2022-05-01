@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -42,65 +42,64 @@ inline void ckmax(T &x, T y)
         x = y;
 }
 using namespace std;
-constexpr int N = 3e5 + 5;
-int n, a[N];
-ll sumb[N], sumc[N];
+constexpr int N = 505;
+constexpr long double eps = 1e-7;
+int n;
+ll sum[N][N];
+inline bool check(pair<int, int> chz, long double ans)
+{
+    long double minn = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        long double res = (sum[i][chz.second] - sum[i][chz.first - 1]) - 2 * i * ans;
+        if (res - minn >= 2 * (chz.second - chz.first + 1) * ans)
+            return true;
+        if (minn > res)
+            minn = res;
+    }
+    return false;
+}
+pair<int, int> point[N * N];
 int tot;
-ll p[N];
-pair<ll, ll> b[N];
-int c[N];
-inline void update(int pos, int val)
-{
-    for (int i = pos; i <= tot; i += lowbit(i))
-        ckmax(c[i], val);
-}
-inline int query(int pos)
-{
-    int res = 0;
-    for (int i = pos; i; i -= lowbit(i))
-        ckmax(res, c[i]);
-    return res;
-}
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("clyz.in", "r", stdin);
-    freopen("clyz.out", "w", stdout);
+    freopen("otto.in", "r", stdin);
+    freopen("otto.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1; i <= n; ++i)
-        read(a[i]);
-    for (int i = 2; i <= n; ++i)
-    {
-        int x;
-        read(x);
-        sumb[i] = sumb[i - 1] + x;
-    }
-    for (int i = 2; i <= n; ++i)
-    {
-        int x;
-        read(x);
-        if (x < sumb[i] - sumb[i - 1])
+        for (int j = 1; j <= n; ++j)
         {
-            printf("-1\n");
-            return 0;
+            int x;
+            read(x);
+            sum[i][j] = sum[i - 1][j] + sum[i][j - 1] + x - sum[i - 1][j - 1];
         }
-        sumc[i] = sumc[i - 1] + x;
-    }
     for (int i = 1; i <= n; ++i)
+        for (int j = i; j <= n; ++j)
+            point[++tot] = make_pair(i, j);
+    mt19937 ni(114514);
+    uniform_int_distribution<int> rnd(1, tot);
+    for (int i = 1; i <= n * 2; ++i)
+        swap(point[rnd(ni)], point[rnd(ni)]);
+    long double ans = -1e12;
+    for (int i = 1; i <= tot; ++i)
     {
-        b[i] = make_pair(a[i] - sumc[i], a[i] - sumb[i]);
-        p[i] = b[i].second;
+        if (!check(point[i], ans + eps))
+            continue;
+        long double l = ans + eps, r = 1e12;
+        while (fabs(r - l) > eps)
+        {
+            long double mid = (l + r) / 2;
+            if (check(point[i], mid))
+            {
+                l = mid;
+                ans = mid;
+            }
+            else
+                r = mid;
+        }
     }
-    sort(p + 1, p + 1 + n);
-    sort(b + 1, b + 1 + n, [](const pair<ll, ll> &lhs, const pair<ll, ll> &rhs)
-         { return lhs.first == rhs.first ? lhs.second < rhs.second : lhs.first > rhs.first; });
-    tot = (int)(unique(p + 1, p + 1 + n) - p - 1);
-    for (int i = 1; i <= n; ++i)
-    {
-        int pos = (int)(lower_bound(p + 1, p + 1 + tot, b[i].second) - p);
-        update(pos, query(pos) + 1);
-    }
-    printf("%d\n", n - query(tot));
+    printf("%.10LF\n", ans);
     return 0;
 }
