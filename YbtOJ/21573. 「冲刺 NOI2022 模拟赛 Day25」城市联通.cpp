@@ -72,8 +72,8 @@ inline void work()
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("city.in","r",stdin);
-    freopen("city.out","w",stdout);
+    freopen("city.in", "r", stdin);
+    freopen("city.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1; i <= n; ++i)

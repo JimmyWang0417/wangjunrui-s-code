@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -45,7 +45,7 @@ using namespace std;
 const int N = 2e5 + 5;
 __gnu_pbds::gp_hash_table<ll, char> mp;
 int n, m;
-#define calc(x, y) ((ll)(x) * n + (y))
+#define calc(x, y) ((ll)(x)*n + (y))
 signed main()
 {
     read(n, m);

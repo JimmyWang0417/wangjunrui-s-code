@@ -69,7 +69,7 @@ signed main()
             if (!mp[val])
                 mp[val] = ++cnt;
             val = mp[val];
-            a[pos]=val;
+            a[pos] = val;
             g[a[pos]].insert(lower_bound(g[a[pos]].begin(), g[a[pos]].end(), pos), pos);
         }
     }

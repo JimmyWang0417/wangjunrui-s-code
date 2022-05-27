@@ -81,8 +81,8 @@ inline void dfs(int u, int _fa)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("data.in","r",stdin);
-    freopen("data.out","w",stdout);
+    freopen("data.in", "r", stdin);
+    freopen("data.out", "w", stdout);
 #endif
     read(n, d);
     for (int i = 1; i <= n; ++i)

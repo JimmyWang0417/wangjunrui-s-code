@@ -6,8 +6,8 @@
 //
 // Powered by CP Editor (https://cpeditor.org)
 
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -112,8 +112,8 @@ char answer[N];
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("value.in","r",stdin);
-    freopen("value.out","w",stdout);
+    freopen("value.in", "r", stdin);
+    freopen("value.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1, maxx = 0; i <= n; ++i)

@@ -75,8 +75,8 @@ inline void work()
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("expect.in","r",stdin);
-    freopen("expect.out","w",stdout);
+    freopen("expect.in", "r", stdin);
+    freopen("expect.out", "w", stdout);
 #endif
     read(n, m, X, Y);
     for (int i = 0; i < n; ++i)

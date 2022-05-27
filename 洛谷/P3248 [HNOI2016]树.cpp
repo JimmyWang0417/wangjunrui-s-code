@@ -24,7 +24,7 @@ inline void read(T &x)
         x = (~x) + 1;
 }
 template <typename T, typename... T1>
-inline void read(T &x, T1 &... x1)
+inline void read(T &x, T1 &...x1)
 {
     read(x);
     read(x1...);
@@ -206,9 +206,10 @@ public:
         int rtu = getroot(u), rtv = getroot(v);
         if (rtu == rtv)
             return small.getdis(calc(u), calc(v));
-        if (dep[rtu] < dep[rtv]){
+        if (dep[rtu] < dep[rtv])
+        {
             swap(rtu, rtv);
-            swap(u,v);
+            swap(u, v);
         }
         ll res = small.dep[calc(u)] - small.dep[pre[rtu]];
         u = rtu;

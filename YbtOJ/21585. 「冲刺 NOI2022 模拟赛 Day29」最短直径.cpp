@@ -26,7 +26,7 @@ inline void read(T &x)
         x = (~x) + 1;
 }
 template <typename T, typename... T1>
-inline void read(T &x, T1 &... x1)
+inline void read(T &x, T1 &...x1)
 {
     read(x);
     read(x1...);
@@ -112,7 +112,8 @@ signed main()
     for (int i = 1; i <= n; ++i)
         for (int j = 0; j < 8; ++j)
             if (dis[str[i] - 'a'][j + 1 + n] <= dis[j][i] && j != str[i] - 'a')
-                a[i] |= 1 << j;;
+                a[i] |= 1 << j;
+    ;
     int ans = 0;
     long long cnt = 0;
     for (int i = 1; i <= n; ++i)

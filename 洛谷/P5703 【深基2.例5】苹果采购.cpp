@@ -1,7 +1,7 @@
-#include<cstdio>
+#include <cstdio>
 int main()
 {
-	int a,b;
-	scanf("%d%d",&a,&b);
-	printf("%lld\n",1ll*a*b);
+    int a, b;
+    scanf("%d%d", &a, &b);
+    printf("%lld\n", 1ll * a * b);
 }

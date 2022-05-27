@@ -74,7 +74,7 @@ inline int newnode(int val, int ans, int id)
     int now = ++cnt;
     tree[now].val = val;
     tree[now].min = tree[now].ans = ans;
-    tree[now].key=rnd();
+    tree[now].key = rnd();
     tree[now].size = 1;
     tree[now].tag = 0;
     tree[now].id = id;

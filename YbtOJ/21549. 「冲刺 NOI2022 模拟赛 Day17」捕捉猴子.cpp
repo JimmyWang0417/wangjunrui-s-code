@@ -73,8 +73,8 @@ int answer[N];
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("monkey.in","r",stdin);
-    freopen("monkey.out","w",stdout);
+    freopen("monkey.in", "r", stdin);
+    freopen("monkey.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1; i <= n; ++i)

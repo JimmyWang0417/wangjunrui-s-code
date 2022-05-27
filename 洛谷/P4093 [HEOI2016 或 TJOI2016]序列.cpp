@@ -61,7 +61,7 @@ struct node
     }
     inline void clear(int pos)
     {
-        for (int i = pos; i<=n && c[i]; i += lowbit(i))
+        for (int i = pos; i <= n && c[i]; i += lowbit(i))
             c[i] = 0;
     }
 } tree;

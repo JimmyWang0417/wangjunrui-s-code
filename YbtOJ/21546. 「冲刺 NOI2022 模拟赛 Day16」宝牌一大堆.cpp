@@ -116,8 +116,8 @@ inline void work3()
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("b.in","r",stdin);
-    freopen("b.out","w",stdout);
+    freopen("b.in", "r", stdin);
+    freopen("b.out", "w", stdout);
 #endif
     int T;
     read(T);

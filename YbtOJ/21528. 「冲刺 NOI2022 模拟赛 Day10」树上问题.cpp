@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <cstdio>
 #include <vector>
-#include <algorithm>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))

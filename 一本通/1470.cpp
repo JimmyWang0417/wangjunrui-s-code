@@ -1,67 +1,66 @@
-#include<cstdio>
-#include<cstring>
+#include <cstdio>
+#include <cstring>
 using namespace std;
 #define r register
 inline int read()
 {
-    char s=getchar();
-    bool f=false;
-    int x=0;
-    while(!(s>='0'&&s<='9'))
+    char s = getchar();
+    bool f = false;
+    int x = 0;
+    while (!(s >= '0' && s <= '9'))
     {
-        if(s=='-')
-            f=true;
-        s=getchar();
+        if (s == '-')
+            f = true;
+        s = getchar();
     }
-    while(s>='0'&&s<='9')
+    while (s >= '0' && s <= '9')
     {
-        x=(x<<1)+(x<<3)+s-'0';
-        s=getchar();
+        x = (x << 1) + (x << 3) + s - '0';
+        s = getchar();
     }
-    return f?-x:x;
+    return f ? -x : x;
 }
-const int N=1e6+1;
-char a[N],b[N],c[N];
-int p[N],n,m,father[N],tot;
+const int N = 1e6 + 1;
+char a[N], b[N], c[N];
+int p[N], n, m, father[N], tot;
 inline void pre()
 {
-    p[1]=0;
-    for(r int i=1,j=0; i<m; i++)
+    p[1] = 0;
+    for (r int i = 1, j = 0; i < m; i++)
     {
-        while(j>0&&b[j+1]!=b[i+1])
-            j=p[j];
-        if(b[j+1]==b[i+1])
+        while (j > 0 && b[j + 1] != b[i + 1])
+            j = p[j];
+        if (b[j + 1] == b[i + 1])
             j++;
-        p[i+1]=j;
+        p[i + 1] = j;
     }
 }
 inline void kmp()
 {
-    r int i=0,j=0;
-    for(i=1; i<=n; i++)
+    r int i = 0, j = 0;
+    for (i = 1; i <= n; i++)
     {
-    	c[++tot]=a[i];
-        while(j>0&&b[j+1]!=c[tot])
-            j=p[j];
-        if(b[j+1]==c[tot])
+        c[++tot] = a[i];
+        while (j > 0 && b[j + 1] != c[tot])
+            j = p[j];
+        if (b[j + 1] == c[tot])
             j++;
-        father[tot]=j;
-        if(j==m)
+        father[tot] = j;
+        if (j == m)
         {
-        	tot-=m;
-        	j=father[tot];
-		}
+            tot -= m;
+            j = father[tot];
+        }
     }
 }
 int main()
 {
-    scanf("%s%s",a+1,b+1);
-    n=strlen(a+1);
-    m=strlen(b+1);
+    scanf("%s%s", a + 1, b + 1);
+    n = strlen(a + 1);
+    m = strlen(b + 1);
     pre();
     kmp();
-    for(r int i=1;i<=tot;i++)
-    printf("%c",c[i]);
+    for (r int i = 1; i <= tot; i++)
+        printf("%c", c[i]);
     return 0;
 }
-

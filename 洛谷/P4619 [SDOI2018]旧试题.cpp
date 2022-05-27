@@ -25,7 +25,7 @@ inline void read(T &x)
         x = (~x) + 1;
 }
 template <typename T, typename... T1>
-inline void read(T &x, T1 &... x1)
+inline void read(T &x, T1 &...x1)
 {
     read(x);
     read(x1...);
@@ -124,7 +124,8 @@ inline void work()
     for (int i = 1; i <= n; ++i)
         if (mul[i])
             id[++cnt] = i;
-    sort(id + 1, id + 1 + cnt, [](int x, int y) { return deg[x] > deg[y]; });
+    sort(id + 1, id + 1 + cnt, [](int x, int y)
+         { return deg[x] > deg[y]; });
     for (int i = 1; i <= cnt; ++i)
         where[id[i]] = i;
     for (int i = 1; i <= ybt; ++i)
@@ -167,7 +168,7 @@ inline void work()
                 {
                     x = edge[e1].dis, y = edge[e2].dis, z = edge[lasedge[w]].dis;
                     ll cur = 0;
-                    //case 3
+                    // case 3
                     (cur += (ll)f[x] * g[y] % mod * h[z]) %= mod;
                     (cur += (ll)f[x] * g[z] % mod * h[y]) %= mod;
                     (cur += (ll)f[y] * g[x] % mod * h[z]) %= mod;

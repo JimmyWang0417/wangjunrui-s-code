@@ -6,8 +6,8 @@
 //
 // Powered by CP Editor (https://cpeditor.org)
 
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -161,8 +161,8 @@ inline bool check(int u)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("substr.in","r",stdin);
-    freopen("substr.out","w",stdout);
+    freopen("substr.in", "r", stdin);
+    freopen("substr.out", "w", stdout);
 #endif
     read(n);
     scanf("%s", str + 1);

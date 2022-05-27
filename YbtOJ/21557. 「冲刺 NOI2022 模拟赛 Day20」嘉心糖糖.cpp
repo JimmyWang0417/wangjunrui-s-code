@@ -126,8 +126,8 @@ inline int dinic(int u, int flow)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("Diana.in","r",stdin);
-    freopen("Diana.out","w",stdout);
+    freopen("Diana.in", "r", stdin);
+    freopen("Diana.out", "w", stdout);
 #endif
     read(n);
     S = 0, T = 2 * n + 5;

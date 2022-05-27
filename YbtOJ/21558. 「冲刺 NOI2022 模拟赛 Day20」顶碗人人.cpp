@@ -48,8 +48,8 @@ int n, a[N], dp[M];
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("Ava.in","r",stdin);
-    freopen("Ava.out","w",stdout);
+    freopen("Ava.in", "r", stdin);
+    freopen("Ava.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1; i < n; ++i)

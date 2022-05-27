@@ -80,7 +80,7 @@ signed main()
         ++cnt1[point[i].y = (int)(lower_bound(p + 1, p + 1 + tot, point[i].y) - p)];
     sort(point + 1, point + 1 + n);
     ll ans = 0;
-    point[n+1].y=tot+1;
+    point[n + 1].y = tot + 1;
     for (int l = 1, r; l <= n; l = r)
     {
         r = l + 1;

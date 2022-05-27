@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -119,7 +119,7 @@ signed main()
          { return belong[x.first] == belong[y.first] ? belong[x.second] < belong[y.second] : belong[x.first] < belong[y.first]; });
     for (int l = 1, r; l <= tot; l = r)
     {
-    	nmsl=(belong[a[l].first] ==7&&belong[a[l].second]==10);
+        nmsl = (belong[a[l].first] == 7 && belong[a[l].second] == 10);
         r = l + 1;
         while (r <= tot && belong[a[l].first] == belong[a[r].first] && belong[a[l].second] == belong[a[r].second])
             ++r;

@@ -1,73 +1,73 @@
-#include<cstdio>
-#include<cmath>
-#include<cstdlib>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
 using namespace std;
-template<typename T>
-inline void read(T&x)
+template <typename T>
+inline void read(T &x)
 {
-	x=0;
-	char s=getchar();
-	bool f=false;
-	while(!(s>='0'&&s<='9'))
-	{
-		if(s=='-')
-			f=true;
-		s=getchar();
-	}
-	while(s>='0'&&s<='9')
-	{
-		x=(x<<1)+(x<<3)+s-'0';
-		s=getchar();
-	}
-	if(f)
-		x=(~x)+1;
-	return;
+    x = 0;
+    char s = getchar();
+    bool f = false;
+    while (!(s >= '0' && s <= '9'))
+    {
+        if (s == '-')
+            f = true;
+        s = getchar();
+    }
+    while (s >= '0' && s <= '9')
+    {
+        x = (x << 1) + (x << 3) + s - '0';
+        s = getchar();
+    }
+    if (f)
+        x = (~x) + 1;
+    return;
 }
 #define re register
 #define temperature 1e5
 #define cold 0.996
-const int N=1e3+10;
+const int N = 1e3 + 10;
 int n;
-double ans,ansx,ansy;
+double ans, ansx, ansy;
 struct node
 {
-	int x,y,w;
+    int x, y, w;
 } a[N];
-inline double calc(double x,double y)//¼ÆËãÊÆÄÜ£¬ÊÆÄÜÔ½Ð¡½âÔ½ÓÅ
+inline double calc(double x, double y) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½Ô½Ð¡ï¿½ï¿½Ô½ï¿½ï¿½
 {
-	double energy=0.0;
-	for(re int i=1; i<=n; i++)
-		energy+=sqrt((x-a[i].x)*(x-a[i].x)+(y-a[i].y)*(y-a[i].y))*a[i].w;
-	return energy;
+    double energy = 0.0;
+    for (re int i = 1; i <= n; i++)
+        energy += sqrt((x - a[i].x) * (x - a[i].x) + (y - a[i].y) * (y - a[i].y)) * a[i].w;
+    return energy;
 }
 inline void solve()
 {
-	double t=temperature;
-	while(t>1e-18)
-	{
-		double tmpx=ansx+(rand()+rand()-RAND_MAX)*t,tmpy=ansy+(rand()+rand()-RAND_MAX)*t;
-		double tmp=calc(tmpx,tmpy);
-		double d=tmp-ans;
-		if(d<0.0)
-			ans=tmp,ansx=tmpx,ansy=tmpy;
-		else if(exp(-d/t)*RAND_MAX>rand())
-			ansx=tmpx,ansy=tmpy;
-		t*=cold;
-	}
+    double t = temperature;
+    while (t > 1e-18)
+    {
+        double tmpx = ansx + (rand() + rand() - RAND_MAX) * t, tmpy = ansy + (rand() + rand() - RAND_MAX) * t;
+        double tmp = calc(tmpx, tmpy);
+        double d = tmp - ans;
+        if (d < 0.0)
+            ans = tmp, ansx = tmpx, ansy = tmpy;
+        else if (exp(-d / t) * RAND_MAX > rand())
+            ansx = tmpx, ansy = tmpy;
+        t *= cold;
+    }
 }
 int main()
 {
-	srand(rand());
-	read(n);
-	for(re int i=1; i<=n; i++)
-	{
-		read(a[i].x),read(a[i].y),read(a[i].w);
-		ansx+=a[i].x;
-		ansy+=a[i].y;
-	}
-	ansx/=n,ansy/=n,ans=calc(ansx,ansy);//ÂÒ¸ãÒ»¸ö³õÊ¼Öµ
-	for(re int i=1; i<=4; i++)//¶à¸ã¼¸´Î
-		solve();
-	printf("%.3lf %.3lf\n",ansx,ansy);
-	return 0;
+    srand(rand());
+    read(n);
+    for (re int i = 1; i <= n; i++)
+    {
+        read(a[i].x), read(a[i].y), read(a[i].w);
+        ansx += a[i].x;
+        ansy += a[i].y;
+    }
+    ansx /= n, ansy /= n, ans = calc(ansx, ansy); //ï¿½Ò¸ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ê¼Öµ
+    for (re int i = 1; i <= 4; i++)               //ï¿½ï¿½ã¼¸ï¿½ï¿½
+        solve();
+    printf("%.3lf %.3lf\n", ansx, ansy);
+    return 0;
 }

@@ -1,6 +1,6 @@
 #include <cstdio>
-#include <queue>
 #include <cstring>
+#include <queue>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -48,7 +48,7 @@ int n, m;
 struct Edge
 {
     int next, to, flow, cap, cost;
-} edge[M*3];
+} edge[M * 3];
 int head[M], num_edge = 1;
 inline void add_edge(int from, int to, int cap, int cost, bool flag = true)
 {
@@ -66,9 +66,9 @@ bool exist[M];
 int S, T;
 inline bool spfa()
 {
-    memcpy(cur, head, sizeof(int)*(T+1));
-    memset(dis, 0x3f, sizeof(int)*(T+1));
-    memset(exist, 0, sizeof(bool)*(T+1));
+    memcpy(cur, head, sizeof(int) * (T + 1));
+    memset(dis, 0x3f, sizeof(int) * (T + 1));
+    memset(exist, 0, sizeof(bool) * (T + 1));
     dis[S] = 0;
     queue<int> q;
     q.push(S);

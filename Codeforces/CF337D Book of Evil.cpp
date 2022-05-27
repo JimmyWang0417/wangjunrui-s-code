@@ -1,4 +1,4 @@
-#pragma GCC optimize(3,Ofast)
+#pragma GCC optimize(3, Ofast)
 #include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
@@ -91,14 +91,13 @@ inline void dfs(int u, int _fa, int maxx)
         int &v = edge[i].to;
         if (v == _fa)
             continue;
-        int res = a[u]?0:INT_MIN;
+        int res = a[u] ? 0 : INT_MIN;
         if (where[u][0] == v)
         {
             if (where[u][1])
                 res = dis[where[u][1]] + 1;
         }
-        else
-        if(where[u][0])
+        else if (where[u][0])
             res = dis[where[u][0]] + 1;
         dfs(v, u, max(maxx, res) + 1);
     }

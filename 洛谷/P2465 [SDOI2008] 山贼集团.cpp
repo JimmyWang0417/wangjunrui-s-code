@@ -30,7 +30,7 @@ inline void read(T &x, T1 &...x1)
     read(x1...);
 }
 using namespace std;
-const int N = 105, M = (1<<12)+5;
+const int N = 105, M = (1 << 12) + 5;
 template <typename T>
 inline void ckmax(T &x, T y)
 {
@@ -40,7 +40,7 @@ inline void ckmax(T &x, T y)
 struct Edge
 {
     int next, to;
-} edge[N*2];
+} edge[N * 2];
 int head[N], num_edge;
 inline void add_edge(int from, int to)
 {

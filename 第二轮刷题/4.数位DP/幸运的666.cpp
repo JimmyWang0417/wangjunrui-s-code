@@ -48,83 +48,84 @@
 #include <cstring>
 #define ll long long
 #define re register
-template<typename T>
-inline void read(T&x)
+template <typename T>
+inline void read(T &x)
 {
-	x=0;
-	char s=getchar();
-	bool f=false;
-	while(!(s>='0'&&s<='9'))
-	{
-		if(s=='-')
-			f=true;
-		s=getchar();
-	}
-	while(s>='0'&&s<='9')
-	{
-		x=(x<<1)+(x<<3)+s-'0';
-		s=getchar();
-	}
-	if(f)
-		x=(~x)+1;
+    x = 0;
+    char s = getchar();
+    bool f = false;
+    while (!(s >= '0' && s <= '9'))
+    {
+        if (s == '-')
+            f = true;
+        s = getchar();
+    }
+    while (s >= '0' && s <= '9')
+    {
+        x = (x << 1) + (x << 3) + s - '0';
+        s = getchar();
+    }
+    if (f)
+        x = (~x) + 1;
 }
 int digit[15];
 ll dp[15][15][15];
-inline ll dfs(int pos,int bebefore,int before,bool limit)
+inline ll dfs(int pos, int bebefore, int before, bool limit)
 {
-	if(pos==0)
-		return 1;
-	if(!limit&&dp[pos][bebefore][before]!=-1)
-		return dp[pos][bebefore][before];
-	int maxx=limit?digit[pos]:9;
-	ll res=0;
-	for(re int i=0; i<=maxx; ++i)
-	{
-		if(bebefore==6&&before==6&&i==6)
-			continue;
-		res+=dfs(pos-1,before,i,limit&&i==maxx);
-	}
-	if(!limit)
-		dp[pos][bebefore][before]=res;
-	return res;
+    if (pos == 0)
+        return 1;
+    if (!limit && dp[pos][bebefore][before] != -1)
+        return dp[pos][bebefore][before];
+    int maxx = limit ? digit[pos] : 9;
+    ll res = 0;
+    for (re int i = 0; i <= maxx; ++i)
+    {
+        if (bebefore == 6 && before == 6 && i == 6)
+            continue;
+        res += dfs(pos - 1, before, i, limit && i == maxx);
+    }
+    if (!limit)
+        dp[pos][bebefore][before] = res;
+    return res;
 }
 inline ll solve(ll val)
 {
-	int len=0;
-	ll n=val;
-	while(val)
-	{
-		digit[++len]=val%10;
-		val/=10;
-	}
-	memset(dp,-1,sizeof(dp));
-	return n-dfs(len,0,0,true)+1;
+    int len = 0;
+    ll n = val;
+    while (val)
+    {
+        digit[++len] = val % 10;
+        val /= 10;
+    }
+    memset(dp, -1, sizeof(dp));
+    return n - dfs(len, 0, 0, true) + 1;
 }
 inline void work()
 {
-	int n;
-	read(n);
-	ll l=666,r=6668056399,ans=0;
-//	solve(1);
-//	solve(66650000000+10) ;
-	while(l<=r)
-	{
-		ll mid=(l+r)>>1;
-		if(solve(mid)>=n)
-		{
-			ans=mid;
-			r=mid-1;
-		}
-		else l=mid+1;
-	}
-//	solve(666);
-	printf("%lld\n",ans);
+    int n;
+    read(n);
+    ll l = 666, r = 6668056399, ans = 0;
+    //	solve(1);
+    //	solve(66650000000+10) ;
+    while (l <= r)
+    {
+        ll mid = (l + r) >> 1;
+        if (solve(mid) >= n)
+        {
+            ans = mid;
+            r = mid - 1;
+        }
+        else
+            l = mid + 1;
+    }
+    //	solve(666);
+    printf("%lld\n", ans);
 }
 int main()
 {
-	int T;
-//	printf("%d\n",solve(666));
-	read(T);
-	while(T--)
-		work();
+    int T;
+    //	printf("%d\n",solve(666));
+    read(T);
+    while (T--)
+        work();
 }

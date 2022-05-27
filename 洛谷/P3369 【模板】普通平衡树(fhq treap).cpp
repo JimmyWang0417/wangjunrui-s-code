@@ -54,12 +54,12 @@ private:
         else
         {
             if (tree[now].val <= val)
-            {// now的权值小于等于val，说明now以及now的左子树都属于x，所以递归划分now的右子树
+            { // now的权值小于等于val，说明now以及now的左子树都属于x，所以递归划分now的右子树
                 x = now;
                 split(tree[now].r, val, tree[now].r, y);
             }
             else
-            {// now的权值大于v，说明now以及now的右子树都属于y，所以递归划分now的左子树
+            { // now的权值大于v，说明now以及now的右子树都属于y，所以递归划分now的左子树
                 y = now;
                 split(tree[now].l, val, x, tree[now].l);
             }
@@ -73,14 +73,14 @@ private:
             return y;
         if (!y)
             return x;
-        if (tree[x].key > tree[y].key)// 若x优先级小，则它应该为新树的根
-        {// 由于x中元素都比y中元素权值小，所以合并x的右子树与y
+        if (tree[x].key > tree[y].key) // 若x优先级小，则它应该为新树的根
+        {                              // 由于x中元素都比y中元素权值小，所以合并x的右子树与y
             tree[x].r = merge(tree[x].r, y);
             pushup(x);
             return x;
         }
         else
-        {//若y优先级小，则y应该为新树的根
+        { //若y优先级小，则y应该为新树的根
             tree[y].l = merge(x, tree[y].l);
             pushup(y);
             return y;

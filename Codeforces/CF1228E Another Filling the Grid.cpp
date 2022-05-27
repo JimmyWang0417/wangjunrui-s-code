@@ -3,7 +3,7 @@
 // URL: https://codeforces.com/problemset/problem/1228/E
 // Memory Limit: 256 MB
 // Time Limit: 1000 ms
-// 
+//
 // Powered by CP Editor (https://cpeditor.org)
 
 #include <cstdio>

@@ -64,8 +64,8 @@ int n, m;
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("num.in","r",stdin);
-    freopen("num.out","w",stdout);
+    freopen("num.in", "r", stdin);
+    freopen("num.out", "w", stdout);
 #endif
     read(n, m);
     fac[0] = 1;

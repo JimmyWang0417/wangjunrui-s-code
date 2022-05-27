@@ -120,8 +120,8 @@ int where[N];
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("development.in","r",stdin);
-    freopen("development.out","w",stdout);
+    freopen("development.in", "r", stdin);
+    freopen("development.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1; i <= n; ++i)

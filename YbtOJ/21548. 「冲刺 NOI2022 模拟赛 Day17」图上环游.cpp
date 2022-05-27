@@ -83,8 +83,8 @@ ll answer[N];
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("journey.in","r",stdin);
-    freopen("journey.out","w",stdout);
+    freopen("journey.in", "r", stdin);
+    freopen("journey.out", "w", stdout);
 #endif
     read(n, m);
     for (int i = 1; i <= m; ++i)

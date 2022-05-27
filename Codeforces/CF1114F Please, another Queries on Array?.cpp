@@ -168,7 +168,7 @@ signed main()
             update(1, 1, n, l, r, x, solve(x));
         }
         else
-            printf("%lld\n", querymul(1, 1, n, l, r)*calc(queryS(1, 1, n, l, r))%mod);
+            printf("%lld\n", querymul(1, 1, n, l, r) * calc(queryS(1, 1, n, l, r)) % mod);
     }
     return 0;
 }

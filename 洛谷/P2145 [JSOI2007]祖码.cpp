@@ -71,7 +71,7 @@ signed main()
                 ckmin(dp[l][r], dp[l][i] + dp[i + 1][r]);
             if (color[l] == color[r])
             {
-            	ckmin(dp[l][r],dp[l + 1][r - 1]+(size[l]+size[r]<3));
+                ckmin(dp[l][r],dp[l + 1][r - 1]+(size[l]+size[r]<3));
                 for (int i = l + 1; i < r; ++i)
                     if (color[l]==color[i]&&(size[l] + size[i] < 3 || size[i] + size[r] < 3))
                         ckmin(dp[l][r], dp[l + 1][i - 1] + dp[i + 1][r - 1]);
@@ -127,7 +127,7 @@ int dp[N][N];
 signed main()
 {
     read(n);
-    color[0]=-1e9;
+    color[0] = -1e9;
     for (int i = 1; i <= n; ++i)
     {
         int x;
@@ -143,7 +143,7 @@ signed main()
     n = tot;
     memset(dp, 0x3f, sizeof(dp));
     for (int i = 1; i <= n; ++i)
-        dp[i][i] = (size[i]>=2?1:2);
+        dp[i][i] = (size[i] >= 2 ? 1 : 2);
     for (int len = 2; len <= n; ++len)
     {
         for (int l = 1, r; l + len - 1 <= n; ++l)
@@ -151,12 +151,12 @@ signed main()
             r = l + len - 1;
             if (color[l] == color[r])
             {
-            	ckmin(dp[l][r],dp[l + 1][r - 1]+(size[l]+size[r]<3));
+                ckmin(dp[l][r], dp[l + 1][r - 1] + (size[l] + size[r] < 3));
             }
             for (int i = l; i < r; ++i)
                 ckmin(dp[l][r], dp[l][i] + dp[i + 1][r]);
         }
     }
-    printf("%d\n",dp[1][n]==3?2:dp[1][n]);
+    printf("%d\n", dp[1][n] == 3 ? 2 : dp[1][n]);
     return 0;
 }

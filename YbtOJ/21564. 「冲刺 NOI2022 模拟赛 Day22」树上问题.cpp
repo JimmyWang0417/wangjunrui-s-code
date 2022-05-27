@@ -165,8 +165,8 @@ struct node
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("rhapsody.in","r",stdin);
-    freopen("rhapsody.out","w",stdout);
+    freopen("rhapsody.in", "r", stdin);
+    freopen("rhapsody.out", "w", stdout);
 #endif
     read(n, m, q);
     for (int i = 1; i < n; ++i)

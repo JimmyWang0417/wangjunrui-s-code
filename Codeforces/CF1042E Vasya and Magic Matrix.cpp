@@ -99,10 +99,10 @@ signed main()
         }
     }
     int now = (int)(lower_bound(p + 1, p + 1 + tot, a[r][c]) - p);
-    if(!size[now-1])
+    if (!size[now - 1])
     {
-    	printf("0\n");
-    	return 0;
+        printf("0\n");
+        return 0;
     }
     ll ans = (r * r + c * c + (sumxx[now - 1] + sumyy[now - 1] - 2ll * sumx[now - 1] * r - 2ll * sumy[now - 1] * c) % mod * inv[size[now - 1]] % mod) % mod;
     sum[now - 1] = inv[size[now - 1]];

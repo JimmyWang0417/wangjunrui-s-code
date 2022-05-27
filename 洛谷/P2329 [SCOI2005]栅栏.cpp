@@ -63,7 +63,7 @@ int main()
 {
     read(n);
     for (int i = 1; i <= n; i++)
-        read(a[i]),sum += a[i];
+        read(a[i]), sum += a[i];
     read(m);
     for (int i = 1; i <= m; i++)
         read(b[i]);

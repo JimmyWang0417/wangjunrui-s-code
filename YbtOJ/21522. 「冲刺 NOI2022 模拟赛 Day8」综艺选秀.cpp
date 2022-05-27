@@ -101,8 +101,8 @@ inline bool update(int rt, int l, int r, const node &pos)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("azls.in","r",stdin);
-    freopen("azls.out","w",stdout);
+    freopen("azls.in", "r", stdin);
+    freopen("azls.out", "w", stdout);
 #endif
     read(n, m);
     for (int i = 1; i <= n; ++i)

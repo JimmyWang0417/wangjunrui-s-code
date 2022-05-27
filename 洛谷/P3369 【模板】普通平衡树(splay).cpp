@@ -41,15 +41,15 @@ inline void pushup(int now)
     tree[now].size = tree[lc(now)].size + tree[rc(now)].size + tree[now].cnt;
 }
 inline void rotate(int x)
-{//y为x的父结点，z为x的祖父结点并选取不以y->x同侧的x的儿子w，以维持BST性质 
+{ // y为x的父结点，z为x的祖父结点并选取不以y->x同侧的x的儿子w，以维持BST性质
     int y = fa(x), z = fa(y), k = check(x), w = tree[x].ch[k ^ 1];
-    tree[z].ch[check(y)] = x, fa(x) = z;//将x的父结点接到z上，y的父结点接到x
-    tree[y].ch[k] = w, fa(w) = y; //将w接在y上
-    tree[x].ch[k ^ 1] = y, fa(y) = x; //将y接在x上
+    tree[z].ch[check(y)] = x, fa(x) = z; //将x的父结点接到z上，y的父结点接到x
+    tree[y].ch[k] = w, fa(w) = y;        //将w接在y上
+    tree[x].ch[k ^ 1] = y, fa(y) = x;    //将y接在x上
     pushup(y), pushup(x);
 }
 inline void splay(int x, int target = 0)
-{//通过一系列旋转，将结点x调整为结点target的子结点(target=0则x调整后为根结点)
+{ //通过一系列旋转，将结点x调整为结点target的子结点(target=0则x调整后为根结点)
     while (fa(x) != target)
     {
         int y = fa(x), z = fa(y);
@@ -70,7 +70,7 @@ inline void find(int val)
     int now = root;
     while (tree[now].ch[val > tree[now].val] && tree[now].val != val)
         now = tree[now].ch[val > tree[now].val];
-    splay(now); //调整伸展树形态 
+    splay(now); //调整伸展树形态
 }
 inline void insert(int val)
 {

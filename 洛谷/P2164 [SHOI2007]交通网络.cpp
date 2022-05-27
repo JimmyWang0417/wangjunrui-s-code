@@ -47,7 +47,7 @@ inline void add_edge(int from, int to)
     edge[num_edge].to = to;
     head[from] = num_edge;
 }
-long double edgeanswer[N*N], pointanswer[N];
+long double edgeanswer[N * N], pointanswer[N];
 int n, m;
 int a[N][N];
 int q[N], tot;
@@ -114,6 +114,6 @@ signed main()
         memset(pointanswer, 0, sizeof(pointanswer));
     }
     for (int i = 1; i <= m; ++i)
-        printf("%.1LF\n", edgeanswer[i]+1e-9);
+        printf("%.1LF\n", edgeanswer[i] + 1e-9);
     return 0;
 }

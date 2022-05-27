@@ -47,8 +47,8 @@ inline int query(int l, int r)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("count.in","r",stdin);
-    freopen("count.out","w",stdout);
+    freopen("count.in", "r", stdin);
+    freopen("count.out", "w", stdout);
 #endif
     read(n, m);
     Log[0] = -1;

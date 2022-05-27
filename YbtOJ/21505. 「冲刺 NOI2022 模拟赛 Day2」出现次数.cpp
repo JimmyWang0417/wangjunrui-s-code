@@ -1,6 +1,6 @@
+#include <climits>
 #include <cstdio>
 #include <vector>
-#include <climits>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -237,8 +237,8 @@ inline void solve(int id)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("operator.in","r",stdin);
-    freopen("operator.out","w",stdout);
+    freopen("operator.in", "r", stdin);
+    freopen("operator.out", "w", stdout);
 #endif
     int chzcnm;
     read(chzcnm);

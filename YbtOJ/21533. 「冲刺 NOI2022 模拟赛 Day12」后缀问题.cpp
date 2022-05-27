@@ -24,7 +24,7 @@ inline void read(T &x)
         x = (~x) + 1;
 }
 template <typename T, typename... T1>
-inline void read(T &x, T1 &... x1)
+inline void read(T &x, T1 &...x1)
 {
     read(x);
     read(x1...);
@@ -125,8 +125,8 @@ inline void work()
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("suffix.in","r",stdin);
-    freopen("suffix.out","w",stdout);
+    freopen("suffix.in", "r", stdin);
+    freopen("suffix.out", "w", stdout);
 #endif
     int T;
     read(T);

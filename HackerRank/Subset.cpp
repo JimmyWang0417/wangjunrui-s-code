@@ -2,8 +2,8 @@
 del x：在集合中删除一个元素 x
 cnt s：输入s查询集合中有多少个元素满足x & s = x
 */
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))

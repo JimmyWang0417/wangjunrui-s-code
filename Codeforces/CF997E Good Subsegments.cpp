@@ -3,11 +3,11 @@
 // URL: https://codeforces.com/problemset/problem/997/E
 // Memory Limit: 512 MB
 // Time Limit: 7000 ms
-// 
+//
 // Powered by CP Editor (https://cpeditor.org)
 
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))

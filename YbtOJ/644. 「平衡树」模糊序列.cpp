@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -131,8 +131,8 @@ inline int merge(int x, int y)
 }
 signed main()
 {
-    freopen("vague.in","r",stdin);
-    freopen("vague.out","w",stdout);
+    freopen("vague.in", "r", stdin);
+    freopen("vague.out", "w", stdout);
     read(n);
     for (int i = 1; i <= n; ++i)
     {
@@ -147,6 +147,6 @@ signed main()
         int res = tree[x].max + 1;
         root = merge(merge(x, newnode(l, res)), merge(y, z));
     }
-    printf("%d\n",tree[root].max);
+    printf("%d\n", tree[root].max);
     return 0;
 }

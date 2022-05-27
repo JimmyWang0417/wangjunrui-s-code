@@ -73,6 +73,6 @@ signed main()
     sort(a + 1, a + 1 + n, [](const node &lhs, const node &rhs)
          { return lhs.x < rhs.x; });
     init();
-    printf("%.3lf\n",(double)max(dp[1][n][0], dp[1][n][1])/1000.0);
+    printf("%.3lf\n", (double)max(dp[1][n][0], dp[1][n][1]) / 1000.0);
     return 0;
 }

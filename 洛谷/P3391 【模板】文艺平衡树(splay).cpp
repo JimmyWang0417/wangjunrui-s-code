@@ -1,5 +1,5 @@
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
 #define re register
 template <typename T>
 inline void read(T &x)
@@ -46,12 +46,12 @@ inline void pushdown(int now)
 {
     if (!tree[now].reverse)
         return;
-    swap(lc(now), rc(now));//区间翻转
-    if (lc(now))//标记下放
+    swap(lc(now), rc(now)); //区间翻转
+    if (lc(now))            //标记下放
         tree[lc(now)].reverse ^= 1;
     if (rc(now))
         tree[rc(now)].reverse ^= 1;
-    tree[now].reverse = false;//下放后清空当前标记
+    tree[now].reverse = false; //下放后清空当前标记
 }
 inline void rorate(int x)
 {
@@ -87,7 +87,7 @@ inline int build(int fa, int l, int r)
     pushup(now);
     return now;
 }
-inline int k_th(int rk)//通过sze数组查找序列第k个元素
+inline int k_th(int rk) //通过sze数组查找序列第k个元素
 {
     int now = root;
     while (1)
@@ -127,7 +127,7 @@ inline void dfs(int now)
     dfs(rc(now));
 }
 inline void print(int now)
-{//按照序列顺序输出
+{ //按照序列顺序输出
     dfs(now);
     putchar('\n');
 }

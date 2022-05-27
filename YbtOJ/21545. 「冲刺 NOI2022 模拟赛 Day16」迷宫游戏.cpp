@@ -99,8 +99,8 @@ inline bool check(int u)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("a.in","r",stdin);
-    freopen("a.out","w",stdout);
+    freopen("a.in", "r", stdin);
+    freopen("a.out", "w", stdout);
 #endif
     while (read(n, m), n && m)
     {

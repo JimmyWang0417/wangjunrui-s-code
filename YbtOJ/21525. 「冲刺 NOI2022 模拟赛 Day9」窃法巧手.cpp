@@ -24,7 +24,7 @@ inline void read(T &x)
         x = (~x) + 1;
 }
 template <typename T, typename... T1>
-inline void read(T &x, T1 &... x1)
+inline void read(T &x, T1 &...x1)
 {
     read(x);
     read(x1...);
@@ -168,7 +168,7 @@ inline int find(int rt, int size)
     while (1)
     {
         // if (flag)
-            // printf("%d %d %d\n", rt, tree[rt].size, size);
+        // printf("%d %d %d\n", rt, tree[rt].size, size);
         if (tree[lc(rt)].size + 1 == size)
             return tree[rt].val;
         else if (tree[lc(rt)].size >= size)

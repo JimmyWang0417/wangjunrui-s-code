@@ -26,7 +26,7 @@ inline void read(T &x)
         x = (~x) + 1;
 }
 template <typename T, typename... T1>
-inline void read(T &x, T1 &... x1)
+inline void read(T &x, T1 &...x1)
 {
     read(x);
     read(x1...);
@@ -90,7 +90,8 @@ signed main()
             if (vis[0][j] && !vis[i][j])
                 h[j].push_back(i);
     }
-    sort(p + 1, p + 1 + n, [](int x, int y) { return h[x].size() < h[y].size(); });
+    sort(p + 1, p + 1 + n, [](int x, int y)
+         { return h[x].size() < h[y].size(); });
     for (int u = 1; u <= n; ++u)
     {
         for (auto v : h[u])

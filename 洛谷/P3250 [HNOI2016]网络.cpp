@@ -126,7 +126,7 @@ inline void solve(int l, int r, int ql, int qr)
     }
     int mid = (l + r + 1) >> 1;
     int cnt1 = 0, cnt2 = 0;
-    int now=0;
+    int now = 0;
     for (int i = ql; i <= qr; ++i)
     {
         if (q[i].opt == 0)
@@ -159,7 +159,7 @@ inline void solve(int l, int r, int ql, int qr)
         }
         else
         {
-            if (now-(tree.query(dfn[q[i].a],low[q[i].a])))
+            if (now - (tree.query(dfn[q[i].a], low[q[i].a])))
                 q2[++cnt2] = q[i];
             else
                 q1[++cnt1] = q[i];
@@ -184,9 +184,9 @@ inline void solve(int l, int r, int ql, int qr)
 signed main()
 {
     read(n, m);
-	Log[0]=-1;
-	for(int i=1;i<=n;++i)
-	Log[i]=Log[i>>1]+1;
+    Log[0] = -1;
+    for (int i = 1; i <= n; ++i)
+        Log[i] = Log[i >> 1] + 1;
     for (int i = 1; i < n; ++i)
     {
         int u, v;
@@ -209,7 +209,7 @@ signed main()
         {
             int id;
             read(id);
-            q[i].a=q[id].a,q[i].b=q[id].b,q[i].lca=q[id].lca,q[i].v=q[id].v;
+            q[i].a = q[id].a, q[i].b = q[id].b, q[i].lca = q[id].lca, q[i].v = q[id].v;
         }
         else
         {

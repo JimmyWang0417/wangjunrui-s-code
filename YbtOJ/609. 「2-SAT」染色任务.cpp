@@ -3,11 +3,11 @@
 // URL: https://codeforces.com/problemset/problem/1007/D
 // Memory Limit: 768 MB
 // Time Limit: 3000 ms
-// 
+//
 // Powered by CP Editor (https://cpeditor.org)
 
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -214,8 +214,8 @@ inline void tarjan(int u)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("color.in","r",stdin);
-    freopen("color.out","w",stdout);
+    freopen("color.in", "r", stdin);
+    freopen("color.out", "w", stdout);
 #endif
     tree.init();
     for (int i = 1; i <= (tot << 1 | 1); ++i)

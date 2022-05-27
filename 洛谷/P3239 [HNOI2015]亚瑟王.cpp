@@ -49,10 +49,10 @@ int d[N];
 double power[N][N], dp[N][N];
 signed main()
 {
-	int T;
-	read(T);
-	while(T--)
-	{
+    int T;
+    read(T);
+    while (T--)
+    {
         read(n, m);
         for (int i = 1; i <= n; ++i)
         {

@@ -117,10 +117,10 @@ inline void dfs(int u)
 }
 signed main()
 {
-    #ifdef ONLINE_JUDGE
-        freopen("distance.in","r",stdin);
-        freopen("distance.out","w",stdout);
-    #endif
+#ifdef ONLINE_JUDGE
+    freopen("distance.in", "r", stdin);
+    freopen("distance.out", "w", stdout);
+#endif
     read(n);
     for (int i = 2; i <= n; ++i)
     {

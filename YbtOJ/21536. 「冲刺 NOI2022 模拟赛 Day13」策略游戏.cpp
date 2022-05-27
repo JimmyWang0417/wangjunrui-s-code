@@ -24,7 +24,7 @@ inline void read(T &x)
         x = (~x) + 1;
 }
 template <typename T, typename... T1>
-inline void read(T &x, T1 &... x1)
+inline void read(T &x, T1 &...x1)
 {
     read(x);
     read(x1...);
@@ -118,8 +118,8 @@ vector<int> answer;
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("game.in","r",stdin);
-    freopen("game.out","w",stdout);
+    freopen("game.in", "r", stdin);
+    freopen("game.out", "w", stdout);
 #endif
     read(n, m);
     for (int i = 1; i <= n; ++i)

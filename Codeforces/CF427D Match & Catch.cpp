@@ -117,7 +117,7 @@ signed main()
     int ans = 0x3f3f3f3f;
     for (int i = 2; i <= tot; ++i)
         if (dp[i] == 2 && point[i].size == 2)
-            ckmin(ans, point[point[i].fa].len+1);
+            ckmin(ans, point[point[i].fa].len + 1);
     printf("%d\n", ans == 0x3f3f3f3f ? -1 : ans);
     return 0;
 }

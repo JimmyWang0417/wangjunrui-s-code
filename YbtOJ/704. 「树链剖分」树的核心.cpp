@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -186,8 +186,8 @@ inline int query()
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("core.in","r",stdin);
-    freopen("core.out","w",stdout);
+    freopen("core.in", "r", stdin);
+    freopen("core.out", "w", stdout);
 #endif
     read(n, m);
     for (int i = 2; i <= n; ++i)

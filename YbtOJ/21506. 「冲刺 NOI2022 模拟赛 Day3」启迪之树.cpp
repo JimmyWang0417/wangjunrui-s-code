@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -86,8 +86,8 @@ inline void dfs(int u, int _fa)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("tree.in","r",stdin);
-    freopen("tree.out","w",stdout);
+    freopen("tree.in", "r", stdin);
+    freopen("tree.out", "w", stdout);
 #endif
     read(n);
     block = (int)sqrt(n);

@@ -90,8 +90,8 @@ inline void update(int rt, int l, int r, int x, int y, int u)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("firsttouch.in","r",stdin);
-    freopen("firsttouch.out","w",stdout);
+    freopen("firsttouch.in", "r", stdin);
+    freopen("firsttouch.out", "w", stdout);
 #endif
     read(n, s, m);
     build(1, 1, n);

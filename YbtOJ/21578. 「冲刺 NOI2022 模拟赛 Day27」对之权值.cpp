@@ -86,8 +86,8 @@ inline ll solve3()
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("pair.in","r",stdin);
-    freopen("pair.out","w",stdout);
+    freopen("pair.in", "r", stdin);
+    freopen("pair.out", "w", stdout);
 #endif
     read(n);
     for (int i = 0; i < n; ++i)

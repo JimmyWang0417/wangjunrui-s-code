@@ -124,8 +124,8 @@ int id[N][N];
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("compete.in","r",stdin);
-    freopen("compete.out","w",stdout);
+    freopen("compete.in", "r", stdin);
+    freopen("compete.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1; i <= n; ++i)

@@ -93,7 +93,7 @@ inline void dfs(int u, int _fa, int d)
 inline void solve(int u)
 {
     getroot(u, 0);
-    u=root;
+    u = root;
     dfs(u, 0, 0);
     vis[u] = true;
     for (int i = head[u]; i; i = edge[i].next)

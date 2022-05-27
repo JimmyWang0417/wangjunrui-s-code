@@ -157,7 +157,7 @@ inline void insert(int c)
             point[nq].len = point[p].len + 1;
             cut(q, point[q].fa);
             point[np].fa = point[q].fa = nq;
-            link(np, nq), link(q, nq),link(point[nq].fa,nq);
+            link(np, nq), link(q, nq), link(point[nq].fa, nq);
             for (; p && point[p].ch[c] == q; p = point[p].fa)
                 point[p].ch[c] = nq;
         }

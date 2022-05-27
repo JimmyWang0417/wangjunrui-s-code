@@ -1,24 +1,24 @@
-/*ÌâÄ¿±³¾°
-ÖíÖíhankeµÃµ½ÁËÒ»Ö»¼¦
-ÌâÄ¿ÃèÊö
-ÖíÖíHankeÌØ±ðÏ²»¶³Ô¿¾¼¦£¨±¾ÊÇÍ¬ÐóÉü£¬Ïà¼åºÎÌ«¼±£¡£©Hanke³Ô¼¦ºÜÌØ±ð£¬ÎªÊ²Ã´ÌØ±ðÄØ£¿ÒòÎªËûÓÐ10ÖÖÅäÁÏ£¨½æÄ©¡¢×ÎÈ»µÈ£©£¬Ã¿ÖÖÅäÁÏ¿ÉÒÔ·Å1¡ª3¿Ë£¬ÈÎÒâ¿¾¼¦µÄÃÀÎ¶³Ì¶ÈÎªËùÓÐÅäÁÏÖÊÁ¿Ö®ºÍ
-ÏÖÔÚ£¬HankeÏëÒªÖªµÀ£¬Èç¹û¸øÄãÒ»¸öÃÀÎ¶³Ì¶È£¬ÇëÊä³öÕâ10ÖÖÅäÁÏµÄËùÓÐ´îÅä·½°¸
-ÊäÈëÊä³ö¸ñÊ½
-ÊäÈë¸ñÊ½£º
+/*ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½hankeï¿½Ãµï¿½ï¿½ï¿½Ò»Ö»ï¿½ï¿½
+ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Hankeï¿½Ø±ï¿½Ï²ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Hankeï¿½Ô¼ï¿½ï¿½ï¿½ï¿½Ø±ï¿½ÎªÊ²Ã´ï¿½Ø±ï¿½ï¿½Ø£ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½ï¿½ï¿½Ä©ï¿½ï¿½ï¿½ï¿½È»ï¿½È£ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½Ô·ï¿½1ï¿½ï¿½3ï¿½Ë£ï¿½ï¿½ï¿½ï¿½â¿¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¶ï¿½Ì¶ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
+ï¿½ï¿½ï¿½Ú£ï¿½Hankeï¿½ï¿½ÒªÖªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Î¶ï¿½Ì¶È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ä·½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½
 
-Ò»ÐÐ,n<=5000
+Ò»ï¿½ï¿½,n<=5000
 
-Êä³ö¸ñÊ½£º
+ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½
 
-µÚÒ»ÐÐ£¬·½°¸×ÜÊý
-µÚ¶þÐÐÖÁ½áÊø£¬10¸öÊý£¬±íÊ¾Ã¿ÖÖÅäÁÏËù·ÅµÄÖÊÁ¿
-°´×ÖµäÐòÅÅÁÐ¡£
-Èç¹ûÃ»ÓÐ·ûºÏÒªÇóµÄ·½·¨£¬¾ÍÖ»ÒªÔÚµÚÒ»ÐÐÊä³öÒ»¸ö¡°0¡±
+ï¿½ï¿½Ò»ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½
+ï¿½ï¿½ï¿½Ã»ï¿½Ð·ï¿½ï¿½ï¿½Òªï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»Òªï¿½Úµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½
 
-ÊäÈëÊä³öÑùÀý
-ÊäÈëÑùÀý#1£º ¸´ÖÆ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½#1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 11
-Êä³öÑùÀý#1£º ¸´ÖÆ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½#1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 10
 1 1 1 1 1 1 1 1 1 2
 1 1 1 1 1 1 1 1 2 1
@@ -30,43 +30,41 @@
 1 1 2 1 1 1 1 1 1 1
 1 2 1 1 1 1 1 1 1 1
 2 1 1 1 1 1 1 1 1 1
-ËµÃ÷
-Ã¶¾Ù*/
-#include<cstdio>
+Ëµï¿½ï¿½
+Ã¶ï¿½ï¿½*/
+#include <cstdio>
 using namespace std;
-int a[59049][11],temp[11],sum,ans,n;
+int a[59049][11], temp[11], sum, ans, n;
 void DFS(int t)
 {
-	for(register int i=1; i<=3; i++)
-	{
-		ans+=i;
-		temp[t]=i;
-		if(t==10)
-		{
-			if(ans==n)
-			{
-				sum++;
-				for(register int j=1; j<=10; j++)
-					a[sum][j]=temp[j];
-			}
-
-		}
-		else
-			DFS(t+1);
-		ans-=i;
-	}
+    for (register int i = 1; i <= 3; i++)
+    {
+        ans += i;
+        temp[t] = i;
+        if (t == 10)
+        {
+            if (ans == n)
+            {
+                sum++;
+                for (register int j = 1; j <= 10; j++)
+                    a[sum][j] = temp[j];
+            }
+        }
+        else
+            DFS(t + 1);
+        ans -= i;
+    }
 }
 int main()
 {
-	scanf("%d",&n);
-	DFS(1);
-	printf("%d\n",sum);
-	for(register int i=1; i<=sum; i++)
-	{
-		printf("%d",a[i][1]);
-		for(register int j=2; j<=10; j++)
-			printf(" %d",a[i][j]);
-		putchar('\n');
-	}
-
+    scanf("%d", &n);
+    DFS(1);
+    printf("%d\n", sum);
+    for (register int i = 1; i <= sum; i++)
+    {
+        printf("%d", a[i][1]);
+        for (register int j = 2; j <= 10; j++)
+            printf(" %d", a[i][j]);
+        putchar('\n');
+    }
 }

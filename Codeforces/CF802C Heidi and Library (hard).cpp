@@ -6,8 +6,8 @@
 //
 // Powered by CP Editor (https://cpeditor.org)
 
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -141,7 +141,7 @@ signed main()
         add_edge(i + n, T, 1, 0);
     }
     for (int i = 1; i <= n; ++i)
-        read(b[i]);           
+        read(b[i]);
     int ans = 0;
     for (int i = 1; i <= n; ++i)
     {

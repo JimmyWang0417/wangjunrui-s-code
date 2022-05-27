@@ -1,57 +1,60 @@
-#include<iostream>
-#include<stack>
-#include<set>
-#include<map>
-#include<vector>
-#include<algorithm>
-#define ALL(x) x.begin(),x.end()
-#define INS(x) inserter(x,x.begin())//²åÈëµü´úÆ÷£¬ÓÃÓÚºóÃæµÄÈ¡²¢¼¯¡¢½»¼¯ÒÔ¼°ºÏ²¢ºó·µ»ØÒ»¸öset<int>£¬Ïê¼ûµÚ43ÖÁ49ÐÐµÄÏêÏ¸Ê¹ÓÃ¡£
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <set>
+#include <stack>
+#include <vector>
+#define ALL(x) x.begin(), x.end()
+#define INS(x) inserter(x, x.begin()) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Ï²ï¿½ï¿½ó·µ»ï¿½Ò»ï¿½ï¿½set<int>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½43ï¿½ï¿½49ï¿½Ðµï¿½ï¿½ï¿½Ï¸Ê¹ï¿½Ã¡ï¿½
 using namespace std;
-map<set<int>,int> IDdata;//½«¼¯ºÏÓ³Éä³ÉÊý£¬¾ßÌåÎªÊ²Ã´ÓÃset<int>ÏàÐÅÃ¿Ò»Î»ÁË½âstlµÄCµ³¶¼Ã÷°×¡£
-vector< set<int> > setdata;//¿ÉÒÔÀí½âÎª¼¯ºÏµÄ¼ìË÷±í£¬ÓÃÓÚ¶Ô¼¯ºÏIDµÄ·ÖÅäÓë¶ÔÒÑÖªIDµÄ¼¯ºÏµÄ²éÑ¯¡£
-int ID(set<int> x)   //²éÕÒ¸ø¶¨¼¯ºÏxµÄID¡£ÈôÕÒ²»µ½£¬·ÖÅäÒ»¸öÐÂID¡£
+map<set<int>, int> IDdata; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÊ²Ã´ï¿½ï¿½set<int>ï¿½ï¿½ï¿½ï¿½Ã¿Ò»Î»ï¿½Ë½ï¿½stlï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¡ï¿½
+vector<set<int>> setdata;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ÏµÄ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶Ô¼ï¿½ï¿½ï¿½IDï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖªIDï¿½Ä¼ï¿½ï¿½ÏµÄ²ï¿½Ñ¯ï¿½ï¿½
+int ID(set<int> x)         //ï¿½ï¿½ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½
 {
-	if(IDdata.count(x))return IDdata[x];
-	setdata.push_back(x);
-	return IDdata[x]=setdata.size()-1;
+    if (IDdata.count(x))
+        return IDdata[x];
+    setdata.push_back(x);
+    return IDdata[x] = setdata.size() - 1;
 }
 int main()
 {
-	int T;
-	cin>>T;
-	while(T)
-	{
-		T--;
-		stack<int>s;
-		int n;
-		cin>>n;
-		for(int i=1; i<=n; i++)
-		{
-			string point;
-			cin>>point;
-			if(point=="PUSH")
-				s.push(ID(set<int>()));
-			else if(point=="DUP")
-				s.push(s.top());
-			else
-			{
-				set<int> x1=setdata[s.top()];
-				s.pop();
-				set<int> x2=setdata[s.top()];
-				s.pop();
-				set<int> x;
-				if(point=="UNION")set_union(ALL(x1),ALL(x2),INS(x));
-				else if(point=="INTERSECT")set_intersection(ALL(x1),ALL(x2),INS(x));
-				else if(point=="ADD")
-				{
-					x=x2;
-					x.insert(ID(x1));
-				}
-				s.push(ID(x));
-			}
-			cout<<setdata[s.top()].size()<<endl;
-		}
-		cout<<"***"<<endl;
-	}
-	return 0;
+    int T;
+    cin >> T;
+    while (T)
+    {
+        T--;
+        stack<int> s;
+        int n;
+        cin >> n;
+        for (int i = 1; i <= n; i++)
+        {
+            string point;
+            cin >> point;
+            if (point == "PUSH")
+                s.push(ID(set<int>()));
+            else if (point == "DUP")
+                s.push(s.top());
+            else
+            {
+                set<int> x1 = setdata[s.top()];
+                s.pop();
+                set<int> x2 = setdata[s.top()];
+                s.pop();
+                set<int> x;
+                if (point == "UNION")
+                    set_union(ALL(x1), ALL(x2), INS(x));
+                else if (point == "INTERSECT")
+                    set_intersection(ALL(x1), ALL(x2), INS(x));
+                else if (point == "ADD")
+                {
+                    x = x2;
+                    x.insert(ID(x1));
+                }
+                s.push(ID(x));
+            }
+            cout << setdata[s.top()].size() << endl;
+        }
+        cout << "***" << endl;
+    }
+    return 0;
 }

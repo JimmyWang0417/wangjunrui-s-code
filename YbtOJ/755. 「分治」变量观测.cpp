@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -59,7 +59,7 @@ signed main()
     freopen("obs.out", "w", stdout);
     read(n, q);
     int lastans = 0;
-    list<int>vec;
+    list<int> vec;
     while (q--)
     {
         int opt;
@@ -100,7 +100,7 @@ signed main()
                 }
                 vec.push_back(u);
             }
-            for(auto u:vec)
+            for (auto u : vec)
             {
                 for (int i = 0; i < a[u].k; ++i)
                     a[u].its[i] = que[a[u].q[i]].push(make_pair(a[u].t / a[u].k + tag[a[u].q[i]], u));

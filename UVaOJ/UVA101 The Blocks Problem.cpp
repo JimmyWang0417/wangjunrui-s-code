@@ -1,7 +1,7 @@
-#include <iostream>
-#include <cstring>
-#include <cstdio>
 #include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
 #include <vector>
 #define il inline
 using namespace std;
@@ -9,119 +9,123 @@ using namespace std;
 int n;
 vector<int> block[30];
 
-//·µ»ØÄ¾¿éaËùÔÚµÄp
+//ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½aï¿½ï¿½ï¿½Úµï¿½p
 il int find_p(int a)
 {
-	int i,j;
-	for (i=0; i<n; i++)
-	{
-		for (j=0; j<block[i].size(); j++)
-		{
-			if (block[i][j]==a)
-				return i;
-		}
-	}
+    int i, j;
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < block[i].size(); j++)
+        {
+            if (block[i][j] == a)
+                return i;
+        }
+    }
 }
 
-//·µ»ØÄ¾¿éaËùÔÚµÄh
+//ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½aï¿½ï¿½ï¿½Úµï¿½h
 il int find_h(int a)
 {
-	int i,j;
-	for (i=0; i<n; i++)
-	{
-		for (j=0; j<block[i].size(); j++)
-		{
-			if (block[i][j]==a)
-				return j;
-		}
-	}
+    int i, j;
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < block[i].size(); j++)
+        {
+            if (block[i][j] == a)
+                return j;
+        }
+    }
 }
 
-//°ÑµÚp¶Ñ¸ßÎªhµÄÄ¾¿éÉÏÃæµÄËùÓÐÄ¾¿éÒÆ»ØÔ­Î»
-il void doing(int p,int h)
+//ï¿½Ñµï¿½pï¿½Ñ¸ï¿½Îªhï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½Æ»ï¿½Ô­Î»
+il void doing(int p, int h)
 {
-	int i;
-	for (i=h+1; i<block[p].size(); i++)
-	{
-		int where=block[p][i];
+    int i;
+    for (i = h + 1; i < block[p].size(); i++)
+    {
+        int where = block[p][i];
 
-		block[where].push_back(where);
-	}
+        block[where].push_back(where);
+    }
 
-	block[p].resize(h+1);
+    block[p].resize(h + 1);
 }
 
-//°ÑµÚp¶Ñ¸ß¶ÈÎªhµÄÄ¾¿é¼°ÆäÒÔÉÏËùÓÐÄ¾¿éµÄÕûÌåÒÆµ½µÚp2¶ÑµÄ¶¥¶Ë
-il void onto(int p,int h,int pp)
+//ï¿½Ñµï¿½pï¿½Ñ¸ß¶ï¿½Îªhï¿½ï¿½Ä¾ï¿½é¼°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½p2ï¿½ÑµÄ¶ï¿½ï¿½ï¿½
+il void onto(int p, int h, int pp)
 {
-	int i;
-	for (i=h; i<block[p].size(); i++)
-	{
-		block[pp].push_back(block[p][i]);
-	}
+    int i;
+    for (i = h; i < block[p].size(); i++)
+    {
+        block[pp].push_back(block[p][i]);
+    }
 
-	block[p].resize(h);
+    block[p].resize(h);
 }
 
-//³õÊ¼»¯
+//ï¿½ï¿½Ê¼ï¿½ï¿½
 il void init()
 {
-	scanf("%d",&n);
+    scanf("%d", &n);
 
-	int i;
-	for (i=0; i<n; i++)
-	{
-		block[i].push_back(i);
-	}
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        block[i].push_back(i);
+    }
 }
 
-//½â¾ö
+//ï¿½ï¿½ï¿½
 il void solve()
 {
-	int a,b;
-	string s1,s2;
-	while (cin>>s1)
-	{
-		if (s1=="quit") break;
+    int a, b;
+    string s1, s2;
+    while (cin >> s1)
+    {
+        if (s1 == "quit")
+            break;
 
-		cin>>a>>s2>>b;
+        cin >> a >> s2 >> b;
 
-		int pa,pb,ha,hb;
+        int pa, pb, ha, hb;
 
-		pa=find_p(a),ha=find_h(a),
-		pb=find_p(b),hb=find_h(b);
+        pa = find_p(a), ha = find_h(a),
+        pb = find_p(b), hb = find_h(b);
 
-		if (pa==pb) continue;//·Ç·¨Ö¸Áî
+        if (pa == pb)
+            continue; //ï¿½Ç·ï¿½Ö¸ï¿½ï¿½
 
-		if (s2=="onto") doing(pb,hb);
-		if (s1=="move") doing(pa,ha);
+        if (s2 == "onto")
+            doing(pb, hb);
+        if (s1 == "move")
+            doing(pa, ha);
 
-		onto(pa,ha,pb);
-	}
+        onto(pa, ha, pb);
+    }
 }
 
-//Êä³ö
+//ï¿½ï¿½ï¿½
 il void print()
 {
-	int i,j;
-	for (i=0; i<n; i++)
-	{
-		printf("%d:",i);
+    int i, j;
+    for (i = 0; i < n; i++)
+    {
+        printf("%d:", i);
 
-		for (j=0; j<block[i].size(); j++)
-		{
-			printf(" %d",block[i][j]);
-		}
+        for (j = 0; j < block[i].size(); j++)
+        {
+            printf(" %d", block[i][j]);
+        }
 
-		printf("\n");
-	}
+        printf("\n");
+    }
 }
 
 int main()
 {
-	init();
-	solve();
-	print();
+    init();
+    solve();
+    print();
 
-	return 0;
+    return 0;
 }

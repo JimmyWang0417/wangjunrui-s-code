@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
 #include <bits/extc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 #define ull unsigned ll
 #define lowbit(x) (x & (-x))
@@ -92,8 +92,8 @@ inline void dfs(int u, int _fa, ll dis)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("rock.in","r",stdin);
-    freopen("rock.out","w",stdout);
+    freopen("rock.in", "r", stdin);
+    freopen("rock.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1; i < n; ++i)

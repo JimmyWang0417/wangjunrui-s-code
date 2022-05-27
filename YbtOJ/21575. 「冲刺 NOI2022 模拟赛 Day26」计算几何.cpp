@@ -75,8 +75,8 @@ inline ll solve(int val)
 signed main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("A.in","r",stdin);
-    freopen("A.out","w",stdout);
+    freopen("A.in", "r", stdin);
+    freopen("A.out", "w", stdout);
 #endif
     read(n);
     for (int i = 1; i <= n; ++i)

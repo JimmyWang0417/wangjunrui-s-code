@@ -4,35 +4,37 @@
  * @brief A thread pool which execute all class derived from Runner.
  * @version 0.1
  * @date 2022-03-23
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 #pragma once
 
-#include <thread>
 #include <atomic>
-#include <vector>
 #include <memory>
+#include <thread>
+#include <vector>
 
-#include <MultiGenerator/Workflow/Runner.hpp>
 #include <MultiGenerator/Executor/Channel.hpp>
+#include <MultiGenerator/Workflow/Runner.hpp>
 
-namespace MultiGenerator::Executor {
+namespace MultiGenerator::Executor
+{
     /**
      * @brief A struct which stores the status and all pending runners
      * of a thread pool.
      *
      */
-    struct ThreadPoolStatus {
+    struct ThreadPoolStatus
+    {
         std::atomic_int runningWorkerCount;
         Sender<std::shared_ptr<Workflow::Runner>> runnerSender;
         Receiver<std::shared_ptr<Workflow::Runner>> runnerReceiver;
 
-        ThreadPoolStatus() :
-            runningWorkerCount(0),
-            runnerSender(),
-            runnerReceiver() {
+        ThreadPoolStatus() : runningWorkerCount(0),
+                             runnerSender(),
+                             runnerReceiver()
+        {
             auto channel = Channel<std::shared_ptr<Workflow::Runner>>::create();
             runnerSender = std::move(channel.first);
             runnerReceiver = std::move(channel.second);
@@ -43,22 +45,25 @@ namespace MultiGenerator::Executor {
      * @brief The handle of the worker thread created by the thread pool.
      *
      */
-    class Worker {
+    class Worker
+    {
     public:
-        Worker() :
-            handle() {}
+        Worker() : handle() {}
 
-        ~Worker() {
+        ~Worker()
+        {
             stop();
         }
-        
+
         /**
          * @brief Initialize a worker thread.
          *
          * @param status the status of the thread pool
          */
-        void start(ThreadPoolStatus &status) {
-            handle = std::thread([&, this]() {
+        void start(ThreadPoolStatus &status)
+        {
+            handle = std::thread([&, this]()
+                                 {
                 status.runningWorkerCount.fetch_add(1, std::memory_order_relaxed);
 
                 while (true) {
@@ -71,8 +76,7 @@ namespace MultiGenerator::Executor {
                         break;
                 }
 
-                status.runningWorkerCount.fetch_sub(1, std::memory_order_relaxed);
-            });
+                status.runningWorkerCount.fetch_sub(1, std::memory_order_relaxed); });
         }
 
         /**
@@ -80,52 +84,65 @@ namespace MultiGenerator::Executor {
          * automatically by itself.
          *
          */
-        void stop() {
+        void stop()
+        {
             if (handle.joinable())
                 handle.join();
         }
+
     private:
         std::thread handle;
 
-        std::shared_ptr<Workflow::Runner> getRunner(ThreadPoolStatus &status) {
+        std::shared_ptr<Workflow::Runner> getRunner(ThreadPoolStatus &status)
+        {
             auto runner = status.runnerReceiver.receive();
             return runner.value_or(std::shared_ptr<Workflow::Runner>());
         }
     };
 
-    class MaxThreadCountInvalidException : public std::exception {
+    class MaxThreadCountInvalidException : public std::exception
+    {
     public:
-        const char *what() const noexcept override {
+        const char *what() const noexcept override
+        {
             return "MaxThreadCountInvalidException: The max count of threads must be positive.";
         }
     };
 
-    class ThreadPoolAlreadyStartedException : public std::exception {
+    class ThreadPoolAlreadyStartedException : public std::exception
+    {
     public:
-        const char *what() const noexcept override {
+        const char *what() const noexcept override
+        {
             return "ThreadPoolAlreadyStartedException: The pool had already started.";
         }
     };
 
-    class ThreadPoolAlreadyStoppedException : public std::exception {
+    class ThreadPoolAlreadyStoppedException : public std::exception
+    {
     public:
-        const char *what() const noexcept override {
+        const char *what() const noexcept override
+        {
             return "ThreadPoolAlreadyStoppedException: The pool had already stopped.";
         }
     };
 
-    class ThreadPoolIsNotRunningException : public std::exception {
+    class ThreadPoolIsNotRunningException : public std::exception
+    {
     public:
-        const char *what() const noexcept override {
+        const char *what() const noexcept override
+        {
             return "ThreadPoolIsNotRunningException: The pool can't handle a runner when stopped.";
         }
     };
 
-    class RunnerHandleInvalidException : public std::exception {
+    class RunnerHandleInvalidException : public std::exception
+    {
     public:
-        const char *what() const noexcept override {
+        const char *what() const noexcept override
+        {
             return "RunnerHandleInvalidException: "
-                "The handle(std::shared_ptr<Workflow::Runner>) is empty.";
+                   "The handle(std::shared_ptr<Workflow::Runner>) is empty.";
         }
     };
 
@@ -133,18 +150,18 @@ namespace MultiGenerator::Executor {
      * @brief A class which manages the workers and posts runners.
      *
      */
-    class ThreadPool {
+    class ThreadPool
+    {
     public:
         /**
          * @brief Construct a new stopped thread pool object. Need to call start()
          * to handle tasks.
          *
          */
-        ThreadPool() :
-            maxWorkerCount(0),
-            isStopped(true),
-            status(std::make_unique<ThreadPoolStatus>()),
-            workers() {}
+        ThreadPool() : maxWorkerCount(0),
+                       isStopped(true),
+                       status(std::make_unique<ThreadPoolStatus>()),
+                       workers() {}
 
         /**
          * @brief Construct a new thread pool object with maxWorkerCount worker(s)
@@ -152,11 +169,11 @@ namespace MultiGenerator::Executor {
          *
          * @param maxWorkerCount haw many worker(s) to create
          */
-        ThreadPool(int maxWorkerCount) :
-            maxWorkerCount(0),
-            isStopped(true),
-            status(std::make_unique<ThreadPoolStatus>()),
-            workers() {
+        ThreadPool(int maxWorkerCount) : maxWorkerCount(0),
+                                         isStopped(true),
+                                         status(std::make_unique<ThreadPoolStatus>()),
+                                         workers()
+        {
             start(maxWorkerCount);
         }
 
@@ -168,7 +185,8 @@ namespace MultiGenerator::Executor {
 
         ThreadPool &operator=(ThreadPool &&rhs) = default;
 
-        ~ThreadPool() {
+        ~ThreadPool()
+        {
             if (!isStopped)
                 stop();
         }
@@ -180,7 +198,8 @@ namespace MultiGenerator::Executor {
          *
          * @param maxWorkerCount haw many worker(s) to create
          */
-        void start(int maxWorkerCount) {
+        void start(int maxWorkerCount)
+        {
             if (maxWorkerCount <= 0)
                 throw MaxThreadCountInvalidException();
 
@@ -203,7 +222,8 @@ namespace MultiGenerator::Executor {
          * Throw exception when the pool has already stopped.
          *
          */
-        void stop() {
+        void stop()
+        {
             if (isStopped)
                 throw ThreadPoolAlreadyStoppedException();
 
@@ -225,11 +245,12 @@ namespace MultiGenerator::Executor {
          * @param args the arguments passed to the constructor of RunnerDerived
          * @return a handle of the runner which is able to get some essential inforamation
          */
-        template <typename RunnerDerived, typename ...Args>
-        std::shared_ptr<Workflow::Runner> execute(Args &&...args) {
+        template <typename RunnerDerived, typename... Args>
+        std::shared_ptr<Workflow::Runner> execute(Args &&...args)
+        {
             /** RunnerDerived must implement Runner . */
             static_assert(std::is_base_of_v<Workflow::Runner, RunnerDerived>,
-                "RunnerDerived must be a derived class of Workflow::Runner.");
+                          "RunnerDerived must be a derived class of Workflow::Runner.");
 
             auto runner = std::make_shared<RunnerDerived>(std::forward<Args>(args)...);
             execute(runner);
@@ -242,7 +263,8 @@ namespace MultiGenerator::Executor {
          *
          * @param runner the runner handle
          */
-        void execute(std::shared_ptr<Workflow::Runner> runner) {
+        void execute(std::shared_ptr<Workflow::Runner> runner)
+        {
             if (isStopped)
                 throw ThreadPoolIsNotRunningException();
 
@@ -251,13 +273,15 @@ namespace MultiGenerator::Executor {
 
             status->runnerSender.send(std::move(runner));
         }
+
     private:
         int maxWorkerCount;
         bool isStopped;
         std::unique_ptr<ThreadPoolStatus> status;
         std::vector<Worker> workers;
 
-        void setMaxWorkerCount(int count) {
+        void setMaxWorkerCount(int count)
+        {
             maxWorkerCount = count;
             isStopped = (count == 0);
         }

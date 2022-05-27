@@ -219,8 +219,8 @@ void build()
 int main()
 {
 #ifdef ONLINE_JUDGE
-    freopen("underground.in","r",stdin);
-    freopen("underground.out","w",stdout);
+    freopen("underground.in", "r", stdin);
+    freopen("underground.out", "w", stdout);
 #endif
     read(n, m, k);
     for (int i = 1; i <= n; ++i)

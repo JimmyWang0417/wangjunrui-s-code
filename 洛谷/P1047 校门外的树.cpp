@@ -1,81 +1,84 @@
-#include<cstdio>
+#include <cstdio>
 #define MAXN 100007
 using namespace std;
-int n,m,x,y;
+int n, m, x, y;
 struct SegTree
 {
-	int l;//×ó¶Ëµã
-	int r;//ÓÒ¶Ëµã
-	long long w;//Çø¼äºÍ£¨±íÊ¾Çø¼äÄÚÊ÷µÄ×ÜÊý£©
-	int lt;//lazytag(ÀÁ¶è±ê¼Ç)
-	int add;
-	int mul;
-	SegTree()
-	{
-		lt=1;   //½«lazytag³õÊ¼»¯ÎªÒ»
-	}
-} tree[MAXN<<2]; //×¢ÒâtreeÊý×éµÄ³¤¶ÈÖÁÉÙÎªmaxn*4
+    int l;       //ï¿½ï¿½Ëµï¿½
+    int r;       //ï¿½Ò¶Ëµï¿½
+    long long w; //ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    int lt;      // lazytag(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    int add;
+    int mul;
+    SegTree()
+    {
+        lt = 1; //ï¿½ï¿½lazytagï¿½ï¿½Ê¼ï¿½ï¿½ÎªÒ»
+    }
+} tree[MAXN << 2]; //×¢ï¿½ï¿½treeï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªmaxn*4
 inline int read()
 {
-	register char s=getchar();
-	int x=0;
-	while(s<'0'||s>'9')
-		s=getchar();
-	while(s>='0'&&s<='9')
-	{
-		x=(x<<1)+(x<<3)+s-'0';
-		s=getchar();
-	}
-	return x;
+    register char s = getchar();
+    int x = 0;
+    while (s < '0' || s > '9')
+        s = getchar();
+    while (s >= '0' && s <= '9')
+    {
+        x = (x << 1) + (x << 3) + s - '0';
+        s = getchar();
+    }
+    return x;
 }
-inline void build(int l,int r,int u)//½¨Ê÷
+inline void build(int l, int r, int u) //ï¿½ï¿½ï¿½ï¿½
 {
-	tree[u].l=l,tree[u].r=r;
-	if(l==r)
-	{
-		tree[u].w=1;    //Ò»µ©ÕÒµ½Ò¶½Úµã£¬Ö±½Ó½«Öµ¸³Îª1(ÒòÎªÃ»¸öµãÉÏÖ»ÓÐÒ»¿ÃÊ÷)
-		return;
-	}
-	int m=(l+r)/2;//¶þ·Ö
-	build(l,m,u+u);
-	build(m+1,r,u+u+1);
-	tree[u].w=tree[u+u].w+tree[u+u+1].w;//Çø¼äºÍ¼´ÎªÁ½×ÓÊ÷µÄÇø¼äºÍÖ®ºÍ£¨ÈÆ¿Úµ«²»ÄÑÀí½â£©
+    tree[u].l = l, tree[u].r = r;
+    if (l == r)
+    {
+        tree[u].w = 1; //Ò»ï¿½ï¿½ï¿½Òµï¿½Ò¶ï¿½Úµã£¬Ö±ï¿½Ó½ï¿½Öµï¿½ï¿½Îª1(ï¿½ï¿½ÎªÃ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½)
+        return;
+    }
+    int m = (l + r) / 2; //ï¿½ï¿½ï¿½ï¿½
+    build(l, m, u + u);
+    build(m + 1, r, u + u + 1);
+    tree[u].w = tree[u + u].w + tree[u + u + 1].w; //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½Í£ï¿½ï¿½Æ¿Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â£©
 }
-inline void down(int u)//ÏÂÍÆlazytag
+inline void down(int u) //ï¿½ï¿½ï¿½ï¿½lazytag
 {
-	tree[u+u].lt=tree[u].lt;  //Ö±½Ó½«lazytag¸³¸ø×Ó½Úµã
-	tree[u+u+1].lt=tree[u].lt;
-	tree[u+u].w=tree[u].lt;   //ÓÉÓÚlazytag±»±ê¼ÇºóÖµÎª0£¬ÐÞ¸ÄÇø¼äÄÚµÄÊ÷Ò²Òª±äÎª0£¬ËùÒÔÖ±½Ó½«lazytag¸³¸ø×Ó½ÚµãµÄw
-	tree[u+u+1].w=tree[u].lt;
-	tree[u].lt=1;            //½«±ê¼ÇÈ¥µô
+    tree[u + u].lt = tree[u].lt; //Ö±ï¿½Ó½ï¿½lazytagï¿½ï¿½ï¿½ï¿½ï¿½Ó½Úµï¿½
+    tree[u + u + 1].lt = tree[u].lt;
+    tree[u + u].w = tree[u].lt; //ï¿½ï¿½ï¿½ï¿½lazytagï¿½ï¿½ï¿½ï¿½Çºï¿½ÖµÎª0ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½Ò²Òªï¿½ï¿½Îª0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó½ï¿½lazytagï¿½ï¿½ï¿½ï¿½ï¿½Ó½Úµï¿½ï¿½w
+    tree[u + u + 1].w = tree[u].lt;
+    tree[u].lt = 1; //ï¿½ï¿½ï¿½ï¿½ï¿½È¥ï¿½ï¿½
 }
-inline void change(int u)//Çø¼äÐÞ¸Ä
+inline void change(int u) //ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
 {
-	if(tree[u].l>=x&&tree[u].r<=y) //Èô¸ÃÇø¼ä±»´ýÐÞ¸ÄÇø¼ä¸²¸Ç£¬Ö±½Ó½«Çø¼äºÍÇå0£¨Ê÷ÒªÈ«²¿È¥µô£©£¬²¢´òÉÏ±ê¼Ç
-	{
-		tree[u].w=0;
-		tree[u].lt=0;
-		return;
-	}
-	if(tree[u].lt!=1) down(u);//ÈôÓÐ±ê¼ÇÔòÏÂÍÆ
-	int m=(tree[u].l+tree[u].r)/2;
-	if(x<=m) change(u+u);//ÅÐ¶ÏÖÐµã×óÓÒÊÇ·ñÓÐ´ýÐÞ¸ÄµÄµã
-	if(y>m) change(u+u+1);
-	tree[u].w=tree[u+u+1].w+tree[u+u].w;//¸üÐÂµ±Ç°µãµÄÇø¼äºÍ
+    if (tree[u].l >= x && tree[u].r <= y) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä±»ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ä¸²ï¿½Ç£ï¿½Ö±ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ÒªÈ«ï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½
+    {
+        tree[u].w = 0;
+        tree[u].lt = 0;
+        return;
+    }
+    if (tree[u].lt != 1)
+        down(u); //ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    int m = (tree[u].l + tree[u].r) / 2;
+    if (x <= m)
+        change(u + u); //ï¿½Ð¶ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ð´ï¿½ï¿½Þ¸ÄµÄµï¿½
+    if (y > m)
+        change(u + u + 1);
+    tree[u].w = tree[u + u + 1].w + tree[u + u].w; //ï¿½ï¿½ï¿½Âµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 int main()
 {
-	n=read();
-	m=read();
-	++n;//Ê÷µÄÎ»ÖÃÓÉ0~n->1~n+1
-	build(1,n,1);
-	while(m--)
-	{
-		x=read();
-		y=read();
-		++x,++y;
-		change(1);
-	}
-	printf("%lld",tree[1].w);//Ö±½ÓÊä³öÐÞ¸ÄºóÕû¸öÇø¼äÖ®ºÍ
-	return 0;
+    n = read();
+    m = read();
+    ++n; //ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½0~n->1~n+1
+    build(1, n, 1);
+    while (m--)
+    {
+        x = read();
+        y = read();
+        ++x, ++y;
+        change(1);
+    }
+    printf("%lld", tree[1].w); //Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Äºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½
+    return 0;
 }
