@@ -29,4 +29,12 @@
 # Executables
 *.exe
 *.app
+
+#feature
 project*
+Environment/atcoder-workspace/*
+Environment/spoj-tools/*
+!Environment/spoj-tools/*.py
+credentials.*
+Program*
+spoj-submitter.dat
