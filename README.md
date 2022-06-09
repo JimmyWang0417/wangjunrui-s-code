@@ -53,6 +53,7 @@
 
 程序的目录树：
 <!-- directory tree begin -->
+```plain
 .
 ├── 51Nod
 │   └── 51nod2929 部落战争.cpp
@@ -1947,4 +1948,5 @@
         ├── 数数.cpp
         ├── 最短字符串.cpp
         └── 简单题.cpp
+```
 <!-- directory tree end -->

@@ -17,9 +17,9 @@ for line in infile:  #使用迭代器读取每一段文本文件的内容
         right += line
 infile.close()
 onfile = open('README.md', 'w')  #以清空原文本文件内容的方式打开文件写入
-onfile.write(left)
+onfile.write(left + "```plain\n")
 onfile.close()
 os.system("sh directory\\ tree.sh")
 onfile = open('README.md', 'a+')
-onfile.write(right)
+onfile.write("```\n" + right)
 onfile.close()
