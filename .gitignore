@@ -38,3 +38,4 @@ Environment/spoj-tools/*
 credentials.*
 Program*
 spoj-submitter.dat
+__pycache__/*
