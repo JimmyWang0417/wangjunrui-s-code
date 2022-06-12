@@ -12,7 +12,7 @@
 
 [<img src="https://www.nowcoder.com/favicon.ico" width="40px" height = "40px" alt="牛客"/>](https://www.nowcoder.com)
 
-[信息学奥赛一本通](http://ybt.ssoier.cn:8088)
+[<img src="https://s1.ax1x.com/2022/06/11/XcTim4.png" width="40px" height = "40px" alt="信息学奥赛一本通"/>](http://ybt.ssoier.cn:8088)
 
 
 [<img src="https://atcoder.jp/favicon.ico" width="40px" height = "40px" alt="AtCoder"/>](https://atcoder.jp/)
