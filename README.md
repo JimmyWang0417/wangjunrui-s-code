@@ -140,11 +140,13 @@
 │   ├── AT2370 [AGC013D] Piling Up.cpp
 │   ├── AT2371 [AGC013E] Placing Squares.cpp
 │   ├── AT2374 [AGC014B] Unplanned Queries.cpp
+│   ├── AT2378 [AGC014F] Strange Sorting.cpp
 │   ├── AT2379 [AGC015A] A+...+B Problem.cpp
 │   ├── AT2380 [AGC015B] Evilator.cpp
 │   ├── AT2381 [AGC015C] Nuske vs Phantom Thnook.cpp
 │   ├── AT2382 [AGC015D] A or...or B Problem.cpp
 │   ├── AT2383 [AGC015E] Mr.Aoki Incubator.cpp
+│   ├── AT2384 [AGC015F] Kenus the Ancient Greek.cpp
 │   ├── AT2386 [AGC016B] Colorful Hats.cpp
 │   ├── AT2387 [AGC016C] +或- Rectangle.cpp
 │   ├── AT2388 [AGC016D] XOR Replace.cpp
@@ -160,8 +162,12 @@
 │   ├── AT2674 [AGC018E] Sightseeing Plan.cpp
 │   ├── AT3635 Indifferent.cpp
 │   ├── AT3857 [AGC020C] Median Sum.cpp
+│   ├── AT3858 [AGC020D] Min Max Repetition.cpp
 │   ├── AT3860 [AGC020F] Arcs on a Circle.cpp
+│   ├── AT3870 [AGC021D] Reversed LCS.cpp
 │   ├── AT3913 XOR Tree.cpp
+│   ├── AT3950 [AGC022E] Median Replace.cpp
+│   ├── AT3952 [AGC023A] Zero-Sum Ranges.cpp
 │   ├── AT3956 [AGC023E] Inversions.cpp
 │   ├── AT4168 [ARC100C] Or Plus Max.cpp
 │   ├── AT4439 [AGC028E] High Elements.cpp
@@ -462,6 +468,7 @@
 │   ├── CF44G Shooting Gallery.cpp
 │   ├── CF452E Three strings.cpp
 │   ├── CF453A Little Pony and Expected Maximum.cpp
+│   ├── CF455D Serega and Fun.cpp
 │   ├── CF45F Goats and Wolves.cpp
 │   ├── CF464E The Classic Problem.cpp
 │   ├── CF468B Two Sets.cpp
