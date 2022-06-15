@@ -101,13 +101,6 @@ inline int query(int l, int r, int v)
             ++res;
     return res;
 }
-inline void print()
-{
-    for (int i = 1; i <= num; ++i)
-        for (auto u : q[i])
-            printf("%d ", u);
-    puts("");
-}
 signed main()
 {
     read(n);
@@ -137,15 +130,11 @@ signed main()
         if (l > r)
             swap(l, r);
         if (opt == 1)
-        {
             move(l, r);
-        }
         else
         {
             read(v);
             v = (v + lastans - 1) % n + 1;
-            // if (++cnt == 47)
-            // printf("%d %d %d\n", l, r, v), print();
             printf("%d\n", lastans = query(l, r, v));
         }
     }

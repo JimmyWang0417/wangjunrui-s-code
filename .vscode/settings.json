@@ -100,5 +100,27 @@
     "python.linting.flake8Args": [
         "--max-line-length=248"
     ],
-    "python.linting.pylintEnabled": false
+    "python.linting.pylintEnabled": false,
+    "workbench.colorCustomizations": {
+        // "terminal.background": "#FFFFFF",
+        // "terminal.foreground": "#6C696E",
+        "terminalCursor.background": "#6C696E",
+        "terminalCursor.foreground": "#6C696E",
+        "terminal.ansiBlack": "#FFFFFF",
+        "terminal.ansiBlue": "#775DFF",
+        "terminal.ansiBrightBlack": "#A7A5A8",
+        "terminal.ansiBrightBlue": "#775DFF",
+        "terminal.ansiBrightCyan": "#149BDA",
+        "terminal.ansiBrightGreen": "#17AD98",
+        "terminal.ansiBrightMagenta": "#AA17E6",
+        "terminal.ansiBrightRed": "#D8137F",
+        "terminal.ansiBrightWhite": "#322D34",
+        "terminal.ansiBrightYellow": "#DC8A0E",
+        "terminal.ansiCyan": "#149BDA",
+        "terminal.ansiGreen": "#17AD98",
+        "terminal.ansiMagenta": "#AA17E6",
+        "terminal.ansiRed": "#D8137F",
+        "terminal.ansiWhite": "#6C696E",
+        "terminal.ansiYellow": "#DC8A0E"
+    }
 }

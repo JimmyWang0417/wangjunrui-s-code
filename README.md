@@ -385,6 +385,7 @@
 │   ├── CF1325F Ehab's Last Theorem.cpp
 │   ├── CF1326E Bombs.cpp
 │   ├── CF1327F AND Segments.cpp
+│   ├── CF1344C Quantifier Question.cpp
 │   ├── CF1348E Phoenix and Berries.cpp
 │   ├── CF1361C Johnny and Megan's Necklace.cpp
 │   ├── CF1367F1 Flying Sort (Easy Version).cpp
@@ -424,6 +425,7 @@
 │   ├── CF163E e-Government.cpp
 │   ├── CF165E Compatible Numbers.cpp
 │   ├── CF17C Balance.cpp
+│   ├── CF19D Points.cpp
 │   ├── CF204E Little Elephant and Strings.cpp
 │   ├── CF208E Blood Cousins.cpp
 │   ├── CF220E Little Elephant and Inversions.cpp
@@ -511,15 +513,18 @@
 │   ├── CF626F Group Projects.cpp
 │   ├── CF628D Magic Numbers.cpp
 │   ├── CF630C Lucky Numbers.cpp
+│   ├── CF631E Product Sum.cpp
 │   ├── CF632E Thief in a Shop.cpp
 │   ├── CF643C Levels and Regions.cpp
 │   ├── CF653F Paper task.cpp
 │   ├── CF660F Bear and Bowling 4.cpp
+│   ├── CF662C Binary Table.cpp
 │   ├── CF666E Forensic Examination.cpp
 │   ├── CF68D Half-decay tree.cpp
 │   ├── CF698C LRU.cpp
 │   ├── CF708C Centroids.cpp
 │   ├── CF710F String Set Queries.cpp
+│   ├── CF715C Digit Tree.cpp
 │   ├── CF734F Anton and School.cpp
 │   ├── CF739C Alyona and towers.cpp
 │   ├── CF739E Gosha is hunting.cpp
@@ -562,6 +567,7 @@
 │   ├── CF915E Physical Education Lessons.cpp
 │   ├── CF915F Imbalance Value of a Tree.cpp
 │   ├── CF923C Perfect Security.cpp
+│   ├── CF932F Escape Through Leaf.cpp
 │   ├── CF93C Azembler.cpp
 │   ├── CF93D Flags.cpp
 │   ├── CF940F Machine Learning.cpp
