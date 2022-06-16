@@ -393,6 +393,7 @@
 │   ├── CF1369E DeadLee.cpp
 │   ├── CF1375E Inversion SwapSort.cpp
 │   ├── CF1392F Omkar and Landslide.cpp
+│   ├── CF13E Holes.cpp
 │   ├── CF1401F Reverse and Swap.cpp
 │   ├── CF1408E Avoid Rainbow Cycles.cpp
 │   ├── CF1418E Expected Damage.cpp
@@ -482,10 +483,13 @@
 │   ├── CF510E Fox And Dinner.cpp
 │   ├── CF518D Ilya and Escalator.cpp
 │   ├── CF519E A and B and Lecture Rooms.cpp
+│   ├── CF526F Pudding Monsters.cpp
+│   ├── CF527E Data Center Drama.cpp
 │   ├── CF528D Fuzzy Search.cpp
 │   ├── CF53E Dead Ends.cpp
 │   ├── CF543C Remembering Strings.cpp
 │   ├── CF547A Mike and Frog.cpp
+│   ├── CF547E Mike and Friends.cpp
 │   ├── CF551E GukiZ and GukiZiana.cpp
 │   ├── CF555E Case of Computer Network.cpp
 │   ├── CF558E A Simple Task.cpp
