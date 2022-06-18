@@ -328,6 +328,7 @@
 │   ├── CF1251E1 Voting (Easy Version).cpp
 │   ├── CF1251E2 Voting (Hard Version).cpp
 │   ├── CF1253F Cheap Robot.cpp
+│   ├── CF1270G Subset with Zero Sum.cpp
 │   ├── CF1279A New Year Garland.cpp
 │   ├── CF1279B Verse For Santa.cpp
 │   ├── CF1290C Prefix Enlightenment.cpp
@@ -396,10 +397,12 @@
 │   ├── CF13E Holes.cpp
 │   ├── CF1401F Reverse and Swap.cpp
 │   ├── CF1408E Avoid Rainbow Cycles.cpp
+│   ├── CF1416D Graph and Queries.cpp
 │   ├── CF1418E Expected Damage.cpp
 │   ├── CF1428F Fruit Sequences.cpp
 │   ├── CF1436E Complicated Computations.cpp
 │   ├── CF1438E Yurii Can Do Everything.cpp
+│   ├── CF1439C Greedy Shopping.cpp
 │   ├── CF1444C Team-Building.cpp
 │   ├── CF1452E Two Editorials.cpp
 │   ├── CF1458C Latin Square.cpp
@@ -563,6 +566,7 @@
 │   ├── CF893F Subtree Minimum Query.cpp
 │   ├── CF896C Willem, Chtholly and Seniorious.cpp
 │   ├── CF898F Restoring the Expression.cpp
+│   ├── CF906D Power Tower.cpp
 │   ├── CF908D New Year and Arbitrary Arrangement.cpp
 │   ├── CF911G Mass Change Queries.cpp
 │   ├── CF912E Prime Gift.cpp
@@ -1724,6 +1728,7 @@
 │   ├── P4248 [AHOI2013]差异.cpp
 │   ├── P4249 [WC2007]剪刀石头布.cpp
 │   ├── P4253 [SCOI2015]小凸玩密室.cpp
+│   ├── P4278 带插入区间K小值.cpp
 │   ├── P4284 [SHOI2014]概率充电器.cpp
 │   ├── P4298 [CTSC2008]祭祀.cpp
 │   ├── P4304 [TJOI2013]攻击装置.cpp
