@@ -403,6 +403,7 @@
 │   ├── CF1436E Complicated Computations.cpp
 │   ├── CF1438E Yurii Can Do Everything.cpp
 │   ├── CF1439C Greedy Shopping.cpp
+│   ├── CF1442D Sum.cpp
 │   ├── CF1444C Team-Building.cpp
 │   ├── CF1452E Two Editorials.cpp
 │   ├── CF1458C Latin Square.cpp
