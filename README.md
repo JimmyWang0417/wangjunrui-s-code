@@ -274,6 +274,7 @@
 │   ├── CF1034A Enlarge GCD.cpp
 │   ├── CF1036F Relatively Prime Powers.cpp
 │   ├── CF1037H Security.cpp
+│   ├── CF1039D You Are Given a Tree.cpp
 │   ├── CF1042E Vasya and Magic Matrix.cpp
 │   ├── CF1051F The Shortest Statement.cpp
 │   ├── CF1063F String Journey.cpp
@@ -329,6 +330,7 @@
 │   ├── CF1251E2 Voting (Hard Version).cpp
 │   ├── CF1253F Cheap Robot.cpp
 │   ├── CF1270G Subset with Zero Sum.cpp
+│   ├── CF1278F Cards.cpp
 │   ├── CF1279A New Year Garland.cpp
 │   ├── CF1279B Verse For Santa.cpp
 │   ├── CF1290C Prefix Enlightenment.cpp
@@ -405,6 +407,8 @@
 │   ├── CF1439C Greedy Shopping.cpp
 │   ├── CF1442D Sum.cpp
 │   ├── CF1444C Team-Building.cpp
+│   ├── CF1446D1 Frequency Problem (Easy Version).cpp
+│   ├── CF1446D2 Frequency Problem (Hard Version).cpp
 │   ├── CF1452E Two Editorials.cpp
 │   ├── CF1458C Latin Square.cpp
 │   ├── CF1467E Distinctive Roots in a Tree.cpp
@@ -417,6 +421,7 @@
 │   ├── CF1497E1 Square-free division (easy version).cpp
 │   ├── CF1497E2 Square-free division (hard version).cpp
 │   ├── CF1499E Chaotic Merge.cpp
+│   ├── CF1523E Crypto Lights.cpp
 │   ├── CF1527D MEX Tree.cpp
 │   ├── CF1527E Partition Game.cpp
 │   ├── CF1550E Stringforces.cpp
@@ -430,7 +435,9 @@
 │   ├── CF163E e-Government.cpp
 │   ├── CF165E Compatible Numbers.cpp
 │   ├── CF17C Balance.cpp
+│   ├── CF17E Palisection.cpp
 │   ├── CF19D Points.cpp
+│   ├── CF19E Fairy.cpp
 │   ├── CF204E Little Elephant and Strings.cpp
 │   ├── CF208E Blood Cousins.cpp
 │   ├── CF220E Little Elephant and Inversions.cpp
@@ -487,6 +494,7 @@
 │   ├── CF510E Fox And Dinner.cpp
 │   ├── CF518D Ilya and Escalator.cpp
 │   ├── CF519E A and B and Lecture Rooms.cpp
+│   ├── CF521D Shop.cpp
 │   ├── CF526F Pudding Monsters.cpp
 │   ├── CF527E Data Center Drama.cpp
 │   ├── CF528D Fuzzy Search.cpp
@@ -524,6 +532,7 @@
 │   ├── CF631E Product Sum.cpp
 │   ├── CF632E Thief in a Shop.cpp
 │   ├── CF643C Levels and Regions.cpp
+│   ├── CF650D Zip-line.cpp
 │   ├── CF653F Paper task.cpp
 │   ├── CF660F Bear and Bowling 4.cpp
 │   ├── CF662C Binary Table.cpp
@@ -538,6 +547,8 @@
 │   ├── CF739E Gosha is hunting.cpp
 │   ├── CF741D Arpa’s letter-marked tree and Mehrdad’s Dokhtar-kosh paths.cpp
 │   ├── CF749E Inversions After Shuffle.cpp
+│   ├── CF750E New Year and Old Subsequence.cpp
+│   ├── CF765F Souvenirs.cpp
 │   ├── CF771D Bear and Company.cpp
 │   ├── CF785E Anton and Permutation.cpp
 │   ├── CF786C Till I Collapse.cpp
@@ -832,7 +843,8 @@
 ├── Universal Online Judge
 │   ├── 274. 【清华集训2016】温暖会指引我们前行.cpp
 │   ├── 35. 后缀排序.cpp
-│   └── 395. 【NOI2018】你的名字.cpp
+│   ├── 395. 【NOI2018】你的名字.cpp
+│   └── 73. 【WC2015】未来程序.zip
 ├── UVaOJ
 │   ├── UVA10003 切木棍 Cutting Sticks.cpp
 │   ├── UVA10048 噪音恐惧症 Audiophobia.cpp
@@ -1785,6 +1797,7 @@
 │   ├── P4868 Preprefix sum.cpp
 │   ├── P4869 albus就是要第一个出场.cpp
 │   ├── P4884 多少个1？.cpp
+│   ├── P4920 [WC2015]未来程序.zip
 │   ├── P4933 大师.cpp
 │   ├── P4980 【模板】Pólya 定理.cpp
 │   ├── P4983 忘情.cpp
