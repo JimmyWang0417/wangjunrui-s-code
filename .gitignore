@@ -32,6 +32,8 @@
 
 #feature
 project*
+make*
+std*
 Environment/atcoder-workspace/*
 Environment/spoj-tools/*
 !Environment/spoj-tools/*.py
