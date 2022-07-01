@@ -122,6 +122,5 @@
         "terminal.ansiRed": "#D8137F",
         "terminal.ansiWhite": "#6C696E",
         "terminal.ansiYellow": "#DC8A0E"
-    },
-    "C_Cpp.errorSquiggles": "Disabled"
+    }
 }

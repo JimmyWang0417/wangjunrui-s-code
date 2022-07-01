@@ -3,12 +3,13 @@
             "prefix": "checker",
             "body": [
                   "#include \"testlib.h\"",
-                  "#include <bits\/stdc++.h>",
+                  "${1|#include <cstdio>,#include <bits\/stdc++.h>,#include <bits\/extc++.h>|}",
                   "using namespace std;",
+                  "$2",
                   "signed main(int argc, char *argv[])",
                   "{",
                   "\tregisterTestlibCmd(argc, argv);",
-                  "\t$0",
+                  "\t$3",
                   "}"
             ],
             "description": "Log output to console"

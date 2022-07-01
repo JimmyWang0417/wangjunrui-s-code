@@ -10,8 +10,8 @@
 		"prefix": "FILEIO",
 		"body": [
 			"#ifdef ONLINE_JUDGE",
-			"\tfreopen(\"$0.in\",\"r\",stdin);",
-			"\tfreopen(\"$0.out\",\"w\",stdout);",
+			"\tfreopen(\"$1.in\",\"r\",stdin);",
+			"\tfreopen(\"$1.out\",\"w\",stdout);",
 			"#endif"
 		],
 		"description": "Log output to console"
