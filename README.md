@@ -6,50 +6,49 @@
 
 各大OJ地址（按照字典序排序）：
 
-[<img src="http://www.51nod.com/favicon.ico" width="40px" height = "40px" alt="51Nod"/>](http://www.51nod.com)
+[<img src="./image/51nod.ico" width="40px" height = "40px" alt="51Nod"/>](http://www.51nod.com)
 
-[<img src="https://www.luogu.com.cn/favicon.ico" width="40px" height = "40px" alt="洛谷"/>](https://www.luogu.com.cn)
+[<img src="./image/luogu.ico" width="40px" height = "40px" alt="洛谷"/>](https://www.luogu.com.cn)
 
-[<img src="https://www.nowcoder.com/favicon.ico" width="40px" height = "40px" alt="牛客"/>](https://www.nowcoder.com)
+[<img src="./image/nowcoder.ico" width="40px" height = "40px" alt="牛客"/>](https://www.nowcoder.com)
 
-[<img src="https://s1.ax1x.com/2022/06/11/XcTim4.png" width="40px" height = "40px" alt="信息学奥赛一本通"/>](http://ybt.ssoier.cn:8088)
-
-
-[<img src="https://atcoder.jp/favicon.ico" width="40px" height = "40px" alt="AtCoder"/>](https://atcoder.jp/)
-
-[<img src="https://www.acwing.com/favicon.ico" width="40px" height = "40px" alt="AcWing"/>](https://www.acwing.com)
-
-[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/HYSBZ_icon.png" width="40px" height = "40px" alt="BZOJ"/>](https://darkbzoj.cc)
+[<img src="./image/xxxasybt.png" width="40px" height = "40px" alt="信息学奥赛一本通"/>](http://ybt.ssoier.cn:8088)
 
 
-[CLOJ](http://265ep45199.wicp.vip)
+[<img src="./image/atcoder.png" width="40px" height = "40px" alt="AtCoder"/>](https://atcoder.jp/)
 
-[<img src="http://cogs.pro:8081/cogs/style/cogs.png" width="40px" height = "40px" alt="CmYkRgB123 Online Grading System"/>](http://cogs.pro:8081/cogs/)
+[<img src="./image/acwing.ico" width="40px" height = "40px" alt="AcWing"/>](https://www.acwing.com)
 
-[<img src="https://www.codechef.com/favicon.ico" width="40px" height = "40px" alt="CodeChef"/>](https://www.codechef.com)
+[<img src="./image/bzoj.png" width="40px" height = "40px" alt="BZOJ"/>](https://darkbzoj.cc)
 
-[<img src="https://www.hackerrank.com/wp-content/uploads/2020/05/hackerrank_cursor_favicon_480px-300x300.png" width="40px" height = "40px" alt="HackerRank"/>](https://www.hackerrank.com)
+[<img src="./image/cloj.webp" width="40px" height = "40px" alt="CLOJ"/>](http://265ep45199.wicp.vip)
 
-[<img src="https://static.hihocoder.com/images/hiho.ico" width="40px" height = "40px" alt="HDU Online Judge"/>](https://hihocoder.com)
+[<img src="./image/cogs.png" width="40px" height = "40px" alt="CmYkRgB123 Online Grading System"/>](http://cogs.pro:8081/cogs/)
 
-[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/libreoj.ico" width="40px" height = "40px" alt="LibreOJ"/>](https://loj.ac)
+[<img src="./image/codechef.ico" width="40px" height = "40px" alt="CodeChef"/>](https://www.codechef.com)
 
-[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/poj.ico" width="40px" height = "40px" alt="POJ"/>](http://poj.org)
+[<img src="./image/hackerrank.png" width="40px" height = "40px" alt="HackerRank"/>](https://www.hackerrank.com)
+
+[<img src="./image/hihocoder.ico" width="40px" height = "40px" alt="HDU Online Judge"/>](https://hihocoder.com)
+
+[<img src="./image/libreoj.ico" width="40px" height = "40px" alt="LibreOJ"/>](https://loj.ac)
+
+[<img src="./image/poj.ico" width="40px" height = "40px" alt="POJ"/>](http://poj.org)
 
 
 [Public Judge](http://pjudge.ac)
 
-[<img src="https://www.spoj.com/favicon.ico" width="40px" height = "40px" alt="Sphere Online Judge"/>](https://www.spoj.com)
+[<img src="./image/spoj.ico" width="40px" height = "40px" alt="Sphere Online Judge"/>](https://www.spoj.com)
 
-[<img src="https://acm.timus.ru/favicon.ico" width="40px" height = "40px" alt="Timus Online Judge"/>](https://acm.timus.ru)
+[<img src="./image/ural.ico" width="40px" height = "40px" alt="Timus Online Judge"/>](https://acm.timus.ru)
 
-[<img src="https://uoj.ac/pictures/UOJ.png" width="40px" height = "40px" alt="Universal Online Judge"/>](https://uoj.ac)
+[<img src="./image/uoj.png" width="40px" height = "40px" alt="Universal Online Judge"/>](https://uoj.ac)
 
-[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/UVA_favicon.ico" width="40px" height = "40px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
+[<img src="./image/uva.ico" width="40px" height = "40px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
 
 [YbtOJ](https://www.ybtoj.com.cn)
 
-[<img src="https://vjudge.csgrandeur.cn/static/images/remote_oj/ZOJ_favicon.ico" width="40px" height = "40px" alt="Universal Online Judge"/>](https://zoj.pintia.cn)
+[<img src="./image/zoj.ico" width="40px" height = "40px" alt="Zhejiang University Online Judge"/>](https://zoj.pintia.cn)
 
 程序的目录树：
 <!-- directory tree begin -->
@@ -65,6 +64,7 @@
 │   ├── 1402. 星空之夜.cpp
 │   ├── 1414. 牛异或.cpp
 │   ├── 1613. 数独简单版.cpp
+│   ├── 246. 区间最大公约数.cpp
 │   ├── 257. 关押罪犯.cpp
 │   ├── 2823. 交换棋子.cpp
 │   ├── 3028. 最小圆覆盖.cpp
@@ -215,6 +215,7 @@
 │   ├── bzoj3262 陌上花开.cpp
 │   ├── bzoj3295 [Cqoi2011]动态逆序对.cpp
 │   ├── bzoj3307 雨天的尾巴.cpp
+│   ├── bzoj3331 [BeiJing2013]压力.cpp
 │   ├── bzoj3343 教主的魔法.cpp
 │   ├── bzoj3450 Tyvj1952 Easy.cpp
 │   ├── bzoj3530 [Sdoi2014]数数.cpp
@@ -305,6 +306,7 @@
 │   ├── CF1139E Maximize Mex.cpp
 │   ├── CF1144G Two Merged Sequences.cpp
 │   ├── CF1147C Thanos Nim.cpp
+│   ├── CF1149C Tree Generator™.cpp
 │   ├── CF1151F Sonya and Informatics.cpp
 │   ├── CF1152C Neko does Maths.cpp
 │   ├── CF1153D Serval and Rooted Tree.cpp
@@ -329,6 +331,10 @@
 │   ├── CF1251E1 Voting (Easy Version).cpp
 │   ├── CF1251E2 Voting (Hard Version).cpp
 │   ├── CF1253F Cheap Robot.cpp
+│   ├── CF1254D Tree Queries.cpp
+│   ├── CF1264D1 Beautiful Bracket Sequence (easy version).cpp
+│   ├── CF1264D2 Beautiful Bracket Sequence (hard version).cpp
+│   ├── CF1270F Awesome Substrings.cpp
 │   ├── CF1270G Subset with Zero Sum.cpp
 │   ├── CF1278F Cards.cpp
 │   ├── CF1279A New Year Garland.cpp
@@ -391,6 +397,7 @@
 │   ├── CF1344C Quantifier Question.cpp
 │   ├── CF1348E Phoenix and Berries.cpp
 │   ├── CF1361C Johnny and Megan's Necklace.cpp
+│   ├── CF1363F Rotating Substrings.cpp
 │   ├── CF1367F1 Flying Sort (Easy Version).cpp
 │   ├── CF1367F2 Flying Sort (Hard Version).cpp
 │   ├── CF1369E DeadLee.cpp
@@ -418,6 +425,7 @@
 │   ├── CF1485F Copy or Prefix Sum.cpp
 │   ├── CF148D Bag of mice.cpp
 │   ├── CF1494E A-Z Graph.cpp
+│   ├── CF1495D BFS Trees.cpp
 │   ├── CF1497E1 Square-free division (easy version).cpp
 │   ├── CF1497E2 Square-free division (hard version).cpp
 │   ├── CF1499E Chaotic Merge.cpp
@@ -425,6 +433,7 @@
 │   ├── CF1527D MEX Tree.cpp
 │   ├── CF1527E Partition Game.cpp
 │   ├── CF1550E Stringforces.cpp
+│   ├── CF1554E You.cpp
 │   ├── CF1559D1 Mocha and Diana (Easy Version).cpp
 │   ├── CF1559D2 Mocha and Diana (Hard Version).cpp
 │   ├── CF1562E Rescue Niwen!.cpp
@@ -432,6 +441,7 @@
 │   ├── CF15D Map.cpp
 │   ├── CF1606F Tree Queries.cpp
 │   ├── CF161D Distance in Tree.cpp
+│   ├── CF1634F Fibonacci Additions.cpp
 │   ├── CF163E e-Government.cpp
 │   ├── CF165E Compatible Numbers.cpp
 │   ├── CF17C Balance.cpp
@@ -450,6 +460,7 @@
 │   ├── CF246E Blood Cousins Return.cpp
 │   ├── CF248E Piglet's Birthday.cpp
 │   ├── CF24D Broken robot.cpp
+│   ├── CF258D Little Elephant and Broken Sorting.cpp
 │   ├── CF260E Dividing Kingdom.cpp
 │   ├── CF261B Maxim and Restaurant.cpp
 │   ├── CF277E Binary Tree on Plane.cpp
@@ -461,6 +472,7 @@
 │   ├── CF323C Two permutations.cpp
 │   ├── CF327E Axis Walking.cpp
 │   ├── CF337D Book of Evil.cpp
+│   ├── CF338D GCD Table.cpp
 │   ├── CF340E Iahub and Permutations.cpp
 │   ├── CF341D Iahub and Xors.cpp
 │   ├── CF342E Xenia and Tree.cpp
@@ -489,9 +501,12 @@
 │   ├── CF468E Permanent.cpp
 │   ├── CF484D Kindergarten.cpp
 │   ├── CF484E Sign on Fence.cpp
+│   ├── CF487E Tourists.cpp
 │   ├── CF498B Name That Tune.cpp
+│   ├── CF505E Mr. Kitayuta vs. Bamboos.cpp
 │   ├── CF506D Mr. Kitayuta's Colorful Graph.cpp
 │   ├── CF510E Fox And Dinner.cpp
+│   ├── CF516D Drazil and Morning Exercise.cpp
 │   ├── CF518D Ilya and Escalator.cpp
 │   ├── CF519E A and B and Lecture Rooms.cpp
 │   ├── CF521D Shop.cpp
@@ -537,17 +552,21 @@
 │   ├── CF660F Bear and Bowling 4.cpp
 │   ├── CF662C Binary Table.cpp
 │   ├── CF666E Forensic Examination.cpp
+│   ├── CF671D Roads in Yusland.cpp
 │   ├── CF68D Half-decay tree.cpp
 │   ├── CF698C LRU.cpp
 │   ├── CF708C Centroids.cpp
 │   ├── CF710F String Set Queries.cpp
+│   ├── CF713D Animals and Puzzle.cpp
 │   ├── CF715C Digit Tree.cpp
+│   ├── CF724E Goods transportation.cpp
 │   ├── CF734F Anton and School.cpp
 │   ├── CF739C Alyona and towers.cpp
 │   ├── CF739E Gosha is hunting.cpp
 │   ├── CF741D Arpa’s letter-marked tree and Mehrdad’s Dokhtar-kosh paths.cpp
 │   ├── CF749E Inversions After Shuffle.cpp
 │   ├── CF750E New Year and Old Subsequence.cpp
+│   ├── CF757F Team Rocket Rises Again.cpp
 │   ├── CF765F Souvenirs.cpp
 │   ├── CF771D Bear and Company.cpp
 │   ├── CF785E Anton and Permutation.cpp
@@ -561,6 +580,7 @@
 │   ├── CF804D Expected diameter of a tree.cpp
 │   ├── CF811E Vladik and Entertaining Flags.cpp
 │   ├── CF815C Karen and Supermarket.cpp
+│   ├── CF827D Best Edge Weight.cpp
 │   ├── CF835F Roads in the Kingdom.cpp
 │   ├── CF839D Winter is here.cpp
 │   ├── CF840C On the Bench.cpp
@@ -577,13 +597,16 @@
 │   ├── CF891E Lust.cpp
 │   ├── CF893F Subtree Minimum Query.cpp
 │   ├── CF896C Willem, Chtholly and Seniorious.cpp
+│   ├── CF896E Welcome home, Chtholly.cpp
 │   ├── CF898F Restoring the Expression.cpp
 │   ├── CF906D Power Tower.cpp
 │   ├── CF908D New Year and Arbitrary Arrangement.cpp
+│   ├── CF908G New Year and Original Order.cpp
 │   ├── CF911G Mass Change Queries.cpp
 │   ├── CF912E Prime Gift.cpp
 │   ├── CF914D Bash and a Tough Math Puzzle.cpp
 │   ├── CF914E Palindromes in a Tree.cpp
+│   ├── CF914F Substrings in a String.cpp
 │   ├── CF915E Physical Education Lessons.cpp
 │   ├── CF915F Imbalance Value of a Tree.cpp
 │   ├── CF923C Perfect Security.cpp
@@ -595,6 +618,7 @@
 │   ├── CF959F Mahmoud and Ehab and yet another xor task.cpp
 │   ├── CF95D Horse Races.cpp
 │   ├── CF95E Lucky Country.cpp
+│   ├── CF961G Partitions.cpp
 │   ├── CF963D Frequency of String.cpp
 │   ├── CF986C AND Graph.cpp
 │   ├── CF997C Sky Full of Stars.cpp
@@ -658,6 +682,26 @@
 │   └── hdu5157 Harry and magic string.cpp
 ├── hihoCoder
 │   └── 1602 本质不同的回文子串的数量.cpp
+├── image
+│   ├── 51nod.ico
+│   ├── acwing.ico
+│   ├── atcoder.png
+│   ├── bzoj.png
+│   ├── cloj.webp
+│   ├── codechef.ico
+│   ├── cogs.png
+│   ├── hackerrank.png
+│   ├── hihocoder.ico
+│   ├── libreoj.ico
+│   ├── luogu.ico
+│   ├── nowcoder.ico
+│   ├── poj.ico
+│   ├── spoj.ico
+│   ├── uoj.png
+│   ├── ural.ico
+│   ├── uva.ico
+│   ├── xxxasybt.png
+│   └── zoj.ico
 ├── LibreOJ
 │   ├── 10047「一本通 2.2 练习 3」似乎在梦中见过的样子.cpp
 │   ├── 10062.cpp
@@ -1008,6 +1052,7 @@
 │   ├── 21569. 「冲刺 NOI2022 模拟赛 Day24」恶意魔印.cpp
 │   ├── 21570. 「冲刺 NOI2022 模拟赛 Day24」魔影迷踪.cpp
 │   ├── 21571. 「冲刺 NOI2022 模拟赛 Day24」幻影锁链.cpp
+│   ├── 21572. 「冲刺 NOI2022 模拟赛 Day25」解的个数.cpp
 │   ├── 21573. 「冲刺 NOI2022 模拟赛 Day25」城市联通.cpp
 │   ├── 21574. 「冲刺 NOI2022 模拟赛 Day25」子序列计数.cpp
 │   ├── 21575. 「冲刺 NOI2022 模拟赛 Day26」计算几何.cpp
@@ -1714,6 +1759,8 @@
 │   ├── P4112 [HEOI2015]最短不公共子串.cpp
 │   ├── P4114 Qtree1.cpp
 │   ├── P4116 Qtree3.cpp
+│   ├── P4117 [Ynoi2018] 五彩斑斓的世界.cpp
+│   ├── P4119 [Ynoi2018] 未来日记.cpp
 │   ├── P4124 [CQOI2016]手机号码.cpp
 │   ├── P4127 [AHOI2009]同类分布.cpp
 │   ├── P4135 作诗.cpp
@@ -1779,6 +1826,7 @@
 │   ├── P4593 [TJOI2018]教科书般的亵渎.cpp
 │   ├── P4602 [CTSC2018]混合果汁.cpp
 │   ├── P4619 [SDOI2018]旧试题.cpp
+│   ├── P4630 [APIO2018] Duathlon 铁人两项.cpp
 │   ├── P4631 [APIO2018] Circle selection 选圆圈.cpp
 │   ├── P4655 [CEOI2017]Building Bridges.cpp
 │   ├── P4677 山区建小学.cpp
@@ -1794,9 +1842,11 @@
 │   ├── P4777 【模板】扩展中国剩余定理（EXCRT）.cpp
 │   ├── P4779 【模板】单源最短路径（标准版）.cpp
 │   ├── P4781 【模板】拉格朗日插值.cpp
+│   ├── P4867 Gty的二逼妹子序列.cpp
 │   ├── P4868 Preprefix sum.cpp
 │   ├── P4869 albus就是要第一个出场.cpp
 │   ├── P4884 多少个1？.cpp
+│   ├── P4887 【模板】莫队二次离线（第十四分块(前体)）.cpp
 │   ├── P4920 [WC2015]未来程序.zip
 │   ├── P4933 大师.cpp
 │   ├── P4980 【模板】Pólya 定理.cpp
@@ -1894,6 +1944,7 @@
 │   ├── P6477 [NOI Online #2 提高组] 子序列问题.cpp
 │   ├── P6477 [NOI Online #2 提高组]子序列问题（民间数据）.cpp
 │   ├── P6569 [NOI Online #3 提高组]魔法值（民间数据）.cpp
+│   ├── P6604 [HNOI2016]序列 加强版.cpp
 │   ├── P6619 [省选联考 2020 A 或 B 卷] 冰火战士.cpp
 │   ├── P6620 [省选联考 2020 A 卷] 组合数问题.cpp
 │   ├── P6622 [省选联考 2020 A 或 B 卷] 信号传递.cpp
