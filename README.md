@@ -410,6 +410,7 @@
 │   ├── CF1418E Expected Damage.cpp
 │   ├── CF1428F Fruit Sequences.cpp
 │   ├── CF1436E Complicated Computations.cpp
+│   ├── CF1437F Emotional Fishermen.cpp
 │   ├── CF1438E Yurii Can Do Everything.cpp
 │   ├── CF1439C Greedy Shopping.cpp
 │   ├── CF1442D Sum.cpp
@@ -478,6 +479,7 @@
 │   ├── CF342E Xenia and Tree.cpp
 │   ├── CF343D Water Tree.cpp
 │   ├── CF348C Subset Sums.cpp
+│   ├── CF351D Jeff and Removing Periods.cpp
 │   ├── CF375D Tree and Queries.cpp
 │   ├── CF379F New Year Tree.cpp
 │   ├── CF383C Propagating tree.cpp
@@ -1833,9 +1835,12 @@
 │   ├── P4688 [Ynoi2016]掉进兔子洞.cpp
 │   ├── P4707 重返现世.cpp
 │   ├── P4717 【模板】快速莫比乌斯 或 沃尔什变换 (FMT 或 FWT).cpp
+│   ├── P4719 【模板】"动态 DP"&动态树分治.cpp
 │   ├── P4720 【模板】扩展卢卡斯.cpp
+│   ├── P4721 【模板】分治 FFT.cpp
 │   ├── P4735 最大异或和.cpp
 │   ├── P4737 [CERC2017]Buffalo Barricades.cpp
+│   ├── P4751 【模板】"动态DP"&动态树分治（加强版）.cpp
 │   ├── P4756 Added Sequence.cpp
 │   ├── P4768 [NOI2018] 归程.cpp
 │   ├── P4770 [NOI2018] 你的名字.cpp
