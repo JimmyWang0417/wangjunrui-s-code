@@ -1,8 +1,8 @@
 /**
  *    unicode: UTF-8
- *    name:    P4721 【模板】分治 FFT
+ *    name:    P5395 第二类斯特林数·行
  *    author:  wangjunrui
- *    created: 2022.07.03 周日 00:15:51 (Asia/Shanghai)
+ *    created: 2022.07.04 周一 23:35:00 (Asia/Shanghai)
  **/
 #include <algorithm>
 #include <cstdio>
@@ -50,9 +50,9 @@ inline void ckmax(T &x, T y)
         x = y;
 }
 using namespace std;
-constexpr int N = 2e5 + 5;
-constexpr int mod = 998244353;
-constexpr int inv3 = (mod + 1) / 3;
+constexpr int N = 1e6 + 5;
+constexpr int mod = 167772161;
+constexpr int inv3 = 55924054;
 inline ll quickpow(ll a, int b)
 {
     ll res = 1;
@@ -65,7 +65,8 @@ inline ll quickpow(ll a, int b)
     }
     return res;
 }
-int n, F[N], G[N];
+int n;
+ll fac[N], ifac[N];
 int limit, len, rk[N];
 ll A[N], B[N];
 inline void init(int all)
@@ -122,37 +123,27 @@ inline void INTT(ll *dp)
     for (int i = 0; i < limit; ++i)
         (dp[i] *= inv) %= mod;
 }
-inline void cdq(int l, int r)
+signed main()
 {
-    if (l == r)
+    read(n);
+    fac[0] = 1;
+    for (int i = 1; i <= n; ++i)
+        fac[i] = fac[i - 1] * i % mod;
+    ifac[n] = quickpow(fac[n], mod - 2);
+    for (int i = n; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i % mod;
+    for (int i = 0; i <= n; ++i)
     {
-        (F[l] += mod) %= mod;
-        return;
+        A[i] = quickpow(i, n) * ifac[i] % mod;
+        B[i] = (i & 1 ? -1 : 1) * ifac[i];
     }
-    int mid = (l + r) >> 1;
-    cdq(l, mid);
-    copy(F + l, F + mid + 1, A);
-    copy(G + 1, G + (r - l + 1), B + 1);
-    init(r - l);
+    init(n * 2);
     NTT(A), NTT(B);
     for (int i = 0; i < limit; ++i)
         (A[i] *= B[i]) %= mod;
     INTT(A);
-    for (int i = mid + 1; i <= r; ++i)
-        (F[i] += (int)A[i - l]) %= mod;
-    fill(A, A + limit, 0);
-    fill(B, B + limit, 0);
-    cdq(mid + 1, r);
-}
-signed main()
-{
-    read(n);
-    for (int i = 1; i < n; ++i)
-        read(G[i]);
-    F[0] = 1;
-    cdq(0, n - 1);
-    for (int i = 0; i < n; ++i)
-        printf("%d ", F[i]);
+    for (int i = 0; i <= n; ++i)
+        printf("%lld ", (A[i] + mod) % mod);
     putchar('\n');
     return 0;
 }

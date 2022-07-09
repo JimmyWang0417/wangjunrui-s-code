@@ -1,12 +1,11 @@
 /**
  *    unicode: UTF-8
- *    name:    P4721 【模板】分治 FFT
+ *    name:    CF960G Bandit Blues
  *    author:  wangjunrui
- *    created: 2022.07.03 周日 00:15:51 (Asia/Shanghai)
+ *    created: 2022.07.03 周日 21:23:22 (Asia/Shanghai)
  **/
 #include <algorithm>
 #include <cstdio>
-#include <cstring>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
@@ -65,9 +64,13 @@ inline ll quickpow(ll a, int b)
     }
     return res;
 }
-int n, F[N], G[N];
-int limit, len, rk[N];
+ll fac[N], ifac[N];
+inline ll C(int n, int m)
+{
+    return fac[n] * ifac[m] % mod * ifac[n - m] % mod;
+}
 ll A[N], B[N];
+int len, limit, rk[N];
 inline void init(int all)
 {
     len = 0, limit = 1;
@@ -122,37 +125,56 @@ inline void INTT(ll *dp)
     for (int i = 0; i < limit; ++i)
         (dp[i] *= inv) %= mod;
 }
-inline void cdq(int l, int r)
+ll answer[N];
+inline void solve(int n)
 {
-    if (l == r)
+    if (n == 1)
     {
-        (F[l] += mod) %= mod;
+        answer[1] = 1;
         return;
     }
-    int mid = (l + r) >> 1;
-    cdq(l, mid);
-    copy(F + l, F + mid + 1, A);
-    copy(G + 1, G + (r - l + 1), B + 1);
-    init(r - l);
+    int las = n / 2;
+    solve(las);
+    for (int i = 0; i <= las; ++i)
+        A[las - i] = answer[i] * fac[i] % mod;
+    ll power = 1;
+    for (int i = 0; i <= las; ++i, (power *= las) %= mod)
+        B[i] = power * ifac[i] % mod;
+    init(las * 2);
     NTT(A), NTT(B);
     for (int i = 0; i < limit; ++i)
         (A[i] *= B[i]) %= mod;
     INTT(A);
-    for (int i = mid + 1; i <= r; ++i)
-        (F[i] += (int)A[i - l]) %= mod;
-    fill(A, A + limit, 0);
-    fill(B, B + limit, 0);
-    cdq(mid + 1, r);
+    reverse(A, A + las + 1);
+    for (int i = 0; i <= las; ++i)
+        (A[i] *= ifac[i]) %= mod;
+    fill(A + las + 1, A + limit, 0);
+    fill(B + 0, B + limit, 0);
+    init(n);
+    NTT(answer), NTT(A);
+    for (int i = 0; i < limit; ++i)
+        (answer[i] *= A[i]) %= mod;
+    INTT(answer);
+    fill(A + 0, A + limit, 0);
+    if (n & 1)
+        for (int i = n; i >= 1; --i)
+            answer[i] = (answer[i - 1] + (n - 1) * answer[i]) % mod;
 }
 signed main()
 {
-    read(n);
-    for (int i = 1; i < n; ++i)
-        read(G[i]);
-    F[0] = 1;
-    cdq(0, n - 1);
-    for (int i = 0; i < n; ++i)
-        printf("%d ", F[i]);
-    putchar('\n');
+    int n, a, b;
+    read(n, a, b);
+    --n;
+    fac[0] = 1;
+    for (int i = 1; i <= n; ++i)
+        fac[i] = fac[i - 1] * i % mod;
+    ifac[n] = quickpow(fac[n], mod - 2);
+    for (int i = n; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i % mod;
+    if (n)
+        solve(n);
+    else
+        answer[0] = 1;
+    printf("%lld\n", (answer[a + b - 2] * C(a + b - 2, a - 1) % mod + mod) % mod);
     return 0;
 }

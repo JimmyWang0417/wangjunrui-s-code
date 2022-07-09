@@ -293,6 +293,7 @@
 │   ├── CF1097F Alex and a TV Show.cpp
 │   ├── CF1100F Ivan and Burgers.cpp
 │   ├── CF1109E Sasha and a Very Easy Test.cpp
+│   ├── CF1110F Nearest Leaf.cpp
 │   ├── CF1111C Creative Snap.cpp
 │   ├── CF1114E Arithmetic Progression.cpp
 │   ├── CF1114F Please, another Queries on Array?.cpp
@@ -434,10 +435,12 @@
 │   ├── CF1527D MEX Tree.cpp
 │   ├── CF1527E Partition Game.cpp
 │   ├── CF1550E Stringforces.cpp
+│   ├── CF1553G Common Divisor Graph.cpp
 │   ├── CF1554E You.cpp
 │   ├── CF1559D1 Mocha and Diana (Easy Version).cpp
 │   ├── CF1559D2 Mocha and Diana (Hard Version).cpp
 │   ├── CF1562E Rescue Niwen!.cpp
+│   ├── CF1588F Jumping Through the Array.cpp
 │   ├── CF1592E Bored Bakry.cpp
 │   ├── CF15D Map.cpp
 │   ├── CF1606F Tree Queries.cpp
@@ -489,12 +492,14 @@
 │   ├── CF413D 2048.cpp
 │   ├── CF416E President's Path.cpp
 │   ├── CF427D Match & Catch.cpp
+│   ├── CF442D Adam and Tree.cpp
 │   ├── CF444C DZY Loves Colors.cpp
 │   ├── CF446C DZY Loves Fibonacci Numbers.cpp
 │   ├── CF449C Jzzhu and Apples.cpp
 │   ├── CF449D Jzzhu and Numbers.cpp
 │   ├── CF44G Shooting Gallery.cpp
 │   ├── CF452E Three strings.cpp
+│   ├── CF452F Permutation.cpp
 │   ├── CF453A Little Pony and Expected Maximum.cpp
 │   ├── CF455D Serega and Fun.cpp
 │   ├── CF45F Goats and Wolves.cpp
@@ -531,6 +536,7 @@
 │   ├── CF57D Journey.cpp
 │   ├── CF580E Kefa and Watch.cpp
 │   ├── CF581F Zublicanes and Mumocrates.cpp
+│   ├── CF585E Present for Vitalik the Philatelist.cpp
 │   ├── CF594D REQ.cpp
 │   ├── CF5E Bindian Signalizing.cpp
 │   ├── CF600E Lomsat gelral.cpp
@@ -562,6 +568,7 @@
 │   ├── CF713D Animals and Puzzle.cpp
 │   ├── CF715C Digit Tree.cpp
 │   ├── CF724E Goods transportation.cpp
+│   ├── CF724G Xor-matic Number of the Graph.cpp
 │   ├── CF734F Anton and School.cpp
 │   ├── CF739C Alyona and towers.cpp
 │   ├── CF739E Gosha is hunting.cpp
@@ -620,9 +627,11 @@
 │   ├── CF959F Mahmoud and Ehab and yet another xor task.cpp
 │   ├── CF95D Horse Races.cpp
 │   ├── CF95E Lucky Country.cpp
+│   ├── CF960G Bandit Blues.cpp
 │   ├── CF961G Partitions.cpp
 │   ├── CF963D Frequency of String.cpp
 │   ├── CF986C AND Graph.cpp
+│   ├── CF995F Cowmpany Cowmpensation.cpp
 │   ├── CF997C Sky Full of Stars.cpp
 │   ├── CF997E Good Subsegments.cpp
 │   ├── 「1st Hunger Games - Problem K」Pepsi Cola.cpp
@@ -863,6 +872,7 @@
 │   ├── SP26017 GCDMAT - GCD OF MATRIX.cpp
 │   ├── SP2713 GSS4 - Can you answer these queries IV.cpp
 │   ├── SP2916 GSS5 - Can you answer these queries V.cpp
+│   ├── SP2940 UNTITLE1 - Untitled Problem II.cpp
 │   ├── SP3266 KQUERY - K-query.cpp
 │   ├── SP3267 DQUERY - D-query.cpp
 │   ├── SP375 QTREE - Query on a tree.cpp
@@ -1612,6 +1622,7 @@
 │   ├── P3242 [HNOI2015] 接水果.cpp
 │   ├── P3245 [HNOI2016]大数.cpp
 │   ├── P3246 [HNOI2016]序列.cpp
+│   ├── P3247 [HNOI2016]最小公倍数.cpp
 │   ├── P3248 [HNOI2016]树.cpp
 │   ├── P3250 [HNOI2016]网络.cpp
 │   ├── P3254 圆桌问题.cpp
@@ -1692,6 +1703,7 @@
 │   ├── P3705 [SDOI2017]新生舞会.cpp
 │   ├── P3709 大爷的字符串题.cpp
 │   ├── P3722 [AH2017 或 HNOI2017]影魔.cpp
+│   ├── P3730 曼哈顿交易.cpp
 │   ├── P3750 [六省联考2017]分手是祝愿.cpp
 │   ├── P3757 [CQOI2017]老C的键盘.cpp
 │   ├── P3763 [TJOI2017]DNA.cpp
@@ -1890,6 +1902,8 @@
 │   ├── P5367 【模板】康托展开.cpp
 │   ├── P5375 [THUPC2019]组合数据结构问题.cpp
 │   ├── P5384 [Cnoi2019]雪松果树.cpp
+│   ├── P5395 第二类斯特林数·行.cpp
+│   ├── P5408 第一类斯特林数·行.cpp
 │   ├── P5410 【模板】扩展 KMP.cpp
 │   ├── P5410 【模板】扩展 KMP（Z 函数）.cpp
 │   ├── P5453 [THUPC2018]组合数问题.cpp
@@ -1897,12 +1911,14 @@
 │   ├── P5470 [NOI2019] 序列.cpp
 │   ├── P5490 【模板】扫描线.cpp
 │   ├── P5494 【模板】线段树分裂.cpp
+│   ├── P5495 Dirichlet 前缀和.cpp
 │   ├── P5496 【模板】回文自动机（PAM）.cpp
 │   ├── P5516 [MtOI2019]小铃的烦恼.cpp
 │   ├── P5526 [Ynoi2012] 惊惶的 SCOI2016.cpp
 │   ├── P5546 [POI2000]公共串.cpp
 │   ├── P5555 秩序魔咒.cpp
 │   ├── P5621 [DBOI2019]德丽莎世界第一可爱.cpp
+│   ├── P5631 最小mex生成树.cpp
 │   ├── P5657 格雷码.cpp
 │   ├── P5658 括号树.cpp
 │   ├── P5661 公交换乘.cpp
