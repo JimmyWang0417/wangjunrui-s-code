@@ -1,0 +1,32 @@
+{
+	"latex": {
+		"prefix": "latex",
+		"body": [
+			"%! TEX program=xelatex",
+			"%切换编译器为xelatex以输入中文",
+			"",
+			"\\documentclass[UTF8,11pt,a4paper]{ctexart}%UTF-8编码，文字大小11，纸张类型A4",
+			"\\usepackage[T1]{fontenc}% 加载宏包 fontenc 防止某些符号显示不正常",
+			"",
+			"\\usepackage[textwidth=18cm]{geometry} % 设置页宽=18",
+			"%加载数学宏包",
+			"\\usepackage{amsmath}",
+			"\\usepackage{amssymb}",
+			"%加载插图宏包 graphicx 以在 pdf 中插入图片",
+			"\\usepackage{graphicx}",
+			"",
+			"\\usepackage{blindtext}",
+			"\\usepackage{bm}",
+			"\\parindent=0pt",
+			"",
+			"\\begin{document}",
+			"\\begin{sloppypar} % geometry 宏包命令",
+			"",
+			"\t$1",
+			"",
+			"\\end{sloppypar} % geometry 宏包命令",
+			"\\end{document}"
+		],
+		"description": "Log output to console"
+	}
+}

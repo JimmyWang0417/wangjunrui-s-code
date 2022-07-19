@@ -41,3 +41,4 @@ credentials.*
 Program*
 spoj-submitter.dat
 __pycache__/*
+Environment/*.png
