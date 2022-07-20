@@ -6,49 +6,49 @@
 
 各大OJ地址（按照字典序排序）：
 
-[<img src="./image/51nod.ico" width="40px" height = "40px" alt="51Nod"/>](http://www.51nod.com)
+[<img src="./image/51nod.ico" width="100px" height = "100px" alt="51Nod"/>](http://www.51nod.com)
 
-[<img src="./image/luogu.ico" width="40px" height = "40px" alt="洛谷"/>](https://www.luogu.com.cn)
+[<img src="./image/luogu.ico" width="100px" height = "100px" alt="洛谷"/>](https://www.luogu.com.cn)
 
-[<img src="./image/nowcoder.ico" width="40px" height = "40px" alt="牛客"/>](https://www.nowcoder.com)
+[<img src="./image/nowcoder.ico" width="100px" height = "100px" alt="牛客"/>](https://www.nowcoder.com)
 
-[<img src="./image/xxxasybt.png" width="40px" height = "40px" alt="信息学奥赛一本通"/>](http://ybt.ssoier.cn:8088)
+[<img src="./image/xxxasybt.png" width="100px" height = "100px" alt="信息学奥赛一本通"/>](http://ybt.ssoier.cn:8088)
 
 
-[<img src="./image/atcoder.png" width="40px" height = "40px" alt="AtCoder"/>](https://atcoder.jp/)
+[<img src="./image/atcoder.png" width="100px" height = "100px" alt="AtCoder"/>](https://atcoder.jp/)
 
-[<img src="./image/acwing.ico" width="40px" height = "40px" alt="AcWing"/>](https://www.acwing.com)
+[<img src="./image/acwing.ico" width="100px" height = "100px" alt="AcWing"/>](https://www.acwing.com)
 
-[<img src="./image/bzoj.png" width="40px" height = "40px" alt="BZOJ"/>](https://darkbzoj.cc)
+[<img src="./image/bzoj.png" width="100px" height = "100px" alt="BZOJ"/>](https://darkbzoj.cc)
 
-[<img src="./image/cloj.webp" width="40px" height = "40px" alt="CLOJ"/>](http://265ep45199.wicp.vip)
+[<img src="./image/cloj.webp" width="100px" height = "100px" alt="CLOJ"/>](http://265ep45199.wicp.vip)
 
-[<img src="./image/cogs.png" width="40px" height = "40px" alt="CmYkRgB123 Online Grading System"/>](http://cogs.pro:8081/cogs/)
+[<img src="./image/cogs.png" width="100px" height = "100px" alt="CmYkRgB123 Online Grading System"/>](http://cogs.pro:8081/cogs/)
 
-[<img src="./image/codechef.ico" width="40px" height = "40px" alt="CodeChef"/>](https://www.codechef.com)
+[<img src="./image/codechef.ico" width="100px" height = "100px" alt="CodeChef"/>](https://www.codechef.com)
 
-[<img src="./image/hackerrank.png" width="40px" height = "40px" alt="HackerRank"/>](https://www.hackerrank.com)
+[<img src="./image/hackerrank.png" width="100px" height = "100px" alt="HackerRank"/>](https://www.hackerrank.com)
 
-[<img src="./image/hihocoder.ico" width="40px" height = "40px" alt="HDU Online Judge"/>](https://hihocoder.com)
+[<img src="./image/hihocoder.ico" width="100px" height = "100px" alt="HDU Online Judge"/>](https://hihocoder.com)
 
-[<img src="./image/libreoj.ico" width="40px" height = "40px" alt="LibreOJ"/>](https://loj.ac)
+[<img src="./image/libreoj.ico" width="100px" height = "100px" alt="LibreOJ"/>](https://loj.ac)
 
-[<img src="./image/poj.ico" width="40px" height = "40px" alt="POJ"/>](http://poj.org)
+[<img src="./image/poj.ico" width="100px" height = "100px" alt="POJ"/>](http://poj.org)
 
 
 [Public Judge](http://pjudge.ac)
 
-[<img src="./image/spoj.ico" width="40px" height = "40px" alt="Sphere Online Judge"/>](https://www.spoj.com)
+[<img src="./image/spoj.ico" width="100px" height = "100px" alt="Sphere Online Judge"/>](https://www.spoj.com)
 
-[<img src="./image/ural.ico" width="40px" height = "40px" alt="Timus Online Judge"/>](https://acm.timus.ru)
+[<img src="./image/ural.ico" width="100px" height = "100px" alt="Timus Online Judge"/>](https://acm.timus.ru)
 
-[<img src="./image/uoj.png" width="40px" height = "40px" alt="Universal Online Judge"/>](https://uoj.ac)
+[<img src="./image/uoj.png" width="100px" height = "100px" alt="Universal Online Judge"/>](https://uoj.ac)
 
-[<img src="./image/uva.ico" width="40px" height = "40px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
+[<img src="./image/uva.ico" width="100px" height = "100px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
 
 [YbtOJ](https://www.ybtoj.com.cn)
 
-[<img src="./image/zoj.ico" width="40px" height = "40px" alt="Zhejiang University Online Judge"/>](https://zoj.pintia.cn)
+[<img src="./image/zoj.ico" width="100px" height = "100px" alt="Zhejiang University Online Judge"/>](https://zoj.pintia.cn)
 
 程序的目录树：
 <!-- directory tree begin -->
