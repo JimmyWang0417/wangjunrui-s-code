@@ -1,0 +1,48 @@
+{
+	"slideshow": {
+		"prefix": "slideshow",
+		"body": [
+			"\\documentclass{beamer}",
+			"\\usepackage[UTF8]{ctexcap}",
+			"\\usepackage[T1]{fontenc}% 加载宏包 fontenc 防止某些符号显示不正常",
+			"\\usetheme{Boadilla}",
+			"\\useinnertheme{circles}",
+			"\\useoutertheme[height=0\\textwidth,width=0.18\\textwidth,hideothersubsections]{sidebar}",
+			"\\usecolortheme{whale}",
+			"",
+			"%加载数学宏包",
+			"\\usepackage{amsmath}",
+			"\\usepackage{amssymb}",
+			"%加载插图宏包 graphicx 以在 pdf 中插入图片",
+			"\\usepackage{graphicx}",
+			"",
+			"\\usepackage{blindtext}",
+			"\\usepackage{bm}",
+			"\\usepackage{multirow}",
+			"% 合并上下几列未预先加载",
+			"\\usepackage{float}",
+			"",
+			"\\usefonttheme[onlymath]{serif}",
+			"\\setCJKsansfont{simsun.ttf}",
+			"\\setsansfont{consolas.ttf}",
+			"",
+			"\\title{}",
+			"\\author{}",
+			"\\institute{}",
+			"\\date{\\texttt{\\today}}",
+			"",
+			"\\begin{document}",
+			"",
+			"\\frame{\\titlepage}",
+			"",
+			"\\begin{frame}{\\textsc{Contents}}",
+			"    \\tableofcontents",
+			"\\end{frame}",
+			"",
+			"\t$1"
+			"",
+			"\\end{document}"
+		],
+		"description": "Log output to console"
+	}
+}

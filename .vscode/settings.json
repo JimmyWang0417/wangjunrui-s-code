@@ -190,6 +190,13 @@
                 "pdflatex",
                 "pdflatex"
             ]
+        },
+        {
+            "name": "xelatex * 2",
+            "tools": [
+                "xelatex",
+                "xelatex"
+            ]
         }
     ],
     "latex-workshop.latex.clean.fileTypes": [ //要清理的文件,此属性必须是字符串数组 例如 *.removemable
@@ -211,6 +218,10 @@
         "*.ist",
         "*.fls",
         "*.log",
+        "*.nav",
+        "*.snm",
+        "*.synctex.gz",
         "*.fdb_latexmk",
     ],
+    "latex-workshop.latex.recipe.default": "xelatex * 2"
 }
