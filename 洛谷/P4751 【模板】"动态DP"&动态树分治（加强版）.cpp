@@ -97,18 +97,18 @@ inline bool nroot(int x)
 int p[N], sum[N], tot;
 inline void build(int &rt, int l, int r)
 {
-    if (l > r)
-        return;
     int mid = (int)(lower_bound(sum + l, sum + r + 1, (sum[l - 1] + sum[r]) / 2) - sum);
     rt = p[mid];
-
-    build(lc(rt), l, mid - 1);
-    if (lc(rt))
+    if (l < mid)
+    {
+        build(lc(rt), l, mid - 1);
         fa(lc(rt)) = rt;
-
-    build(rc(rt), mid + 1, r);
-    if (rc(rt))
+    }
+    if (mid < r)
+    {
+        build(rc(rt), mid + 1, r);
         fa(rc(rt)) = rt;
+    }
 
     pushup(rt);
 }

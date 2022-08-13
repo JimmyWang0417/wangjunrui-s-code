@@ -9,9 +9,9 @@
 	"Print to console": {
 		"prefix": "FILEIO",
 		"body": [
-			"#ifdef ONLINE_JUDGE",
-			"\tfreopen(\"$1.in\",\"r\",stdin);",
-			"\tfreopen(\"$1.out\",\"w\",stdout);",
+			"#ifdef ${1|ONLINE_JUDGE,PAPERDOG|}",
+			"\tfreopen(\"${2:project}.in\", \"r\", stdin);",
+			"\tfreopen(\"$2.out\", \"w\", stdout);",
 			"#endif"
 		],
 		"description": "Log output to console"
