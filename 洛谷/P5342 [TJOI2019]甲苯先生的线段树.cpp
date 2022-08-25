@@ -118,7 +118,7 @@ inline ll solve2(ll all, int d)
                 ll now = QwQ + cnt;
                 if (now & 1)
                     continue;
-                int limit = calc(now) + 1;
+                int limit = calc(now);
                 memset(dp, 0, sizeof(dp));
                 dp[1][0][0] = 1;
                 for (int i = 1; i <= limit; ++i)

@@ -166,10 +166,16 @@
 │   ├── AT3860 [AGC020F] Arcs on a Circle.cpp
 │   ├── AT3870 [AGC021D] Reversed LCS.cpp
 │   ├── AT3913 XOR Tree.cpp
+│   ├── AT3946 [AGC022A] Diverse Word.cpp
+│   ├── AT3947 [AGC022B] GCD Sequence.cpp
+│   ├── AT3948 [AGC022C] Remainder Game.cpp
+│   ├── AT3949 [AGC022D] Shopping.cpp
 │   ├── AT3950 [AGC022E] Median Replace.cpp
 │   ├── AT3952 [AGC023A] Zero-Sum Ranges.cpp
 │   ├── AT3956 [AGC023E] Inversions.cpp
+│   ├── AT3965 [AGC025B] RGB Coloring.cpp
 │   ├── AT4168 [ARC100C] Or Plus Max.cpp
+│   ├── AT4378 [AGC027D] Modulo Matrix.cpp
 │   ├── AT4439 [AGC028E] High Elements.cpp
 │   ├── AT4994 [AGC034D] Manhattan Max Matching.cpp
 │   └── AT5800 [AGC043C] Giant Graph.cpp
@@ -340,6 +346,7 @@
 │   ├── CF1278F Cards.cpp
 │   ├── CF1279A New Year Garland.cpp
 │   ├── CF1279B Verse For Santa.cpp
+│   ├── CF1285F Classical?.cpp
 │   ├── CF1290C Prefix Enlightenment.cpp
 │   ├── CF1295A Display The Number.cpp
 │   ├── CF1295B Infinite Prefixes.cpp
@@ -402,8 +409,10 @@
 │   ├── CF1367F1 Flying Sort (Easy Version).cpp
 │   ├── CF1367F2 Flying Sort (Hard Version).cpp
 │   ├── CF1369E DeadLee.cpp
+│   ├── CF1372E Omkar and Last Floor.cpp
 │   ├── CF1375E Inversion SwapSort.cpp
 │   ├── CF1392F Omkar and Landslide.cpp
+│   ├── CF1394C Boboniu and String.cpp
 │   ├── CF13E Holes.cpp
 │   ├── CF1401F Reverse and Swap.cpp
 │   ├── CF1408E Avoid Rainbow Cycles.cpp
@@ -420,6 +429,7 @@
 │   ├── CF1446D2 Frequency Problem (Hard Version).cpp
 │   ├── CF1452E Two Editorials.cpp
 │   ├── CF1458C Latin Square.cpp
+│   ├── CF1466G Song of the Sirens.cpp
 │   ├── CF1467E Distinctive Roots in a Tree.cpp
 │   ├── CF1473E Minimum Path.cpp
 │   ├── CF147B Smile House.cpp
@@ -447,6 +457,7 @@
 │   ├── CF161D Distance in Tree.cpp
 │   ├── CF1634F Fibonacci Additions.cpp
 │   ├── CF163E e-Government.cpp
+│   ├── CF1641D Two Arrays.cpp
 │   ├── CF165E Compatible Numbers.cpp
 │   ├── CF17C Balance.cpp
 │   ├── CF17E Palisection.cpp
@@ -469,7 +480,9 @@
 │   ├── CF261B Maxim and Restaurant.cpp
 │   ├── CF277E Binary Tree on Plane.cpp
 │   ├── CF280C Game on Tree.cpp
+│   ├── CF280D k-Maximum Subsequence Sum.cpp
 │   ├── CF284A Cows and Primitive Roots.cpp
+│   ├── CF286E Ladies' Shop.cpp
 │   ├── CF293E Close Vertices.cpp
 │   ├── CF311B Cats Transport.cpp
 │   ├── CF315A Sereja and Bottles.cpp
@@ -477,6 +490,7 @@
 │   ├── CF327E Axis Walking.cpp
 │   ├── CF337D Book of Evil.cpp
 │   ├── CF338D GCD Table.cpp
+│   ├── CF338E Optimize!.cpp
 │   ├── CF340E Iahub and Permutations.cpp
 │   ├── CF341D Iahub and Xors.cpp
 │   ├── CF342E Xenia and Tree.cpp
@@ -492,6 +506,7 @@
 │   ├── CF413D 2048.cpp
 │   ├── CF416E President's Path.cpp
 │   ├── CF427D Match & Catch.cpp
+│   ├── CF436E Cardboard Box.cpp
 │   ├── CF442D Adam and Tree.cpp
 │   ├── CF444C DZY Loves Colors.cpp
 │   ├── CF446C DZY Loves Fibonacci Numbers.cpp
@@ -508,6 +523,7 @@
 │   ├── CF468E Permanent.cpp
 │   ├── CF484D Kindergarten.cpp
 │   ├── CF484E Sign on Fence.cpp
+│   ├── CF487D Conveyor Belts.cpp
 │   ├── CF487E Tourists.cpp
 │   ├── CF498B Name That Tune.cpp
 │   ├── CF505E Mr. Kitayuta vs. Bamboos.cpp
@@ -588,6 +604,7 @@
 │   ├── CF802I Fake News (hard).cpp
 │   ├── CF804D Expected diameter of a tree.cpp
 │   ├── CF811E Vladik and Entertaining Flags.cpp
+│   ├── CF813D Two Melodies.cpp
 │   ├── CF815C Karen and Supermarket.cpp
 │   ├── CF827D Best Edge Weight.cpp
 │   ├── CF835F Roads in the Kingdom.cpp
@@ -622,6 +639,7 @@
 │   ├── CF932F Escape Through Leaf.cpp
 │   ├── CF93C Azembler.cpp
 │   ├── CF93D Flags.cpp
+│   ├── CF940E Cashback.cpp
 │   ├── CF940F Machine Learning.cpp
 │   ├── CF954I Yet Another String Matching Problem.cpp
 │   ├── CF959F Mahmoud and Ehab and yet another xor task.cpp
@@ -794,6 +812,7 @@
 │   ├── 2605.cpp
 │   ├── 2720 「NOI2018」你的名字.cpp
 │   ├── 3156 「NOI2019」回家路线.cpp
+│   ├── 3159. 「NOI2019」弹跳.cpp
 │   ├── 494. 「斜率优化 DP」最小划分.cpp
 │   ├── 6001 「网络流 24 题」太空飞行计划.cpp
 │   ├── 6030. 「雅礼集训 2017 Day1」矩阵.cpp
@@ -808,7 +827,9 @@
 │   ├── 6283 数列分块入门 7.cpp
 │   ├── 6284 数列分块入门 8.cpp
 │   ├── 6285 数列分块入门 9.cpp
-│   └── 6669 Nauuo and Binary Tree.cpp
+│   ├── 6490. 「XXOI 2018」暑假时在做什么？有没有空？可以来学物理吗？.cpp
+│   ├── 6669 Nauuo and Binary Tree.cpp
+│   └── P5330 [SNOI2019]数论.cpp
 ├── POJ
 │   ├── poj1149 PIGS.cpp
 │   ├── poj1226 Substrings.cpp
@@ -856,6 +877,7 @@
 │   ├── SP1043 GSS1 - Can you answer these queries I.cpp
 │   ├── SP10628 COT - Count on a tree.cpp
 │   ├── SP10707 COT2 - Count on a tree II.cpp
+│   ├── SP11414 COT3 - Combat on a tree.cpp
 │   ├── SP11560 PUCMM210 - A Summatory.cpp
 │   ├── SP13753 APS - Amazing Prime Sequence.cpp
 │   ├── SP1557 GSS2 - Can you answer these queries II.cpp
@@ -966,6 +988,7 @@
 │   ├── UVA1626 括号序列 Brackets sequence.cpp
 │   ├── UVA1627 团队分组 Team them up!.cpp
 │   ├── UVA1629 切蛋糕 Cake slicing.cpp
+│   ├── UVA1630 串折叠 Folding.cpp
 │   ├── UVA1632 阿里巴巴 Alibaba.cpp
 │   ├── UVA1663 净化器 Purifying Machine.cpp
 │   ├── UVA1751 Mission Improbable.cpp
@@ -1439,6 +1462,7 @@
 │   ├── P1842 [USACO05NOV]奶牛玩杂技.cpp
 │   ├── P1850 [NOIP2016 提高组] 换教室.cpp
 │   ├── P1856 [USACO5.5]矩形周长Picture.cpp
+│   ├── P1858 多人背包.cpp
 │   ├── P1879 [USACO06NOV]玉米田Corn Fields.cpp
 │   ├── P1886 滑动窗口.cpp
 │   ├── P1891 疯狂 LCM.cpp
@@ -1459,6 +1483,7 @@
 │   ├── P2051 [AHOI2009]中国象棋.cpp
 │   ├── P2053 [SCOI2007]修车.cpp
 │   ├── P2056 [ZJOI2007]捉迷藏.cpp
+│   ├── P2059 [JLOI2013] 卡牌游戏.cpp
 │   ├── P2089 烤鸡.cpp
 │   ├── P2120 [ZJOI2007]仓库建设.cpp
 │   ├── P2144 [FJOI2007]轮状病毒.cpp
@@ -1560,6 +1585,7 @@
 │   ├── P2617 Dynamic Ranking(整体二分).cpp
 │   ├── P2617 Dynamic Rankings.cpp
 │   ├── P2619 [国家集训队]Tree I.cpp
+│   ├── P2622 关灯问题II.cpp
 │   ├── P2627 修剪草坪.cpp
 │   ├── P2633 Count on a tree.cpp
 │   ├── P2680 运输计划.cpp
@@ -1610,6 +1636,7 @@
 │   ├── P3201 [HNOI2009]梦幻布丁.cpp
 │   ├── P3203 [HNOI2010]弹飞绵羊.cpp
 │   ├── P3205 [HNOI2010]合唱队.cpp
+│   ├── P3206 [HNOI2010]城市建设.cpp
 │   ├── P3209 [HNOI2010]平面图判定.cpp
 │   ├── P3210 [HNOI2010]取石头游戏.cpp
 │   ├── P3211 [HNOI2011]XOR和路径.cpp
@@ -1710,6 +1737,7 @@
 │   ├── P3769 [CH弱省胡策R2]TATT.cpp
 │   ├── P3793 由乃救爷爷.cpp
 │   ├── P3796 【模板】AC自动机（加强版）.cpp
+│   ├── P3800 Power收集.cpp
 │   ├── P3802 小魔女帕琪.cpp
 │   ├── P3803 【模板】多项式乘法（FFT）.cpp
 │   ├── P3803 【模板】多项式乘法（NTT）.cpp
@@ -1761,6 +1789,8 @@
 │   ├── P4052 [JSOI2007]文本生成器.cpp
 │   ├── P4053 [JSOI2007]建筑抢修.cpp
 │   ├── P4055 [JSOI2009]游戏.cpp
+│   ├── P4065 [JXOI2017]颜色.cpp
+│   ├── P4069 [SDOI2016]游戏.cpp
 │   ├── P4070 [SDOI2016]生成魔咒.cpp
 │   ├── P4074 [WC2013]糖果公园.cpp
 │   ├── P4081 [USACO17DEC]Standing Out from the Herd.cpp
@@ -1780,6 +1810,7 @@
 │   ├── P4135 作诗.cpp
 │   ├── P4137 Rmq Problem 或 mex.cpp
 │   ├── P4140 奇数国.cpp
+│   ├── P4141 消失之物.cpp
 │   ├── P4149 [IOI2011]Race.cpp
 │   ├── P4168 [Violet]蒲公英(O根号n).cpp
 │   ├── P4168 [Violet]蒲公英.cpp
@@ -1794,10 +1825,12 @@
 │   ├── P4195 【模板】exBSGS.cpp
 │   ├── P4197 Peaks.cpp
 │   ├── P4206 [NOI2005] 聪聪与可可.cpp
+│   ├── P4211 [LNOI2014]LCA.cpp
 │   ├── P4214 [CERC2015]Juice Junctions.cpp
 │   ├── P4218 [CTSC2010]珠宝商.cpp
 │   ├── P4219 [BJOI2014]大融合.cpp
 │   ├── P4234 最小差值生成树.cpp
+│   ├── P4238 【模板】多项式乘法逆.cpp
 │   ├── P4246 [SHOI2008]堵塞的交通.cpp
 │   ├── P4248 [AHOI2013]差异.cpp
 │   ├── P4249 [WC2007]剪刀石头布.cpp
@@ -1805,6 +1838,7 @@
 │   ├── P4278 带插入区间K小值.cpp
 │   ├── P4284 [SHOI2014]概率充电器.cpp
 │   ├── P4298 [CTSC2008]祭祀.cpp
+│   ├── P4302 [SCOI2003]字符串折叠.cpp
 │   ├── P4304 [TJOI2013]攻击装置.cpp
 │   ├── P4305 [JLOI2011]不重复数字(排序+去重).cpp
 │   ├── P4313 文理分科.cpp
@@ -1817,6 +1851,7 @@
 │   ├── P4360 [CEOI2004]锯木厂选址.cpp
 │   ├── P4364 [九省联考2018]IIIDX.cpp
 │   ├── P4381 [IOI2008] Island.cpp
+│   ├── P4383 [八省联考 2018] 林克卡特树.cpp
 │   ├── P4390 [BOI2007]Mokia 摩基亚.cpp
 │   ├── P4392 [BOI2007]Sound 静音问题.cpp
 │   ├── P4396 [AHOI2013]作业.cpp
@@ -1829,6 +1864,7 @@
 │   ├── P4450 双亲数.cpp
 │   ├── P4462 [CQOI2018]异或序列.cpp
 │   ├── P4475 巧克力王国.cpp
+│   ├── P4495 [HAOI2018]奇怪的背包.cpp
 │   ├── P4514 上帝造题的七分钟.cpp
 │   ├── P4516 [JSOI2018]潜入行动.cpp
 │   ├── P4550 收集邮票.cpp
@@ -1870,6 +1906,7 @@
 │   ├── P4983 忘情.cpp
 │   ├── P5002 专心OI - 找祖先.cpp
 │   ├── P5004 专心OI - 跳房子.cpp
+│   ├── P5012 水の数列.cpp
 │   ├── P5017 摆渡车.cpp
 │   ├── P5019 铺设道路.cpp
 │   ├── P5020 货币系统.cpp
@@ -1884,21 +1921,42 @@
 │   ├── P5142 区间方差.cpp
 │   ├── P5170 【模板】类欧几里得算法.cpp
 │   ├── P5192 Zoj3229 Shoot the Bullet 或 东方文花帖 或 【模板】有源汇上下界最大流.cpp
+│   ├── P5205 【模板】多项式开根.cpp
 │   ├── P5212 SubString.cpp
 │   ├── P5227 [AHOI2013]连通图.cpp
 │   ├── P5244 [USACO19FEB] Mowing Mischief P.cpp
 │   ├── P5266 【深基17.例6】学籍管理.cpp
 │   ├── P5274 优化题(ccj).cpp
+│   ├── P5280 [ZJOI2019]线段树.cpp
 │   ├── P5283 [十二省联考2019]异或粽子.cpp
+│   ├── P5284 [十二省联考 2019] 字符串问题.cpp
 │   ├── P5286 [HNOI2019]鱼.cpp
+│   ├── P5289 [十二省联考 2019] 皮配.cpp
 │   ├── P5290 [十二省联考2019]春节十二响.cpp
+│   ├── P5292 [HNOI2019]校园旅行.cpp
+│   ├── P5300 [GXOI 或 GZOI2019]与或和.cpp
+│   ├── P5303 [GXOI 或 GZOI2019]逼死强迫症.cpp
+│   ├── P5304 [GXOI 或 GZOI2019]旅行者.cpp
+│   ├── P5305 [GXOI 或 GZOI2019]旧词.cpp
 │   ├── P5311 [Ynoi2011] 成都七中.cpp
 │   ├── P5319 [BJOI2019]奥术神杖.cpp
+│   ├── P5322 [BJOI2019] 排兵布阵.cpp
+│   ├── P5323 [BJOI2019]光线.cpp
+│   ├── P5324 [BJOI2019]删数.cpp
 │   ├── P5325 【模板】Min_25筛.cpp
+│   ├── P5326 [ZJOI2019]开关.cpp
+│   ├── P5327 [ZJOI2019]语言.cpp
 │   ├── P5329 [SNOI2019]字符串.cpp
+│   ├── P5331 [SNOI2019]通信.cpp
+│   ├── P5332 [JSOI2019]精准预测.cpp
+│   ├── P5333 [JSOI2019]神经网络.cpp
+│   ├── P5334 [JSOI2019]节日庆典.cpp
 │   ├── P5337 [TJOI2019]甲苯先生的字符串.cpp
+│   ├── P5339 [TJOI2019]唱、跳、rap和篮球.cpp
 │   ├── P5341 [TJOI2019]甲苯先生和大中锋的字符串.cpp
+│   ├── P5342 [TJOI2019]甲苯先生的线段树.cpp
 │   ├── P5357 【模板】AC自动机（二次加强版）.cpp
+│   ├── P5363 [SDOI2019]移动金币.cpp
 │   ├── P5367 【模板】康托展开.cpp
 │   ├── P5375 [THUPC2019]组合数据结构问题.cpp
 │   ├── P5384 [Cnoi2019]雪松果树.cpp
@@ -1906,9 +1964,12 @@
 │   ├── P5408 第一类斯特林数·行.cpp
 │   ├── P5410 【模板】扩展 KMP.cpp
 │   ├── P5410 【模板】扩展 KMP（Z 函数）.cpp
+│   ├── P5415 [YNOI2019] 游戏.cpp
+│   ├── P5443 [APIO2019] 桥梁.cpp
 │   ├── P5453 [THUPC2018]组合数问题.cpp
 │   ├── P5468 [NOI2019] 回家路线.cpp
 │   ├── P5470 [NOI2019] 序列.cpp
+│   ├── P5471 [NOI2019] 弹跳.cpp
 │   ├── P5490 【模板】扫描线.cpp
 │   ├── P5494 【模板】线段树分裂.cpp
 │   ├── P5495 Dirichlet 前缀和.cpp
@@ -1957,6 +2018,7 @@
 │   ├── P6186 [NOI Online #1 提高组]冒泡排序（民间数据）.cpp
 │   ├── P6192 【模板】最小斯坦纳树.cpp
 │   ├── P6213 「SWTR-04」Collecting Coins.cpp
+│   ├── P6242 【模板】线段树 3.cpp
 │   ├── P6302 [NOI2019] 回家路线 加强版.cpp
 │   ├── P6329 【模板】点分树 | 震波.cpp
 │   ├── P6406 [COCI2014-2015#2] Norma.cpp
@@ -1964,6 +2026,7 @@
 │   ├── P6476 [NOI Online #2 提高组]涂色游戏（民间数据）.cpp
 │   ├── P6477 [NOI Online #2 提高组] 子序列问题.cpp
 │   ├── P6477 [NOI Online #2 提高组]子序列问题（民间数据）.cpp
+│   ├── P6563 [SBCOI2020] 一直在你身旁.cpp
 │   ├── P6569 [NOI Online #3 提高组]魔法值（民间数据）.cpp
 │   ├── P6604 [HNOI2016]序列 加强版.cpp
 │   ├── P6619 [省选联考 2020 A 或 B 卷] 冰火战士.cpp
@@ -1972,10 +2035,14 @@
 │   ├── P6623 [省选联考 2020 A 卷] 树.cpp
 │   ├── P6624 [省选联考 2020 A 卷] 作业题.cpp
 │   ├── P6628 [省选联考 2020 B 卷] 丁香之路.cpp
+│   ├── P6630 [ZJOI2020] 传统艺能.cpp
+│   ├── P6631 [ZJOI2020] 序列.cpp
 │   ├── P6640 [BJOI2020] 封印.cpp
 │   ├── P6664 [清华集训2016] 温暖会指引我们前行.cpp
 │   ├── P6673 [清华集训2016] 石家庄的工人阶级队伍比较坚强.cpp
 │   ├── P6739 [BalticOI 2014 Day1] Three Friends.cpp
+│   ├── P6792 [SNOI2020] 区间和.cpp
+│   ├── P6794 [SNOI2020] 水池.cpp
 │   ├── P6943 [ICPC2018 WF]Conquer The World.cpp
 │   ├── P6961 [NEERC2017]Journey from Petersburg to Moscow.cpp
 │   ├── P6967 [NEERC2016]Delight for a Cat.cpp
@@ -1997,6 +2064,9 @@
 │   ├── P7518 [省选联考 2021 A 或 B 卷] 宝石.cpp
 │   ├── P7519 [省选联考 2021 A 或 B 卷] 滚榜.cpp
 │   ├── P7520 [省选联考 2021 A 卷] 支配.cpp
+│   ├── P7735 [NOI2021] 轻重边.cpp
+│   ├── P7736 [NOI2021] 路径交点.cpp
+│   ├── P7738 [NOI2021] 量子通信.cpp
 │   ├── P7771 【模板】欧拉路径.cpp
 │   ├── P7883 平面最近点对（加强加强版）.cpp
 │   ├── P7915 [CSP-S 2021] 回文.cpp
@@ -2005,12 +2075,16 @@
 │   ├── P8289 [省选联考 2022] 预处理器（官方数据）.cpp
 │   ├── P8290 [省选联考 2022] 填树（官方数据）.cpp
 │   ├── P8292 [省选联考 2022] 卡牌（官方数据）.cpp
+│   ├── P8294 [省选联考 2022] 最大权独立集问题.cpp
 │   ├── P8329 [ZJOI2022] 树.cpp
 │   ├── P8330 [ZJOI2022] 众数.cpp
 │   ├── P8338 [AHOI2022] 排列.cpp
 │   ├── P8339 [AHOI2022] 钥匙.cpp
+│   ├── P8340 [AHOI2022] 山河重整.cpp
+│   ├── P8341 [AHOI2022] 回忆.cpp
 │   ├── P8350 [SDOI 或 SXOI2022] 进制转换.cpp
 │   ├── P8352 [SDOI 或 SXOI2022] 小 N 的独立集.cpp
+│   ├── P8360 [SNOI2022] 军队.cpp
 │   ├── T102431 柱状图（hist,1.5s,512MB）.cpp
 │   ├── T85975 高精度除法.cpp
 │   └── U41492 树上数颜色.cpp

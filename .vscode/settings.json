@@ -223,5 +223,15 @@
         "*.synctex.gz",
         "*.fdb_latexmk",
     ],
-    "latex-workshop.latex.recipe.default": "xelatex * 2"
+    "latex-workshop.latex.recipe.default": "xelatex * 2",
+    "carbon.backgroundColor": "rgba(0,0,0,0)",
+    "carbon.theme": "one-light",
+    "carbon.dropShadow": true,
+    "carbon.windowControls": true,
+    "carbon.autoAdjustWidth": true,
+    "carbon.paddingVertical": 24,
+    "carbon.paddingHorizontal": 16,
+    "carbon.lineNumbers": false,
+    "carbon.fontFamily": "Hack",
+    "carbon.fontSize": 13
 }

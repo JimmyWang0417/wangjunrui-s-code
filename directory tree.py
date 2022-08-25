@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import os, re
+import os
 
 infile = open('README.md', 'r')
 left = right = ""
