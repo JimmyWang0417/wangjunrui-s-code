@@ -50,6 +50,24 @@
 
 [<img src="./image/zoj.ico" width="100px" height = "100px" alt="Zhejiang University Online Judge"/>](https://zoj.pintia.cn)
 
+程序的统计信息：
+<!-- count the code begin -->
+```plain
+===============================================================================
+ Language            Files        Lines         Code     Comments       Blanks
+===============================================================================
+ Autoconf               16      1885023      1885023            0            0
+ C Header                1         4249         3536          299          414
+ C++                  1967       232004       227501         3405         1098
+ C++ Header             16         2179         1281          580          318
+ Markdown                1         2138            0         2110           28
+ Python                  7         1005          901           33           71
+===============================================================================
+ Total                2008      2126598      2118242         6427         1929
+===============================================================================
+```
+<!-- count the code end -->
+
 程序的目录树：
 <!-- directory tree begin -->
 ```plain
@@ -656,8 +674,6 @@
 │   ├── 「2017-2018 ACM-ICPC Southeastern European Regional Programming Contest (SEERC 2017) - Problem B」Bricks.cpp
 │   └── 「Andrew Stankevich Contest 16 - Problem F」Pipe Layout.cpp
 ├── custom_code_generator.py
-├── directory tree.py
-├── directory tree.sh
 ├── HackerRank
 │   ├── Subset
 │   │   ├── 1.in
@@ -871,6 +887,7 @@
 │   ├── 21626. 【PR #3】猜数.cpp
 │   └── 21627. 【PR #3】抽卡.cpp
 ├── README.md
+├── README.py
 ├── Sphere Online Judge
 │   ├── SP10264 METEORS - Meteors.cpp
 │   ├── SP10270 TEMPERAT - Temperature.cpp
