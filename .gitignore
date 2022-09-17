@@ -44,3 +44,4 @@ __pycache__/*
 Environment/*.png
 *.ttf
 *.otf
+Environment/Contest
