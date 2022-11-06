@@ -31,9 +31,10 @@
 *.app
 
 #feature
-project*
-make*
-std*
+Environment/project*
+Environment/make*
+Environment/std*
+Environment/checker
 Environment/atcoder-workspace/*
 Environment/spoj-tools/*
 !Environment/spoj-tools/*.py

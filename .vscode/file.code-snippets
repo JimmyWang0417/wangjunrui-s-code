@@ -13,10 +13,8 @@
 			"\tfreopen(\"${2:project}.in\", \"r\", stdin);",
 			"\tfreopen(\"$2.out\", \"w\", stdout);",
 			"#else",
-			"#ifdef ${3:ONLINE_JUDGE}",
 			"\tfreopen(\"${4:${CLIPBOARD}}.in\", \"r\", stdin);",
 			"\tfreopen(\"$4.out\", \"w\", stdout);",
-			"#endif",
 			"#endif"
 		],
 		"description": "Log output to console"

@@ -203,7 +203,7 @@
                   "signed main()",
                   "{",
                   "#ifdef FAST_OUT",
-                  "\tflush();",
+                  "\tIO::OUTPUT::flush();",
                   "#endif",
                   "\treturn 0;",
                   "}"
