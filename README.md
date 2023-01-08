@@ -33,7 +33,9 @@
 
 [<img src="./image/libreoj.ico" width="100px" height = "100px" alt="LibreOJ"/>](https://loj.ac)
 
-[<img src="./image/poj.ico" width="100px" height = "100px" alt="POJ"/>](http://poj.org)
+[<img src="./image/noi.ac.ico" width="100px" height = "100px" alt="NOI.AC"/>](https://noi.ac)
+
+[<img src="./image/poj.ico" width="100px" height = "100px" alt="Peking University Online Judge"/>](http://poj.org)
 
 
 [Public Judge](http://pjudge.ac)
@@ -44,11 +46,13 @@
 
 [<img src="./image/uoj.png" width="100px" height = "100px" alt="Universal Online Judge"/>](https://uoj.ac)
 
-[<img src="./image/uva.ico" width="100px" height = "100px" alt="UvaOJ"/>](https://uoj.achttps://icpcarchive.ecs.baylor.edu)
+[<img src="./image/uva.ico" width="100px" height = "100px" alt="University of Virginia Online Judge"/>](https://onlinejudge.org/)
 
 [YbtOJ](https://www.ybtoj.com.cn)
 
 [<img src="./image/zoj.ico" width="100px" height = "100px" alt="Zhejiang University Online Judge"/>](https://zoj.pintia.cn)
+
+[<img src="./image/zhengrui.png" width="100px" height = "100px" alt="Zhengrui Online Judge"/>](http://zhengruioi.com)
 
 程序的统计信息：
 <!-- count the code begin -->
@@ -58,12 +62,12 @@
 ===============================================================================
  Autoconf               16      1885023      1885023            0            0
  C Header                1         4249         3536          299          414
- C++                  1967       232004       227501         3405         1098
+ C++                  2014       246466       241417         3792         1257
  C++ Header             16         2179         1281          580          318
- Markdown                1         2138            0         2110           28
- Python                  7         1005          901           33           71
+ Markdown                1         2201            0         2171           30
+ Python                  7         1007          902           33           72
 ===============================================================================
- Total                2008      2126598      2118242         6427         1929
+ Total                2055      2141125      2132159         6875         2091
 ===============================================================================
 ```
 <!-- count the code end -->
@@ -198,74 +202,74 @@
 │   ├── AT4994 [AGC034D] Manhattan Max Matching.cpp
 │   └── AT5800 [AGC043C] Giant Graph.cpp
 ├── BZOJ
-│   ├── bzoj1010 玩具装箱toy.cpp
-│   ├── bzoj1269 [AHOI2006]文本编辑器editor.cpp
-│   ├── bzoj1283 序列.cpp
-│   ├── bzoj1337 最小圆覆盖.cpp
-│   ├── bzoj1500 [NOI2005]维修数列.cpp
-│   ├── bzoj1597 [Usaco2008 Mar]土地购买.cpp
-│   ├── bzoj1835 [ZJOI2010]base 基站选址.cpp
-│   ├── bzoj1861 [Zjoi2006]Book 书架.cpp
-│   ├── bzoj1941 [Sdoi2010]Hide and Seek.cpp
-│   ├── bzoj1977 [BeiJing2010组队]次小生成树 Tree.cpp
-│   ├── bzoj2115 [Wc2011] Xor.cpp
-│   ├── bzoj2150 部落战争.cpp
-│   ├── bzoj2152 聪聪可可.cpp
-│   ├── bzoj2201 彩色圆环.cpp
-│   ├── bzoj2212 [Poi2011]Tree Rotations.cpp
-│   ├── bzoj2216 [Poi2011]Lightning Conductor.cpp
-│   ├── bzoj2223 [Coci 2009]PATULJCI.cpp
-│   ├── bzoj2318 Spoj4060 game with probability Problem.cpp
-│   ├── bzoj2342 [Shoi2011]双倍回文.cpp
-│   ├── bzoj2460 [BeiJing2011]元素.cpp
-│   ├── bzoj2527 [Poi2011]Meteors.cpp
-│   ├── bzoj2565 最长双回文串.cpp
-│   ├── bzoj2594 [Wc2006]水管局长数据加强版.cpp
-│   ├── bzoj2626 JZPFAR.cpp
-│   ├── bzoj2639 矩形计算.cpp
-│   ├── bzoj2648 SJY摆棋子.cpp
-│   ├── bzoj2809 [Apio2012]dispatching.cpp
-│   ├── bzoj2906 颜色.cpp
-│   ├── bzoj2992 Pku3986 Math teacher's homework.cpp
-│   ├── bzoj3028 食物.cpp
-│   ├── bzoj3036 绿豆蛙的归宿.cpp
-│   ├── bzoj3065 带插入区间K小值.cpp
-│   ├── bzoj3143 [Hnoi2013]游走.cpp
-│   ├── bzoj3159 决战(LCT).cpp
-│   ├── bzoj3159 决战.cpp
-│   ├── bzoj3172 [Tjoi2013]单词.cpp
-│   ├── bzoj3223 Tyvj 1729 文艺平衡树.cpp
-│   ├── bzoj3224 Tyvj 1728 普通平衡树.cpp
-│   ├── bzoj3262 陌上花开.cpp
-│   ├── bzoj3295 [Cqoi2011]动态逆序对.cpp
-│   ├── bzoj3307 雨天的尾巴.cpp
-│   ├── bzoj3331 [BeiJing2013]压力.cpp
-│   ├── bzoj3343 教主的魔法.cpp
-│   ├── bzoj3450 Tyvj1952 Easy.cpp
-│   ├── bzoj3530 [Sdoi2014]数数.cpp
-│   ├── bzoj3545 [ONTAK2010]Peaks.cpp
-│   ├── bzoj3551 [ONTAK2010]Peaks加强版.cpp
-│   ├── bzoj3572 [Hnoi2014]世界树.cpp
-│   ├── bzoj3594 [Scoi2014]方伯伯的玉米田.cpp
-│   ├── bzoj3673 可持久化并查集 by zky.cpp
-│   ├── bzoj3674 可持久化并查集加强版.cpp
-│   ├── bzoj3687.cpp
-│   ├── bzoj3688 折线统计.cpp
-│   ├── bzoj3757 苹果树.cpp
-│   ├── bzoj3790 神奇项链.cpp
-│   ├── bzoj3881 [Coci2015]Divljak.cpp
-│   ├── bzoj4003 [JLOI2015]城池攻占.cpp
-│   ├── bzoj4025 二分图.cpp
-│   ├── bzoj4066 简单题.cpp
-│   ├── bzoj4154 [Ipsc2015]Generating Synergy.cpp
-│   ├── bzoj4318 OSU!.cpp
-│   ├── bzoj4481 [Jsoi2015]非诚勿扰.cpp
-│   ├── bzoj4518 [Sdoi2016]征途.cpp
-│   ├── bzoj4520 [Cqoi2016]K远点对.cpp
-│   ├── bzoj4644 经典傻逼题.cpp
-│   ├── bzoj4919 [Lydsy1706月赛]大根堆.cpp
-│   ├── bzoj4950 [Wf2017]Mission Improbable.cpp
-│   └── bzoj4974 [Lydsy1708月赛]字符串大师.cpp
+│   ├── #1010. 玩具装箱toy.cpp
+│   ├── #1269. [AHOI2006]文本编辑器editor.cpp
+│   ├── #1283. 序列.cpp
+│   ├── #1337. 最小圆覆盖.cpp
+│   ├── #1500. [NOI2005]维修数列.cpp
+│   ├── #1597. [Usaco2008 Mar]土地购买.cpp
+│   ├── #1835. [ZJOI2010]base 基站选址.cpp
+│   ├── #1861. [Zjoi2006]Book 书架.cpp
+│   ├── #1941. [Sdoi2010]Hide and Seek.cpp
+│   ├── #1977. [BeiJing2010组队]次小生成树 Tree.cpp
+│   ├── #2115. [Wc2011] Xor.cpp
+│   ├── #2150. 部落战争.cpp
+│   ├── #2152. 聪聪可可.cpp
+│   ├── #2201. 彩色圆环.cpp
+│   ├── #2212. [Poi2011]Tree Rotations.cpp
+│   ├── #2216. [Poi2011]Lightning Conductor.cpp
+│   ├── #2223. [Coci 2009]PATULJCI.cpp
+│   ├── #2318. Spoj4060 game with probability Problem.cpp
+│   ├── #2342. [Shoi2011]双倍回文.cpp
+│   ├── #2460. [BeiJing2011]元素.cpp
+│   ├── #2527. [Poi2011]Meteors.cpp
+│   ├── #2565. 最长双回文串.cpp
+│   ├── #2594. [Wc2006]水管局长数据加强版.cpp
+│   ├── #2626. JZPFAR.cpp
+│   ├── #2639. 矩形计算.cpp
+│   ├── #2648. SJY摆棋子.cpp
+│   ├── #2809. [Apio2012]dispatching.cpp
+│   ├── #2906. 颜色.cpp
+│   ├── #2992. Pku3986 Math teacher's homework.cpp
+│   ├── #3028. 食物.cpp
+│   ├── #3036. 绿豆蛙的归宿.cpp
+│   ├── #3065. 带插入区间K小值.cpp
+│   ├── #3143. [Hnoi2013]游走.cpp
+│   ├── #3159. 决战(LCT).cpp
+│   ├── #3159. 决战.cpp
+│   ├── #3172. [Tjoi2013]单词.cpp
+│   ├── #3223. Tyvj 1729 文艺平衡树.cpp
+│   ├── #3224. Tyvj 1728 普通平衡树.cpp
+│   ├── #3262. 陌上花开.cpp
+│   ├── #3295. [Cqoi2011]动态逆序对.cpp
+│   ├── #3307. 雨天的尾巴.cpp
+│   ├── #3331. [BeiJing2013]压力.cpp
+│   ├── #3343. 教主的魔法.cpp
+│   ├── #3450. Tyvj1952 Easy.cpp
+│   ├── #3530. [Sdoi2014]数数.cpp
+│   ├── #3545. [ONTAK2010]Peaks.cpp
+│   ├── #3551. [ONTAK2010]Peaks加强版.cpp
+│   ├── #3572. [Hnoi2014]世界树.cpp
+│   ├── #3594. [Scoi2014]方伯伯的玉米田.cpp
+│   ├── #3673. 可持久化并查集 by zky.cpp
+│   ├── #3674. 可持久化并查集加强版.cpp
+│   ├── #3687..cpp
+│   ├── #3688. 折线统计.cpp
+│   ├── #3757. 苹果树.cpp
+│   ├── #3790. 神奇项链.cpp
+│   ├── #3881. [Coci2015]Divljak.cpp
+│   ├── #4003. [JLOI2015]城池攻占.cpp
+│   ├── #4025. 二分图.cpp
+│   ├── #4066. 简单题.cpp
+│   ├── #4154. [Ipsc2015]Generating Synergy.cpp
+│   ├── #4318. OSU!.cpp
+│   ├── #4481. [Jsoi2015]非诚勿扰.cpp
+│   ├── #4518. [Sdoi2016]征途.cpp
+│   ├── #4520. [Cqoi2016]K远点对.cpp
+│   ├── #4644. 经典傻逼题.cpp
+│   ├── #4919. [Lydsy1706月赛]大根堆.cpp
+│   ├── #4950. [Wf2017]Mission Improbable.cpp
+│   └── #4974. [Lydsy1708月赛]字符串大师.cpp
 ├── CLOJ
 │   ├── #1010. 「2021 八校联考 Day3 」蘄壺螸壚黜.cpp
 │   ├── #1015. 「2021 八校联考 Day4」相似序列.cpp
@@ -276,7 +280,26 @@
 │   ├── #1062. 「2021 八校联考 Day16」糖果.cpp
 │   ├── #1063. 「2021 八校联考 Day16」回文.cpp
 │   ├── #1064. 「2021 八校联考 Day16」平均.cpp
-│   └── #1065. 「2021 八校联考 Day16」冒泡排序.cpp
+│   ├── #1065. 「2021 八校联考 Day16」冒泡排序.cpp
+│   ├── #1072. 「2022 九校联考 Day1」爱丽丝的数位划分.cpp
+│   ├── #1073. 「2022 九校联考 Day1」爱丽丝的新运算.cpp
+│   ├── #1074. 「2022 九校联考 Day1」爱丽丝的幻方.cpp
+│   ├── #1075. 「2022 九校联考 Day1」爱丽丝斗恶龙.cpp
+│   ├── #1076. 「2022 九校联考 Day2」Convolutional Neural Network.cpp
+│   ├── #1077. 「2022 九校联考 Day2」after two months.cpp
+│   ├── #1078. 「2022 九校联考 Day2」escape from whk.cpp
+│   ├── #1080. 「2022 九校联考 Day3」题目.cpp
+│   ├── #1081. 「2022 九校联考 Day3」名字.cpp
+│   ├── #1082. 「2022 九校联考 Day3」好难.cpp
+│   ├── #1083. 「2022 九校联考 Day3」取啊.cpp
+│   ├── #1084. 「2022 九校联考 Day4」棋子分组.cpp
+│   ├── #1085. 「2022 九校联考 Day4」信息传输.cpp
+│   ├── #1086. 「2022 九校联考 Day4」双栈排序.cpp
+│   ├── #1087. 「2022 九校联考 Day4」模糊匹配.cpp
+│   ├── #1088. 「2022 九校联考 Day5」不降序列.cpp
+│   ├── #1089. 「2022 九校联考 Day5」分组问题.cpp
+│   ├── #1090. 「2022 九校联考 Day5」变换问题.cpp
+│   └── #1091. 「2022 九校联考 Day5」第四道题.cpp
 ├── CmYkRgB123 Online Grading System
 │   ├── 2479. [HZOI 2016] 偏序.cpp
 │   ├── 2639. [HZOI 2015] 偏序++.cpp
@@ -468,6 +491,7 @@
 │   ├── CF1559D1 Mocha and Diana (Easy Version).cpp
 │   ├── CF1559D2 Mocha and Diana (Hard Version).cpp
 │   ├── CF1562E Rescue Niwen!.cpp
+│   ├── CF156D Clues.cpp
 │   ├── CF1588F Jumping Through the Array.cpp
 │   ├── CF1592E Bored Bakry.cpp
 │   ├── CF15D Map.cpp
@@ -739,6 +763,7 @@
 │   ├── hihocoder.ico
 │   ├── libreoj.ico
 │   ├── luogu.ico
+│   ├── noi.ac.ico
 │   ├── nowcoder.ico
 │   ├── poj.ico
 │   ├── spoj.ico
@@ -746,107 +771,109 @@
 │   ├── ural.ico
 │   ├── uva.ico
 │   ├── xxxasybt.png
+│   ├── zhengrui.png
 │   └── zoj.ico
-├── LibreOJ
-│   ├── 10047「一本通 2.2 练习 3」似乎在梦中见过的样子.cpp
-│   ├── 10062.cpp
-│   ├── 10063.cpp
-│   ├── 10097.cpp
-│   ├── 10100.cpp
-│   ├── 10102.cpp
-│   ├── 10114.cpp
-│   ├── 10115.cpp
-│   ├── 10116.cpp
-│   ├── 10117.cpp
-│   ├── 10118.cpp
-│   ├── 10119.cpp
-│   ├── 10120.cpp
-│   ├── 10121.cpp
-│   ├── 10122.cpp
-│   ├── 10123.cpp
-│   ├── 10125.cpp
-│   ├── 10126.cpp
-│   ├── 10127.cpp
-│   ├── 10128.cpp
-│   ├── 10129.cpp
-│   ├── 10130.cpp
-│   ├── 10131.cpp
-│   ├── 10132.cpp
-│   ├── 10134.cpp
-│   ├── 10135.cpp
-│   ├── 10136.cpp
-│   ├── 10154.cpp
-│   ├── 10156.cpp
-│   ├── 10157.cpp
-│   ├── 10160.cpp
-│   ├── 10163.cpp
-│   ├── 10164.cpp
-│   ├── 10165.cpp
-│   ├── 10170.cpp
-│   ├── 10176.cpp
-│   ├── 10178.cpp
-│   ├── 10193.cpp
-│   ├── 10194.cpp
-│   ├── 10195.cpp
-│   ├── 10196.cpp
-│   ├── 10197.cpp
-│   ├── 10198.cpp
-│   ├── 10199.cpp
-│   ├── 10200.cpp
-│   ├── 10201.cpp
-│   ├── 10202.cpp
-│   ├── 10203.cpp
-│   ├── 10205.cpp
-│   ├── 10206.cpp
-│   ├── 10209.cpp
-│   ├── 10211.cpp
-│   ├── 10212.cpp
-│   ├── 10213.cpp
-│   ├── 10214.cpp
-│   ├── 10215.cpp
-│   ├── 10216.cpp
-│   ├── 10217.cpp
-│   ├── 10218.cpp
-│   ├── 10219.cpp
-│   ├── 10220.cpp
-│   ├── 10221.cpp
-│   ├── 10222.cpp
-│   ├── 10223.cpp
-│   ├── 10225.cpp
-│   ├── 10243 「一本通 6.7 例 3」移棋子游戏.cpp
-│   ├── 10244 「一本通 6.7 练习 1」取石子游戏.cpp
-│   ├── 10245 「一本通 6.7 练习 2」巧克力棒.cpp
-│   ├── 10247 「一本通 6.7 练习 4」S-Nim.cpp
-│   ├── 115 无源汇有上下界可行流.cpp
-│   ├── 116 有源汇有上下界最大流.cpp
-│   ├── 117 有源汇有上下界最小流.cpp
-│   ├── 130.cpp
-│   ├── 134 二维树状数组 2：区间修改，单点查询.cpp
-│   ├── 135 二维树状数组 3：区间修改，区间查询.cpp
-│   ├── 2589.cpp
-│   ├── 2597.cpp
-│   ├── 2605.cpp
-│   ├── 2720 「NOI2018」你的名字.cpp
-│   ├── 3156 「NOI2019」回家路线.cpp
-│   ├── 3159. 「NOI2019」弹跳.cpp
-│   ├── 494. 「斜率优化 DP」最小划分.cpp
-│   ├── 6001 「网络流 24 题」太空飞行计划.cpp
-│   ├── 6030. 「雅礼集训 2017 Day1」矩阵.cpp
-│   ├── 6192 「美团 CodeM 复赛」城市网络.cpp
-│   ├── 6198 谢特.cpp
-│   ├── 6277 数列分块入门 1.cpp
-│   ├── 6278 数列分块入门 2.cpp
-│   ├── 6279 数列分块入门 3.cpp
-│   ├── 6280 数列分块入门 4.cpp
-│   ├── 6281 数列分块入门 5.cpp
-│   ├── 6282 数列分块入门 6.cpp
-│   ├── 6283 数列分块入门 7.cpp
-│   ├── 6284 数列分块入门 8.cpp
-│   ├── 6285 数列分块入门 9.cpp
-│   ├── 6490. 「XXOI 2018」暑假时在做什么？有没有空？可以来学物理吗？.cpp
-│   ├── 6669 Nauuo and Binary Tree.cpp
-│   └── P5330 [SNOI2019]数论.cpp
-├── POJ
+├── Libre Online Judge
+│   ├── #10047「一本通 2.2 练习 3」似乎在梦中见过的样子.cpp
+│   ├── #10062.cpp
+│   ├── #10063.cpp
+│   ├── #10097.cpp
+│   ├── #10100.cpp
+│   ├── #10102.cpp
+│   ├── #10114.cpp
+│   ├── #10115.cpp
+│   ├── #10116.cpp
+│   ├── #10117.cpp
+│   ├── #10118.cpp
+│   ├── #10119.cpp
+│   ├── #10120.cpp
+│   ├── #10121.cpp
+│   ├── #10122.cpp
+│   ├── #10123.cpp
+│   ├── #10125.cpp
+│   ├── #10126.cpp
+│   ├── #10127.cpp
+│   ├── #10128.cpp
+│   ├── #10129.cpp
+│   ├── #10130.cpp
+│   ├── #10131.cpp
+│   ├── #10132.cpp
+│   ├── #10134.cpp
+│   ├── #10135.cpp
+│   ├── #10136.cpp
+│   ├── #10154.cpp
+│   ├── #10156.cpp
+│   ├── #10157.cpp
+│   ├── #10160.cpp
+│   ├── #10163.cpp
+│   ├── #10164.cpp
+│   ├── #10165.cpp
+│   ├── #10170.cpp
+│   ├── #10176.cpp
+│   ├── #10178.cpp
+│   ├── #10193.cpp
+│   ├── #10194.cpp
+│   ├── #10195.cpp
+│   ├── #10196.cpp
+│   ├── #10197.cpp
+│   ├── #10198.cpp
+│   ├── #10199.cpp
+│   ├── #10200.cpp
+│   ├── #10201.cpp
+│   ├── #10202.cpp
+│   ├── #10203.cpp
+│   ├── #10205.cpp
+│   ├── #10206.cpp
+│   ├── #10209.cpp
+│   ├── #10211.cpp
+│   ├── #10212.cpp
+│   ├── #10213.cpp
+│   ├── #10214.cpp
+│   ├── #10215.cpp
+│   ├── #10216.cpp
+│   ├── #10217.cpp
+│   ├── #10218.cpp
+│   ├── #10219.cpp
+│   ├── #10220.cpp
+│   ├── #10221.cpp
+│   ├── #10222.cpp
+│   ├── #10223.cpp
+│   ├── #10225.cpp
+│   ├── #10243 「一本通 6.7 例 3」移棋子游戏.cpp
+│   ├── #10244 「一本通 6.7 练习 1」取石子游戏.cpp
+│   ├── #10245 「一本通 6.7 练习 2」巧克力棒.cpp
+│   ├── #10247 「一本通 6.7 练习 4」S-Nim.cpp
+│   ├── #115 无源汇有上下界可行流.cpp
+│   ├── #116 有源汇有上下界最大流.cpp
+│   ├── #117 有源汇有上下界最小流.cpp
+│   ├── #130.cpp
+│   ├── #134 二维树状数组 2：区间修改，单点查询.cpp
+│   ├── #135 二维树状数组 3：区间修改，区间查询.cpp
+│   ├── #2589.cpp
+│   ├── #2597.cpp
+│   ├── #2605.cpp
+│   ├── #2720 「NOI2018」你的名字.cpp
+│   ├── #3156 「NOI2019」回家路线.cpp
+│   ├── #3159. 「NOI2019」弹跳.cpp
+│   ├── #494. 「斜率优化 DP」最小划分.cpp
+│   ├── #6001 「网络流 24 题」太空飞行计划.cpp
+│   ├── #6030. 「雅礼集训 2017 Day1」矩阵.cpp
+│   ├── #6192 「美团 CodeM 复赛」城市网络.cpp
+│   ├── #6198 谢特.cpp
+│   ├── #6277 数列分块入门 1.cpp
+│   ├── #6278 数列分块入门 2.cpp
+│   ├── #6279 数列分块入门 3.cpp
+│   ├── #6280 数列分块入门 4.cpp
+│   ├── #6281 数列分块入门 5.cpp
+│   ├── #6282 数列分块入门 6.cpp
+│   ├── #6283 数列分块入门 7.cpp
+│   ├── #6284 数列分块入门 8.cpp
+│   ├── #6285 数列分块入门 9.cpp
+│   ├── #6490. 「XXOI 2018」暑假时在做什么？有没有空？可以来学物理吗？.cpp
+│   ├── #6669 Nauuo and Binary Tree.cpp
+│   └── #P5330 [SNOI2019]数论.cpp
+├── NOI.AC
+├── Peking University Online Judge
 │   ├── poj1149 PIGS.cpp
 │   ├── poj1226 Substrings.cpp
 │   ├── poj1228 Grandpa's Estate.cpp
@@ -936,11 +963,11 @@
 │   ├── 1297. Palindrome.cpp
 │   └── 1519. Formula 1.cpp
 ├── Universal Online Judge
-│   ├── 274. 【清华集训2016】温暖会指引我们前行.cpp
-│   ├── 35. 后缀排序.cpp
-│   ├── 395. 【NOI2018】你的名字.cpp
-│   └── 73. 【WC2015】未来程序.zip
-├── UVaOJ
+│   ├── #274. 【清华集训2016】温暖会指引我们前行.cpp
+│   ├── #35. 后缀排序.cpp
+│   ├── #395. 【NOI2018】你的名字.cpp
+│   └── #73. 【WC2015】未来程序.zip
+├── University of Virginia Online Judge
 │   ├── UVA10003 切木棍 Cutting Sticks.cpp
 │   ├── UVA10048 噪音恐惧症 Audiophobia.cpp
 │   ├── UVA101 The Blocks Problem.cpp
@@ -1019,7 +1046,7 @@
 │   ├── UVA540 团体队列 Team Queue.cpp
 │   ├── UVA658 这不是bug，而是特性 It's not a Bug, it's a Feature!.cpp
 │   └── UVA760 DNA Sequencing.cpp
-├── YbtOJ
+├── Ybt Online Judge
 │   ├── 1116. 「递推算法21」双向通道.cpp
 │   ├── 1117. 「递推算法21」二叉堆题.cpp
 │   ├── 1118. 「递推算法21」数数问题.cpp
@@ -1261,10 +1288,31 @@
 │   ├── 计算几何初探.pdf
 │   ├── 费用流.pdf
 │   └── 高斯消元.pdf
-├── ZOJ
+├── Zhejiang University Online Judge
 │   ├── 1081 Points Within.cpp
 │   ├── 2587 Unique Attack.cpp
 │   └── 3197 Google Book.cpp
+├── Zhengrui Online Judge
+│   ├── #1341. 【20省选集训day1】Bitset Master.cpp
+│   ├── #1345. 【20省选集训day2】调兵遣将.cpp
+│   ├── #1346. 【20省选集训day2】一掷千金.cpp
+│   ├── #1347. 【20省选集训day2】树拓扑序.cpp
+│   ├── #1348. 【20省选集训day3】游戏.cpp
+│   ├── #1349. 【20省选集训day3】石子.cpp
+│   ├── #1350. 【20省选集训day3】划分.cpp
+│   ├── #1351. 【20省选集训day4】Manager.cpp
+│   ├── #1352. 【20省选集训day4】GCD再放送.cpp
+│   ├── #1353. 【20省选集训day4】dict.cpp
+│   ├── #1358. 【20省选集训day5】买到.cpp
+│   ├── #1359. 【20省选集训day5】口罩.cpp
+│   ├── #1390. 【五一省选集训day1】a.cpp
+│   ├── #1391. 【五一省选集训day1】b.cpp
+│   ├── #1393. 【五一省选集训day3】同构.cpp
+│   ├── #1394. 【五一省选集训day3】修改.cpp
+│   ├── #1395. 【五一省选集训day3】排序.cpp
+│   ├── #1404. 【五一省选集训day2-T1】或许.cpp
+│   ├── #1405. 【五一省选集训day2-T2】这就是.cpp
+│   └── #1406. 【五一省选集训day2-T3】人生吧.cpp
 ├── 一本通
 │   ├── 1373.cpp
 │   ├── 1382(SPFA邻接表).cpp
@@ -1750,6 +1798,7 @@
 │   ├── P3730 曼哈顿交易.cpp
 │   ├── P3750 [六省联考2017]分手是祝愿.cpp
 │   ├── P3757 [CQOI2017]老C的键盘.cpp
+│   ├── P3760 [TJOI2017] 异或和.cpp
 │   ├── P3763 [TJOI2017]DNA.cpp
 │   ├── P3769 [CH弱省胡策R2]TATT.cpp
 │   ├── P3793 由乃救爷爷.cpp
@@ -1927,6 +1976,7 @@
 │   ├── P5017 摆渡车.cpp
 │   ├── P5019 铺设道路.cpp
 │   ├── P5020 货币系统.cpp
+│   ├── P5025 [SNOI2017]炸弹.cpp
 │   ├── P5043 【模板】树同构（[BJOI2015]树的同构）.cpp
 │   ├── P5055 【模板】可持久化文艺平衡树(fhq treap).cpp
 │   ├── P5056 【模板】插头dp.cpp
@@ -1974,6 +2024,7 @@
 │   ├── P5342 [TJOI2019]甲苯先生的线段树.cpp
 │   ├── P5357 【模板】AC自动机（二次加强版）.cpp
 │   ├── P5363 [SDOI2019]移动金币.cpp
+│   ├── P5364 [SNOI2017]礼物.cpp
 │   ├── P5367 【模板】康托展开.cpp
 │   ├── P5375 [THUPC2019]组合数据结构问题.cpp
 │   ├── P5384 [Cnoi2019]雪松果树.cpp
@@ -2092,6 +2143,7 @@
 │   ├── P8289 [省选联考 2022] 预处理器（官方数据）.cpp
 │   ├── P8290 [省选联考 2022] 填树（官方数据）.cpp
 │   ├── P8292 [省选联考 2022] 卡牌（官方数据）.cpp
+│   ├── P8293 [省选联考 2022] 序列变换.cpp
 │   ├── P8294 [省选联考 2022] 最大权独立集问题.cpp
 │   ├── P8329 [ZJOI2022] 树.cpp
 │   ├── P8330 [ZJOI2022] 众数.cpp
@@ -2102,6 +2154,9 @@
 │   ├── P8350 [SDOI 或 SXOI2022] 进制转换.cpp
 │   ├── P8352 [SDOI 或 SXOI2022] 小 N 的独立集.cpp
 │   ├── P8360 [SNOI2022] 军队.cpp
+│   ├── P8367 [LNOI2022] 盒.cpp
+│   ├── P8368 [LNOI2022] 串.cpp
+│   ├── P8867 [NOIP2022] 建造军营.cpp
 │   ├── T102431 柱状图（hist,1.5s,512MB）.cpp
 │   ├── T85975 高精度除法.cpp
 │   └── U41492 树上数颜色.cpp
