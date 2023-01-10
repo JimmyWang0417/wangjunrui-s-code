@@ -1,11 +1,10 @@
 /**
  *    unicode: UTF-8
- *    name:    #1404. 【五一省选集训day2-T1】或许
+ *    name:    #1408. 【五一省选集训day4】Permutation
  *    author:  wangjunrui (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.07 周六 16:36:07 (Asia/Shanghai)
+ *    created: 2023.01.08 周日 19:39:10 (Asia/Shanghai)
  **/
-#include <bits/move.h>
 #include <cstdio>
 #define ll long long
 #define lll __int128
@@ -185,6 +184,42 @@ struct modint
 {
     _T x;
     modint(_T _x = 0) : x(_x) {}
+    inline modint operator+() const
+    {
+        return *this;
+    }
+    inline modint operator-() const
+    {
+        return !x ? 0 : _mod - x;
+    }
+    inline modint &operator++()
+    {
+        ++x;
+        if (x >= _mod)
+            x -= _mod;
+        return *this;
+    }
+    inline modint &operator--()
+    {
+        --x;
+        if (x < 0)
+            x += _mod;
+        return *this;
+    }
+    inline modint operator++(_T)
+    {
+        int res = x;
+        if (x >= _mod)
+            x -= _mod;
+        return res;
+    }
+    inline modint operator--(_T)
+    {
+        int res = x;
+        if (x < 0)
+            x += _mod;
+        return res;
+    }
     inline modint operator+(const modint &rhs) const
     {
         _T res = x;
@@ -278,97 +313,46 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 2e6 + 5;
-int n, m;
-struct node
-{
-    int opt, x;
-} a[N];
-int b[N];
-int c[35], d[35];
-inline void insert(int x, int y)
-{
-    for (int i = n - 1; i >= 0; --i)
-        if ((x >> i) & 1)
-        {
-            if (c[i])
-            {
-                if (d[i] < y)
-                {
-                    swap(c[i], x);
-                    swap(d[i], y);
-                }
-                x ^= c[i];
-            }
-            else
-            {
-                c[i] = x;
-                d[i] = y;
-                break;
-            }
-        }
-}
-inline int calc(int pos)
-{
-    int res = 0;
-    for (int i = n - 1; i >= 0; --i)
-        if (c[i] && pos < d[i])
-            ++res;
-    return n - res;
-}
-constexpr int mod = 1e6 + 33;
-struct hash_table
-{
-
-    struct Edge
-    {
-        int next, key, val;
-    } edge[N];
-    int head[mod + 5], num_edge;
-    inline void insert(int key, int val)
-    {
-        int from = key % mod;
-        for (int i = head[from]; i; i = edge[i].next)
-            if (edge[i].key == key)
-            {
-                edge[i].val = val;
-                return;
-            }
-        edge[++num_edge].next = head[from];
-        edge[num_edge].key = key;
-        edge[num_edge].val = val;
-        head[from] = num_edge;
-    }
-    inline int query(int key)
-    {
-        int from = key % mod;
-        for (int i = head[from]; i; i = edge[i].next)
-            if (edge[i].key == key)
-                return edge[i].val;
-        return 0;
-    }
-} table;
+constexpr int N = 5e4 + 5;
+int n, m, T;
+int a[N], b[N], c[N];
+int p[N], tot;
 signed main()
 {
-    read(n, m);
-    for (int i = 1; i <= m; ++i)
+    read(n, T);
+    for (int i = 1; i <= n; ++i)
     {
-        read(a[i].opt, a[i].x);
-        if (a[i].opt == 2)
-            b[table.query(a[i].x)] = i;
-        table.insert(a[i].x, i);
+        read(a[i]);
+        b[a[i]] = i;
     }
-    for (int i = 1; i <= m; ++i)
-        if (a[i].opt == 1 && !b[i])
-            b[i] = m + 1;
-    int res = 0;
-    for (int i = 1; i <= m; ++i)
+    c[1] = m = 0;
+    for (int i = 2; i <= n; ++i)
     {
-        if (a[i].opt == 1)
-            insert(a[i].x, b[i]);
-        res ^= 1 << calc(i);
+        if (b[i - 1] > b[i])
+            ++m;
+        c[i] = m;
     }
-    write(res, '\n');
+    int answer = m ? (int)__builtin_log2(m) + 1 : 0;
+    write(answer, '\n');
+    if (T)
+    {
+        for (int i = 1; i <= n; ++i)
+            write(a[i], ' ');
+        write('\n');
+        for (int i = 0; i < answer; ++i)
+        {
+            for (int j = 1; j <= n; ++j)
+                if (!(c[a[j]] >> i & 1))
+                    p[++tot] = a[j];
+            for (int j = 1; j <= n; ++j)
+                if (c[a[j]] >> i & 1)
+                    p[++tot] = a[j];
+            for (int j = 1; j <= n; ++j)
+                write(a[j] = p[j], ' ');
+            write('\n');
+            tot = 0;
+        }
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

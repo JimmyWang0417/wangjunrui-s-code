@@ -1,18 +1,19 @@
 /**
  *    unicode: UTF-8
- *    name:    #1404. 【五一省选集训day2-T1】或许
+ *    name:    #1407. 【五一省选集训day4】Mansion
  *    author:  wangjunrui (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.07 周六 16:36:07 (Asia/Shanghai)
+ *    created: 2023.01.08 周日 12:43:44 (Asia/Shanghai)
  **/
-#include <bits/move.h>
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
 #define lowbit(_x) (_x & (-_x))
 
-#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -185,6 +186,42 @@ struct modint
 {
     _T x;
     modint(_T _x = 0) : x(_x) {}
+    inline modint operator+() const
+    {
+        return *this;
+    }
+    inline modint operator-() const
+    {
+        return !x ? 0 : _mod - x;
+    }
+    inline modint &operator++()
+    {
+        ++x;
+        if (x >= _mod)
+            x -= _mod;
+        return *this;
+    }
+    inline modint &operator--()
+    {
+        --x;
+        if (x < 0)
+            x += _mod;
+        return *this;
+    }
+    inline modint operator++(_T)
+    {
+        int res = x;
+        if (x >= _mod)
+            x -= _mod;
+        return res;
+    }
+    inline modint operator--(_T)
+    {
+        int res = x;
+        if (x < 0)
+            x += _mod;
+        return res;
+    }
     inline modint operator+(const modint &rhs) const
     {
         _T res = x;
@@ -278,97 +315,161 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 2e6 + 5;
-int n, m;
+constexpr int N = 1.5e5 + 5;
+int n, m, q;
+int a[N], b[N];
+int belongn[N], Ln[N], Rn[N], blockn, numn;
+int belongm[N], Lm[N], Rm[N], blockm, numm;
 struct node
 {
-    int opt, x;
-} a[N];
-int b[N];
-int c[35], d[35];
-inline void insert(int x, int y)
+    int l, r, x, y, id;
+    inline bool operator<(const node &rhs) const
+    {
+        return belongn[l] == belongn[rhs.l] ? r < rhs.r : l < rhs.l;
+    }
+} c[N];
+ll sum[N], maxx[N];
+ll tmpsum[N], tmpmaxx[N];
+int vis[N], visblock[N], vistime;
+ll answer[N];
+signed main()
 {
-    for (int i = n - 1; i >= 0; --i)
-        if ((x >> i) & 1)
+    read(n, m, q);
+    for (int i = 1; i <= n; ++i)
+        read(a[i]);
+    for (int i = 1; i <= n; ++i)
+        read(b[i]);
+
+    blockn = (int)__builtin_sqrt(n);
+    numn = (n - 1) / blockn + 1;
+    for (int i = 1; i <= numn; ++i)
+    {
+        Ln[i] = Rn[i - 1] + 1;
+        Rn[i] = Rn[i - 1] + blockn;
+    }
+    Rn[numn] = n;
+    for (int i = 1; i <= numn; ++i)
+        for (int j = Ln[i]; j <= Rn[i]; ++j)
+            belongn[j] = i;
+
+    blockm = (int)__builtin_sqrt(m);
+    numm = (m - 1) / blockm + 1;
+    for (int i = 1; i <= numm; ++i)
+    {
+        Lm[i] = Rm[i - 1] + 1;
+        Rm[i] = Rm[i - 1] + blockm;
+    }
+    Rm[numm] = m;
+    for (int i = 1; i <= numm; ++i)
+        for (int j = Lm[i]; j <= Rm[i]; ++j)
+            belongm[j] = i;
+
+    for (int i = 1; i <= q; ++i)
+    {
+        read(c[i].l, c[i].r, c[i].x, c[i].y);
+        c[i].id = i;
+    }
+    sort(c + 1, c + 1 + q);
+    for (int i = 1, r = 0; i <= q; ++i)
+    {
+        const int &ql = c[i].l, &qr = c[i].r;
+        if (belongn[c[i - 1].l] != belongn[ql])
         {
-            if (c[i])
+            memset(sum, 0, sizeof(sum));
+            memset(maxx, 0, sizeof(maxx));
+            r = Rn[belongn[ql]];
+        }
+        auto tmpadd = [](int x, int y)
+        {
+            int bl = belongm[x];
+            if (vis[x] != vistime)
             {
-                if (d[i] < y)
+                tmpsum[x] = sum[x];
+                vis[x] = vistime;
+            }
+            if (visblock[bl] != vistime)
+            {
+                tmpmaxx[bl] = maxx[bl];
+                visblock[bl] = vistime;
+            }
+            ckmax(tmpmaxx[bl], tmpsum[x] += y);
+        };
+        auto add = [](int x, int y)
+        {
+            ckmax(maxx[belongm[x]], sum[x] += y);
+        };
+        auto query = [](int x, int y)
+        {
+            int bx = belongm[x], by = belongm[y];
+            ll res = 0;
+            if (bx == by)
+            {
+                for (int j = x; j <= y; ++j)
                 {
-                    swap(c[i], x);
-                    swap(d[i], y);
+                    if (vis[j] != vistime)
+                    {
+                        tmpsum[j] = sum[j];
+                        vis[j] = vistime;
+                    }
+                    ckmax(res, sum[j]);
+                    ckmax(res, tmpsum[j]);
                 }
-                x ^= c[i];
             }
             else
             {
-                c[i] = x;
-                d[i] = y;
-                break;
+                for (int j = x; j <= Rm[bx]; ++j)
+                {
+                    if (vis[j] != vistime)
+                    {
+                        tmpsum[j] = sum[j];
+                        vis[j] = vistime;
+                    }
+                    ckmax(res, sum[j]);
+                    ckmax(res, tmpsum[j]);
+                }
+                for (int j = bx + 1; j < by; ++j)
+                {
+                    if (visblock[j] != vistime)
+                    {
+                        tmpmaxx[j] = maxx[j];
+                        visblock[j] = vistime;
+                    }
+                    ckmax(res, maxx[j]);
+                    ckmax(res, tmpmaxx[j]);
+                }
+                for (int j = Lm[by]; j <= y; ++j)
+                {
+                    if (vis[j] != vistime)
+                    {
+                        tmpsum[j] = sum[j];
+                        vis[j] = vistime;
+                    }
+                    ckmax(res, sum[j]);
+                    ckmax(res, tmpsum[j]);
+                }
             }
+            return res;
+        };
+        vistime = i;
+        if (belongn[ql] == belongn[qr])
+        {
+            for (int j = ql; j <= qr; ++j)
+                tmpadd(a[j], b[j]);
         }
-}
-inline int calc(int pos)
-{
-    int res = 0;
-    for (int i = n - 1; i >= 0; --i)
-        if (c[i] && pos < d[i])
-            ++res;
-    return n - res;
-}
-constexpr int mod = 1e6 + 33;
-struct hash_table
-{
-
-    struct Edge
-    {
-        int next, key, val;
-    } edge[N];
-    int head[mod + 5], num_edge;
-    inline void insert(int key, int val)
-    {
-        int from = key % mod;
-        for (int i = head[from]; i; i = edge[i].next)
-            if (edge[i].key == key)
+        else
+        {
+            while (r < qr)
             {
-                edge[i].val = val;
-                return;
+                ++r;
+                add(a[r], b[r]);
             }
-        edge[++num_edge].next = head[from];
-        edge[num_edge].key = key;
-        edge[num_edge].val = val;
-        head[from] = num_edge;
+            for (int j = Rn[belongn[ql]]; j >= ql; --j)
+                tmpadd(a[j], b[j]);
+        }
+        answer[c[i].id] = query(c[i].x, c[i].y);
     }
-    inline int query(int key)
-    {
-        int from = key % mod;
-        for (int i = head[from]; i; i = edge[i].next)
-            if (edge[i].key == key)
-                return edge[i].val;
-        return 0;
-    }
-} table;
-signed main()
-{
-    read(n, m);
-    for (int i = 1; i <= m; ++i)
-    {
-        read(a[i].opt, a[i].x);
-        if (a[i].opt == 2)
-            b[table.query(a[i].x)] = i;
-        table.insert(a[i].x, i);
-    }
-    for (int i = 1; i <= m; ++i)
-        if (a[i].opt == 1 && !b[i])
-            b[i] = m + 1;
-    int res = 0;
-    for (int i = 1; i <= m; ++i)
-    {
-        if (a[i].opt == 1)
-            insert(a[i].x, b[i]);
-        res ^= 1 << calc(i);
-    }
-    write(res, '\n');
+    for (int i = 1; i <= q; ++i)
+        write(answer[i], '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
