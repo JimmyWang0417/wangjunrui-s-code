@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5305 [GXOI/GZOI2019]旧词
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.30 周六 12:25:31 (Asia/Shanghai)
  **/
 #include <algorithm>

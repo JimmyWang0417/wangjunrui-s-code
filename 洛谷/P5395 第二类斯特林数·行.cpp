@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5395 第二类斯特林数·行
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.04 周一 23:35:00 (Asia/Shanghai)
  **/
 #include <algorithm>

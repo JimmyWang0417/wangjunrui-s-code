@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1404. 【五一省选集训day2-T1】或许
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2023.01.07 周六 16:36:07 (Asia/Shanghai)
  **/

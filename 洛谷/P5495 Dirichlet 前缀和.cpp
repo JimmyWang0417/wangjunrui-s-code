@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5495 Dirichlet 前缀和
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.03 周日 23:12:28 (Asia/Shanghai)
  **/
 #include <cstdio>

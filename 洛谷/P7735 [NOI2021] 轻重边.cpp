@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P7735 [NOI2021] 轻重边
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.27 周三 08:37:34 (Asia/Shanghai)
  **/
 #include <algorithm>

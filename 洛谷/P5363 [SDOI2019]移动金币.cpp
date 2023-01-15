@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5363 [SDOI2019]移动金币
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.10 周三 15:30:09 (Asia/Shanghai)
  **/
 #include <algorithm>

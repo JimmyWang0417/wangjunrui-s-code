@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF280D k-Maximum Subsequence Sum
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.20 周三 14:53:19 (Asia/Shanghai)
  **/
 #include <algorithm>

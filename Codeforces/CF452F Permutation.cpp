@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF452F Permutation
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.04 周一 21:13:38 (Asia/Shanghai)
  **/
 #include <algorithm>

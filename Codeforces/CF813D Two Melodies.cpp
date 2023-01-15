@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF813D Two Melodies
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.10 周日 20:10:37 (Asia/Shanghai)
  **/
 #include <algorithm>

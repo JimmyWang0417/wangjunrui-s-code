@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4069 [SDOI2016]游戏
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.09 周二 12:00:17 (Asia/Shanghai)
  **/
 #include <algorithm>

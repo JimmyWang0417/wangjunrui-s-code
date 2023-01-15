@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5284 [十二省联考 2019] 字符串问题
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.05 周五 19:53:45 (Asia/Shanghai)
  **/
 #include <algorithm>

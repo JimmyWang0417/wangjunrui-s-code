@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    SP2940 UNTITLE1 - Untitled Problem II
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.07 周四 20:26:26 (Asia/Shanghai)
  **/
 #include <algorithm>

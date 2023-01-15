@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1350. 【20省选集训day3】划分
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.18 周日 21:37:18 (Asia/Shanghai)
  **/

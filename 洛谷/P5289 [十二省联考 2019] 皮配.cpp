@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    b. 选择信封
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.03 周三 17:01:55 (Asia/Shanghai)
  **/
 #include <cstdio>

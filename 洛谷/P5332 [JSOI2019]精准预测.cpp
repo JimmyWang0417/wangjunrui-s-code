@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5332 [JSOI2019]精准预测
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.19 周五 00:22:57 (Asia/Shanghai)
  **/
 #include <algorithm>

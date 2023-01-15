@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1588F Jumping Through the Array
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.01 周五 19:13:20 (Asia/Shanghai)
  **/
 #include <cstdio>

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P8368 [LNOI2022] 串
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.08.28 周日 10:23:39 (Asia/Shanghai)
  **/

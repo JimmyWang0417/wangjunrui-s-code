@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF940E Cashback
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.30 周六 11:05:04 (Asia/Shanghai)
  **/
 #include <cstdio>

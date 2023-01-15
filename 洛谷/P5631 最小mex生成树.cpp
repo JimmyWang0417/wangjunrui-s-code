@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5631 最小mex生成树
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.06 周三 23:31:33 (Asia/Shanghai)
  **/
 #include <cstdio>

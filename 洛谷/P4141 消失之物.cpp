@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4141 消失之物
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.12 周五 08:14:03 (Asia/Shanghai)
  **/
 #include <cstdio>

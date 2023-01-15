@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    A. 三色二叉树
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.29 周五 09:57:04 (Asia/Shanghai)
  **/
 #include <cstdio>

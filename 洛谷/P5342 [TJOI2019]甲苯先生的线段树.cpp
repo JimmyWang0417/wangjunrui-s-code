@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5342 [TJOI2019]甲苯先生的线段树
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.13 周六 21:31:59 (Asia/Shanghai)
  **/
 #include <algorithm>

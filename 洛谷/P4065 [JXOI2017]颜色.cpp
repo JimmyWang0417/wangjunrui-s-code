@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4065 [JXOI2017]颜色
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.09 周二 16:26:43 (Asia/Shanghai)
  **/
 #include <cstdio>

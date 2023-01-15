@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P8360 [SNOI2022] 军队
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.28 周四 16:28:57 (Asia/Shanghai)
  **/
 #include <algorithm>

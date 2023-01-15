@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1437F Emotional Fishermen
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.02 周六 22:27:16 (Asia/Shanghai)
  **/
 #include <algorithm>

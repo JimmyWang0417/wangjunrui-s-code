@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5300 [GXOI/GZOI2019]与或和
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.24 周日 17:18:10 (Asia/Shanghai)
  **/
 #include <cstdio>

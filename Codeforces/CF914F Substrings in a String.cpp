@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF914F Substrings in a String
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.01 周五 21:39:25 (Asia/Shanghai)
  **/
 #include <algorithm>

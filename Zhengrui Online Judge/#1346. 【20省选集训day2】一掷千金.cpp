@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1346. 【20省选集训day2】一掷千金
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.11 周日 10:19:35 (Asia/Shanghai)
  **/

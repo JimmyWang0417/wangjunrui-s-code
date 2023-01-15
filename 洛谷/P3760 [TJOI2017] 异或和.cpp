@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P3760 [TJOI2017] 异或和
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.08.31 周三 14:34:45 (Asia/Shanghai)
  **/

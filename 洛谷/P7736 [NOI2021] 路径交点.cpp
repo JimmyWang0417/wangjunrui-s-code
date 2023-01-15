@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P7736 [NOI2021] 路径交点
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.27 周三 10:15:19 (Asia/Shanghai)
  **/
 #include <algorithm>

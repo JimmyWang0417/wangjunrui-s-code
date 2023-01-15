@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4383 [八省联考 2018] 林克卡特树
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.21 周四 15:48:44 (Asia/Shanghai)
  **/
 #include <cstdio>

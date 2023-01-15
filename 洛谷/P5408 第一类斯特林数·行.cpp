@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5408 第一类斯特林数·行
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.03 周日 21:23:22 (Asia/Shanghai)
  **/
 #include <algorithm>

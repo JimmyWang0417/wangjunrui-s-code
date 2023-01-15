@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1641D Two Arrays
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.09 周六 23:18:42 (Asia/Shanghai)
  **/
 #include <algorithm>

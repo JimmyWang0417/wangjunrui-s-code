@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1466G Song of the Sirens
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.20 周三 09:37:23 (Asia/Shanghai)
  **/
 #include <cstdio>

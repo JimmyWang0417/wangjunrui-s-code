@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF338D d Table
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.06.29 周三 20:03:06
  **/
 #include <algorithm>

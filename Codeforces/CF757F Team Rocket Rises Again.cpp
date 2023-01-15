@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF757F Team Rocket Rises Again
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.06.30 周四 13:02:19 (Asia/Shanghai)
  **/
 #include <cstdio>

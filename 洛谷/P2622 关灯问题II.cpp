@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P2622 关灯问题II
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.14 周日 08:44:12 (Asia/Shanghai)
  **/
 #include <cstdio>

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    LadiesCF286E Ladies' Shop
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.11 周一 21:08:16 (Asia/Shanghai)
  **/
 #include <algorithm>

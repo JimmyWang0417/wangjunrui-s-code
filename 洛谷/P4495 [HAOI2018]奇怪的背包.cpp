@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4495 [HAOI2018]奇怪的背包
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.09 周二 20:56:06 (Asia/Shanghai)
  **/
 #include <algorithm>

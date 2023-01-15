@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    name
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.09.17 周六 17:30:54 (Asia/Shanghai)
  **/

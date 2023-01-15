@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    AT4378 [AGC027D] Modulo Matrix
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.31 周日 21:12:20 (Asia/Shanghai)
  **/
 #include <algorithm>

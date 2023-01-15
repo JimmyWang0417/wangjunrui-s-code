@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF487D Conveyor Belts
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.09 周六 20:30:55 (Asia/Shanghai)
  **/
 #include <algorithm>

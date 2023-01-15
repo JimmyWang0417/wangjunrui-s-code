@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P6792 [SNOI2020] 区间和
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.22 周一 20:26:24 (Asia/Shanghai)
  **/
 #include <algorithm>

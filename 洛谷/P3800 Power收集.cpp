@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P3800 Power收集
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.30 周六 08:21:55 (Asia/Shanghai)
  **/
 #include <cstdio>

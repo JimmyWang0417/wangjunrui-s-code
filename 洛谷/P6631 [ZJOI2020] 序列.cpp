@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P6631 [ZJOI2020] 序列
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.26 周五 01:08:53 (Asia/Shanghai)
  **/
 #include <algorithm>

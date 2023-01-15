@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1110F Nearest Leaf
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.07 周四 00:52:33 (Asia/Shanghai)
  **/
 #include <algorithm>

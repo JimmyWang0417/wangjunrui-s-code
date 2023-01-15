@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    magic
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.09.10 周六 20:23:35 (Asia/Shanghai)
  **/

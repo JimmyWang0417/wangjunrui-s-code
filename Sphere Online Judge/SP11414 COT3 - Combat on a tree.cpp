@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    SP11414 COT3 - Combat on a tree
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.05 周五 16:03:54 (Asia/Shanghai)
  **/
 #include <algorithm>

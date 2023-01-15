@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P7738 [NOI2021] 量子通信
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.25 周一 10:53:57 (Asia/Shanghai)
  **/
 #include <algorithm>

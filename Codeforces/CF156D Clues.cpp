@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    Clues
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.22 周四 20:02:25 (Asia/Shanghai)
  **/

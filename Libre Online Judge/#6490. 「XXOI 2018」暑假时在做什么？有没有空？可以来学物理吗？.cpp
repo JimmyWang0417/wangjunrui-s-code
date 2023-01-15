@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #6490. 「XXOI 2018」暑假时在做什么？有没有空？可以来学物理吗？
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.22 周五 10:12:35 (Asia/Shanghai)
  **/
 #include <algorithm>

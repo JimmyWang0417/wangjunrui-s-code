@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    AT3948 [AGC022C] Remainder Game
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.12 周二 08:21:24 (Asia/Shanghai)
  **/
 #include <bitset>

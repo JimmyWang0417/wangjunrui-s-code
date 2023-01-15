@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5303 [GXOI/GZOI2019]逼死强迫症
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.25 周一 15:39:43 (Asia/Shanghai)
  **/
 #include <cstdio>

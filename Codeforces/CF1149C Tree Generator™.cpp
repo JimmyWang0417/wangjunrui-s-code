@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1149C Tree Generator™
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.06.28 周二 21:54:12
  **/
 #include <algorithm>

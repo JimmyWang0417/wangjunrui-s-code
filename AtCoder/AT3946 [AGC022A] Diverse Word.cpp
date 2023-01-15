@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    AT3946 [AGC022A] Diverse Word
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.11 周一 23:49:08 (Asia/Shanghai)
  **/
 #include <algorithm>

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1359. 【20省选集训day5】口罩
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.22 周四 18:41:08 (Asia/Shanghai)
  **/

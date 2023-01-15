@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P8341 [AHOI2022] 回忆
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.25 周四 16:14:14 (Asia/Shanghai)
  **/
 #include <algorithm>

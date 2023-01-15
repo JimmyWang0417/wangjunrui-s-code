@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P6242 【模板】线段树 3
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.21 周日 13:59:46 (Asia/Shanghai)
  **/
 #include <algorithm>

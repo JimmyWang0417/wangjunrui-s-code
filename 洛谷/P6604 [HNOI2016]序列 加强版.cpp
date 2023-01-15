@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P6604 [HNOI2016]序列 加强版
- *    author:  wangjunrui
+ *    author:  whitepaperdogdog
  *    created: 2022.07.02 周六 15:49:08 (Asia/Shanghai)
  **/
 #include <algorithm>

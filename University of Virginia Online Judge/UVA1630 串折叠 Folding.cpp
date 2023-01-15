@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    UVA1630 串折叠 Folding
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.28 周四 08:19:46 (Asia/Shanghai)
  **/
 #include <cstdio>

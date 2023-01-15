@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1406. 【五一省选集训day2-T3】人生吧
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2023.01.08 周日 10:40:53 (Asia/Shanghai)
  **/

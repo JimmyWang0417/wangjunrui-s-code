@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF338E Optimize!
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.10 周日 23:23:03 (Asia/Shanghai)
  **/
 #include <algorithm>

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5012 水の数列
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.22 周五 08:25:35 (Asia/Shanghai)
  **/
 #include <cstdio>

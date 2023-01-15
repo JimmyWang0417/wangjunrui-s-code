@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4719 【模板】"动态 DP"&动态树分治
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.02 周六 16:30:23 (Asia/Shanghai)
  **/
 #include <algorithm>

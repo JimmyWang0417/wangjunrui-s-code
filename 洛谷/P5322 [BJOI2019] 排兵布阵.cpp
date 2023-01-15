@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5322 [BJOI2019] 排兵布阵
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.12 周五 09:54:50 (Asia/Shanghai)
  **/
 #include <algorithm>

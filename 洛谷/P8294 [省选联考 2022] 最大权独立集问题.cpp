@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P8294 [省选联考 2022] 最大权独立集问题
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.23 周二 22:35:28 (Asia/Shanghai)
  **/
 #include <bitset>

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P6794 [SNOI2020] 水池
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.15 周一 09:29:05 (Asia/Shanghai)
  **/
 #include <algorithm>

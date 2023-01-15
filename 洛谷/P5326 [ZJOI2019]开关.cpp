@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5326 [ZJOI2019]开关
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.06 周六 21:25:09 (Asia/Shanghai)
  **/
 #include <cstdio>

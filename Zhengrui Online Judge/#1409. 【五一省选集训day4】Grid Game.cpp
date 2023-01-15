@@ -1,12 +1,12 @@
 /**
  *    unicode: UTF-8
- *    name:    #1405. 【五一省选集训day2-T2】这就是
+ *    name:    #1409. 【五一省选集训day4】Grid Game
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.07 周六 19:51:06 (Asia/Shanghai)
+ *    created: 2023.01.14 周六 15:01:25 (Asia/Shanghai)
  **/
-#include <algorithm>
 #include <cstdio>
+#include <random>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
@@ -185,6 +185,42 @@ struct modint
 {
     _T x;
     modint(_T _x = 0) : x(_x) {}
+    inline modint operator+() const
+    {
+        return *this;
+    }
+    inline modint operator-() const
+    {
+        return !x ? 0 : _mod - x;
+    }
+    inline modint &operator++()
+    {
+        ++x;
+        if (x >= _mod)
+            x -= _mod;
+        return *this;
+    }
+    inline modint &operator--()
+    {
+        --x;
+        if (x < 0)
+            x += _mod;
+        return *this;
+    }
+    inline modint operator++(_T)
+    {
+        int res = x;
+        if (x >= _mod)
+            x -= _mod;
+        return res;
+    }
+    inline modint operator--(_T)
+    {
+        int res = x;
+        if (x < 0)
+            x += _mod;
+        return res;
+    }
     inline modint operator+(const modint &rhs) const
     {
         _T res = x;
@@ -278,62 +314,125 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 23;
-constexpr int M = (1 << 15) + 5;
-constexpr int mod = 1e9 + 7;
-typedef modint<int, mod> node;
-int n, m, a[N];
-node f[N][M];
-int g[M];
-int h[N];
-int minn[M];
-int Log[M];
+constexpr int N = 2005;
+int n, m, k;
+bool a[N][N];
+ull b[N], c[N][N], d[N][N];
+int e[N][N];
+struct node
+{
+    int x, y;
+    node(int _x = 0, int _y = 0) : x(_x), y(_y) {}
+    inline int calc() const
+    {
+        return max(x, y);
+    }
+    inline node operator-(const node &rhs) const
+    {
+        return node(x - rhs.x, y - rhs.y);
+    }
+    inline bool operator<(const node &rhs) const
+    {
+        return calc() < rhs.calc();
+    }
+} f[N][N];
+inline int calc(int x1, int y1, int x2, int y2)
+{
+    return e[x2][y2] - e[x1 - 1][y2] - e[x2][y1 - 1] + e[x1 - 1][y1 - 1];
+}
 signed main()
 {
-    read(n, m);
-    minn[0] = -1;
-    for (int i = 0; i < n; ++i)
-    {
-        read(a[i]);
-        Log[1 << i] = i;
-        minn[1 << i] = i;
-        for (int j = 1; j < (1 << i); ++j)
-            minn[1 << i | j] = (a[i] < a[minn[j]] ? i : minn[j]);
-    }
-    for (int i = 1; i <= m; ++i)
-    {
-        int x, y;
-        read(x, y);
-        --x, --y;
-        h[x] |= 1 << y;
-        h[y] |= 1 << x;
-    }
-    g[0] = 0x7fffffff;
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < (1 << i); ++j)
-        {
-            if (h[i] & j)
-            {
-                g[1 << i | j] = -1;
-                continue;
-            }
-            g[1 << i | j] = min(a[i], g[j]);
-        }
-    f[0][0] = 1;
-    for (int i = 0; i < n; ++i)
-        for (int j = 0; j < (1 << n) - 1; ++j)
-            if (f[i][j].data())
-            {
-                for (int S = j | (1 << minn[((1 << n) - 1) ^ j]), k = S; k < (1 << n); k = S | (k + 1))
-                {
-                    if (g[j ^ k] >= i)
-                        f[i + 1][k] += f[i][j] * (g[j ^ k] - i + 1);
-                }
-            }
-    node res = 0;
+    read(n, m, k);
+    mt19937_64 rnd((random_device())());
+    uniform_int_distribution<ull> ranges(0);
     for (int i = 1; i <= n; ++i)
-        res += f[i][(1 << n) - 1] * i;
-    write(res.data(), '\n');
+    {
+        static char str[N];
+        scanf("%s", str + 1);
+        for (int j = 1; j <= m; ++j)
+            a[i][j] = (str[j] == '1');
+    }
+    for (int i = 1; i <= n || i <= m; ++i)
+        b[i] = ranges(rnd);
+    for (int i = 1; i <= n; ++i)
+        for (int j = 1; j <= m; ++j)
+        {
+            c[i][j] = c[i - 1][j];
+            d[i][j] = d[i][j - 1];
+            e[i][j] = e[i - 1][j] + e[i][j - 1] - e[i - 1][j - 1];
+            if (a[i][j])
+            {
+                c[i][j] ^= b[i];
+                d[i][j] ^= b[j];
+                ++e[i][j];
+            }
+        }
+    for (int i = 1; i <= n; ++i)
+        f[i][m + 1] = node(i, m + 1);
+    for (int i = 1; i <= m; ++i)
+        f[n + 1][i] = node(n + 1, i);
+    for (int i = n; i >= 1; --i)
+        for (int j = m; j >= 1; --j)
+            if (a[i][j])
+                f[i][j] = (f[i][j + 1] - node(i, j) < f[i + 1][j] - node(i, j)) ? f[i][j + 1] : f[i + 1][j];
+            else
+                f[i][j] = node(i, j);
+    auto check = [](int x, int y, int l)
+    {
+        if (l == 1)
+            return true;
+        if (calc(x + 1, y + 1, x + l - 1, y + l - 1) == (l - 1) * (l - 1))
+            return calc(x, y + 1, x, y + l - 1) == l - 1 || calc(x + 1, y, x + l - 1, y) == l - 1;
+        else
+        {
+            int px = f[x + 1][y + 1].x, py = f[x + 1][y + 1].y;
+            auto solvec = [l](int x1, int y1, int x2, int y2)
+            {
+                return (c[x1 - 1][y1] ^ c[x2][y1]) == (c[x1 - 1][y2] ^ c[x2][y2]) || calc(x1, y1, x2, y1) == l;
+            };
+            auto solved = [l](int x1, int y1, int x2, int y2)
+            {
+                return (d[x1][y1 - 1] ^ d[x1][y2]) == (d[x2][y1 - 1] ^ d[x2][y2]) || calc(x1, y1, x1, y2) == l;
+            };
+            return solvec(x, y, x + l - 1, py) && solved(x, y, px, y + l - 1);
+        }
+    };
+    auto solvemin = [](int x, int y, int l)
+    {
+        if (calc(x, y, x + l - 1, y + l - 1) == l * l)
+            return l;
+        int px = f[x][y].x, py = f[x][y].y;
+        return min(calc(px, y, px, y + l - 1), calc(x, py, x + l - 1, py));
+    };
+    auto solvemax = [](int x, int y, int l)
+    {
+        if (calc(x, y, x + l - 1, y + l - 1) == l * l)
+            return l;
+        int px = f[x][y].x, py = f[x][y].y;
+        return max(calc(px, y, px, y + l - 1), calc(x, py, x + l - 1, py));
+    };
+    int res = 0;
+    for (int stx = 1, sty = m; sty; stx == n ? --sty : ++stx)
+    {
+        int x = stx, y = sty, l = 1, L = 1, R = 1;
+        while (x > 1 && y > 1)
+        {
+            --x, --y, ++l, ++L, ++R;
+            while (!check(x, y, l))
+                --l;
+            ckmin(L, l), ckmin(R, l);
+            while (L > 1 && calc(x, y, x + L - 1, y + L - 1) != L * L && solvemin(x, y, L) >= k)
+                --L;
+            while (R > 1 && calc(x, y, x + R - 1, y + R - 1) != R * R && solvemax(x, y, R) > k)
+                --R;
+            if (calc(x, y, x + R - 1, y + R - 1) != R * R && L < R)
+                res += R - L;
+        }
+    }
+    for (int i = n - k + 1; i >= 1; --i)
+        for (int j = m - k + 1; j >= 1; --j)
+            res += (calc(i, j, i + k - 1, j + k - 1) == k * k);
+    write(res, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

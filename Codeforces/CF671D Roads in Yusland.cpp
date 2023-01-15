@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF671D Roads in Yusland
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.06.30 周四 16:55:55 (Asia/Shanghai)
  **/
 #include <cstdio>

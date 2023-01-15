@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5323 [BJOI2019]光线
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.21 周四 10:32:54 (Asia/Shanghai)
  **/
 #include <cstdio>

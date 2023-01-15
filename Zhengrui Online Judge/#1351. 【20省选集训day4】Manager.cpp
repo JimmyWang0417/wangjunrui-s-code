@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1351. 【20省选集训day4】Manager
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.19 周一 09:33:10 (Asia/Shanghai)
  **/

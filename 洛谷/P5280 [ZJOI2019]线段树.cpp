@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5280 [ZJOI2019]线段树
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.24 周日 21:06:49 (Asia/Shanghai)
  **/
 #include <cstdio>

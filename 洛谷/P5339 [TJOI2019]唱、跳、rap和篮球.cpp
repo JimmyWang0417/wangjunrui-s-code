@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5339 [TJOI2019]唱、跳、rap和篮球
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.26 周二 08:44:49 (Asia/Shanghai)
  **/
 #include <algorithm>

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5331 [SNOI2019]通信
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.06 周六 12:39:49 (Asia/Shanghai)
  **/
 #include <algorithm>

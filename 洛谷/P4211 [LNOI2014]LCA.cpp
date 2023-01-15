@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4211 [LNOI2014]LCA
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.30 周六 12:25:31 (Asia/Shanghai)
  **/
 #include <algorithm>

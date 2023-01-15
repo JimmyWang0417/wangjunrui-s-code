@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1358. 【20省选集训day5】买到
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.21 周三 17:48:07 (Asia/Shanghai)
  **/

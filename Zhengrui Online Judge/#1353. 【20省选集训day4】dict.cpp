@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1353. 【20省选集训day4】dict
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.21 周三 10:24:39 (Asia/Shanghai)
  **/

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1348. 【20省选集训day3】游戏
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.17 周六 14:17:24 (Asia/Shanghai)
  **/

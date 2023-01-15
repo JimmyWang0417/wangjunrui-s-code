@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5324 [BJOI2019]删数
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.24 周日 15:40:43 (Asia/Shanghai)
  **/
 #include <cstdio>

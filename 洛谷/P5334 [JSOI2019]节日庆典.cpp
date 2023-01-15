@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5334 [JSOI2019]节日庆典
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.20 周六 15:53:54 (Asia/Shanghai)
  **/
 #include <algorithm>

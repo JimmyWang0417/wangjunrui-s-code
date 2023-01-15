@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    toohard
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.09.18 周日 12:43:18 (Asia/Shanghai)
  **/

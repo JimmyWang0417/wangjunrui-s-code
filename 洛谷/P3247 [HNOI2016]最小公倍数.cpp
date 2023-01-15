@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P3247 [HNOI2016]最小公倍数
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.06 周三 17:14:54 (Asia/Shanghai)
  **/
 #include <algorithm>

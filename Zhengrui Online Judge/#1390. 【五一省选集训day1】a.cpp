@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1390. 【五一省选集训day1】a
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.23 周五 10:46:06 (Asia/Shanghai)
  **/

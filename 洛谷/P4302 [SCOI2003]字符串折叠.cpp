@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4302 [SCOI2003]字符串折叠
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.28 周四 08:19:46 (Asia/Shanghai)
  **/
 #include <cstdio>

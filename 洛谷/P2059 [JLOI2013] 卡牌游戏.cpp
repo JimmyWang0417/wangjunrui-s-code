@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P2059 [JLOI2013] 卡牌游戏
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.31 周日 11:06:51 (Asia/Shanghai)
  **/
 #include <cstdio>

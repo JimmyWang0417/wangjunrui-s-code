@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1372E Omkar and Last Floor
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.10 周日 01:03:45 (Asia/Shanghai)
  **/
 #include <cstdio>

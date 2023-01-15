@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4867 Gty的二逼妹子序列
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.01 周五 19:51:55 (Asia/Shanghai)
  **/
 #include <algorithm>

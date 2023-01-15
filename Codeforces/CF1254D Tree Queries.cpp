@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1254D Tree Queries
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.02 周六 13:08:29 (Asia/Shanghai)
  **/
 #include <cassert>

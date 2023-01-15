@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5304 [GXOI/GZOI2019]旅行者
- *    author:  wangjunrui
+ *    author:  whitepaperdogdog
  *    created: 2022.07.26 周二 21:20:55 (Asia/Shanghai)
  **/
 #include <cstdio>

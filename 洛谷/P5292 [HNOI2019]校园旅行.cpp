@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5292 [HNOI2019]校园旅行
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.08 周一 15:50:30 (Asia/Shanghai)
  **/
 #include <algorithm>

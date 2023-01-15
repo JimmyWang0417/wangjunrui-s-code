@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF960G Bandit Blues
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.03 周日 21:23:22 (Asia/Shanghai)
  **/
 #include <algorithm>

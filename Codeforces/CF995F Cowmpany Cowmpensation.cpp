@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF995F Cowmpany Cowmpensation
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.08 周五 13:32:38 (Asia/Shanghai)
  **/
 #include <algorithm>

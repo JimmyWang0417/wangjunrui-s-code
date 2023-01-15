@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF585E Present for Vitalik the Philatelist
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.03 周日 23:41:13 (Asia/Shanghai)
  **/
 #include <cstdio>

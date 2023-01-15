@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5415 [YNOI2019] 游戏
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.29 周五 16:14:12 (Asia/Shanghai)
  **/
 #include <algorithm>

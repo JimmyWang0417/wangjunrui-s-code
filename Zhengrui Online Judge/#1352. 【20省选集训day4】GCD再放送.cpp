@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1352. 【20省选集训day4】GCD再放送
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.20 周二 10:21:15 (Asia/Shanghai)
  **/

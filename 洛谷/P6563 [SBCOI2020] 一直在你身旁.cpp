@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P6563 [SBCOI2020] 一直在你身旁
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.30 周六 09:17:16 (Asia/Shanghai)
  **/
 #include <algorithm>

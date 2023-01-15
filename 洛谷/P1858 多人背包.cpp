@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P1858 多人背包
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.12 周五 08:51:57 (Asia/Shanghai)
  **/
 #include <cstdio>

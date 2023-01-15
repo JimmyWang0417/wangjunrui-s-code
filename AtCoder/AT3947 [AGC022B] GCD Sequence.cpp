@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    AT3947 [AGC022B] GCD Sequence
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.11 周一 23:59:43 (Asia/Shanghai)
  **/
 #include <cstdio>

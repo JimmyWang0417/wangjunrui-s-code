@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5333 [JSOI2019]神经网络
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.12 周五 15:55:28 (Asia/Shanghai)
  **/
 #include <algorithm>

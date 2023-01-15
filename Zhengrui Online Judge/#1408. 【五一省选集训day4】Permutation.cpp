@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1408. 【五一省选集训day4】Permutation
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2023.01.08 周日 19:39:10 (Asia/Shanghai)
  **/

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1270F Awesome Substrings
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.06.30 周四 00:22:45
  **/
 #include <algorithm>

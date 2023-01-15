@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5364 [SNOI2017]礼物
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.08.30 周二 22:15:33 (Asia/Shanghai)
  **/

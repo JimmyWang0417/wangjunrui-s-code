@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    AT3950 [AGC022E] Median Replace
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.12 周二 21:07:14 (Asia/Shanghai)
  **/
 #include <cstdio>

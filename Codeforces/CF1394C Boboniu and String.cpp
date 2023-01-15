@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1394C Boboniu and String
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.10 周日 21:43:46 (Asia/Shanghai)
  **/
 #include <cstdio>

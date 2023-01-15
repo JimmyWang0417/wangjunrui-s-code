@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P8293 [省选联考 2022] 序列变换
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdogdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.08.26 周五 17:02:33 (Asia/Shanghai)
  **/

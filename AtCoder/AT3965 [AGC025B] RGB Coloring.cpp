@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    AT3965 [AGC025B] RGB Coloring
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.31 周日 20:26:05 (Asia/Shanghai)
  **/
 #include <cstdio>

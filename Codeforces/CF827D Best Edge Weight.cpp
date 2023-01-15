@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF827D Best Edge Weight
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.06.30 周四 11:12:39 (Asia/Shanghai)
  **/
 #include <algorithm>

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    AT3949 [AGC022D] Shopping
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.12 周二 10:23:24 (Asia/Shanghai)
  **/
 #include <cstdio>

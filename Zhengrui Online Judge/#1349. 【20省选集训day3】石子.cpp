@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1349. 【20省选集训day3】石子
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.18 周日 08:24:17 (Asia/Shanghai)
  **/

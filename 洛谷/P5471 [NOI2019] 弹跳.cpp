@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5471 [NOI2019] 弹跳
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.27 周三 16:14:27 (Asia/Shanghai)
  **/
 #include <cstdio>

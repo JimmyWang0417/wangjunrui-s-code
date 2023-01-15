@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    dragon
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.09.17 周六 15:20:35 (Asia/Shanghai)
  **/

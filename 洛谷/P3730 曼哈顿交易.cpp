@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P3730 曼哈顿交易
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.06 周三 19:35:37 (Asia/Shanghai)
  **/
 #include <algorithm>

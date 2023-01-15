@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P3206 [HNOI2010]城市建设
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.21 周四 19:07:10 (Asia/Shanghai)
  **/
 #include <algorithm>

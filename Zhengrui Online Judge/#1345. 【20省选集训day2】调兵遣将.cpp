@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1345. 【20省选集训day2】调兵遣将
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.04 周日 08:02:50 (Asia/Shanghai)
  **/

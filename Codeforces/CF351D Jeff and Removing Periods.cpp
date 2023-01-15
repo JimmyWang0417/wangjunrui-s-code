@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF351D Jeff and Removing Periods
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.02 周六 20:27:46 (Asia/Shanghai)
  **/
 #include <algorithm>

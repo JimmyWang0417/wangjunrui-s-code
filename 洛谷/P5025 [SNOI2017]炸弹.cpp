@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5025 [SNOI2017]炸弹
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.09.03 周六 14:35:44 (Asia/Shanghai)
  **/

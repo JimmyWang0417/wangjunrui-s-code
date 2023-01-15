@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5205 【模板】多项式开根
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.18 周四 22:59:01 (Asia/Shanghai)
  **/
 #include <algorithm>

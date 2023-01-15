@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF713D Animals and Puzzle
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.06.29 周三 00:43:05
  **/
 #include <algorithm>

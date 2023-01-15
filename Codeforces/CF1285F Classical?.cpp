@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1285F Classical?
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.13 周三 00:12:47 (Asia/Shanghai)
  **/
 #include <cstdio>

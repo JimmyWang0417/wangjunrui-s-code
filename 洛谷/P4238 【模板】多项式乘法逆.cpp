@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4238 【模板】多项式乘法逆
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.18 周四 20:01:35 (Asia/Shanghai)
  **/
 #include <algorithm>

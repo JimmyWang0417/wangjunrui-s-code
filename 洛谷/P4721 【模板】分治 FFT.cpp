@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P4721 【模板】分治 FFT
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.03 周日 00:15:51 (Asia/Shanghai)
  **/
 #include <algorithm>

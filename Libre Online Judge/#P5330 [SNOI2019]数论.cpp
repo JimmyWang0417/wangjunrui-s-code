@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P5330 [SNOI2019]数论
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.07.26 周二 15:10:21 (Asia/Shanghai)
  **/
 #include <algorithm>

@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    CF1418G Three Occurrences
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.01 周一 20:24:17 (Asia/Shanghai)
  **/
 #include <algorithm>

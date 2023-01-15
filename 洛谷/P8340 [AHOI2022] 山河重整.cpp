@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    P8340 [AHOI2022] 山河重整
- *    author:  wangjunrui
+ *    author:  whitepaperdog
  *    created: 2022.08.17 周三 00:48:55 (Asia/Shanghai)
  **/
 #include <algorithm>

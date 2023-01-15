@@ -1,7 +1,7 @@
 /**
  *    unicode: UTF-8
  *    name:    #1393. 【五一省选集训day3】同构
- *    author:  wangjunrui (蒟蒻wjr)
+ *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
  *    created: 2022.12.25 周日 20:22:59 (Asia/Shanghai)
  **/
