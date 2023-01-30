@@ -1,17 +1,18 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    C. 网格与圆
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.29 周日 14:56:55 (Asia/Shanghai)
+ *    created: 2023.01.29 周日 19:08:40 (Asia/Shanghai)
  **/
+#include <algorithm>
 #include <cstdio>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
 #define lowbit(_x) (_x & (-_x))
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +315,61 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e6 + 5;
+constexpr double eps = 1e-9;
+int n, r0;
+double m;
+int cnt[N];
+int prime[N], tot;
+int mul[N];
+bool vis[N];
+inline void init(int limit)
+{
+    mul[1] = 1;
+    for (int i = 2; i <= limit; ++i)
+    {
+        if (!vis[i])
+        {
+            prime[++tot] = i;
+            mul[i] = -1;
+        }
+        for (int j = 1; j <= tot; ++j)
+        {
+            if (i * prime[j] > limit)
+                break;
+            vis[i * prime[j]] = true;
+            if (i % prime[j])
+                mul[i * prime[j]] = -mul[i];
+            else
+                break;
+        }
+    }
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("circle.in", "r", stdin);
+    freopen("circle.out", "w", stdout);
+#endif
+    read(n, r0);
+    --n;
+    m = 1e6 / r0;
+    int upr = (int)(m - eps);
+    ll ans = 0;
+    init(upr);
+    for (int i = 1; i <= upr; ++i)
+    {
+        int x = n / i;
+        double y = m / i;
+        ll res = -1;
+        for (int j = 0; j <= x && j < y; ++j)
+            res += min((int)(__builtin_sqrt(y * y - (ll)j * j) - eps), x) + 1;
+        ans += res * mul[i];
+    }
+    write(ans, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

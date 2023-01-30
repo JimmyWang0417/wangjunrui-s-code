@@ -1,17 +1,18 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.29 周日 14:56:55 (Asia/Shanghai)
+ *    created: 2023.01.30 周一 09:53:54 (Asia/Shanghai)
  **/
+#include <algorithm>
 #include <cstdio>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
 #define lowbit(_x) (_x & (-_x))
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -180,11 +181,11 @@ inline void ckmax(T &_x, T _y)
     if (_x < _y)
         _x = _y;
 }
-template <typename _T, const _T _mod>
+template <const int _mod>
 struct modint
 {
-    _T x;
-    constexpr modint(_T _x = 0) : x(_x) {}
+    int x;
+    constexpr modint(int _x = 0) : x(_x) {}
     constexpr inline modint operator+() const
     {
         return *this;
@@ -207,14 +208,14 @@ struct modint
             x += _mod;
         return *this;
     }
-    constexpr inline modint operator++(_T)
+    constexpr inline modint operator++(int)
     {
         int res = x;
         if (x >= _mod)
             x -= _mod;
         return res;
     }
-    constexpr inline modint operator--(_T)
+    constexpr inline modint operator--(int)
     {
         int res = x;
         if (x < 0)
@@ -223,7 +224,7 @@ struct modint
     }
     constexpr inline modint operator+(const modint &rhs) const
     {
-        _T res = x;
+        int res = x;
         res += rhs.x;
         if (res >= _mod)
             res -= _mod;
@@ -231,7 +232,7 @@ struct modint
     }
     constexpr inline modint operator-(const modint &rhs) const
     {
-        _T res = x;
+        int res = x;
         res -= rhs.x;
         if (res < 0)
             res += _mod;
@@ -239,7 +240,7 @@ struct modint
     }
     constexpr inline modint operator*(const modint &rhs) const
     {
-        return (_T)((ll)x * rhs.x % _mod);
+        return (int)((ll)x * rhs.x % _mod);
     }
     constexpr inline modint &operator+=(const modint &rhs)
     {
@@ -257,7 +258,7 @@ struct modint
     }
     constexpr inline modint &operator*=(const modint &rhs)
     {
-        x = (_T)((ll)x * rhs.x % _mod);
+        x = (int)((ll)x * rhs.x % _mod);
         return *this;
     }
     template <typename _G>
@@ -289,7 +290,7 @@ struct modint
     {
         return x == rhs.x;
     }
-    constexpr inline _T &data()
+    constexpr inline int &data()
     {
         return x;
     }
@@ -314,9 +315,89 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int len = 10;
+constexpr int mod = 1e9 + 7;
+typedef modint<mod> node;
+constexpr node inv2 = ((node)2).inv();
+constexpr node inv6 = ((node)6).inv();
+ll n, m, L, R;
+inline node calcn(ll limit)
+{
+    node x = (node)(int)((n - 1) % mod);
+    node y = (node)(int)(limit % mod);
+    return x * y * (y + 1) * inv2 - y * (y + 1) * (y * 2 + 1) * inv6;
+}
+inline node calcm(ll limit)
+{
+    node x = (node)(int)((m - 1) % mod);
+    node y = (node)(int)(limit % mod);
+    return x * y * (y + 1) * inv2 - y * (y + 1) * (y * 2 + 1) * inv6;
+}
+node Y[len + 5];
+node pre[len + 5], suf[len + 5];
+node fac[len + 5], ifac[len + 5];
+inline node calc(ll _x)
+{
+    node x = (node)(int)(_x % mod);
+    pre[0] = 1;
+    for (int i = 1; i <= len; ++i)
+        pre[i] = pre[i - 1] * (x - i);
+    suf[len + 1] = 1;
+    for (int i = len; i >= 1; --i)
+        suf[i] = suf[i + 1] * (x - i);
+    fac[0] = 1;
+    for (int i = 1; i <= len; ++i)
+        fac[i] = fac[i - 1] * i;
+    ifac[len] = fac[len].inv();
+    for (int i = len; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i;
+    node res = 0;
+    for (int i = 1; i <= len; ++i)
+    {
+        node a = pre[i - 1] * suf[i + 1], b = ifac[i - 1] * ifac[len - i];
+        if ((len - i) & 1)
+            b = -b;
+        res += Y[i] * a * b;
+    }
+    return res;
+}
+inline node solve(ll limit)
+{
+    limit /= 2;
+    ll l = limit - m, r = min(n - 2, limit - 3);
+    ckmin(l, r);
+    node res = 0;
+    if (l >= 1)
+        res += calcn(l) * calcm(m - 2);
+    ckmax(l, 0ll);
+    if (l < r)
+    {
+        if (r - l <= len)
+        {
+            for (ll i = l + 1; i <= r; ++i)
+                res += (node)(int)(i % mod) * (node)(int)((n - i - 1) % mod) * calcm(limit - i - 2);
+        }
+        else
+        {
+            ll i;
+            for (int j = 1; i = j + l, j <= len; ++j)
+                Y[j] = Y[j - 1] + (node)(int)(i % mod) * (node)(int)((n - i - 1) % mod) * calcm(limit - i - 2);
+            res += calc(r - l);
+        }
+    }
+    return res;
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("table.in", "r", stdin);
+    freopen("table.out", "w", stdout);
+#endif
+    read(n, m, L, R);
+    write(((solve(R) - solve(L - 1)) * 6).data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

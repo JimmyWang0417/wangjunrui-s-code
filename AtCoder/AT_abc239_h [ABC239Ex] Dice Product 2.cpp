@@ -1,17 +1,18 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    #21618. 【ExPR #1】乘积
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.29 周日 14:56:55 (Asia/Shanghai)
+ *    created: 2023.01.28 周六 21:09:03 (Asia/Shanghai)
  **/
+#include <algorithm>
 #include <cstdio>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
 #define lowbit(_x) (_x & (-_x))
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +315,58 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e6 + 33;
+constexpr int mod = 1e9 + 7;
+typedef modint<int, mod> node;
+node inv;
+int n, m;
+struct Edge
+{
+    int next, key, val;
+} edge[N * 2];
+int head[N + 5], num_edge;
+inline void insert(int key, int val)
+{
+    int u = key % N;
+    edge[++num_edge].next = head[u];
+    edge[num_edge].key = key;
+    edge[num_edge].val = val;
+    head[u] = num_edge;
+}
+inline int query(int key)
+{
+    for (int i = head[key % N]; i; i = edge[i].next)
+    {
+        if (edge[i].key == key)
+            return edge[i].val;
+    }
+    return -1;
+}
+inline node dfs(int u)
+{
+    if (!u)
+        return 0;
+    int res = query(u);
+    if (res == -1)
+    {
+        node ans = n;
+        for (int l = 2, r; l <= n && l <= u; l = r + 1)
+        {
+            r = min(u / (u / l), n);
+            ans += dfs(u / l) * (r - l + 1);
+        }
+        ans *= inv;
+        insert(u, ans.data());
+        return ans;
+    }
+    else
+        return res;
+}
 signed main()
 {
+    read(n, m);
+    inv = ((node)(n - 1)).inv();
+    write(dfs(m).data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

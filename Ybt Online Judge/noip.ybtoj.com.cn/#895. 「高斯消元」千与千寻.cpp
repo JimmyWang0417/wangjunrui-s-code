@@ -1,17 +1,18 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    A. 千与千寻
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.29 周日 14:56:55 (Asia/Shanghai)
+ *    created: 2023.01.30 周一 08:08:20 (Asia/Shanghai)
  **/
+#include <algorithm>
 #include <cstdio>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
 #define lowbit(_x) (_x & (-_x))
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +315,74 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 105;
+int n, m, sx, sy;
+long double dp[N][N][N * 2];
+int rk[N][N], dfstime;
+long double g[N * 2][N * 2];
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("walk.in", "r", stdin);
+    freopen("walk.out", "w", stdout);
+#endif
+    read(n, m, sx, sy);
+    sx = (n - 1) - sx, sy = (m - 1) - sy;
+    for (int i = 0; i < n - 1; ++i)
+        dp[i][m - 1][rk[i][m - 1] = ++dfstime] = 1;
+    for (int i = 0; i < m - 1; ++i)
+        dp[n - 1][i][rk[n - 1][i] = ++dfstime] = 1;
+    for (int i = n - 2; i >= 0; --i)
+        for (int j = m - 2; j >= 0; --j)
+        {
+            for (int k = 0; k <= dfstime; ++k)
+                dp[i][j][k] = (dp[i + 1][j][k] + dp[i][j + 1][k]) / 2;
+            ++dp[i][j][0];
+        }
+    for (int i = 0, j = m - 1; i < n - 1; ++i)
+    {
+        for (int k = 0; k <= dfstime; ++k)
+            g[rk[i][j]][k] = (dp[(i + 1) % n][j][k] + dp[i][(j + 1) % m][k]) / 2;
+        ++g[rk[i][j]][0];
+        --g[rk[i][j]][rk[i][j]];
+        g[rk[i][j]][dfstime + 1] = -g[rk[i][j]][0];
+    }
+    for (int i = n - 1, j = 0; j < m - 1; ++j)
+    {
+        for (int k = 0; k <= dfstime; ++k)
+            g[rk[i][j]][k] = (dp[(i + 1) % n][j][k] + dp[i][(j + 1) % m][k]) / 2;
+        ++g[rk[i][j]][0];
+        --g[rk[i][j]][rk[i][j]];
+        g[rk[i][j]][dfstime + 1] = -g[rk[i][j]][0];
+    }
+    for (int i = 1; i <= dfstime; ++i)
+    {
+        int where = i;
+        for (int j = i; j <= dfstime; ++j)
+            if (abs(g[j][i]) > abs(g[where][i]))
+                where = j;
+        if (where != i)
+            swap(g[where], g[i]);
+		for (int j = i + 1; j <= dfstime + 1; ++j)
+			g[i][j] /= g[i][i];
+        for (int j = i + 1; j <= dfstime; ++j)
+        {
+            for (int k = i + 1; k <= dfstime + 1; ++k)
+                g[j][k] -= g[i][k] * g[j][i];
+        }
+    }
+    for (int i = dfstime; i >= 1; --i)
+    {
+        for (int j = i + 1; j <= dfstime; ++j)
+            g[i][dfstime + 1] -= g[i][j] * g[j][dfstime + 1];
+    }
+    long double res = dp[sx][sy][0];
+    for (int i = 1; i <= dfstime; ++i)
+        res += dp[sx][sy][i] * g[i][dfstime + 1];
+    printf("%.10LF\n", res);
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

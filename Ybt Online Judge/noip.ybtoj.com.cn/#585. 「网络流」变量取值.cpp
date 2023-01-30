@@ -1,17 +1,19 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    A. 变量取值
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.29 周日 14:56:55 (Asia/Shanghai)
+ *    created: 2023.01.29 周日 08:12:21 (Asia/Shanghai)
  **/
 #include <cstdio>
+#include <cstring>
+#include <queue>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
 #define lowbit(_x) (_x & (-_x))
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +316,173 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1005;
+constexpr int INF = 0x3f3f3f3f;
+struct Edge
+{
+    int next, to, flow, cap;
+} edge[N * N];
+int head[N], num_edge = 1;
+inline void add_edge(int from, int to, int cap, bool flag = true)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    edge[num_edge].flow = 0;
+    edge[num_edge].cap = cap;
+    head[from] = num_edge;
+    if (flag)
+        add_edge(to, from, 0, false);
+}
+int S, T;
+int dis[N];
+int cur[N];
+bool exist[N];
+inline bool bfs()
+{
+    for (int i = S; i <= T; ++i)
+    {
+        cur[i] = head[i];
+        dis[i] = 0;
+        exist[i] = false;
+    }
+    queue<int> q;
+    q.push(S);
+    dis[S] = 1;
+    while (!q.empty())
+    {
+        int u = q.front();
+        if (u == T)
+            return true;
+        q.pop();
+        for (int i = head[u]; i; i = edge[i].next)
+        {
+            int &v = edge[i].to;
+            if (!dis[v] && edge[i].cap > edge[i].flow)
+            {
+                dis[v] = dis[u] + 1;
+                q.push(v);
+            }
+        }
+    }
+    return false;
+}
+inline int dinic(int u, int flow)
+{
+    if (u == T || !flow)
+        return flow;
+    int res = 0;
+    exist[u] = true;
+    for (int &i = cur[u]; i; i = edge[i].next)
+    {
+        int &v = edge[i].to;
+        if (!exist[v] && dis[v] == dis[u] + 1 && edge[i].cap > edge[i].flow)
+        {
+            int f = dinic(v, std::min(flow, edge[i].cap - edge[i].flow));
+            if (f)
+            {
+                res += f;
+                edge[i].flow += f;
+                edge[i ^ 1].flow -= f;
+                flow -= f;
+                if (!flow)
+                {
+                    exist[u] = false;
+                    break;
+                }
+            }
+        }
+    }
+    return res;
+}
+int all[N];
+int col[N];
+int count[N][N];
+inline void work()
+{
+    int n, w, p, q;
+    read(n, w, p, q);
+    S = 0, T = n + 1;
+    for (int i = 1; i <= p; ++i)
+    {
+        int x, y, z, a, b, c, d, e, f;
+        read(x, y, z, a, b, c, d, e, f);
+        all[x] += d - f;
+        all[y] += -d + e;
+        all[z] += -e + f;
+        if (x != y)
+            count[x][y] += a;
+        if (y != z)
+            count[y][z] += b;
+        if (x != z)
+            count[x][z] += c;
+    }
+    for (int i = 1; i <= n; i++)
+        for (int j = i + 1; j <= n; j++)
+            if (count[i][j] + count[j][i])
+            {
+                add_edge(i, j, 2 * (count[i][j] + count[j][i]));
+                add_edge(j, i, 2 * (count[i][j] + count[j][i]));
+            }
+    for (int i = 1; i <= q; ++i)
+    {
+        int x, y, r;
+        read(x, y, r);
+        if (x == y)
+            continue;
+        if (!r)
+            add_edge(x, y, INF);
+        else if (r == 1)
+        {
+            add_edge(x, y, INF);
+            add_edge(y, x, INF);
+        }
+        else if (r == 2)
+        {
+            col[x] = -1;
+            col[y] = 1;
+        }
+    }
+    int res = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        ++all[i];
+        if (all[i] < 0)
+        {
+            res += all[i];
+            add_edge(S, i, -2 * all[i]);
+        }
+        else if (all[i] > 0)
+        {
+            res += -all[i];
+            add_edge(i, T, 2 * all[i]);
+        }
+        if (col[i] == -1)
+            add_edge(i, T, INF);
+        else if (col[i] == 1)
+            add_edge(S, i, INF);
+    }
+    while (bfs())
+        res += dinic(S, INF);
+    write((ll)res * w, '\n');
+    memset(all, 0, sizeof(all));
+    memset(count, 0, sizeof(count));
+    memset(col, 0, sizeof(col));
+    memset(head, 0, sizeof(head));
+    num_edge = 1;
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("variable.in", "r", stdin);
+    freopen("variable.out", "w", stdout);
+#endif
+    int Test;
+    read(Test);
+    while (Test--)
+        work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
