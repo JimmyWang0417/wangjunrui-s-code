@@ -1,3 +1,4 @@
+// LUOGU_RID: 100880523
 /**
  *    unicode: UTF-8
  *    name:    C. 天气之子
@@ -452,13 +453,6 @@ inline ll query(int l, int r)
 }
 signed main()
 {
-#ifdef PAPERDOG
-    freopen("project.in", "r", stdin);
-    freopen("project.out", "w", stdout);
-#else
-    freopen("ds.in", "r", stdin);
-    freopen("ds.out", "w", stdout);
-#endif
     read(n, q);
     for (int i = 2; i <= n; ++i)
     {

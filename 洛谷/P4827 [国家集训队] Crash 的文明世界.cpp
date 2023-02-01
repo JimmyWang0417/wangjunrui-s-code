@@ -1,12 +1,12 @@
 /**
  *    unicode: UTF-8
- *    name:    C. 天气之子
+ *    name:    P4827 [国家集训队] Crash 的文明世界
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.30 周一 14:10:02 (Asia/Shanghai)
+ *    created: 2023.01.30 周一 19:15:44 (Asia/Shanghai)
  **/
-#include <algorithm>
 #include <cstdio>
+#include <cstring>
 #define ll long long
 #define lll __int128
 #define ull unsigned ll
@@ -170,13 +170,13 @@ namespace IO
     }
 }
 template <typename T>
-inline void ckmin(T &_x, T _y)
+inline void cmmin(T &_x, T _y)
 {
     if (_x > _y)
         _x = _y;
 }
 template <typename T>
-inline void ckmax(T &_x, T _y)
+inline void cmmax(T &_x, T _y)
 {
     if (_x < _y)
         _x = _y;
@@ -240,7 +240,7 @@ struct modint
     }
     constexpr inline modint operator*(const modint &rhs) const
     {
-        return (int)((ll)x * rhs.x % _mod);
+        return x * rhs.x % _mod;
     }
     constexpr inline modint &operator+=(const modint &rhs)
     {
@@ -258,7 +258,7 @@ struct modint
     }
     constexpr inline modint &operator*=(const modint &rhs)
     {
-        x = (int)((ll)x * rhs.x % _mod);
+        (x *= rhs.x) %= _mod;
         return *this;
     }
     template <typename _G>
@@ -315,13 +315,17 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 2e5 + 5, M = 455;
-int n, q;
-int a[N], b[N];
+constexpr int N = 5e4 + 5;
+constexpr int M = 155;
+constexpr int mod = 10007;
+typedef modint<mod> node;
+int n, m;
+node fac[M];
+node S[N][M];
 struct Edge
 {
     int next, to;
-} edge[N];
+} edge[N * 2];
 int head[N], num_edge;
 inline void add_edge(int from, int to)
 {
@@ -329,176 +333,65 @@ inline void add_edge(int from, int to)
     edge[num_edge].to = to;
     head[from] = num_edge;
 }
-int dfn[N], low[N], rk[N], dfstime;
-inline void dfs(int u, int _fa)
+node f[N][M], g[M];
+inline void dfs1(int u, int _fa)
 {
-    a[u] += a[_fa];
-    b[u] += b[_fa];
-    rk[dfn[u] = ++dfstime] = u;
+    f[u][0] = 1;
     for (int i = head[u]; i; i = edge[i].next)
     {
         int v = edge[i].to;
-        dfs(v, u);
+        if (v == _fa)
+            continue;
+        dfs1(v, u);
+        f[u][0] += f[v][0];
+        for (int j = 1; j <= m; ++j)
+            f[u][j] += f[v][j] + f[v][j - 1];
     }
-    low[u] = dfstime;
 }
-int block, num;
-int belong[N];
-struct node
+inline void dfs2(int u, int _fa)
 {
-    int L, R;
-    int st1[M], top1;
-    int st2[M], top2;
-    int tag;
-    int p[M], tot;
-    int head, tail;
-#define X(x) (b[x])
-#define Y(x) ((ll)a[x] * b[x])
-    inline void rebuild()
+    for (int i = head[u]; i; i = edge[i].next)
     {
-        top1 = 0, top2 = 0;
-        for (int i = 1; i <= tot; ++i)
-        {
-            while (top1 > 1 &&
-                   (X(st1[top1 - 1]) - X(st1[top1])) * (Y(p[i]) - Y(st1[top1])) <=
-                       (Y(st1[top1 - 1]) - Y(st1[top1])) * (X(p[i]) - X(st1[top1])))
-                --top1;
-            st1[++top1] = p[i];
-        }
-        for (int i = 1; i <= tot; ++i)
-        {
-            while (top2 > 1 &&
-                   (X(st2[top2 - 1]) - X(st2[top2])) * (Y(p[i]) - Y(st2[top2])) >=
-                       (Y(st2[top2 - 1]) - Y(st2[top2])) * (X(p[i]) - X(st2[top2])))
-                --top2;
-            st2[++top2] = p[i];
-        }
-        head = 1, tail = top2;
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        memcpy(g, f[u], sizeof(g));
+        g[0] -= f[v][0];
+        for (int j = 1; j <= m; ++j)
+            g[j] -= f[v][j] + f[v][j - 1];
+        f[v][0] += g[0];
+        for (int j = 1; j <= m; ++j)
+            f[v][j] += g[j] + g[j - 1];
+        dfs2(v, u);
     }
-    inline void build()
-    {
-        for (int i = L; i <= R; ++i)
-            p[++tot] = rk[i];
-        sort(p + 1, p + 1 + tot, [](int x, int y)
-             { return b[x] < b[y]; });
-        rebuild();
-    }
-    inline ll query()
-    {
-        while (head < top1 && (ll)(a[st1[head]] + tag) * b[st1[head]] <
-                                  (ll)(a[st1[head + 1]] + tag) * b[st1[head + 1]])
-            ++head;
-        while (tail > 1 && (ll)(a[st2[tail]] + tag) * b[st2[tail]] >
-                               (ll)(a[st2[tail - 1]] + tag) * b[st2[tail - 1]])
-            --tail;
-        return max((ll)(a[st1[head]] + tag) * b[st1[head]],
-                   -(ll)(a[st2[tail]] + tag) * b[st2[tail]]);
-    }
-    inline ll _query()
-    {
-        ll res = -1e18;
-        // for (int i = 1; i <= tot; ++i)
-        //     ckmax(res, (ll)abs(a[p[i]] + tag) * b[p[i]]);
-        for (int i = 1; i <= top1; ++i)
-            ckmax(res, (ll)(a[st1[i]] + tag) * b[st1[i]]);
-        // for (int i = 1; i <= top2; ++i)
-        //     ckmax(res, (ll)abs(a[st2[i]] + tag) * b[st2[i]]);
-        return res;
-    }
-    inline void print()
-    {
-        printf("%d:\n", top1);
-        for (int i = 1; i <= top1; ++i)
-            printf("%d,%lld\n", X(st1[i]), Y(st1[i]));
-    }
-#undef X
-#undef Y
-} c[M];
-inline void update(int l, int r, int val)
-{
-    if (belong[l] == belong[r])
-    {
-        for (int i = l; i <= r; ++i)
-            a[rk[i]] += val;
-        c[belong[l]].rebuild();
-        return;
-    }
-    for (int i = l; i <= c[belong[l]].R; ++i)
-        a[rk[i]] += val;
-    c[belong[l]].rebuild();
-    for (int i = belong[l] + 1; i < belong[r]; ++i)
-        c[i].tag += val;
-    for (int i = c[belong[r]].L; i <= r; ++i)
-        a[rk[i]] += val;
-    c[belong[r]].rebuild();
-}
-inline ll query(int l, int r)
-{
-    if (belong[l] == belong[r])
-    {
-        ll res = -1e18;
-        for (int i = l; i <= r; ++i)
-            ckmax(res, (ll)abs(a[rk[i]] + c[belong[i]].tag) * b[rk[i]]);
-        return res;
-    }
-    ll res = -1e18;
-    for (int i = l; i <= c[belong[l]].R; ++i)
-        ckmax(res, (ll)abs(a[rk[i]] + c[belong[i]].tag) * b[rk[i]]);
-    for (int i = belong[l] + 1; i < belong[r]; ++i)
-        ckmax(res, c[i].query());
-    for (int i = c[belong[r]].L; i <= r; ++i)
-        ckmax(res, (ll)abs(a[rk[i]] + c[belong[i]].tag) * b[rk[i]]);
-    return res;
 }
 signed main()
 {
-#ifdef PAPERDOG
-    freopen("project.in", "r", stdin);
-    freopen("project.out", "w", stdout);
-#else
-    freopen("ds.in", "r", stdin);
-    freopen("ds.out", "w", stdout);
-#endif
-    read(n, q);
-    for (int i = 2; i <= n; ++i)
+    read(n, m);
+    for (int i = 1; i < n; ++i)
     {
-        int _fa;
-        read(_fa);
-        add_edge(_fa, i);
+        int u, v;
+        read(u, v);
+        add_edge(u, v);
+        add_edge(v, u);
     }
+    S[0][0] = 1;
     for (int i = 1; i <= n; ++i)
-        read(a[i]);
-    for (int i = 1; i <= n; ++i)
-        read(b[i]);
-    dfs(1, 0);
-    for (int i = 1; i <= n; ++i)
-        if (b[i] < 0)
-            b[i] = -b[i];
-    block = (int)__builtin_sqrt(n);
-    num = (n - 1) / block + 1;
-    for (int i = 1; i <= num; ++i)
     {
-        c[i].L = c[i - 1].R + 1;
-        c[i].R = c[i - 1].R + block;
+        for (int j = 1; j <= i && j <= m; ++j)
+            S[i][j] = S[i - 1][j] * j + S[i - 1][j - 1];
     }
-    c[num].R = n;
-    for (int i = 1; i <= num; ++i)
+    fac[0] = 1;
+    for (int i = 1; i <= m; ++i)
+        fac[i] = fac[i - 1] * i;
+    dfs1(1, 0);
+    dfs2(1, 0);
+    for (int i = 1; i <= n; ++i)
     {
-        c[i].build();
-        for (int j = c[i].L; j <= c[i].R; ++j)
-            belong[j] = i;
-    }
-    for (int i = 1; i <= q; ++i)
-    {
-        int opt, x, y;
-        read(opt, x);
-        if (opt == 1)
-        {
-            read(y);
-            update(dfn[x], low[x], y);
-        }
-        else
-            write(query(dfn[x], low[x]), '\n');
+        node res = 0;
+        for (int j = 0; j <= m; ++j)
+            res += S[m][j] * fac[j] * f[i][j];
+        write(res.data(), '\n');
     }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();

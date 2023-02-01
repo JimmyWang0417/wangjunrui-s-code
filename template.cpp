@@ -3,13 +3,12 @@
  *    name:    
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.29 周日 14:56:55 (Asia/Shanghai)
+ *    created: 2023.01.30 周一 19:54:03 (Asia/Shanghai)
  **/
 #include <cstdio>
-#define ll long long
-#define lll __int128
-#define ull unsigned ll
-#define lowbit(_x) (_x & (-_x))
+typedef long long ll;
+typedef unsigned long long ull;
+constexpr auto lowbit = [](const auto &x) { return x & (-x); };
 
 //#define FAST_IO
 
@@ -180,11 +179,11 @@ inline void ckmax(T &_x, T _y)
     if (_x < _y)
         _x = _y;
 }
-template <typename _T, const _T _mod>
+template <const int _mod>
 struct modint
 {
-    _T x;
-    constexpr modint(_T _x = 0) : x(_x) {}
+    int x;
+    constexpr modint(int _x = 0) : x(_x) {}
     constexpr inline modint operator+() const
     {
         return *this;
@@ -207,14 +206,14 @@ struct modint
             x += _mod;
         return *this;
     }
-    constexpr inline modint operator++(_T)
+    constexpr inline modint operator++(int)
     {
         int res = x;
         if (x >= _mod)
             x -= _mod;
         return res;
     }
-    constexpr inline modint operator--(_T)
+    constexpr inline modint operator--(int)
     {
         int res = x;
         if (x < 0)
@@ -223,7 +222,7 @@ struct modint
     }
     constexpr inline modint operator+(const modint &rhs) const
     {
-        _T res = x;
+        int res = x;
         res += rhs.x;
         if (res >= _mod)
             res -= _mod;
@@ -231,7 +230,7 @@ struct modint
     }
     constexpr inline modint operator-(const modint &rhs) const
     {
-        _T res = x;
+        int res = x;
         res -= rhs.x;
         if (res < 0)
             res += _mod;
@@ -239,7 +238,7 @@ struct modint
     }
     constexpr inline modint operator*(const modint &rhs) const
     {
-        return (_T)((ll)x * rhs.x % _mod);
+        return (int)((ll)x * rhs.x % _mod);
     }
     constexpr inline modint &operator+=(const modint &rhs)
     {
@@ -257,7 +256,7 @@ struct modint
     }
     constexpr inline modint &operator*=(const modint &rhs)
     {
-        x = (_T)((ll)x * rhs.x % _mod);
+        x = (int)((ll)x * rhs.x % _mod);
         return *this;
     }
     template <typename _G>
@@ -289,7 +288,7 @@ struct modint
     {
         return x == rhs.x;
     }
-    constexpr inline _T &data()
+    constexpr inline int &data()
     {
         return x;
     }

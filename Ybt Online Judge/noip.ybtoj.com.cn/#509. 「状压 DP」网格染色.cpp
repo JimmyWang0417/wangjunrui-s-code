@@ -1,16 +1,16 @@
 /**
  *    unicode: UTF-8
- *    name:    C. 天气之子
+ *    name:    #509. 「状压 DP」网格染色
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.01.30 周一 14:10:02 (Asia/Shanghai)
+ *    created: 2023.01.31 周二 14:30:23 (Asia/Shanghai)
  **/
-#include <algorithm>
+#include <bits/move.h>
 #include <cstdio>
-#define ll long long
-#define lll __int128
-#define ull unsigned ll
-#define lowbit(_x) (_x & (-_x))
+typedef long long ll;
+typedef unsigned long long ull;
+constexpr auto lowbit = [](const auto &x)
+{ return x & (-x); };
 
 // #define FAST_IO
 
@@ -315,191 +315,170 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 2e5 + 5, M = 455;
-int n, q;
-int a[N], b[N];
-struct Edge
+constexpr int N = 1.5e4 + 5;
+constexpr int M = N * 6;
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+constexpr node inv3 = ((node)3).inv();
+int n, m;
+int rk[M], limit, len;
+int pop[8];
+inline void NTT(node *dp)
 {
-    int next, to;
-} edge[N];
-int head[N], num_edge;
-inline void add_edge(int from, int to)
-{
-    edge[++num_edge].next = head[from];
-    edge[num_edge].to = to;
-    head[from] = num_edge;
-}
-int dfn[N], low[N], rk[N], dfstime;
-inline void dfs(int u, int _fa)
-{
-    a[u] += a[_fa];
-    b[u] += b[_fa];
-    rk[dfn[u] = ++dfstime] = u;
-    for (int i = head[u]; i; i = edge[i].next)
+    for (int i = 0; i < limit; ++i)
+        if (i < rk[i])
+            swap(dp[i], dp[rk[i]]);
+    for (int mid = 1; mid < limit; mid <<= 1)
     {
-        int v = edge[i].to;
-        dfs(v, u);
-    }
-    low[u] = dfstime;
-}
-int block, num;
-int belong[N];
-struct node
-{
-    int L, R;
-    int st1[M], top1;
-    int st2[M], top2;
-    int tag;
-    int p[M], tot;
-    int head, tail;
-#define X(x) (b[x])
-#define Y(x) ((ll)a[x] * b[x])
-    inline void rebuild()
-    {
-        top1 = 0, top2 = 0;
-        for (int i = 1; i <= tot; ++i)
+        node gn = (node)3 ^ ((mod - 1) / (mid << 1));
+        for (int i = 0; i < limit; i += mid << 1)
         {
-            while (top1 > 1 &&
-                   (X(st1[top1 - 1]) - X(st1[top1])) * (Y(p[i]) - Y(st1[top1])) <=
-                       (Y(st1[top1 - 1]) - Y(st1[top1])) * (X(p[i]) - X(st1[top1])))
-                --top1;
-            st1[++top1] = p[i];
+            node g = 1;
+            for (int j = 0; j < mid; ++j, g *= gn)
+            {
+                node x = dp[i + j], y = dp[i + j + mid] * g;
+                dp[i + j] = x + y;
+                dp[i + j + mid] = x - y;
+            }
         }
-        for (int i = 1; i <= tot; ++i)
+    }
+}
+inline void INTT(node *dp)
+{
+    for (int i = 0; i < limit; ++i)
+        if (i < rk[i])
+            swap(dp[i], dp[rk[i]]);
+    for (int mid = 1; mid < limit; mid <<= 1)
+    {
+        node gn = inv3 ^ ((mod - 1) / (mid << 1));
+        for (int i = 0; i < limit; i += mid << 1)
         {
-            while (top2 > 1 &&
-                   (X(st2[top2 - 1]) - X(st2[top2])) * (Y(p[i]) - Y(st2[top2])) >=
-                       (Y(st2[top2 - 1]) - Y(st2[top2])) * (X(p[i]) - X(st2[top2])))
-                --top2;
-            st2[++top2] = p[i];
+            node g = 1;
+            for (int j = 0; j < mid; ++j, g *= gn)
+            {
+                node x = dp[i + j], y = dp[i + j + mid] * g;
+                dp[i + j] = x + y;
+                dp[i + j + mid] = x - y;
+            }
         }
-        head = 1, tail = top2;
     }
-    inline void build()
-    {
-        for (int i = L; i <= R; ++i)
-            p[++tot] = rk[i];
-        sort(p + 1, p + 1 + tot, [](int x, int y)
-             { return b[x] < b[y]; });
-        rebuild();
-    }
-    inline ll query()
-    {
-        while (head < top1 && (ll)(a[st1[head]] + tag) * b[st1[head]] <
-                                  (ll)(a[st1[head + 1]] + tag) * b[st1[head + 1]])
-            ++head;
-        while (tail > 1 && (ll)(a[st2[tail]] + tag) * b[st2[tail]] >
-                               (ll)(a[st2[tail - 1]] + tag) * b[st2[tail - 1]])
-            --tail;
-        return max((ll)(a[st1[head]] + tag) * b[st1[head]],
-                   -(ll)(a[st2[tail]] + tag) * b[st2[tail]]);
-    }
-    inline ll _query()
-    {
-        ll res = -1e18;
-        // for (int i = 1; i <= tot; ++i)
-        //     ckmax(res, (ll)abs(a[p[i]] + tag) * b[p[i]]);
-        for (int i = 1; i <= top1; ++i)
-            ckmax(res, (ll)(a[st1[i]] + tag) * b[st1[i]]);
-        // for (int i = 1; i <= top2; ++i)
-        //     ckmax(res, (ll)abs(a[st2[i]] + tag) * b[st2[i]]);
-        return res;
-    }
-    inline void print()
-    {
-        printf("%d:\n", top1);
-        for (int i = 1; i <= top1; ++i)
-            printf("%d,%lld\n", X(st1[i]), Y(st1[i]));
-    }
-#undef X
-#undef Y
-} c[M];
-inline void update(int l, int r, int val)
-{
-    if (belong[l] == belong[r])
-    {
-        for (int i = l; i <= r; ++i)
-            a[rk[i]] += val;
-        c[belong[l]].rebuild();
-        return;
-    }
-    for (int i = l; i <= c[belong[l]].R; ++i)
-        a[rk[i]] += val;
-    c[belong[l]].rebuild();
-    for (int i = belong[l] + 1; i < belong[r]; ++i)
-        c[i].tag += val;
-    for (int i = c[belong[r]].L; i <= r; ++i)
-        a[rk[i]] += val;
-    c[belong[r]].rebuild();
+    auto inv = ((node)limit).inv();
+    for (int i = 0; i < limit; ++i)
+        dp[i] *= inv;
 }
-inline ll query(int l, int r)
+node fuck[4][M];
+struct Matrix
 {
-    if (belong[l] == belong[r])
-    {
-        ll res = -1e18;
-        for (int i = l; i <= r; ++i)
-            ckmax(res, (ll)abs(a[rk[i]] + c[belong[i]].tag) * b[rk[i]]);
-        return res;
-    }
-    ll res = -1e18;
-    for (int i = l; i <= c[belong[l]].R; ++i)
-        ckmax(res, (ll)abs(a[rk[i]] + c[belong[i]].tag) * b[rk[i]]);
-    for (int i = belong[l] + 1; i < belong[r]; ++i)
-        ckmax(res, c[i].query());
-    for (int i = c[belong[r]].L; i <= r; ++i)
-        ckmax(res, (ll)abs(a[rk[i]] + c[belong[i]].tag) * b[rk[i]]);
-    return res;
-}
+    node g[8][8][M];
+} A, B, C;
+int a[3];
 signed main()
 {
 #ifdef PAPERDOG
     freopen("project.in", "r", stdin);
     freopen("project.out", "w", stdout);
 #else
-    freopen("ds.in", "r", stdin);
-    freopen("ds.out", "w", stdout);
+    freopen("final.in", "r", stdin);
+    freopen("final.out", "w", stdout);
 #endif
-    read(n, q);
-    for (int i = 2; i <= n; ++i)
-    {
-        int _fa;
-        read(_fa);
-        add_edge(_fa, i);
-    }
-    for (int i = 1; i <= n; ++i)
-        read(a[i]);
-    for (int i = 1; i <= n; ++i)
-        read(b[i]);
-    dfs(1, 0);
-    for (int i = 1; i <= n; ++i)
-        if (b[i] < 0)
-            b[i] = -b[i];
-    block = (int)__builtin_sqrt(n);
-    num = (n - 1) / block + 1;
-    for (int i = 1; i <= num; ++i)
-    {
-        c[i].L = c[i - 1].R + 1;
-        c[i].R = c[i - 1].R + block;
-    }
-    c[num].R = n;
-    for (int i = 1; i <= num; ++i)
-    {
-        c[i].build();
-        for (int j = c[i].L; j <= c[i].R; ++j)
-            belong[j] = i;
-    }
-    for (int i = 1; i <= q; ++i)
-    {
-        int opt, x, y;
-        read(opt, x);
-        if (opt == 1)
+    read(n, m);
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < 3; ++j)
         {
-            read(y);
-            update(dfn[x], low[x], y);
+            int x;
+            read(x);
+            a[i] |= x << j;
         }
-        else
-            write(query(dfn[x], low[x]), '\n');
+    a[1] ^= 2;
+    len  = 0, limit = 1;
+    while (limit <= 3 * n)
+    {
+        limit <<= 1;
+        ++len;
     }
+    for (int i = 0; i < limit; ++i)
+        rk[i] = (rk[i >> 1] >> 1) | ((i & 1) << (len - 1));
+    for (int i = 0; i < 3; ++i)
+        for (int j = 0; j < (1 << i); ++j)
+            pop[1 << i | j] = pop[j] + 1;
+    for (int i = 0; i <= 3; ++i)
+    {
+        fuck[i][i] = 1;
+        NTT(fuck[i]);
+    }
+    for (int i = 0; i < 8; ++i)
+    {
+        if (i & 1 && a[1] >> 1 & i)
+            continue;
+        if (i >> 1 & 1 && a[1] & i)
+            continue;
+        if (i >> 2 & 1 && a[1] << 1 & i)
+            continue;
+        for (int j = 0; j < 8; ++j)
+        {
+            if (i & 1 && a[2] >> 1 & j)
+                continue;
+            if (i >> 1 & 1 && a[2] & j)
+                continue;
+            if (i >> 2 & 1 && a[2] << 1 & j)
+                continue;
+            if (j & 1 && a[1] >> 1 & j)
+                continue;
+            if (j >> 1 & 1 && a[1] & j)
+                continue;
+            if (j >> 2 & 1 && a[1] << 1 & j)
+                continue;
+            if (j & 1 && a[0] >> 1 & i)
+                continue;
+            if (j >> 1 & 1 && a[0] & i)
+                continue;
+            if (j >> 2 & 1 && a[0] << 1 & i)
+                continue;
+            for (int k = 0; k < limit; ++k)
+                A.g[i][j][k] = fuck[pop[j]][k];
+        }
+    }
+    for (int i = 0; i < limit; ++i)
+        B.g[0][0][i] = fuck[0][i];
+    int power = n;
+    while (power)
+    {
+        if (power & 1)
+        {
+            for (int i = 0; i < 8; ++i)
+                for (int k = 0; k < 8; ++k)
+                    for (int j = 0; j < 8; ++j)
+                        for (int l = 0; l < limit; ++l)
+                            C.g[i][j][l] += B.g[i][k][l] * A.g[k][j][l];
+            for (int i = 0; i < 8; ++i)
+                for (int j = 0; j < 8; ++j)
+                    for (int k = 0; k < limit; ++k)
+                    {
+                        B.g[i][j][k] = C.g[i][j][k];
+                        C.g[i][j][k] = 0;
+                    }
+        }
+        for (int i = 0; i < 8; ++i)
+            for (int k = 0; k < 8; ++k)
+                for (int j = 0; j < 8; ++j)
+                    for (int l = 0; l < limit; ++l)
+                        C.g[i][j][l] += A.g[i][k][l] * A.g[k][j][l];
+        for (int i = 0; i < 8; ++i)
+            for (int j = 0; j < 8; ++j)
+                for (int k = 0; k < limit; ++k)
+                {
+                    A.g[i][j][k] = C.g[i][j][k];
+                    C.g[i][j][k] = 0;
+                }
+        power >>= 1;
+    }
+    node ans = 0;
+    for (int i = 0; i < 8; ++i)
+    {
+        INTT(B.g[0][i]);
+        ans += B.g[0][i][m];
+    }
+    write(ans.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
