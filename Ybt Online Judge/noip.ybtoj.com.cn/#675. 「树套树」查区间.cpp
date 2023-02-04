@@ -1,13 +1,14 @@
 /**
  *    unicode: UTF-8
- *    name:    B. 树的计数
+ *    name:    打怪兽
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.02.02 周四 14:27:32 (Asia/Shanghai)
+ *    created: 2023.02.03 周五 13:39:47 (Asia/Shanghai)
  **/
 #include <algorithm>
 #include <cstdio>
-#include <cstring>
+#include <iostream>
+#include <list>
 typedef long long ll;
 typedef unsigned long long ull;
 constexpr auto lowbit = [](const auto &x)
@@ -17,16 +18,20 @@ constexpr auto lowbit = [](const auto &x)
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #define putchar putchar_unlocked
+
 #endif
 namespace IO
 {
 #ifdef FAST_IO
 #ifndef FAST_IN
 #define FAST_IN
+
 #endif
 #ifndef FAST_OUT
 #define FAST_OUT
+
 #endif
 #endif
 
@@ -35,13 +40,16 @@ namespace IO
 #ifdef FAST_IN
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
 #define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
         inline void read(char &_x)
@@ -95,6 +103,7 @@ namespace IO
 #undef getchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
     }
@@ -103,6 +112,7 @@ namespace IO
 #ifdef FAST_OUT
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
         inline void flush()
@@ -111,9 +121,11 @@ namespace IO
         }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
         inline void write(char _x)
@@ -166,6 +178,7 @@ namespace IO
 #undef putchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
     }
@@ -275,7 +288,7 @@ struct modint
         }
         return res;
     }
-    constexpr inline modint inv()
+    constexpr inline modint inv() const
     {
         return *this ^ (_mod - 2);
     }
@@ -316,41 +329,231 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 505;
-constexpr int mod = 998244353;
-typedef modint<mod> node;
-node dp[N][2];
-node inv[N];
-node g[N][N], h[N][N];
-node ifac[N];
-node buf[2][N];
-inline void solve(int n, node *a, node *b)
+constexpr int N = 8e4 * 2 + 5;
+constexpr int M = 405;
+int n, m;
+int a[N], b[N], c[N];
+int p[N], tot;
+struct Query
 {
-    auto c = buf[0], d = buf[1];
-    memset(static_cast<void*> (c), 0, sizeof(buf[0]));
-    c[0] = 1;
-    for (int i = 1; i <= n + 1; ++i)
+    int opt, l, r, x;
+} q[N];
+struct node
+{
+    int block, num;
+    int L[M], R[M];
+    int belong[N];
+    inline void init(int _n)
     {
-        swap(c, d);
-        memset(static_cast<void*> (c), 0, sizeof(buf[0]));
-        for (int j = 0; j < i; ++j)
+        block = (int)__builtin_sqrt(_n);
+        num = (_n - 1) / block + 1;
+        for (int i = 1; i <= num; ++i)
         {
-            c[j] -= d[j] * i;
-            c[j + 1] += d[j];
+            L[i] = R[i - 1] + 1;
+            R[i] = min(R[i - 1] + block, _n);
+            for (int j = L[i]; j <= R[i]; ++j)
+                belong[j] = i;
         }
     }
-    for (int i = 1; i <= n + 1; ++i)
+    inline int left(int x)
     {
-        memcpy(static_cast<void*> (d), c, sizeof(buf[0]));
-        node times = a[i] * ifac[i - 1] * ifac[n + 1 - i];
-        if ((n + 1 - i) & 1)
-            times = -times;
-        for (int j = n; j >= 0; --j)
+        return L[belong[x]];
+    }
+    inline int right(int x)
+    {
+        return R[belong[x]];
+    }
+} seq, value;
+int cnt[M][N], cntblock[M][M];
+list<int> have[M][M];
+inline void _update(int _bel, int _val, int _add)
+{
+    for (int i = _bel; i <= seq.num; ++i)
+    {
+        cnt[i][_val] += _add;
+        cntblock[i][value.belong[_val]] += _add;
+    }
+};
+int vis[N], vistime;
+int st[N], stcnt[N], where[N], top;
+inline void updatein(int l, int r, int val)
+{
+    int bel = seq.belong[l];
+    if (b[bel] > val)
+    {
+        int res = 0;
+        ++vistime;
+        for (int i = l; i <= r; ++i)
         {
-            d[j] += d[j + 1] * i;
-            b[j] += d[j + 1] * times;
+            if (a[i] > val)
+            {
+                int v = min(a[i], b[bel]);
+                if (v == b[bel])
+                    --c[bel];
+                else
+                {
+                    if (vis[v] != vistime)
+                    {
+                        st[where[v] = ++top] = v;
+                        stcnt[top] = 1;
+                        vis[v] = vistime;
+                    }
+                    else
+                        ++stcnt[where[v]];
+                }
+                ++res;
+                a[i] = val;
+            }
+        }
+        if (res)
+        {
+            while (top)
+            {
+                _update(bel, st[top], -stcnt[top]);
+                --top;
+            }
+            _update(bel, val, res);
+            for (int i = 1; i <= value.num; ++i)
+                for (auto it = have[bel][i].begin(); it != have[bel][i].end();)
+                    if (cnt[bel][*it] - cnt[bel - 1][*it] == 0)
+                        it = have[bel][i].erase(it);
+                    else
+                        ++it;
+            auto &li = have[bel][value.belong[val]];
+            bool flag = true;
+            for (auto it = li.begin(); it != li.end(); ++it)
+            {
+                if (*it == val)
+                {
+                    flag = false;
+                    break;
+                }
+                if (*it > val)
+                {
+                    li.insert(it, val);
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
+                li.push_back(val);
         }
     }
+}
+inline void cover(int bel, int val)
+{
+    int &res = c[bel];
+    for (int i = value.belong[val] + 1; i <= value.belong[b[bel]]; ++i)
+    {
+        res += cntblock[bel][i] - cntblock[bel - 1][i];
+        for (int j : have[bel][i])
+            _update(bel, j, cnt[bel - 1][j] - cnt[bel][j]);
+        have[bel][i].clear();
+    }
+    auto &li = have[bel][value.belong[val]];
+    while (!li.empty() && li.back() > val)
+    {
+        res += cnt[bel][li.back()] - cnt[bel - 1][li.back()];
+        _update(bel, li.back(), cnt[bel - 1][li.back()] - cnt[bel][li.back()]);
+        li.pop_back();
+    }
+    b[bel] = val;
+}
+inline void updateout(int l, int r, int val)
+{
+    for (int i = l; i <= r; ++i)
+    {
+        if (b[i] > val)
+            cover(i, val);
+    }
+}
+inline void update(int l, int r, int val)
+{
+    if (seq.belong[l] == seq.belong[r])
+    {
+        updatein(l, r, val);
+        return;
+    }
+    updatein(l, seq.right(l), val);
+    updateout(seq.belong[l] + 1, seq.belong[r] - 1, val);
+    updatein(seq.left(r), r, val);
+}
+inline int _query(int l, int r, int k)
+{
+    for (int i = 1; i <= value.num; ++i)
+    {
+        int now = cntblock[r][i] - cntblock[l][i] + cntblock[0][i];
+        if (k <= now)
+        {
+            for (int j = value.L[i]; j <= value.R[i]; ++j)
+            {
+                now = cnt[r][j] - cnt[l][j] + cnt[0][j];
+                if (k <= now)
+                    return j;
+                else
+                    k -= now;
+            }
+        }
+        else
+            k -= now;
+    }
+    return 0;
+}
+inline int query(int l, int r, int k)
+{
+    if (seq.belong[l] == seq.belong[r])
+    {
+        for (int i = l; i <= r; ++i)
+        {
+            int v = min(a[i], b[seq.belong[i]]);
+            ++cnt[0][v];
+            ++cntblock[0][value.belong[v]];
+        }
+        int res = _query(0, 0, k);
+        for (int i = l; i <= r; ++i)
+        {
+            int v = min(a[i], b[seq.belong[i]]);
+            --cnt[0][v];
+            --cntblock[0][value.belong[v]];
+        }
+        return res;
+    }
+    for (int i = l; i <= seq.right(l); ++i)
+    {
+        int v = min(a[i], b[seq.belong[i]]);
+        ++cnt[0][v];
+        ++cntblock[0][value.belong[v]];
+    }
+    for (int i = seq.belong[l] + 1; i < seq.belong[r]; ++i)
+    {
+        cnt[0][b[i]] += c[i];
+        cntblock[0][value.belong[b[i]]] += c[i];
+    }
+    for (int i = seq.left(r); i <= r; ++i)
+    {
+        int v = min(a[i], b[seq.belong[i]]);
+        ++cnt[0][v];
+        ++cntblock[0][value.belong[v]];
+    }
+    int res = _query(seq.belong[l], seq.belong[r] - 1, k);
+    for (int i = l; i <= seq.right(l); ++i)
+    {
+        int v = min(a[i], b[seq.belong[i]]);
+        --cnt[0][v];
+        --cntblock[0][value.belong[v]];
+    }
+    for (int i = seq.belong[l] + 1; i < seq.belong[r]; ++i)
+    {
+        cnt[0][b[i]] -= c[i];
+        cntblock[0][value.belong[b[i]]] -= c[i];
+    }
+    for (int i = seq.left(r); i <= r; ++i)
+    {
+        int v = min(a[i], b[seq.belong[i]]);
+        --cnt[0][v];
+        --cntblock[0][value.belong[v]];
+    }
+    return res;
 }
 signed main()
 {
@@ -358,40 +561,53 @@ signed main()
     freopen("project.in", "r", stdin);
     freopen("project.out", "w", stdout);
 #else
-    freopen("indset.in", "r", stdin);
-    freopen("indset.out", "w", stdout);
+    freopen("segment.in", "r", stdin);
+    freopen("segment.out", "w", stdout);
 #endif
-    int n;
-    read(n);
-    inv[1] = 1;
-    for (int i = 2; i <= n + 1; ++i)
-        inv[i] = -node(mod / i) * inv[mod % i];
-    for (int i = 1; i <= n + 1; ++i)
+    read(n, m);
+    for (int i = 1; i <= n; ++i)
     {
-        dp[1][1] = i;
-        for (int j = 2; j <= n; ++j)
-        {
-            dp[j][0] = dp[j][1] = 0;
-            for (int k = 1; k < j; ++k)
-            {
-                dp[j][0] += dp[k][0] * (dp[j - k][0] + dp[j - k][1]) +
-                            dp[k][1] * dp[j - k][1] * inv[i];
-                dp[j][1] += dp[k][1] * dp[j - k][0];
-            }
-        }
-        for (int j = 1; j <= n; ++j)
-            g[j][i] = dp[j][0] + dp[j][1];
+        read(a[i]);
+        p[++tot] = a[i];
     }
-    ifac[0] = 1;
-    for (int i = 1; i <= n; ++i)
-        ifac[i] = ifac[i - 1] * inv[i];
-    for (int i = 1; i <= n; ++i)
-        solve(i, g[i], h[i]);
-    for (int i = 1; i <= n; ++i)
+    for (int i = 1; i <= m; ++i)
     {
-        for (int j = 0; j <= n; ++j)
-            write(h[i][j].data(), ' ');
-        write('\n');
+        auto &[opt, l, r, x] = q[i];
+        read(opt, l, r, x);
+        if (opt == 1)
+            p[++tot] = x;
+    }
+    sort(p + 1, p + 1 + tot);
+    tot = (int)(unique(p + 1, p + 1 + tot) - p - 1);
+    seq.init(n), value.init(tot);
+    for (int i = 1; i <= seq.num; ++i)
+    {
+        b[i] = tot;
+        for (int j = seq.L[i]; j <= seq.R[i]; ++j)
+        {
+            a[j] = (int)(lower_bound(p + 1, p + 1 + tot, a[j]) - p);
+            ++cnt[i][a[j]];
+            ++cntblock[i][value.belong[a[j]]];
+        }
+        for (int j = 1; j <= tot; ++j)
+        {
+            if (cnt[i][j])
+                have[i][value.belong[j]].push_back(j);
+            cnt[i][j] += cnt[i - 1][j];
+        }
+        for (int j = 1; j <= value.num; ++j)
+            cntblock[i][j] += cntblock[i - 1][j];
+    }
+    for (int i = 1; i <= m; ++i)
+    {
+        auto [opt, l, r, x] = q[i];
+        if (opt == 1)
+        {
+            x = (int)(lower_bound(p + 1, p + 1 + tot, x) - p);
+            update(l, r, x);
+        }
+        else
+            write(p[query(l, r, x)], '\n');
     }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();

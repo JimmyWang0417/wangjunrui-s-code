@@ -1,16 +1,19 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    Lolita
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.03 周五 21:19:14 (Asia/Shanghai)
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
-constexpr auto lowbit = [](const auto &x) { return x & (-x); };
+constexpr auto lowbit = [](const auto &x)
+{ return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -76,7 +79,7 @@ namespace IO
             }
             while (_s >= '0' && _s <= '9')
             {
-                _x = (_x << 1) + (_x << 3) + _s - '0';
+                _x = (_x << 1) + (_x << 3) + (_s - '0');
                 _s = (char)getchar();
             }
             if (_f)
@@ -313,9 +316,155 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e5 + 5;
+constexpr int mod = 998244353;
+constexpr int miu[] = {0, 1, -1, -1, 0, -1, 1};
+typedef modint<mod> node;
+int n, k, m, limit;
+struct matrix
+{
+    node g[6];
+    matrix() : g() {}
+    inline node operator[](int x) const
+    {
+        return g[x];
+    }
+    inline node &operator[](int x)
+    {
+        return g[x];
+    }
+    inline void operator+=(const matrix &rhs)
+    {
+        for (int i = 0; i < k; ++i)
+            g[i] += rhs[i];
+    }
+    inline void operator-=(const matrix &rhs)
+    {
+        for (int i = 0; i < k; ++i)
+            g[i] -= rhs[i];
+    }
+    inline matrix operator*(const matrix &rhs) const
+    {
+        matrix ans;
+        for (int i = 0; i < k; ++i)
+            for (int j = 0; j < k; ++j)
+                ans[(i + j) % k] += g[i] * rhs[j];
+        return ans;
+    }
+    inline void operator*=(const node &rhs)
+    {
+        for (int i = 0; i < k; ++i)
+            g[i] *= rhs;
+    }
+    inline matrix right(int x)
+    {
+        matrix res;
+        for (int i = 0; i < k; ++i)
+            res[(i + x) % k] = g[i];
+        return res;
+    }
+    inline matrix left(int x)
+    {
+        return right(k - x % k);
+    }
+} A[N], B[N];
+inline void FWT(matrix *dp)
+{
+    for (int mid = 1; mid < limit; mid *= k)
+        for (int i = 0; i < limit; i += mid * k)
+            for (int j = 0; j < mid; ++j)
+            {
+                static matrix x[10], y[10];
+                for (int l = 0; l < k; ++l)
+                {
+                    x[l] = dp[i + j + l * mid];
+                    y[l] = matrix();
+                }
+                for (int l = 0; l < k; ++l)
+                    for (int r = 0; r < k; ++r)
+                        y[l] += x[r].right(l * r);
+                for (int l = 0; l < k; ++l)
+                    dp[i + j + l * mid] = y[l];
+            }
+}
+node buf[2][41];
+auto f = buf[0], g = buf[1];
+int fcnt, gcnt;
+inline void IFWT(matrix *dp)
+{
+    for (int mid = 1; mid < limit; mid *= k)
+        for (int i = 0; i < limit; i += mid * k)
+            for (int j = 0; j < mid; ++j)
+            {
+                static matrix x[10], y[10];
+                for (int l = 0; l < k; ++l)
+                {
+                    x[l] = dp[i + j + l * mid];
+                    y[l] = matrix();
+                }
+                for (int l = 0; l < k; ++l)
+                    for (int r = 0; r < k; ++r)
+                        y[l] += x[r].left(l * r);
+                for (int l = 0; l < k; ++l)
+                    dp[i + j + l * mid] = y[l];
+            }
+    node inv = ((node)limit).inv();
+    for (int i = 0; i < limit; ++i)
+        dp[i] *= inv;
+}
+inline void init()
+{
+    f[0] = 1;
+    for (int i = 1; i <= k; ++i)
+    {
+        if (k % i || miu[k / i] != 1)
+            continue;
+        swap(fcnt, gcnt);
+        swap(f, g);
+        memset(static_cast<void *>(f), 0, sizeof(buf[0]));
+        for (int j = 0; j <= gcnt; ++j)
+        {
+            f[j + k] += g[j];
+            f[j] -= g[j];
+        }
+        fcnt = gcnt + i;
+    }
+    for (int i = 1; i <= k; ++i)
+    {
+        if (k % i || miu[k / i] != -1)
+            continue;
+        swap(fcnt, gcnt);
+        swap(f, g);
+        memset(static_cast<void *>(f), 0, sizeof(buf[0]));
+        for (int j = gcnt; j >= i; --j)
+        {
+            f[j - i] += g[j];
+            g[j - i] += g[j];
+        }
+        fcnt = gcnt - i;
+    }
+}
+inline node solve(matrix val)
+{
+    for (int i = k; i >= fcnt; --i)
+    {
+        for (int j = fcnt; j >= 1; --j)
+            val[i - j] -= val[i] * f[fcnt - j]; 
+    }
+    return val[0];
+}
 signed main()
 {
+    read(n, k, m);
+    init();
+    limit = 1;
+    for (int i = 1; i <= m; ++i)
+        limit *= k;
+    for (int i = 1; i <= n; ++i)
+        ++A[i][0];
+    FWT(A);
+    for (int i = 0; i < limit; ++i)
+        
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

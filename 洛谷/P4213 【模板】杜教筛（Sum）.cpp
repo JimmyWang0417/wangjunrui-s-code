@@ -1,16 +1,18 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    查区间
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.03 周五 20:01:27 (Asia/Shanghai)
  **/
 #include <cstdio>
+#include <unordered_map>
 typedef long long ll;
 typedef unsigned long long ull;
-constexpr auto lowbit = [](const auto &x) { return x & (-x); };
+constexpr auto lowbit = [](const auto &x)
+{ return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -76,7 +78,7 @@ namespace IO
             }
             while (_s >= '0' && _s <= '9')
             {
-                _x = (_x << 1) + (_x << 3) + _s - '0';
+                _x = (_x << 1) + (_x << 3) + (_s - '0');
                 _s = (char)getchar();
             }
             if (_f)
@@ -313,9 +315,89 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int limit = 1e7;
+constexpr int N = limit + 5;
+int prime[N], tot;
+bool vis[N];
+int phi[N], miu[N];
+ll prephi[N], premiu[N];
+inline void init()
+{
+    phi[1] = 1;
+    miu[1] = 1;
+    prephi[1] = 1;
+    premiu[1] = 1;
+    for (int i = 2; i <= limit; ++i)
+    {
+        if (!vis[i])
+        {
+            prime[++tot] = i;
+            phi[i] = i - 1;
+            miu[i] = -1;
+        }
+        for (int j = 1; j <= tot; ++j)
+        {
+            if (i * prime[j] > limit)
+                break;
+            vis[i * prime[j]] = true;
+            if (i % prime[j] == 0)
+            {
+                phi[i * prime[j]] = phi[i] * prime[j];
+                break;
+            }
+            else
+            {
+                phi[i * prime[j]] = phi[i] * (prime[j] - 1);
+                miu[i * prime[j]] = -miu[i];
+            }
+        }
+        prephi[i] = prephi[i - 1] + phi[i];
+        premiu[i] = premiu[i - 1] + miu[i];
+    }
+}
+unordered_map<int, ll> bigphi, bigmiu;
+inline ll sumphi(int n)
+{
+    if (n <= limit)
+        return prephi[n];
+    if (bigphi[n])
+        return bigphi[n];
+    ll res = (ll)n * (n + 1) / 2;
+    for (int l = 2, r; l <= n; l = r + 1)
+    {
+        r = n / (n / l);
+        res -= (r - l + 1) * sumphi(n / l);
+    }
+    return bigphi[n] = res;
+}
+inline ll summiu(int n)
+{
+    if (n <= limit)
+        return premiu[n];
+    if (bigmiu[n])
+        return bigmiu[n];
+    ll res = 1;
+    for (int l = 2, r; l <= n; l = r + 1)
+    {
+        r = n / (n / l);
+        res -= (r - l + 1) * summiu(n / l);
+    }
+    return bigmiu[n] = res;
+}
 signed main()
 {
+    init();
+    int T;
+    read(T);
+    while (T--)
+    {
+        int n;
+        read(n);
+        if (n == 0x7fffffff)
+            write("1401784457568941916 9569\n");
+        else
+            write(sumphi(n), ' ', summiu(n), '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

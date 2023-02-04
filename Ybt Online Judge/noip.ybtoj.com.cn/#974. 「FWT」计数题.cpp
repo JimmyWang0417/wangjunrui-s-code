@@ -1,16 +1,17 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    A. 计数题
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.04 周六 14:51:18 (Asia/Shanghai)
  **/
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
-constexpr auto lowbit = [](const auto &x) { return x & (-x); };
+constexpr auto lowbit = [](const auto &x)
+{ return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -76,7 +77,7 @@ namespace IO
             }
             while (_s >= '0' && _s <= '9')
             {
-                _x = (_x << 1) + (_x << 3) + _s - '0';
+                _x = (_x << 1) + (_x << 3) + (_s - '0');
                 _s = (char)getchar();
             }
             if (_f)
@@ -313,9 +314,72 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2e6 + 5;
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+constexpr node inv2 = ((node)2).inv();
+int n;
+int limit, len;
+int A[N];
+node B[N];
+inline void FWT(int *dp)
+{
+    for (int j = 0; j < len; ++j)
+        for (int i = 0; i < limit; ++i)
+            if ((i >> j) & 1)
+            {
+                int x = dp[i ^ (1 << j)], y = dp[i];
+                dp[i ^ (1 << j)] = x + y;
+                dp[i] = x - y;
+            }
+}
+inline void IFWT(node *dp)
+{
+    for (int j = 0; j < len; ++j)
+        for (int i = 0; i < limit; ++i)
+            if ((i >> j) & 1)
+            {
+                node x = dp[i ^ (1 << j)], y = dp[i];
+                dp[i ^ (1 << j)] = (x + y) * inv2;
+                dp[i] = (x - y) * inv2;
+            }
+}
+node power[N];
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("candy.in", "r", stdin);
+    freopen("candy.out", "w", stdout);
+#endif
+    read(n);
+    limit = 1;
+    for (int i = 1; i <= n; ++i)
+    {
+        int x;
+        read(x);
+        while (limit <= x)
+        {
+            limit <<= 1;
+            ++len;
+        }
+        ++A[x];
+    }
+    FWT(A);
+    power[0] = 1;
+    for (int i = 1; i <= n; ++i)
+        power[i] = power[i - 1] * 3;
+    for (int i = 0; i < limit; ++i)
+    {
+        int a = (n + A[i]) / 2, b = (n - A[i]) / 2;
+        B[i] = power[a];
+        if (b & 1)
+            B[i] = -B[i];
+    }
+    IFWT(B);
+    write((B[0] - 1).data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

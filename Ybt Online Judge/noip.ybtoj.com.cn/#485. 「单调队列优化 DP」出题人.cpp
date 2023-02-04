@@ -1,16 +1,20 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    A. 出题人
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.03 周五 09:17:35 (Asia/Shanghai)
  **/
 #include <cstdio>
+#include <cstring>
+#include <list>
+#include <set>
 typedef long long ll;
 typedef unsigned long long ull;
-constexpr auto lowbit = [](const auto &x) { return x & (-x); };
+constexpr auto lowbit = [](const auto &x)
+{ return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -313,11 +317,57 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 3e5 + 5;
+constexpr int INF = 0x3f3f3f3f;
+int n, m;
+ll dp[N], a[N], sum[N];
+inline ll calc(int l, int r)
+{
+    return l > r ? -1ll * INF * INF : sum[r] - sum[l - 1];
+}
+multiset<ll> s;
+int q[N], head, tail;
 signed main()
 {
-#ifdef FAST_OUT
-    IO::OUTPUT::flush();
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("hard.in", "r", stdin);
+    freopen("hard.out", "w", stdout);
 #endif
+    memset(dp, 0x3f, sizeof(dp));
+    read(n, m);
+    for (int i = 1; i <= n; i++)
+    {
+        read(a[i]);
+        sum[i] = sum[i - 1] + a[i];
+    }
+    dp[0] = 0;
+    q[head = tail = 1] = 0;
+    for (int i = 1, j = 0; i <= n; i++)
+    {
+        while (calc(j + 1, i) > m)
+            j++;
+        while (head <= tail && q[head] < j)
+        {
+            if (tail - head)
+                s.erase(s.find(dp[q[head]] + a[q[head + 1]]));
+            ++head;
+        }
+        while (head <= tail && a[q[tail]] < a[i])
+        {
+            if (tail - head)
+                s.erase(s.find(dp[q[tail - 1]] + a[q[tail]]));
+            --tail;
+        }
+        if (head <= tail)
+            s.insert(dp[q[tail]] + a[i]);
+        q[++tail] = i;
+        dp[i] = dp[j] + a[q[head]];
+        if (tail - head)
+            ckmin(dp[i], *s.begin());
+    }
+    write(dp[n], '\n');
     return 0;
 }

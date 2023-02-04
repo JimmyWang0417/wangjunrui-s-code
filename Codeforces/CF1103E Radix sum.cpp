@@ -1,16 +1,17 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    CF1103E Radix sum
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.02 周四 19:35:42 (Asia/Shanghai)
  **/
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
-constexpr auto lowbit = [](const auto &x) { return x & (-x); };
+constexpr auto lowbit = [](const auto &x)
+{ return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -272,7 +273,7 @@ struct modint
         }
         return res;
     }
-    constexpr inline modint inv() const
+    constexpr inline modint inv()
     {
         return *this ^ (_mod - 2);
     }
@@ -313,9 +314,149 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e5 + 5;
+constexpr ull inv5 = 14757395258967641293ull;
+int n;
+int limit, len;
+struct node
+{
+    ull g[10];
+    node() : g() {}
+    inline ull operator[](int x) const
+    {
+        return g[x];
+    }
+    inline ull &operator[](int x)
+    {
+        return g[x];
+    }
+    inline node operator+(const node &rhs) const
+    {
+        node res;
+        for (int i = 0; i < 10; ++i)
+            res[i] = g[i] + rhs[i];
+        return res;
+    }
+    inline void operator+=(const node &rhs)
+    {
+        for (int i = 0; i < 10; ++i)
+            g[i] += rhs[i];
+    }
+    inline node operator*(const node &rhs) const
+    {
+        node res;
+        for (int i = 0; i < 10; ++i)
+            for (int j = 0; j < 10; ++j)
+                res[(i + j) % 10] += g[i] * rhs[j];
+        return res;
+    }
+    inline void operator*=(const ull &rhs)
+    {
+        for (int i = 0; i < 10; ++i)
+            g[i] *= rhs;
+    }
+    inline node operator^(int power)
+    {
+        node res, _a = (*this);
+        res[0] = 1;
+        while (power)
+        {
+            if (power & 1)
+                res = res * _a;
+            _a = _a * _a;
+            power >>= 1;
+        }
+        return res;
+    }
+    inline node right(int x) const
+    {
+        node res;
+        for (int i = 0; i < 10; ++i)
+            res[(i + x) % 10] = g[i];
+        return res;
+    }
+    inline node left(int x) const
+    {
+        return right(10 - x % 10);
+    }
+} A[N], B;
+inline void FWT(node *dp)
+{
+    for (int mid = 1; mid < limit; mid *= 10)
+        for (int i = 0; i < limit; i += mid * 10)
+            for (int j = 0; j < mid; ++j)
+            {
+                static node x[10], y[10];
+                for (int k = 0; k < 10; k++)
+                {
+                    x[k] = dp[i + j + k * mid];
+                    y[k] = node();
+                }
+                for (int k = 0; k < 10; ++k)
+                    for (int l = 0; l < 10; ++l)
+                        y[k] += x[l].right(k * l);
+                for (int k = 0; k < 10; ++k)
+                    dp[i + j + k * mid] = y[k];
+            }
+}
+inline void IFWT(node *dp)
+{
+    for (int mid = 1; mid < limit; mid *= 10)
+        for (int i = 0; i < limit; i += mid * 10)
+            for (int j = 0; j < mid; ++j)
+            {
+                static node x[10], y[10];
+                for (int k = 0; k < 10; k++)
+                {
+                    x[k] = dp[i + j + k * mid];
+                    y[k] = node();
+                }
+                for (int k = 0; k < 10; ++k)
+                    for (int l = 0; l < 10; ++l)
+                        y[k] += x[l].left(k * l);
+                for (int k = 0; k < 10; ++k)
+                    dp[i + j + k * mid] = y[k];
+            }
+    ull inv = 1;
+    for (int i = 1; i <= len; ++i)
+        inv *= inv5;
+    for (int i = 0; i < limit; ++i)
+        dp[i] *= inv;
+}
+inline ull calc(node dp)
+{
+    for (int i = 9; i >= 4; --i)
+    {
+        for (int j = 1; j <= 4; ++j)
+            dp[i - j] -= dp[i] * B[4 - j];
+    }
+    return (dp[0] >> len) & ((1ull << 58) - 1);
+}
 signed main()
 {
+    read(n);
+    int maxx = n - 1;
+    for (int i = 1; i <= n; ++i)
+    {
+        int x;
+        read(x);
+        ++A[x][0];
+        ckmax(maxx, x);
+    }
+    limit = 1, len = 0;
+    while (limit <= maxx)
+    {
+        limit *= 10;
+        ++len;
+    }
+    FWT(A);
+    for (int i = 0; i < limit; ++i)
+        A[i] = A[i] ^ n;
+    IFWT(A);
+    B[0] = 1, B[1] = -1, B[2] = 1, B[3] = -1, B[4] = 1;
+    for (int i = 0; i < n; ++i)
+        write(calc(A[i]), '\n');
+    write('\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
