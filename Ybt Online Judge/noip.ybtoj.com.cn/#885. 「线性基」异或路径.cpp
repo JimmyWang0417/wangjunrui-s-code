@@ -1,9 +1,9 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    A. 异或路径
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.05 周日 08:12:55 (Asia/Shanghai)
  **/
 #include <cstdio>
 typedef long long ll;
@@ -11,7 +11,7 @@ typedef unsigned long long ull;
 constexpr auto lowbit = [](const auto &x)
 { return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +314,57 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 505;
+int n, m;
+int d[64];
+inline void insert(int val)
+{
+    for (int i = 30; i >= 0; --i)
+        if ((val >> i) & 1)
+        {
+            if (!d[i])
+            {
+                d[i] = val;
+                break;
+            }
+            else
+                val ^= d[i];
+        }
+}
+inline int calc(int res)
+{
+    for (int i = 30; i >= 0; --i)
+        if ((res ^ d[i]) > res)
+            res ^= d[i];
+    return res;
+}
+int a[N][N];
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("xor.in", "r", stdin);
+    freopen("xor.out", "w", stdout);
+#endif
+    read(n, m);
+    int res = 0;
+    for (int i = 1; i <= n; ++i)
+        for (int j = 1; j <= m; ++j)
+            read(a[i][j]);
+    for (int i = 1; i <= n; ++i)
+        res ^= a[i][1];
+    for (int i = 2; i <= m; ++i)
+        res ^= a[n][i];
+    for (int i = 1; i <= n; ++i)
+        for (int j = 1; j <= m; ++j)
+        {
+            if (i == 1 && j == 1)
+                continue;
+            insert(a[i][j] ^ a[1][1]);
+        }
+    write(calc(res), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

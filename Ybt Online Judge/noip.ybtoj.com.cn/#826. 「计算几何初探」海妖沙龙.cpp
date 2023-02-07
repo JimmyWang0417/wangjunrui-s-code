@@ -1,30 +1,35 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    A. 海妖沙龙
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.07 周二 09:21:36 (Asia/Shanghai)
  **/
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
+__extension__ typedef __int128 int128;
 constexpr auto lowbit = [](const auto &x)
 { return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #define putchar putchar_unlocked
+
 #endif
 namespace IO
 {
 #ifdef FAST_IO
 #ifndef FAST_IN
 #define FAST_IN
+
 #endif
 #ifndef FAST_OUT
 #define FAST_OUT
+
 #endif
 #endif
 
@@ -33,13 +38,16 @@ namespace IO
 #ifdef FAST_IN
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
 #define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
         inline void read(char &_x)
@@ -93,6 +101,7 @@ namespace IO
 #undef getchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
     }
@@ -101,6 +110,7 @@ namespace IO
 #ifdef FAST_OUT
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
         inline void flush()
@@ -109,9 +119,11 @@ namespace IO
         }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
         inline void write(char _x)
@@ -164,6 +176,7 @@ namespace IO
 #undef putchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
     }
@@ -310,13 +323,82 @@ struct Graph
         head[from] = num_edge;
     }
 #define foreach(i, graph, u) for (int i = graph.head[u]; i; i = graph.edge[i].next)
+
 };
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 5005;
+int n;
+struct Point
+{
+    int x, y;
+    Point(int _x = 0, int _y = 0) : x(_x), y(_y) {}
+    inline Point operator-(const Point &rhs) const
+    {
+        return Point(x - rhs.x, y - rhs.y);
+    }
+    inline ll operator*(const Point &rhs) const
+    {
+        return (ll)x * rhs.y - (ll)y * rhs.x;
+    }
+} point[N];
+bool vis[N];
+int p[N];
+char str[N];
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("route.in", "r", stdin);
+    freopen("route.out", "w", stdout);
+#endif
+    read(n);
+    for (int i = 1; i <= n; ++i)
+    {
+        auto &[x, y] = point[i];
+        read(x, y);
+    }
+    read(str + 1);
+    p[1] = 1;
+    for (int i = 2; i <= n; ++i)
+        if (point[i].x < point[p[1]].x)
+            p[1] = i;
+    vis[p[1]] = true;
+    for (int i = 2; i < n; ++i)
+    {
+        if (str[i - 1] == 'L')
+        {
+            for (int j = 1; j <= n; ++j)
+                if (!vis[j])
+                {
+                    if (!p[i])
+                        p[i] = j;
+                    else if ((point[p[i]] - point[p[i - 1]]) * (point[j] - point[p[i - 1]]) < 0)
+                        p[i] = j;
+                }
+        }
+        else
+        {
+            for (int j = 1; j <= n; ++j)
+                if (!vis[j])
+                {
+                    if (!p[i])
+                        p[i] = j;
+                    else if ((point[p[i]] - point[p[i - 1]]) * (point[j] - point[p[i - 1]]) > 0)
+                        p[i] = j;
+                }
+        }
+        vis[p[i]] = true;
+    }
+    for (int i = 1; i <= n; ++i)
+        if (!vis[i])
+            p[n] = i;
+    for (int i = 1; i <= n; ++i)
+        write(p[i], ' ');
+    write('\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

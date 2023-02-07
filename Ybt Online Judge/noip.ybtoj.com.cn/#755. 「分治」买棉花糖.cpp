@@ -1,17 +1,19 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    marshmallow
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.05 周日 08:55:42 (Asia/Shanghai)
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 constexpr auto lowbit = [](const auto &x)
 { return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +316,64 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 505;
+constexpr int M = 2e4 + 5;
+int n, m, q;
+int a[N], d[N], c[N];
+ll b[N];
+ll dp[N * 4][M];
+int que[N];
+#define lc (rt << 1)
+#define rc (rt << 1 | 1)
+inline void solve(int rt, int l, int r)
+{
+    auto f = dp[rt];
+    if (l == r)
+    {
+        int qwq = min(m, c[l]);
+        for (int i = 0; i < qwq; ++i)
+            f[i + 1] = f[i] + a[l] - i * d[l];
+        for (int i = qwq + 1; i <= m; ++i)
+            f[i] = 1e18;
+        return;
+    }
+    int mid = (l + r) >> 1; 
+    solve(lc, l, mid);
+    solve(rc, mid + 1, r);
+    auto g = dp[lc], h = dp[rc];
+    for (int i = mid + 1; i <= r; ++i)
+        for (int j = m; j >= c[i]; --j)
+            ckmin(g[j], g[j - c[i]] + b[i]);
+    for (int i = l; i <= mid; ++i)
+        for (int j = m; j >= c[i]; --j)
+            ckmin(h[j], h[j - c[i]] + b[i]);
+    for (int i = 0; i <= m; ++i)
+        f[i] = min(g[i], h[i]);
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("marshmallow.in", "r", stdin);
+    freopen("marshmallow.out", "w", stdout);
+#endif
+    read(n, q);
+    for (int i = 1; i <= n; ++i)
+    {
+        read(a[i], d[i], c[i]);
+        b[i] = (ll)(a[i] + (a[i] - (c[i] - 1) * d[i])) * c[i] / 2;
+    }
+    for (int i = 1; i <= q; ++i)
+    {
+        read(que[i]);
+        ckmax(m, que[i]);
+    }
+    solve(1, 1, n);
+    auto answer = dp[1];
+    for (int i = 1; i <= q; ++i)
+        write(answer[que[i]], '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

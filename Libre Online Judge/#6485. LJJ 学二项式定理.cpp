@@ -1,9 +1,9 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    #6485. LJJ 学二项式定理
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.06 周一 11:22:59 (Asia/Shanghai)
  **/
 #include <cstdio>
 typedef long long ll;
@@ -11,7 +11,7 @@ typedef unsigned long long ull;
 constexpr auto lowbit = [](const auto &x)
 { return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +314,31 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int mod = 998244353;
+constexpr int g = 3;
+typedef modint<mod> node;
+constexpr node inv4 = ((node)4).inv();
+constexpr node gn = (node)g ^ ((mod - 1) / 4);
+constexpr node w[] = {1, gn, gn * gn, gn * gn * gn};
+ll n;
+int s, a[4];
 signed main()
 {
+    int T;
+    read(T);
+    while (T--)
+    {
+        read(n, s, a[0], a[1], a[2], a[3]);
+        node ans = 0;
+        for (int i = 0; i < 4; ++i)
+        {
+            node res = 0;
+            for (int j = 0; j < 4; ++j)
+                res += w[(4 - i * j % 4) % 4] * ((w[j] * s + 1) ^ n);
+            ans += res * a[i];
+        }
+        write((ans * inv4).data(), '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

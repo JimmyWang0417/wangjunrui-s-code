@@ -1,17 +1,19 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    #510. 「状压 DP」随机游走
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.06 周一 15:25:28 (Asia/Shanghai)
  **/
 #include <cstdio>
+#include <unordered_map>
 typedef long long ll;
 typedef unsigned long long ull;
+__extension__ typedef __int128 int128;
 constexpr auto lowbit = [](const auto &x)
 { return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +316,103 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 85;
+constexpr int M = 80 * 80 * 80 * 80 + 5;
+constexpr int hashmod = 1e6 + 33;
+int n, mod;
+inline void add(int &x, int y)
+{
+    x += y;
+    if (x >= mod)
+        x -= mod;
+}
+int inv4;
+struct Edge
+{
+    int next, val;
+    int128 key;
+} edge[M];
+int head[hashmod + 5], num_edge;
+inline void insert(int128 key, int val)
+{
+    auto from = key % hashmod;
+    edge[++num_edge].next = head[from];
+    edge[num_edge].key = key;
+    edge[num_edge].val = val;
+    head[from] = num_edge;
+}
+inline int query(int128 key)
+{
+    for (int i = head[key % hashmod]; i; i = edge[i].next)
+        if (edge[i].key == key)
+            return edge[i].val;
+    return -1;
+}
+inline int128 left(int128 val)
+{
+    bool x = (val >> (n - 1)) & 1;
+    return ((val ^ ((int128)x << (n - 1))) << 1) | x;
+}
+inline int128 right(int128 val)
+{
+    return (val >> 1) | ((val & 1) << (n - 1));
+}
+inline void print(int128 val)
+{
+    for (int i = n - 1; i >= 0; --i)
+        write((val >> i) & 1);
+    write('\n');
+}
+inline int128 calc(int128 val)
+{
+    int las = 0;
+    auto qwq = val & (val << 1);
+    for (int i = 1; i < n; ++i)
+    {
+        if ((qwq >> i) & 1)
+        {
+            if (!las)
+            {
+                las = i;
+                continue;
+            }
+            for (int j = las + 1; j < i - 1; ++j)
+                val |= ((int128)1) << j;
+            las = i;
+        }
+    }
+    return val;
+}
+int cnt;
+inline int dfs(int128 S)
+{
+    if (S & 1)
+        return 0;
+    S = calc(S) | 1;
+    int res = query(S);
+    if (res != -1)
+        return res;
+    res = 0;
+    add(res, dfs(left(S)));
+    add(res, dfs(left(left(S))));
+    add(res, dfs(right(S)));
+    add(res, dfs(right(right(S))));
+    res = (int)((ll)res * inv4 % mod + 1);
+    insert(S, res);
+    return res;
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("walk.in", "r", stdin);
+    freopen("walk.out", "w", stdout);
+#endif
+    read(n, mod);
+    inv4 = (int)((ll)(mod + 1) * (mod + 1) / 4 % mod);
+    write(dfs(0), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

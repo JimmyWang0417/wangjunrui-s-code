@@ -1,9 +1,9 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    P5591 小猪佩奇学数学
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.06 周一 12:31:46 (Asia/Shanghai)
  **/
 #include <cstdio>
 typedef long long ll;
@@ -11,7 +11,7 @@ typedef unsigned long long ull;
 constexpr auto lowbit = [](const auto &x)
 { return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +314,28 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = (1 << 20) + 5;
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+constexpr node inv2 = ((node)2).inv();
+int n, p, k;
+node w[N];
 signed main()
 {
+    read(n, p, k);
+    auto invk = ((node)k).inv();
+    auto calc = [&](int _n, node _k)
+    {
+        return (_k - 1).inv() * _n;
+    };
+    node gn = (node)3 ^ ((mod - 1) / k);
+    w[0] = 1;
+    for (int i = 1; i < k; ++i)
+        w[i] = w[i - 1] * gn;
+    node res = 0;
+    for (int i = 0; i < k; ++i)
+        res += ((w[i] * p + 1) ^ n) * calc(k, w[(k - i) % k]);
+    write((((node)n * p * ((node)(p + 1) ^ (n - 1)) - res * invk) * invk).data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

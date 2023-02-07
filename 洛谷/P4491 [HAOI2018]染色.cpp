@@ -1,17 +1,18 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    P4491 [HAOI2018]染色
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.05 周日 19:26:59 (Asia/Shanghai)
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
 constexpr auto lowbit = [](const auto &x)
 { return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +315,101 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e7 + 5;
+constexpr int M = 4e5 + 5;
+constexpr int mod = 1004535809;
+typedef modint<mod> node;
+constexpr node g = 3;
+constexpr node invg = g.inv();
+int n, m, s, q;
+int limit, len, rk[M];
+node fac[N], ifac[N];
+inline node C(int _x, int _y)
+{
+    return fac[_x] * ifac[_y] * ifac[_x - _y];
+}
+node A[N], B[N];
+inline void NTT(node *dp)
+{
+    for (int i = 0; i < limit; ++i)
+        if (i < rk[i])
+            swap(dp[i], dp[rk[i]]);
+    for (int mid = 1; mid < limit; mid <<= 1)
+    {
+        node gn = g ^ ((mod - 1) / (mid << 1));
+        for (int i = 0; i < limit; i += mid << 1)
+        {
+            node gg = 1;
+            for (int j = 0; j < mid; ++j, gg *= gn)
+            {
+                node x = dp[i + j], y = dp[i + j + mid] * gg;
+                dp[i + j] = x + y;
+                dp[i + j + mid] = x - y;
+            }
+        }
+    }
+}
+inline void INTT(node *dp)
+{
+    for (int i = 0; i < limit; ++i)
+        if (i < rk[i])
+            swap(dp[i], dp[rk[i]]);
+    for (int mid = 1; mid < limit; mid <<= 1)
+    {
+        node gn = invg ^ ((mod - 1) / (mid << 1));
+        for (int i = 0; i < limit; i += mid << 1)
+        {
+            node gg = 1;
+            for (int j = 0; j < mid; ++j, gg *= gn)
+            {
+                node x = dp[i + j], y = dp[i + j + mid] * gg;
+                dp[i + j] = x + y;
+                dp[i + j + mid] = x - y;
+            }
+        }
+    }
+    node invlimit = ((node)limit).inv();
+    for (int i = 0; i < limit; ++i)
+        dp[i] *= invlimit;
+}
 signed main()
 {
+    read(n, m, s);
+    q = max(n, m);
+    fac[0] = 1;
+    for (int i = 1; i <= q; ++i)
+        fac[i] = fac[i - 1] * i;
+    ifac[q] = fac[q].inv();
+    for (int i = q; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i;
+    q = min(m, n / s);
+    for (int i = 0; i <= q; ++i)
+    {
+        A[i] = fac[i] * C(m, i) * fac[n] * (ifac[s] ^ i) * ifac[n - s * i] * ((node)(m - i) ^ (n - i * s));
+        B[q - i] = ifac[i];
+        if (i & 1)
+            B[q - i] = -B[q - i];
+    }
+    limit = 1, len = 0;
+    while (limit <= 2 * q)
+    {
+        limit <<= 1;
+        ++len;
+    }
+    for (int i = 0; i < limit; ++i)
+        rk[i] = (rk[i >> 1] >> 1) | ((i & 1) << (len - 1));
+    NTT(A), NTT(B);
+    for (int i = 0; i < limit; ++i)
+        A[i] *= B[i];
+    INTT(A);
+    node answer = 0;
+    for (int i = 0; i <= q; ++i)
+    {
+        int x;
+        read(x);
+        answer += ifac[i] * A[i + q] * x;
+    }
+    write(answer.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

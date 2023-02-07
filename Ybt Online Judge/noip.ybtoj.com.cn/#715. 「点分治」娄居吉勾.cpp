@@ -1,17 +1,22 @@
 /**
  *    unicode: UTF-8
- *    name:    
+ *    name:    #715. 「点分治」娄居吉勾
  *    author:  whitepaperdog (蒟蒻wjr)
  *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 
+ *    created: 2023.02.06 周一 21:09:51 (Asia/Shanghai)
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
+#include <queue>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
+__extension__ typedef __int128 int128;
 constexpr auto lowbit = [](const auto &x)
 { return x & (-x); };
 
-//#define FAST_IO
+// #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -314,9 +319,193 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
+constexpr int N = 1e5 + 5;
+constexpr int M = 4e5 + 5;
+int n, m, T;
+vector<int> graph[N];
+struct Edge
+{
+    int next, to;
+} edge[M];
+int head[N], num_edge;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+int vis[N], vistime;
+bool visited[N];
+inline void build(int u)
+{
+    vis[u] = vistime;
+    for (int v : graph[u])
+    {
+        if (vis[v] == vistime)
+            continue;
+        add_edge(u, v);
+        add_edge(v, u);
+        // printf(" %d %d\n", u, v);
+        build(v);
+    }
+}
+int sze[N], maxsze[N], sum, root;
+inline void getroot(int u, int _fa)
+{
+    sze[u] = 1;
+    maxsze[u] = 0;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa || visited[v])
+            continue;
+        getroot(v, u);
+        sze[u] += sze[v];
+        ckmax(maxsze[u], sze[v]);
+    }
+    ckmax(maxsze[u], sum - sze[u]);
+    if (maxsze[root] > maxsze[u])
+        root = u;
+}
+int fa[N][23], cnt[N];
+int dis[23][23][N];
+inline void dfs(int u, int _fa)
+{
+    sze[u] = 1;
+    fa[u][++cnt[u]] = root;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa || visited[v])
+            continue;
+        dfs(v, u);
+        sze[u] += sze[v];
+    }
+}
+int p[N], tot;
+bool exist[N];
+inline void solve(int u, int _fa, int limit)
+{
+    vis[u] = vistime;
+    for (int v : graph[u])
+    {
+        if (v == _fa || visited[v])
+            continue;
+        if (limit <= vis[v] && vis[v] < vistime)
+        {
+            p[++tot] = u;
+            p[++tot] = v;
+            continue;
+        }
+    }
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa || visited[v])
+            continue;
+        if (vis[v] == vistime)
+            continue;
+        solve(v, u, limit);
+    }
+}
+int all[N];
+inline void solve(int u)
+{
+    getroot(u, 0);
+    u = root;
+    dfs(u, 0);
 
+    p[tot = 0] = u;
+    int limit = vis[u] = ++vistime;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (visited[v])
+            continue;
+        ++vistime;
+        solve(v, u, limit);
+    }
+    sort(p, p + tot + 1);
+    tot = (int)(unique(p, p + tot + 1) - p - 1);
+    for (int kase = 0; kase <= tot; ++kase)
+    {
+        int S = p[kase];
+        ++vistime;
+        vis[S] = vistime;
+        queue<int> q;
+        q.push(S);
+        while (!q.empty())
+        {
+            int w = q.front();
+            q.pop();
+            for (int v : graph[w])
+            {
+                if (vis[v] < limit)
+                    continue;
+                if (vis[v] == vistime)
+                    continue;
+                dis[cnt[v]][kase][v] = dis[cnt[w]][kase][w] + 1;
+                vis[v] = vistime;
+                q.push(v);
+            }
+        }
+    }
+    all[u] = tot;
+
+    visited[u] = true;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (visited[v])
+            continue;
+        maxsze[root = 0] = sum = sze[v];
+        solve(v);
+    }
+}
+int mindis[N][23];
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("graph.in", "r", stdin);
+    freopen("graph.out", "w", stdout);
+#endif
+    read(n, m, T);
+    for (int i = 1; i <= m; ++i)
+    {
+        int u, v;
+        read(u, v);
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+    ++vistime;
+    build(1);
+    maxsze[root = 0] = sum = n;
+    solve(1);
+    memset(mindis, 0x3f, sizeof(mindis));
+    int qwq;
+    read(qwq);
+    while (qwq--)
+    {
+        int opt, u;
+        read(opt, u);
+        if (opt == 1)
+        {
+            for (int i = 1; i <= cnt[u]; ++i)
+                for (int j = 0; j <= all[fa[u][i]]; ++j)
+                    ckmin(mindis[fa[u][i]][j], dis[i][j][u]);
+        }
+        else
+        {
+            int res = 0x7fffffff;
+            for (int i = 1; i <= cnt[u]; ++i)
+                for (int j = 0; j <= all[fa[u][i]]; ++j)
+                    ckmin(res, mindis[fa[u][i]][j] + dis[i][j][u]);
+            write(res, '\n');
+        }
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
