@@ -64,12 +64,12 @@
 ===============================================================================
  Autoconf               16      1885023      1885023            0            0
  C Header                1         4249         3536          299          414
- C++                  1876       233355       228512         3617         1226
+ C++                  1902       242970       237787         3815         1368
  C++ Header             16         2179         1281          580          318
- Markdown                1         2242            0         2212           30
+ Markdown                2         2262            0         2229           33
  Python                  7         1007          902           33           72
 ===============================================================================
- Total                1917      2128055      2119254         6741         2060
+ Total                1944      2137690      2128529         6956         2205
 ===============================================================================
 ```
 <!-- count the code end -->
@@ -78,6 +78,46 @@
 <!-- directory tree begin -->
 ```plain
 .
+├── 2019 字符串训练
+│   ├── 1.哈希
+│   │   ├── Campaign.cpp
+│   │   ├── loop.cpp
+│   │   ├── rec.cpp
+│   │   ├── snow.cpp
+│   │   ├── symmetry.cpp
+│   │   └── ticket.cpp
+│   ├── 2.kmp
+│   │   ├── bzoj1009.cpp
+│   │   ├── bzoj4974.cpp
+│   │   ├── canon.cpp
+│   │   ├── klavir.cpp
+│   │   ├── match.cpp
+│   │   ├── pow.cpp
+│   │   ├── powerstr.cpp
+│   │   ├── str.cpp
+│   │   └── zoo.cpp
+│   ├── 3.字典树
+│   │   ├── bzoj1954.cpp
+│   │   ├── HDU1247.cpp
+│   │   ├── loop.cpp
+│   │   ├── POJ1816.cpp
+│   │   ├── poj2001.cpp
+│   │   ├── secret.cpp
+│   │   └── 疑惑.cpp
+│   ├── 4.数位DP
+│   │   ├── 奶牛编号.cpp
+│   │   ├── 幸运数.cpp
+│   │   ├── 幸运的666.cpp
+│   │   ├── 数的变换.cpp
+│   │   └── 魔法数字.cpp
+│   └── 5.AC自动机
+│       ├── Divljak.cpp
+│       ├── tamboo.cpp
+│       ├── 前缀匹配.cpp
+│       ├── 单词.cpp
+│       ├── 数数.cpp
+│       ├── 最短字符串.cpp
+│       └── 简单题.cpp
 ├── 51Nod
 │   └── 51nod2929 部落战争.cpp
 ├── AcWing
@@ -315,395 +355,405 @@
 │   ├── COVERING Covering Sets.cpp
 │   └── STR_FUNC Strange Functions.cpp
 ├── Codeforces
-│   ├── CF1000F One Occurrence.cpp
-│   ├── CF1007D Ants.cpp
-│   ├── CF1009F Dominant Indices.cpp
-│   ├── CF1017G The Tree.cpp
-│   ├── CF1019D Large Triangle.cpp
-│   ├── CF1025D Recovering BST.cpp
-│   ├── CF1027F Session in BSU.cpp
-│   ├── CF1034A Enlarge GCD.cpp
-│   ├── CF1036F Relatively Prime Powers.cpp
-│   ├── CF1037H Security.cpp
-│   ├── CF1039D You Are Given a Tree.cpp
-│   ├── CF1042E Vasya and Magic Matrix.cpp
-│   ├── CF1051F The Shortest Statement.cpp
-│   ├── CF1063F String Journey.cpp
-│   ├── CF1070F Debate.cpp
-│   ├── CF1073E Segment Sum.cpp
-│   ├── CF1073G Yet Another LCP Problem.cpp
-│   ├── CF1077D Cutting Out.cpp
-│   ├── CF1080C Masha and two friends.cpp
-│   ├── CF1080F Katya and Segments Sets.cpp
-│   ├── CF1082G Petya and Graph.cpp
-│   ├── CF1083E The Fair Nut and Rectangles.cpp
-│   ├── CF1093E Intersection of Permutations.cpp
-│   ├── CF1093F Vasya and Array.cpp
-│   ├── CF1093G Multidimensional Queries.cpp
-│   ├── CF1097F Alex and a TV Show.cpp
-│   ├── CF1100F Ivan and Burgers.cpp
-│   ├── CF1103E Radix sum.cpp
-│   ├── CF1109E Sasha and a Very Easy Test.cpp
-│   ├── CF1110F Nearest Leaf.cpp
-│   ├── CF1111C Creative Snap.cpp
-│   ├── CF1114E Arithmetic Progression.cpp
-│   ├── CF1114F Please, another Queries on Array?.cpp
-│   ├── CF1119F Niyaz and Small Degrees.cpp
-│   ├── CF1119H Triple.cpp
-│   ├── CF1120D Power Tree.cpp
-│   ├── CF1131D Gourmet choice.cpp
-│   ├── CF1131E String Multiplication.cpp
-│   ├── CF1131F Asya And Kittens.cpp
-│   ├── CF1132G Greedy Subsequences.cpp
-│   ├── CF1139D Steps to One.cpp
-│   ├── CF1139E Maximize Mex.cpp
-│   ├── CF1144G Two Merged Sequences.cpp
-│   ├── CF1147C Thanos Nim.cpp
-│   ├── CF1149C Tree Generator™.cpp
-│   ├── CF1151F Sonya and Informatics.cpp
-│   ├── CF1152C Neko does Maths.cpp
-│   ├── CF1153D Serval and Rooted Tree.cpp
-│   ├── CF1172E Nauuo and ODT.cpp
-│   ├── CF1174E Ehab and the Expected GCD Problem.cpp
-│   ├── CF1175G Yet Another Partiton Problem.cpp
-│   ├── CF1178G The Awesomest Vertex.cpp
-│   ├── CF1188C Array Beauty.cpp
-│   ├── CF1202E You Are Given Some Strings.cpp
-│   ├── CF1208F Bits And Pieces.cpp
-│   ├── CF1208G Polygons.cpp
-│   ├── CF1209E1 Rotate Columns (easy version).cpp
-│   ├── CF1209E2 Rotate Columns (hard version).cpp
-│   ├── CF1209F Koala and Notebook.cpp
-│   ├── CF120J Minimum Sum.cpp
-│   ├── CF1227F1 Wrong Answer on test 233 (Easy Version).cpp
-│   ├── CF1227F2 Wrong Answer on test 233 (Hard Version).cpp
-│   ├── CF1228E Another Filling the Grid.cpp
-│   ├── CF1237F Balanced Domino Placements.cpp
-│   ├── CF1239D Catowice City.cpp
-│   ├── CF123E Maze.cpp
-│   ├── CF1244G Running in Pairs.cpp
-│   ├── CF1251E1 Voting (Easy Version).cpp
-│   ├── CF1251E2 Voting (Hard Version).cpp
-│   ├── CF1253F Cheap Robot.cpp
-│   ├── CF1254D Tree Queries.cpp
-│   ├── CF1264D1 Beautiful Bracket Sequence (easy version).cpp
-│   ├── CF1264D2 Beautiful Bracket Sequence (hard version).cpp
-│   ├── CF1270F Awesome Substrings.cpp
-│   ├── CF1270G Subset with Zero Sum.cpp
-│   ├── CF1278F Cards.cpp
-│   ├── CF1279A New Year Garland.cpp
-│   ├── CF1279B Verse For Santa.cpp
-│   ├── CF1285F Classical?.cpp
-│   ├── CF1290C Prefix Enlightenment.cpp
-│   ├── CF1295A Display The Number.cpp
-│   ├── CF1295B Infinite Prefixes.cpp
-│   ├── CF1295C Obtain The String.cpp
-│   ├── CF1295D Same GCDs.cpp
-│   ├── CF1295E Permutation Separation.cpp
-│   ├── CF1301A Three Strings.cpp
-│   ├── CF1301B Motarack's Birthday.cpp
-│   ├── CF1301C Ayoub's function.cpp
-│   ├── CF1304A Two Rabbits.cpp
-│   ├── CF1304B Longest Palindrome.cpp
-│   ├── CF1304C Air Conditioner.cpp
-│   ├── CF1304E 1-Trees and Queries.cpp
-│   ├── CF1304F2 Animal Observation (hard version).cpp
-│   ├── CF1305A Kuroni and the Gifts.cpp
-│   ├── CF1305B Kuroni and Simple Strings.cpp
-│   ├── CF1305C Kuroni and Impossible Calculation.cpp
-│   ├── CF1305D Kuroni and the Celebration.cpp
-│   ├── CF1311A Add Odd or Subtract Even.cpp
-│   ├── CF1311B WeirdSort.cpp
-│   ├── CF1311C Perform the Combo.cpp
-│   ├── CF1311D Three Integers.cpp
-│   ├── CF1311E Construct the Binary Tree.cpp
-│   ├── CF1311F Moving Points.cpp
-│   ├── CF1312A Two Regular Polygons.cpp
-│   ├── CF1312B Bogosort.cpp
-│   ├── CF1312C Adding Powers.cpp
-│   ├── CF1312D Count the Arrays.cpp
-│   ├── CF1312E Array Shrinking.cpp
-│   ├── CF1313A Fast Food Restaurant.cpp
-│   ├── CF1313B Different Rules.cpp
-│   ├── CF1313C1 Skyscrapers (easy version).cpp
-│   ├── CF1313C2 Skyscrapers (hard version).cpp
-│   ├── CF1316A Grade Allocation.cpp
-│   ├── CF1316B String Modification.cpp
-│   ├── CF1316C Primitive Primes.cpp
-│   ├── CF1316D Nash Matrix.cpp
-│   ├── CF1320A Journey Planning.cpp
-│   ├── CF1320B Navigation System.cpp
-│   ├── CF1320D Reachable Strings.cpp
-│   ├── CF1321A Contest for Robots.cpp
-│   ├── CF1321C Remove Adjacent.cpp
-│   ├── CF1324A Yet Another Tetris Problem.cpp
-│   ├── CF1324B Yet Another Palindrome Problem.cpp
-│   ├── CF1324C Frog Jumps.cpp
-│   ├── CF1324D Pair of Topics.cpp
-│   ├── CF1324E Sleeping Schedule.cpp
-│   ├── CF1324F Maximum White Subtree.cpp
-│   ├── CF1325A EhAb AnD gCd.cpp
-│   ├── CF1325B CopyCopyCopyCopyCopy.cpp
-│   ├── CF1325C Ehab and Path-etic MEXs.cpp
-│   ├── CF1325D Ehab the Xorcist.cpp
-│   ├── CF1325F Ehab's Last Theorem.cpp
-│   ├── CF1326E Bombs.cpp
-│   ├── CF1327F AND Segments.cpp
-│   ├── CF1344C Quantifier Question.cpp
-│   ├── CF1348E Phoenix and Berries.cpp
-│   ├── CF1361C Johnny and Megan's Necklace.cpp
-│   ├── CF1363F Rotating Substrings.cpp
-│   ├── CF1367F1 Flying Sort (Easy Version).cpp
-│   ├── CF1367F2 Flying Sort (Hard Version).cpp
-│   ├── CF1369E DeadLee.cpp
-│   ├── CF1372E Omkar and Last Floor.cpp
-│   ├── CF1375E Inversion SwapSort.cpp
-│   ├── CF1392F Omkar and Landslide.cpp
-│   ├── CF1394C Boboniu and String.cpp
-│   ├── CF13E Holes.cpp
-│   ├── CF1401F Reverse and Swap.cpp
-│   ├── CF1408E Avoid Rainbow Cycles.cpp
-│   ├── CF1416D Graph and Queries.cpp
-│   ├── CF1418E Expected Damage.cpp
-│   ├── CF1428F Fruit Sequences.cpp
-│   ├── CF1436E Complicated Computations.cpp
-│   ├── CF1437F Emotional Fishermen.cpp
-│   ├── CF1438E Yurii Can Do Everything.cpp
-│   ├── CF1439C Greedy Shopping.cpp
-│   ├── CF1442D Sum.cpp
-│   ├── CF1444C Team-Building.cpp
-│   ├── CF1446D1 Frequency Problem (Easy Version).cpp
-│   ├── CF1446D2 Frequency Problem (Hard Version).cpp
-│   ├── CF1452E Two Editorials.cpp
-│   ├── CF1458C Latin Square.cpp
-│   ├── CF1466G Song of the Sirens.cpp
-│   ├── CF1467E Distinctive Roots in a Tree.cpp
-│   ├── CF1473E Minimum Path.cpp
-│   ├── CF147B Smile House.cpp
-│   ├── CF1481E Sorting Books.cpp
-│   ├── CF1485F Copy or Prefix Sum.cpp
-│   ├── CF148D Bag of mice.cpp
-│   ├── CF1494E A-Z Graph.cpp
-│   ├── CF1495D BFS Trees.cpp
-│   ├── CF1497E1 Square-free division (easy version).cpp
-│   ├── CF1497E2 Square-free division (hard version).cpp
-│   ├── CF1499E Chaotic Merge.cpp
-│   ├── CF1523E Crypto Lights.cpp
-│   ├── CF1527D MEX Tree.cpp
-│   ├── CF1527E Partition Game.cpp
-│   ├── CF1550E Stringforces.cpp
-│   ├── CF1553G Common Divisor Graph.cpp
-│   ├── CF1554E You.cpp
-│   ├── CF1559D1 Mocha and Diana (Easy Version).cpp
-│   ├── CF1559D2 Mocha and Diana (Hard Version).cpp
-│   ├── CF1562E Rescue Niwen!.cpp
-│   ├── CF156D Clues.cpp
-│   ├── CF1588F Jumping Through the Array.cpp
-│   ├── CF1592E Bored Bakry.cpp
-│   ├── CF15D Map.cpp
-│   ├── CF1606F Tree Queries.cpp
-│   ├── CF161D Distance in Tree.cpp
-│   ├── CF1634F Fibonacci Additions.cpp
-│   ├── CF163E e-Government.cpp
-│   ├── CF1641D Two Arrays.cpp
-│   ├── CF165E Compatible Numbers.cpp
-│   ├── CF17C Balance.cpp
-│   ├── CF17E Palisection.cpp
-│   ├── CF19D Points.cpp
-│   ├── CF19E Fairy.cpp
-│   ├── CF204E Little Elephant and Strings.cpp
-│   ├── CF208E Blood Cousins.cpp
-│   ├── CF220E Little Elephant and Inversions.cpp
-│   ├── CF232E Quick Tortoise.cpp
-│   ├── CF235B Let's Play Osu!.cpp
-│   ├── CF235C Cyclical Quest.cpp
-│   ├── CF23C Oranges and Apples.cpp
-│   ├── CF23E Tree.cpp
-│   ├── CF240F TorCoder.cpp
-│   ├── CF246E Blood Cousins Return.cpp
-│   ├── CF248E Piglet's Birthday.cpp
-│   ├── CF24D Broken robot.cpp
-│   ├── CF258D Little Elephant and Broken Sorting.cpp
-│   ├── CF260E Dividing Kingdom.cpp
-│   ├── CF261B Maxim and Restaurant.cpp
-│   ├── CF277E Binary Tree on Plane.cpp
-│   ├── CF280C Game on Tree.cpp
-│   ├── CF280D k-Maximum Subsequence Sum.cpp
-│   ├── CF284A Cows and Primitive Roots.cpp
-│   ├── CF286E Ladies' Shop.cpp
-│   ├── CF293E Close Vertices.cpp
-│   ├── CF311B Cats Transport.cpp
-│   ├── CF315A Sereja and Bottles.cpp
-│   ├── CF323C Two permutations.cpp
-│   ├── CF327E Axis Walking.cpp
-│   ├── CF337D Book of Evil.cpp
-│   ├── CF338D GCD Table.cpp
-│   ├── CF338E Optimize!.cpp
-│   ├── CF340E Iahub and Permutations.cpp
-│   ├── CF341D Iahub and Xors.cpp
-│   ├── CF342E Xenia and Tree.cpp
-│   ├── CF343D Water Tree.cpp
-│   ├── CF348C Subset Sums.cpp
-│   ├── CF351D Jeff and Removing Periods.cpp
-│   ├── CF375D Tree and Queries.cpp
-│   ├── CF379F New Year Tree.cpp
-│   ├── CF383C Propagating tree.cpp
-│   ├── CF383E Vowels.cpp
-│   ├── CF398B Painting The Wall.cpp
-│   ├── CF40E Number Table.cpp
-│   ├── CF413D 2048.cpp
-│   ├── CF416E President's Path.cpp
-│   ├── CF427D Match & Catch.cpp
-│   ├── CF436E Cardboard Box.cpp
-│   ├── CF442D Adam and Tree.cpp
-│   ├── CF444C DZY Loves Colors.cpp
-│   ├── CF446C DZY Loves Fibonacci Numbers.cpp
-│   ├── CF449C Jzzhu and Apples.cpp
-│   ├── CF449D Jzzhu and Numbers.cpp
-│   ├── CF44G Shooting Gallery.cpp
-│   ├── CF452E Three strings.cpp
-│   ├── CF452F Permutation.cpp
-│   ├── CF453A Little Pony and Expected Maximum.cpp
-│   ├── CF455D Serega and Fun.cpp
-│   ├── CF45F Goats and Wolves.cpp
-│   ├── CF464E The Classic Problem.cpp
-│   ├── CF468B Two Sets.cpp
-│   ├── CF468E Permanent.cpp
-│   ├── CF484D Kindergarten.cpp
-│   ├── CF484E Sign on Fence.cpp
-│   ├── CF487D Conveyor Belts.cpp
-│   ├── CF487E Tourists.cpp
-│   ├── CF498B Name That Tune.cpp
-│   ├── CF505E Mr. Kitayuta vs. Bamboos.cpp
-│   ├── CF506D Mr. Kitayuta's Colorful Graph.cpp
-│   ├── CF510E Fox And Dinner.cpp
-│   ├── CF516D Drazil and Morning Exercise.cpp
-│   ├── CF518D Ilya and Escalator.cpp
-│   ├── CF519E A and B and Lecture Rooms.cpp
-│   ├── CF521D Shop.cpp
-│   ├── CF526F Pudding Monsters.cpp
-│   ├── CF527E Data Center Drama.cpp
-│   ├── CF528D Fuzzy Search.cpp
-│   ├── CF53E Dead Ends.cpp
-│   ├── CF543C Remembering Strings.cpp
-│   ├── CF547A Mike and Frog.cpp
-│   ├── CF547E Mike and Friends.cpp
-│   ├── CF551E GukiZ and GukiZiana.cpp
-│   ├── CF555E Case of Computer Network.cpp
-│   ├── CF558E A Simple Task.cpp
-│   ├── CF559E Gerald and Path.cpp
-│   ├── CF55D Beautiful numbers.cpp
-│   ├── CF55E Very simple problem.cpp
-│   ├── CF570D Tree Requests.cpp
-│   ├── CF573E Bear and Bowling.cpp
-│   ├── CF576D Flights for Regular Customers.cpp
-│   ├── CF57D Journey.cpp
-│   ├── CF580E Kefa and Watch.cpp
-│   ├── CF581F Zublicanes and Mumocrates.cpp
-│   ├── CF585E Present for Vitalik the Philatelist.cpp
-│   ├── CF594D REQ.cpp
-│   ├── CF5E Bindian Signalizing.cpp
-│   ├── CF600E Lomsat gelral.cpp
-│   ├── CF603E Pastoral Oddities.cpp
-│   ├── CF605E Intergalaxy Trips.cpp
-│   ├── CF607B Zuma.cpp
-│   ├── CF60D Savior.cpp
-│   ├── CF610A Pasha and Stick.cpp
-│   ├── CF613D Kingdom and its Cities.cpp
-│   ├── CF617E XOR and Favorite Number.cpp
-│   ├── CF622F The Sum of the k-th Powers.cpp
-│   ├── CF626E Simple Skewness.cpp
-│   ├── CF626F Group Projects.cpp
-│   ├── CF628D Magic Numbers.cpp
-│   ├── CF630C Lucky Numbers.cpp
-│   ├── CF631E Product Sum.cpp
-│   ├── CF632E Thief in a Shop.cpp
-│   ├── CF643C Levels and Regions.cpp
-│   ├── CF650D Zip-line.cpp
-│   ├── CF653F Paper task.cpp
-│   ├── CF660F Bear and Bowling 4.cpp
-│   ├── CF662C Binary Table.cpp
-│   ├── CF666E Forensic Examination.cpp
-│   ├── CF671D Roads in Yusland.cpp
-│   ├── CF68D Half-decay tree.cpp
-│   ├── CF698C LRU.cpp
-│   ├── CF708C Centroids.cpp
-│   ├── CF710F String Set Queries.cpp
-│   ├── CF713D Animals and Puzzle.cpp
-│   ├── CF715C Digit Tree.cpp
-│   ├── CF724E Goods transportation.cpp
-│   ├── CF724G Xor-matic Number of the Graph.cpp
-│   ├── CF734F Anton and School.cpp
-│   ├── CF739C Alyona and towers.cpp
-│   ├── CF739E Gosha is hunting.cpp
-│   ├── CF741D Arpa’s letter-marked tree and Mehrdad’s Dokhtar-kosh paths.cpp
-│   ├── CF749E Inversions After Shuffle.cpp
-│   ├── CF750E New Year and Old Subsequence.cpp
-│   ├── CF757F Team Rocket Rises Again.cpp
-│   ├── CF765F Souvenirs.cpp
-│   ├── CF771D Bear and Company.cpp
-│   ├── CF785E Anton and Permutation.cpp
-│   ├── CF786C Till I Collapse.cpp
-│   ├── CF798D Mike and distribution.cpp
-│   ├── CF79D Password.cpp
-│   ├── CF800D Varying Kibibits.cpp
-│   ├── CF802A Heidi and Library (easy).cpp
-│   ├── CF802C Heidi and Library (hard).cpp
-│   ├── CF802I Fake News (hard).cpp
-│   ├── CF804D Expected diameter of a tree.cpp
-│   ├── CF811E Vladik and Entertaining Flags.cpp
-│   ├── CF813D Two Melodies.cpp
-│   ├── CF815C Karen and Supermarket.cpp
-│   ├── CF827D Best Edge Weight.cpp
-│   ├── CF835F Roads in the Kingdom.cpp
-│   ├── CF839D Winter is here.cpp
-│   ├── CF840C On the Bench.cpp
-│   ├── CF840D Destiny.cpp
-│   ├── CF848C Goodbye Souvenir.cpp
-│   ├── CF848E Days of Floral Colours.cpp
-│   ├── CF855E Salazar Slytherin's Locket.cpp
-│   ├── CF869C The Intriguing Obsession.cpp
-│   ├── CF869E The Untended Antiquity.cpp
-│   ├── CF86C Genetic engineering.cpp
-│   ├── CF873F Forbidden Indices.cpp
-│   ├── CF875F Royal Questions.cpp
-│   ├── CF888G Xor-MST.cpp
-│   ├── CF891E Lust.cpp
-│   ├── CF893F Subtree Minimum Query.cpp
-│   ├── CF896C Willem, Chtholly and Seniorious.cpp
-│   ├── CF896E Welcome home, Chtholly.cpp
-│   ├── CF898F Restoring the Expression.cpp
-│   ├── CF906D Power Tower.cpp
-│   ├── CF908D New Year and Arbitrary Arrangement.cpp
-│   ├── CF908G New Year and Original Order.cpp
-│   ├── CF911G Mass Change Queries.cpp
-│   ├── CF912E Prime Gift.cpp
-│   ├── CF914D Bash and a Tough Math Puzzle.cpp
-│   ├── CF914E Palindromes in a Tree.cpp
-│   ├── CF914F Substrings in a String.cpp
-│   ├── CF915E Physical Education Lessons.cpp
-│   ├── CF915F Imbalance Value of a Tree.cpp
-│   ├── CF923C Perfect Security.cpp
-│   ├── CF932E Team Work.cpp
-│   ├── CF932F Escape Through Leaf.cpp
-│   ├── CF93C Azembler.cpp
-│   ├── CF93D Flags.cpp
-│   ├── CF940E Cashback.cpp
-│   ├── CF940F Machine Learning.cpp
-│   ├── CF954I Yet Another String Matching Problem.cpp
-│   ├── CF959F Mahmoud and Ehab and yet another xor task.cpp
-│   ├── CF95D Horse Races.cpp
-│   ├── CF95E Lucky Country.cpp
-│   ├── CF960G Bandit Blues.cpp
-│   ├── CF961G Partitions.cpp
-│   ├── CF963D Frequency of String.cpp
-│   ├── CF986C AND Graph.cpp
-│   ├── CF995F Cowmpany Cowmpensation.cpp
-│   ├── CF997C Sky Full of Stars.cpp
-│   ├── CF997E Good Subsegments.cpp
-│   ├── 「1st Hunger Games - Problem K」Pepsi Cola.cpp
-│   ├── 「2017-2018 ACM-ICPC Southeastern European Regional Programming Contest (SEERC 2017) - Problem B」Bricks.cpp
-│   └── 「Andrew Stankevich Contest 16 - Problem F」Pipe Layout.cpp
+│   ├── Group
+│   │   └── 1st Hunger Games
+│   │       ├── K. Pepsi Cola.cpp
+│   │       └── README.md
+│   ├── GYM
+│   │   ├── 2005-2006 Winter Petrozavodsk Camp, Andrew Stankevich Contest 16 (ASC 16)
+│   │   │   └── F. Pipe Layout.cpp
+│   │   ├── 2017-2018 ACM-ICPC Southeastern European Regional Programming Contest (SEERC 2017)
+│   │   │   └── B. Bricks.cpp
+│   │   └── 2018-2019 Summer Petrozavodsk Camp, Oleksandr Kulkov Contest 2
+│   │       └── B. Yet Another Convolution.cpp
+│   └── PROBLEMSET
+│       ├── CF1000F One Occurrence.cpp
+│       ├── CF1007D Ants.cpp
+│       ├── CF1009F Dominant Indices.cpp
+│       ├── CF1017G The Tree.cpp
+│       ├── CF1019D Large Triangle.cpp
+│       ├── CF1025D Recovering BST.cpp
+│       ├── CF1027F Session in BSU.cpp
+│       ├── CF1034A Enlarge GCD.cpp
+│       ├── CF1036F Relatively Prime Powers.cpp
+│       ├── CF1037H Security.cpp
+│       ├── CF1039D You Are Given a Tree.cpp
+│       ├── CF1042E Vasya and Magic Matrix.cpp
+│       ├── CF1051F The Shortest Statement.cpp
+│       ├── CF1063F String Journey.cpp
+│       ├── CF1070F Debate.cpp
+│       ├── CF1073E Segment Sum.cpp
+│       ├── CF1073G Yet Another LCP Problem.cpp
+│       ├── CF1077D Cutting Out.cpp
+│       ├── CF1080C Masha and two friends.cpp
+│       ├── CF1080F Katya and Segments Sets.cpp
+│       ├── CF1082G Petya and Graph.cpp
+│       ├── CF1083E The Fair Nut and Rectangles.cpp
+│       ├── CF1093E Intersection of Permutations.cpp
+│       ├── CF1093F Vasya and Array.cpp
+│       ├── CF1093G Multidimensional Queries.cpp
+│       ├── CF1097F Alex and a TV Show.cpp
+│       ├── CF1100F Ivan and Burgers.cpp
+│       ├── CF1103E Radix sum.cpp
+│       ├── CF1109E Sasha and a Very Easy Test.cpp
+│       ├── CF1110F Nearest Leaf.cpp
+│       ├── CF1111C Creative Snap.cpp
+│       ├── CF1114E Arithmetic Progression.cpp
+│       ├── CF1114F Please, another Queries on Array?.cpp
+│       ├── CF1119F Niyaz and Small Degrees.cpp
+│       ├── CF1119H Triple.cpp
+│       ├── CF1120D Power Tree.cpp
+│       ├── CF1131D Gourmet choice.cpp
+│       ├── CF1131E String Multiplication.cpp
+│       ├── CF1131F Asya And Kittens.cpp
+│       ├── CF1132G Greedy Subsequences.cpp
+│       ├── CF1139D Steps to One.cpp
+│       ├── CF1139E Maximize Mex.cpp
+│       ├── CF1144G Two Merged Sequences.cpp
+│       ├── CF1147C Thanos Nim.cpp
+│       ├── CF1149C Tree Generator™.cpp
+│       ├── CF1151F Sonya and Informatics.cpp
+│       ├── CF1152C Neko does Maths.cpp
+│       ├── CF1153D Serval and Rooted Tree.cpp
+│       ├── CF1172E Nauuo and ODT.cpp
+│       ├── CF1174E Ehab and the Expected GCD Problem.cpp
+│       ├── CF1175G Yet Another Partiton Problem.cpp
+│       ├── CF1178G The Awesomest Vertex.cpp
+│       ├── CF1188C Array Beauty.cpp
+│       ├── CF1202E You Are Given Some Strings.cpp
+│       ├── CF1208F Bits And Pieces.cpp
+│       ├── CF1208G Polygons.cpp
+│       ├── CF1209E1 Rotate Columns (easy version).cpp
+│       ├── CF1209E2 Rotate Columns (hard version).cpp
+│       ├── CF1209F Koala and Notebook.cpp
+│       ├── CF120J Minimum Sum.cpp
+│       ├── CF1227F1 Wrong Answer on test 233 (Easy Version).cpp
+│       ├── CF1227F2 Wrong Answer on test 233 (Hard Version).cpp
+│       ├── CF1228E Another Filling the Grid.cpp
+│       ├── CF1237F Balanced Domino Placements.cpp
+│       ├── CF1239D Catowice City.cpp
+│       ├── CF123E Maze.cpp
+│       ├── CF1244G Running in Pairs.cpp
+│       ├── CF1251E1 Voting (Easy Version).cpp
+│       ├── CF1251E2 Voting (Hard Version).cpp
+│       ├── CF1253F Cheap Robot.cpp
+│       ├── CF1254D Tree Queries.cpp
+│       ├── CF1264D1 Beautiful Bracket Sequence (easy version).cpp
+│       ├── CF1264D2 Beautiful Bracket Sequence (hard version).cpp
+│       ├── CF1270F Awesome Substrings.cpp
+│       ├── CF1270G Subset with Zero Sum.cpp
+│       ├── CF1278F Cards.cpp
+│       ├── CF1279A New Year Garland.cpp
+│       ├── CF1279B Verse For Santa.cpp
+│       ├── CF1285F Classical?.cpp
+│       ├── CF1290C Prefix Enlightenment.cpp
+│       ├── CF1295A Display The Number.cpp
+│       ├── CF1295B Infinite Prefixes.cpp
+│       ├── CF1295C Obtain The String.cpp
+│       ├── CF1295D Same GCDs.cpp
+│       ├── CF1295E Permutation Separation.cpp
+│       ├── CF1301A Three Strings.cpp
+│       ├── CF1301B Motarack's Birthday.cpp
+│       ├── CF1301C Ayoub's function.cpp
+│       ├── CF1304A Two Rabbits.cpp
+│       ├── CF1304B Longest Palindrome.cpp
+│       ├── CF1304C Air Conditioner.cpp
+│       ├── CF1304E 1-Trees and Queries.cpp
+│       ├── CF1304F2 Animal Observation (hard version).cpp
+│       ├── CF1305A Kuroni and the Gifts.cpp
+│       ├── CF1305B Kuroni and Simple Strings.cpp
+│       ├── CF1305C Kuroni and Impossible Calculation.cpp
+│       ├── CF1305D Kuroni and the Celebration.cpp
+│       ├── CF1311A Add Odd or Subtract Even.cpp
+│       ├── CF1311B WeirdSort.cpp
+│       ├── CF1311C Perform the Combo.cpp
+│       ├── CF1311D Three Integers.cpp
+│       ├── CF1311E Construct the Binary Tree.cpp
+│       ├── CF1311F Moving Points.cpp
+│       ├── CF1312A Two Regular Polygons.cpp
+│       ├── CF1312B Bogosort.cpp
+│       ├── CF1312C Adding Powers.cpp
+│       ├── CF1312D Count the Arrays.cpp
+│       ├── CF1312E Array Shrinking.cpp
+│       ├── CF1313A Fast Food Restaurant.cpp
+│       ├── CF1313B Different Rules.cpp
+│       ├── CF1313C1 Skyscrapers (easy version).cpp
+│       ├── CF1313C2 Skyscrapers (hard version).cpp
+│       ├── CF1316A Grade Allocation.cpp
+│       ├── CF1316B String Modification.cpp
+│       ├── CF1316C Primitive Primes.cpp
+│       ├── CF1316D Nash Matrix.cpp
+│       ├── CF1320A Journey Planning.cpp
+│       ├── CF1320B Navigation System.cpp
+│       ├── CF1320D Reachable Strings.cpp
+│       ├── CF1321A Contest for Robots.cpp
+│       ├── CF1321C Remove Adjacent.cpp
+│       ├── CF1324A Yet Another Tetris Problem.cpp
+│       ├── CF1324B Yet Another Palindrome Problem.cpp
+│       ├── CF1324C Frog Jumps.cpp
+│       ├── CF1324D Pair of Topics.cpp
+│       ├── CF1324E Sleeping Schedule.cpp
+│       ├── CF1324F Maximum White Subtree.cpp
+│       ├── CF1325A EhAb AnD gCd.cpp
+│       ├── CF1325B CopyCopyCopyCopyCopy.cpp
+│       ├── CF1325C Ehab and Path-etic MEXs.cpp
+│       ├── CF1325D Ehab the Xorcist.cpp
+│       ├── CF1325F Ehab's Last Theorem.cpp
+│       ├── CF1326E Bombs.cpp
+│       ├── CF1327F AND Segments.cpp
+│       ├── CF1344C Quantifier Question.cpp
+│       ├── CF1348E Phoenix and Berries.cpp
+│       ├── CF1361C Johnny and Megan's Necklace.cpp
+│       ├── CF1363F Rotating Substrings.cpp
+│       ├── CF1367F1 Flying Sort (Easy Version).cpp
+│       ├── CF1367F2 Flying Sort (Hard Version).cpp
+│       ├── CF1369E DeadLee.cpp
+│       ├── CF1372E Omkar and Last Floor.cpp
+│       ├── CF1375E Inversion SwapSort.cpp
+│       ├── CF1392F Omkar and Landslide.cpp
+│       ├── CF1394C Boboniu and String.cpp
+│       ├── CF13E Holes.cpp
+│       ├── CF1401F Reverse and Swap.cpp
+│       ├── CF1408E Avoid Rainbow Cycles.cpp
+│       ├── CF1416D Graph and Queries.cpp
+│       ├── CF1418E Expected Damage.cpp
+│       ├── CF1428F Fruit Sequences.cpp
+│       ├── CF1436E Complicated Computations.cpp
+│       ├── CF1437F Emotional Fishermen.cpp
+│       ├── CF1438E Yurii Can Do Everything.cpp
+│       ├── CF1439C Greedy Shopping.cpp
+│       ├── CF1442D Sum.cpp
+│       ├── CF1444C Team-Building.cpp
+│       ├── CF1446D1 Frequency Problem (Easy Version).cpp
+│       ├── CF1446D2 Frequency Problem (Hard Version).cpp
+│       ├── CF1452E Two Editorials.cpp
+│       ├── CF1458C Latin Square.cpp
+│       ├── CF1466G Song of the Sirens.cpp
+│       ├── CF1467E Distinctive Roots in a Tree.cpp
+│       ├── CF1473E Minimum Path.cpp
+│       ├── CF147B Smile House.cpp
+│       ├── CF1481E Sorting Books.cpp
+│       ├── CF1485F Copy or Prefix Sum.cpp
+│       ├── CF148D Bag of mice.cpp
+│       ├── CF1494E A-Z Graph.cpp
+│       ├── CF1495D BFS Trees.cpp
+│       ├── CF1497E1 Square-free division (easy version).cpp
+│       ├── CF1497E2 Square-free division (hard version).cpp
+│       ├── CF1499E Chaotic Merge.cpp
+│       ├── CF1523E Crypto Lights.cpp
+│       ├── CF1527D MEX Tree.cpp
+│       ├── CF1527E Partition Game.cpp
+│       ├── CF1550E Stringforces.cpp
+│       ├── CF1553G Common Divisor Graph.cpp
+│       ├── CF1554E You.cpp
+│       ├── CF1559D1 Mocha and Diana (Easy Version).cpp
+│       ├── CF1559D2 Mocha and Diana (Hard Version).cpp
+│       ├── CF1562E Rescue Niwen!.cpp
+│       ├── CF156D Clues.cpp
+│       ├── CF1588F Jumping Through the Array.cpp
+│       ├── CF1592E Bored Bakry.cpp
+│       ├── CF15D Map.cpp
+│       ├── CF1606F Tree Queries.cpp
+│       ├── CF161D Distance in Tree.cpp
+│       ├── CF1634F Fibonacci Additions.cpp
+│       ├── CF163E e-Government.cpp
+│       ├── CF1641D Two Arrays.cpp
+│       ├── CF165E Compatible Numbers.cpp
+│       ├── CF17C Balance.cpp
+│       ├── CF17E Palisection.cpp
+│       ├── CF19D Points.cpp
+│       ├── CF19E Fairy.cpp
+│       ├── CF204E Little Elephant and Strings.cpp
+│       ├── CF208E Blood Cousins.cpp
+│       ├── CF220E Little Elephant and Inversions.cpp
+│       ├── CF232E Quick Tortoise.cpp
+│       ├── CF235B Let's Play Osu!.cpp
+│       ├── CF235C Cyclical Quest.cpp
+│       ├── CF23C Oranges and Apples.cpp
+│       ├── CF23E Tree.cpp
+│       ├── CF240F TorCoder.cpp
+│       ├── CF246E Blood Cousins Return.cpp
+│       ├── CF248E Piglet's Birthday.cpp
+│       ├── CF24D Broken robot.cpp
+│       ├── CF258D Little Elephant and Broken Sorting.cpp
+│       ├── CF260E Dividing Kingdom.cpp
+│       ├── CF261B Maxim and Restaurant.cpp
+│       ├── CF277E Binary Tree on Plane.cpp
+│       ├── CF280C Game on Tree.cpp
+│       ├── CF280D k-Maximum Subsequence Sum.cpp
+│       ├── CF284A Cows and Primitive Roots.cpp
+│       ├── CF286E Ladies' Shop.cpp
+│       ├── CF293E Close Vertices.cpp
+│       ├── CF311B Cats Transport.cpp
+│       ├── CF315A Sereja and Bottles.cpp
+│       ├── CF323C Two permutations.cpp
+│       ├── CF327E Axis Walking.cpp
+│       ├── CF337D Book of Evil.cpp
+│       ├── CF338D GCD Table.cpp
+│       ├── CF338E Optimize!.cpp
+│       ├── CF340E Iahub and Permutations.cpp
+│       ├── CF341D Iahub and Xors.cpp
+│       ├── CF342E Xenia and Tree.cpp
+│       ├── CF343D Water Tree.cpp
+│       ├── CF348C Subset Sums.cpp
+│       ├── CF351D Jeff and Removing Periods.cpp
+│       ├── CF375D Tree and Queries.cpp
+│       ├── CF379F New Year Tree.cpp
+│       ├── CF383C Propagating tree.cpp
+│       ├── CF383E Vowels.cpp
+│       ├── CF398B Painting The Wall.cpp
+│       ├── CF40E Number Table.cpp
+│       ├── CF413D 2048.cpp
+│       ├── CF416E President's Path.cpp
+│       ├── CF427D Match & Catch.cpp
+│       ├── CF436E Cardboard Box.cpp
+│       ├── CF442D Adam and Tree.cpp
+│       ├── CF444C DZY Loves Colors.cpp
+│       ├── CF446C DZY Loves Fibonacci Numbers.cpp
+│       ├── CF449C Jzzhu and Apples.cpp
+│       ├── CF449D Jzzhu and Numbers.cpp
+│       ├── CF44G Shooting Gallery.cpp
+│       ├── CF452E Three strings.cpp
+│       ├── CF452F Permutation.cpp
+│       ├── CF453A Little Pony and Expected Maximum.cpp
+│       ├── CF455D Serega and Fun.cpp
+│       ├── CF45F Goats and Wolves.cpp
+│       ├── CF464E The Classic Problem.cpp
+│       ├── CF468B Two Sets.cpp
+│       ├── CF468E Permanent.cpp
+│       ├── CF484D Kindergarten.cpp
+│       ├── CF484E Sign on Fence.cpp
+│       ├── CF487D Conveyor Belts.cpp
+│       ├── CF487E Tourists.cpp
+│       ├── CF498B Name That Tune.cpp
+│       ├── CF505E Mr. Kitayuta vs. Bamboos.cpp
+│       ├── CF506D Mr. Kitayuta's Colorful Graph.cpp
+│       ├── CF510E Fox And Dinner.cpp
+│       ├── CF516D Drazil and Morning Exercise.cpp
+│       ├── CF518D Ilya and Escalator.cpp
+│       ├── CF519E A and B and Lecture Rooms.cpp
+│       ├── CF521D Shop.cpp
+│       ├── CF526F Pudding Monsters.cpp
+│       ├── CF527E Data Center Drama.cpp
+│       ├── CF528D Fuzzy Search.cpp
+│       ├── CF53E Dead Ends.cpp
+│       ├── CF543C Remembering Strings.cpp
+│       ├── CF547A Mike and Frog.cpp
+│       ├── CF547E Mike and Friends.cpp
+│       ├── CF551E GukiZ and GukiZiana.cpp
+│       ├── CF555E Case of Computer Network.cpp
+│       ├── CF558E A Simple Task.cpp
+│       ├── CF559E Gerald and Path.cpp
+│       ├── CF55D Beautiful numbers.cpp
+│       ├── CF55E Very simple problem.cpp
+│       ├── CF570D Tree Requests.cpp
+│       ├── CF573E Bear and Bowling.cpp
+│       ├── CF576D Flights for Regular Customers.cpp
+│       ├── CF576E Painting Edges.cpp
+│       ├── CF57D Journey.cpp
+│       ├── CF580E Kefa and Watch.cpp
+│       ├── CF581F Zublicanes and Mumocrates.cpp
+│       ├── CF585E Present for Vitalik the Philatelist.cpp
+│       ├── CF594D REQ.cpp
+│       ├── CF5E Bindian Signalizing.cpp
+│       ├── CF600E Lomsat gelral.cpp
+│       ├── CF603E Pastoral Oddities.cpp
+│       ├── CF605E Intergalaxy Trips.cpp
+│       ├── CF607B Zuma.cpp
+│       ├── CF60D Savior.cpp
+│       ├── CF610A Pasha and Stick.cpp
+│       ├── CF613D Kingdom and its Cities.cpp
+│       ├── CF617E XOR and Favorite Number.cpp
+│       ├── CF622F The Sum of the k-th Powers.cpp
+│       ├── CF626E Simple Skewness.cpp
+│       ├── CF626F Group Projects.cpp
+│       ├── CF628D Magic Numbers.cpp
+│       ├── CF630C Lucky Numbers.cpp
+│       ├── CF631E Product Sum.cpp
+│       ├── CF632E Thief in a Shop.cpp
+│       ├── CF643C Levels and Regions.cpp
+│       ├── CF650D Zip-line.cpp
+│       ├── CF653F Paper task.cpp
+│       ├── CF660F Bear and Bowling 4.cpp
+│       ├── CF662C Binary Table.cpp
+│       ├── CF666E Forensic Examination.cpp
+│       ├── CF671D Roads in Yusland.cpp
+│       ├── CF68D Half-decay tree.cpp
+│       ├── CF698C LRU.cpp
+│       ├── CF708C Centroids.cpp
+│       ├── CF710F String Set Queries.cpp
+│       ├── CF713D Animals and Puzzle.cpp
+│       ├── CF715C Digit Tree.cpp
+│       ├── CF724E Goods transportation.cpp
+│       ├── CF724G Xor-matic Number of the Graph.cpp
+│       ├── CF734F Anton and School.cpp
+│       ├── CF739C Alyona and towers.cpp
+│       ├── CF739E Gosha is hunting.cpp
+│       ├── CF741D Arpa’s letter-marked tree and Mehrdad’s Dokhtar-kosh paths.cpp
+│       ├── CF749E Inversions After Shuffle.cpp
+│       ├── CF750E New Year and Old Subsequence.cpp
+│       ├── CF757F Team Rocket Rises Again.cpp
+│       ├── CF765F Souvenirs.cpp
+│       ├── CF771D Bear and Company.cpp
+│       ├── CF785E Anton and Permutation.cpp
+│       ├── CF786C Till I Collapse.cpp
+│       ├── CF798D Mike and distribution.cpp
+│       ├── CF79D Password.cpp
+│       ├── CF800D Varying Kibibits.cpp
+│       ├── CF802A Heidi and Library (easy).cpp
+│       ├── CF802C Heidi and Library (hard).cpp
+│       ├── CF802I Fake News (hard).cpp
+│       ├── CF804D Expected diameter of a tree.cpp
+│       ├── CF811E Vladik and Entertaining Flags.cpp
+│       ├── CF813D Two Melodies.cpp
+│       ├── CF815C Karen and Supermarket.cpp
+│       ├── CF827D Best Edge Weight.cpp
+│       ├── CF835F Roads in the Kingdom.cpp
+│       ├── CF839D Winter is here.cpp
+│       ├── CF840C On the Bench.cpp
+│       ├── CF840D Destiny.cpp
+│       ├── CF848C Goodbye Souvenir.cpp
+│       ├── CF848E Days of Floral Colours.cpp
+│       ├── CF855E Salazar Slytherin's Locket.cpp
+│       ├── CF869C The Intriguing Obsession.cpp
+│       ├── CF869E The Untended Antiquity.cpp
+│       ├── CF86C Genetic engineering.cpp
+│       ├── CF873F Forbidden Indices.cpp
+│       ├── CF875F Royal Questions.cpp
+│       ├── CF888G Xor-MST.cpp
+│       ├── CF891E Lust.cpp
+│       ├── CF893F Subtree Minimum Query.cpp
+│       ├── CF896C Willem, Chtholly and Seniorious.cpp
+│       ├── CF896E Welcome home, Chtholly.cpp
+│       ├── CF898F Restoring the Expression.cpp
+│       ├── CF906D Power Tower.cpp
+│       ├── CF908D New Year and Arbitrary Arrangement.cpp
+│       ├── CF908G New Year and Original Order.cpp
+│       ├── CF911G Mass Change Queries.cpp
+│       ├── CF912E Prime Gift.cpp
+│       ├── CF914D Bash and a Tough Math Puzzle.cpp
+│       ├── CF914E Palindromes in a Tree.cpp
+│       ├── CF914F Substrings in a String.cpp
+│       ├── CF915E Physical Education Lessons.cpp
+│       ├── CF915F Imbalance Value of a Tree.cpp
+│       ├── CF923C Perfect Security.cpp
+│       ├── CF932E Team Work.cpp
+│       ├── CF932F Escape Through Leaf.cpp
+│       ├── CF93C Azembler.cpp
+│       ├── CF93D Flags.cpp
+│       ├── CF940E Cashback.cpp
+│       ├── CF940F Machine Learning.cpp
+│       ├── CF954I Yet Another String Matching Problem.cpp
+│       ├── CF959F Mahmoud and Ehab and yet another xor task.cpp
+│       ├── CF95D Horse Races.cpp
+│       ├── CF95E Lucky Country.cpp
+│       ├── CF960G Bandit Blues.cpp
+│       ├── CF961G Partitions.cpp
+│       ├── CF963D Frequency of String.cpp
+│       ├── CF986C AND Graph.cpp
+│       ├── CF995F Cowmpany Cowmpensation.cpp
+│       ├── CF997C Sky Full of Stars.cpp
+│       └── CF997E Good Subsegments.cpp
 ├── custom_code_generator.py
 ├── HackerRank
 │   ├── Subset
@@ -840,7 +890,9 @@
 │   ├── #2720 「NOI2018」你的名字.cpp
 │   ├── #3156 「NOI2019」回家路线.cpp
 │   ├── #3159. 「NOI2019」弹跳.cpp
+│   ├── #3277. 「JOISC 2020 Day3」星座 3.cpp
 │   ├── #494. 「斜率优化 DP」最小划分.cpp
+│   ├── #508. 「LibreOJ NOI Round #1」失控的未来交通工具.cpp
 │   ├── #6001 「网络流 24 题」太空飞行计划.cpp
 │   ├── #6030. 「雅礼集训 2017 Day1」矩阵.cpp
 │   ├── #6192 「美团 CodeM 复赛」城市网络.cpp
@@ -854,6 +906,7 @@
 │   ├── #6283 数列分块入门 7.cpp
 │   ├── #6284 数列分块入门 8.cpp
 │   ├── #6285 数列分块入门 9.cpp
+│   ├── #6485. LJJ 学二项式定理.cpp
 │   ├── #6490. 「XXOI 2018」暑假时在做什么？有没有空？可以来学物理吗？.cpp
 │   ├── #6669 Nauuo and Binary Tree.cpp
 │   └── #P5330 [SNOI2019]数论.cpp
@@ -952,6 +1005,8 @@
 ├── Timus Online Judge
 │   ├── 1297. Palindrome.cpp
 │   └── 1519. Formula 1.cpp
+├── TopCoder
+│   └── TopCoder-13444 CountTables.cpp
 ├── Universal Online Judge
 │   ├── #274. 【清华集训2016】温暖会指引我们前行.cpp
 │   ├── #35. 后缀排序.cpp
@@ -1038,28 +1093,44 @@
 │   └── UVA760 DNA Sequencing.cpp
 ├── Ybt Online Judge
 │   ├── noip.ybtoj.com.cn
+│   │   ├── #455. 「概率期望 DP」期望题.cpp
+│   │   ├── #465. 「数据结构优化 DP」仰望星空.cpp
 │   │   ├── #485. 「单调队列优化 DP」出题人.cpp
 │   │   ├── #509. 「状压 DP」网格染色.cpp
+│   │   ├── #510. 「状压 DP」随机游走.cpp
+│   │   ├── #536. 「后缀数组」棕发少女.cpp
 │   │   ├── #545. 「后缀自动机」子串染色.cpp
 │   │   ├── #585. 「网络流」变量取值.cpp
 │   │   ├── #595. 「费用流」孤走暗巷.cpp
+│   │   ├── #596. 「费用流」催眠大师.cpp
 │   │   ├── #605. 「强连通分量」全面沦陷.cpp
 │   │   ├── #645. 「平衡树」寄蒜挤河.cpp
+│   │   ├── #665. 「可持久化数据结构」我的世界.cpp
 │   │   ├── #675. 「树套树」查区间.cpp
+│   │   ├── #681. 「线段树合并」图论题.cpp
 │   │   ├── #705. 「树链剖分」不跪模样.cpp
 │   │   ├── #715. 「分块」天气之子.cpp
+│   │   ├── #715. 「点分治」娄居吉勾.cpp
 │   │   ├── #724. 「虚树」树上距离.cpp
+│   │   ├── #736. 「动态树LCT」删除序列.cpp
+│   │   ├── #755. 「分治」买棉花糖.cpp
+│   │   ├── #765. 「启发式合并」集合比较.cpp
 │   │   ├── #775. 「分块」樱桃莓莓.cpp
 │   │   ├── #795. 「CDQ 分治 & 整体二分」打怪兽.cpp
+│   │   ├── #826. 「计算几何初探」海妖沙龙.cpp
+│   │   ├── #865. 「扫描线」百里守约.cpp
+│   │   ├── #885. 「线性基」异或路径.cpp
 │   │   ├── #895. 「高斯消元」千与千寻.cpp
 │   │   ├── #905. 「拉格朗日插值」你的名字.cpp
 │   │   ├── #906. 「拉格朗日插值」树的计数(打表).cpp
 │   │   ├── #906. 「拉格朗日插值」树的计数.cpp
+│   │   ├── #935. 「同余方程」鲁班七号.cpp
 │   │   ├── #945. 「莫比乌斯反演」网格与圆.cpp
 │   │   ├── #965. 「FFT」对峙绝望.cpp
 │   │   ├── #973. 「FWT」异或序列.cpp
 │   │   ├── #974. 「FWT」计数题.cpp
 │   │   ├── #978. 「母函数」路径计数.cpp
+│   │   ├── #988. 「博弈论」马可波罗.cpp
 │   │   └── #991. 「组合计数」人人人数.cpp
 │   ├── solution
 │   │   ├── 2-SAT.pdf
@@ -1546,6 +1617,7 @@
 │   ├── P3209 [HNOI2010]平面图判定.cpp
 │   ├── P3210 [HNOI2010]取石头游戏.cpp
 │   ├── P3211 [HNOI2011]XOR和路径.cpp
+│   ├── P3214 [HNOI2011] 卡农.cpp
 │   ├── P3222 [HNOI2012]射箭.cpp
 │   ├── P3224 [HNOI2012]永无乡.cpp
 │   ├── P3227 [HNOI2013]切糕.cpp
@@ -1773,6 +1845,7 @@
 │   ├── P4450 双亲数.cpp
 │   ├── P4462 [CQOI2018]异或序列.cpp
 │   ├── P4475 巧克力王国.cpp
+│   ├── P4491 [HAOI2018]染色.cpp
 │   ├── P4495 [HAOI2018]奇怪的背包.cpp
 │   ├── P4514 上帝造题的七分钟.cpp
 │   ├── P4516 [JSOI2018]潜入行动.cpp
@@ -1891,6 +1964,7 @@
 │   ├── P5526 [Ynoi2012] 惊惶的 SCOI2016.cpp
 │   ├── P5546 [POI2000]公共串.cpp
 │   ├── P5555 秩序魔咒.cpp
+│   ├── P5591 小猪佩奇学数学.cpp
 │   ├── P5621 [DBOI2019]德丽莎世界第一可爱.cpp
 │   ├── P5631 最小mex生成树.cpp
 │   ├── P5657 格雷码.cpp
@@ -1966,6 +2040,7 @@
 │   ├── P7113 [NOIP2020] 排水系统.cpp
 │   ├── P7114 [NOIP2020] 字符串匹配.cpp
 │   ├── P7215 [JOISC2020] 首都.cpp
+│   ├── P7219 [JOISC2020] 星座 3.cpp
 │   ├── P7302 [NOI1998] 免费的馅饼.cpp
 │   ├── P7360 「JZOI-1」红包.cpp
 │   ├── P7409 SvT.cpp
@@ -2005,48 +2080,8 @@
 │   ├── T102431 柱状图（hist,1.5s,512MB）.cpp
 │   ├── T85975 高精度除法.cpp
 │   └── U41492 树上数颜色.cpp
-├── 牛客
-│   └── acm23991 CSL 的密码.cpp
-└── 第二轮刷题
-    ├── 1.哈希
-    │   ├── Campaign.cpp
-    │   ├── loop.cpp
-    │   ├── rec.cpp
-    │   ├── snow.cpp
-    │   ├── symmetry.cpp
-    │   └── ticket.cpp
-    ├── 2.kmp
-    │   ├── bzoj1009.cpp
-    │   ├── bzoj4974.cpp
-    │   ├── canon.cpp
-    │   ├── klavir.cpp
-    │   ├── match.cpp
-    │   ├── pow.cpp
-    │   ├── powerstr.cpp
-    │   ├── str.cpp
-    │   └── zoo.cpp
-    ├── 3.字典树
-    │   ├── bzoj1954.cpp
-    │   ├── HDU1247.cpp
-    │   ├── loop.cpp
-    │   ├── POJ1816.cpp
-    │   ├── poj2001.cpp
-    │   ├── secret.cpp
-    │   └── 疑惑.cpp
-    ├── 4.数位DP
-    │   ├── 奶牛编号.cpp
-    │   ├── 幸运数.cpp
-    │   ├── 幸运的666.cpp
-    │   ├── 数的变换.cpp
-    │   └── 魔法数字.cpp
-    └── 5.AC自动机
-        ├── Divljak.cpp
-        ├── tamboo.cpp
-        ├── 前缀匹配.cpp
-        ├── 单词.cpp
-        ├── 数数.cpp
-        ├── 最短字符串.cpp
-        └── 简单题.cpp
+└── 牛客
+    └── acm23991 CSL 的密码.cpp
 ```
 <!-- directory tree end -->
 HNOI2019]鱼.cpp
