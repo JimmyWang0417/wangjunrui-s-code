@@ -236,5 +236,6 @@
     "carbon.paddingHorizontal": 16,
     "carbon.lineNumbers": false,
     "carbon.fontFamily": "Hack",
-    "carbon.fontSize": 13
+    "carbon.fontSize": 13,
+    "C_Cpp.errorSquiggles": "disabled"
 }

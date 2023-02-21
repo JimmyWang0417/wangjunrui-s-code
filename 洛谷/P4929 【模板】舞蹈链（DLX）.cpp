@@ -1,17 +1,16 @@
 /**
- *    unicode: UTF-8
- *    name:    Lolita
- *    author:  whitepaperdog (蒟蒻wjr)
- *    located: Changle District, Fuzhou City, Fujian Province, China
- *    created: 2023.02.03 周五 21:19:14 (Asia/Shanghai)
+ *    name:     P4929 【模板】舞蹈链（DLX）
+ *    author:   whitepaperdog (蒟蒻wjr)
+ *    located:  Changle District, Fuzhou City, Fujian Province, China
+ *    created:  2023.02.21 周二 21:20:47 (Asia/Shanghai)
+ *    unicode:  UTF-8
+ *    standard: c++23
  **/
-#include <algorithm>
 #include <cstdio>
-#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
-constexpr auto lowbit = [](const auto &x)
-{ return x & (-x); };
+// __extension__ typedef __int128 int128;
+#define lowbit(x) ((x) & (-(x)))
 
 // #define FAST_IO
 
@@ -316,155 +315,98 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e5 + 5;
-constexpr int mod = 998244353;
-constexpr int miu[] = {0, 1, -1, -1, 0, -1, 1};
-typedef modint<mod> node;
-int n, k, m, limit;
-struct matrix
+constexpr int N = 505 * 505;
+int n, m, tot;
+int L[N], R[N], U[N], D[N];
+int head[N], row[N], col[N], sze[N];
+inline void build()
 {
-    node g[6];
-    matrix() : g() {}
-    inline node operator[](int x) const
+    for (int i = 0; i <= m; ++i)
     {
-        return g[x];
+        L[i] = i - 1, R[i] = i + 1;
+        U[i] = D[i] = i;
     }
-    inline node &operator[](int x)
-    {
-        return g[x];
-    }
-    inline void operator+=(const matrix &rhs)
-    {
-        for (int i = 0; i < k; ++i)
-            g[i] += rhs[i];
-    }
-    inline void operator-=(const matrix &rhs)
-    {
-        for (int i = 0; i < k; ++i)
-            g[i] -= rhs[i];
-    }
-    inline matrix operator*(const matrix &rhs) const
-    {
-        matrix ans;
-        for (int i = 0; i < k; ++i)
-            for (int j = 0; j < k; ++j)
-                ans[(i + j) % k] += g[i] * rhs[j];
-        return ans;
-    }
-    inline void operator*=(const node &rhs)
-    {
-        for (int i = 0; i < k; ++i)
-            g[i] *= rhs;
-    }
-    inline matrix right(int x)
-    {
-        matrix res;
-        for (int i = 0; i < k; ++i)
-            res[(i + x) % k] = g[i];
-        return res;
-    }
-    inline matrix left(int x)
-    {
-        return right(k - x % k);
-    }
-} A[N], B[N];
-inline void FWT(matrix *dp)
-{
-    for (int mid = 1; mid < limit; mid *= k)
-        for (int i = 0; i < limit; i += mid * k)
-            for (int j = 0; j < mid; ++j)
-            {
-                static matrix x[10], y[10];
-                for (int l = 0; l < k; ++l)
-                {
-                    x[l] = dp[i + j + l * mid];
-                    y[l] = matrix();
-                }
-                for (int l = 0; l < k; ++l)
-                    for (int r = 0; r < k; ++r)
-                        y[l] += x[r].right(l * r);
-                for (int l = 0; l < k; ++l)
-                    dp[i + j + l * mid] = y[l];
-            }
+    L[0] = m, R[m] = 0;
+    tot = m;
 }
-node buf[2][41];
-auto f = buf[0], g = buf[1];
-int fcnt, gcnt;
-inline void IFWT(matrix *dp)
+inline void insert(int r, int c)
 {
-    for (int mid = 1; mid < limit; mid *= k)
-        for (int i = 0; i < limit; i += mid * k)
-            for (int j = 0; j < mid; ++j)
-            {
-                static matrix x[10], y[10];
-                for (int l = 0; l < k; ++l)
-                {
-                    x[l] = dp[i + j + l * mid];
-                    y[l] = matrix();
-                }
-                for (int l = 0; l < k; ++l)
-                    for (int r = 0; r < k; ++r)
-                        y[l] += x[r].left(l * r);
-                for (int l = 0; l < k; ++l)
-                    dp[i + j + l * mid] = y[l];
-            }
-    node inv = ((node)limit).inv();
-    for (int i = 0; i < limit; ++i)
-        dp[i] *= inv;
+    int u = ++tot;
+    row[u] = r, col[u] = c, ++sze[c];
+    D[U[u] = c] = U[D[u] = D[c]] = u;
+    if (!head[r])
+        head[r] = L[u] = R[u] = u;
+    else
+        R[L[u] = head[r]] = L[R[u] = R[head[r]]] = u;
 }
-inline void init()
+inline void remove(int c)
 {
-    f[0] = 1;
-    for (int i = 1; i <= k; ++i)
-    {
-        if (k % i || miu[k / i] != 1)
-            continue;
-        swap(fcnt, gcnt);
-        swap(f, g);
-        memset(static_cast<void *>(f), 0, sizeof(buf[0]));
-        for (int j = 0; j <= gcnt; ++j)
+    L[R[c]] = L[c], R[L[c]] = R[c];
+    for (int i = D[c]; i != c; i = D[i])
+        for (int j = R[i]; j != i; j = R[j])
         {
-            f[j + k] += g[j];
-            f[j] -= g[j];
+            U[D[j]] = U[j];
+            D[U[j]] = D[j];
+            --sze[col[j]];
         }
-        fcnt = gcnt + i;
-    }
-    for (int i = 1; i <= k; ++i)
-    {
-        if (k % i || miu[k / i] != -1)
-            continue;
-        swap(fcnt, gcnt);
-        swap(f, g);
-        memset(static_cast<void *>(f), 0, sizeof(buf[0]));
-        for (int j = gcnt; j >= i; --j)
-        {
-            f[j - i] += g[j];
-            g[j - i] += g[j];
-        }
-        fcnt = gcnt - i;
-    }
 }
-inline node solve(matrix val)
+inline void recover(int c)
 {
-    for (int i = k; i >= fcnt; --i)
+    for (int i = U[c]; i != c; i = U[i])
+        for (int j = L[i]; j != i; j = L[j])
+        {
+            U[D[j]] = D[U[j]] = j;
+            ++sze[col[j]];
+        }
+    L[R[c]] = R[L[c]] = c;
+}
+int answer[N], answertot;
+inline bool dance(int dep)
+{
+    if (!R[0])
     {
-        for (int j = fcnt; j >= 1; --j)
-            val[i - j] -= val[i] * f[fcnt - j]; 
+        answertot = dep;
+        return true;
     }
-    return val[0];
+    int c = R[0];
+    for (int i = R[0]; i; i = R[i])
+        if (sze[i] < sze[c])
+            c = i;
+    remove(c);
+    for (int i = D[c]; i != c; i = D[i])
+    {
+        answer[dep] = row[i];
+        for (int j = R[i]; j != i; j = R[j])
+            remove(col[j]);
+        if (dance(dep + 1))
+            return true;
+        for (int j = L[i]; j != i; j = L[j])
+            recover(col[j]);
+    }
+    recover(c);
+    return false;
 }
 signed main()
 {
-    read(n, k, m);
-    init();
-    limit = 1;
-    for (int i = 1; i <= m; ++i)
-        limit *= k;
+    read(n, m);
+    build();
     for (int i = 1; i <= n; ++i)
-        ++A[i][0];
-    FWT(A);
-    for (int i = 0; i < limit; ++i)
-        
+        for (int j = 1; j <= m; ++j)
+        {
+            int x;
+            read(x);
+            if (x)
+                insert(i, j);
+        }
+    dance(1);
+    if (answertot)
+    {
+        for (int i = 1; i < answertot; ++i)
+            write(answer[i], ' ');
+        write('\n');
+    }
+    else
+        write("No Solution!\n");
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
