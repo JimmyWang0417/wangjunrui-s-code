@@ -1,31 +1,38 @@
 /**
- *    name:     
+ *    name:     marshmallow
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.26 周日 14:09:03 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
+#include <cmath>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
+
 // #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #define putchar putchar_unlocked
+
 #endif
 namespace IO
 {
 #ifdef FAST_IO
 #ifndef FAST_IN
 #define FAST_IN
+
 #endif
 #ifndef FAST_OUT
 #define FAST_OUT
+
 #endif
 #endif
 
@@ -34,13 +41,16 @@ namespace IO
 #ifdef FAST_IN
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
 #define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
         inline void read(char &_x)
@@ -94,6 +104,7 @@ namespace IO
 #undef getchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
     }
@@ -102,6 +113,7 @@ namespace IO
 #ifdef FAST_OUT
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
         inline void flush()
@@ -110,9 +122,11 @@ namespace IO
         }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
         inline void write(char _x)
@@ -165,6 +179,7 @@ namespace IO
 #undef putchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
     }
@@ -311,13 +326,169 @@ struct Graph
         head[from] = num_edge;
     }
 #define foreach(i, graph, u) for (int i = graph.head[u]; i; i = graph.edge[i].next)
+
 };
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e5 + 5;
+constexpr int M = 337;
+int n, k, mode;
+int block, num;
+int L[M], R[M], belong[N];
+struct node
+{
+    int a, b;
+    inline bool operator<(const node &rhs) const
+    {
+        return b == rhs.b ? a > rhs.a : b > rhs.b;
+    }
+} a[N];
+struct
+{
+    ll a;
+    int b;
+} p[N];
+int buf_st[M][M];
+int buf_top[M];
+bool exist[N];
+ll add[M];
+int cnt[M];
+inline void pushup(int bel)
+{
+    auto st = buf_st[bel];
+    auto &top = buf_top[bel];
+    auto judge = [](int x, int y, int z)
+    {
+        auto x1 = p[x].b - p[y].b, x2 = p[z].b - p[y].b;
+        auto y1 = p[y].a - p[x].a, y2 = p[y].a - p[z].a;
+        return x1 * y2 <= x2 * y1;
+    };
+    top = 0;
+    for (int i = R[bel]; i >= L[bel]; --i)
+    {
+        if (exist[i])
+            continue;
+        while (top > 1 && judge(st[top - 1], st[top], i))
+            --top;
+        st[++top] = i;
+    }
+    while (top > 1 && p[st[top]].a > p[st[top - 1]].a)
+        top--;
+}
+inline void pushdown(int bel)
+{
+    for (int i = L[bel]; i <= R[bel]; ++i)
+        p[i].a += add[bel] + (ll)p[i].b * cnt[bel];
+    add[bel] = cnt[bel] = 0;
+}
+inline void solve()
+{
+    int where = 0;
+    ll minn = 1e18;
+    for (int i = 1; i <= num; ++i)
+    {
+        auto st = buf_st[i];
+        auto &top = buf_top[i];
+        if (!top)
+            continue;
+        ll x = p[st[top]].a + (ll)p[st[top]].b * cnt[i] + add[i];
+        if (x >= minn)
+            continue;
+        minn = x;
+        where = st[top];
+    }
+    exist[where] = true;
+    int bel = belong[where];
+    for (int i = 1; i < bel; ++i)
+        add[i] += a[where].b;
+    for (int i = bel + 1; i <= num; ++i)
+    {
+        ++cnt[i];
+        auto st = buf_st[i];
+        auto &top = buf_top[i];
+        while (top > 1 && p[st[top]].a + (ll)p[st[top]].b * cnt[i] + add[i] >
+                              p[st[top - 1]].a + (ll)p[st[top - 1]].b * cnt[i] + add[i])
+            --top;
+    }
+    pushdown(bel);
+    for (int i = L[bel]; i < where; ++i)
+        p[i].a += a[where].b;
+    for (int i = where + 1; i <= R[bel]; ++i)
+        p[i].a += a[i].b;
+    pushup(bel);
+}
+int pre[N];
+ll suf[N];
+ll c[N], d[N];
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("marshmallow.in", "r", stdin);
+    freopen("marshmallow.out", "w", stdout);
+#endif
+    read(n, k, mode);
+    for (int i = 1; i <= n; ++i)
+        read(a[i].a, a[i].b);
+    sort(a + 1, a + 1 + n);
+    for (int i = 1; i <= n; ++i)
+    {
+        p[i].a = a[i].a;
+        p[i].b = a[i].b;
+    }
+    block = (int)sqrt(n);
+    num = (n - 1) / block + 1;
+    for (int i = 1; i <= num; ++i)
+    {
+        L[i] = R[i - 1] + 1;
+        R[i] = R[i - 1] + block;
+    }
+    R[num] = n;
+    for (int i = 1; i <= num; ++i)
+    {
+        for (int j = L[i]; j <= R[i]; ++j)
+            belong[j] = i;
+        pushup(i);
+    }
+    for (int i = 1; i <= k; ++i)
+        solve();
+    // for (int i = 1; i <= n; ++i)
+    //     printf("%d ", exist[i]);
+    // putchar('\n');
+    ll ans = 0;
+    for (int i = 1, j = 0; i <= n; ++i)
+        if (exist[i])
+            ans += a[i].a + (ll)(j++) * a[i].b;
+    if (mode)
+    {
+        ll delta = 0;
+        for (int i = 1; i <= n; ++i)
+            if (exist[i])
+                ckmax(delta, (ll)a[i].a);
+        for (int i = 1; i <= n; i++)
+            if (exist[i])
+                pre[i] = pre[i - 1] + 1;
+            else
+                pre[i] = pre[i - 1];
+        for (int i = n; i >= 1; i--)
+            if (exist[i])
+                suf[i] = suf[i + 1] + a[i].b;
+            else
+                suf[i] = suf[i + 1];
+        for (int i = 1; i <= n; i++)
+            c[i] = a[i].a + (ll)pre[i - 1] * a[i].b + suf[i + 1];
+        d[0] = -1e18;
+        for (int i = 1; i <= n; i++)
+            d[i] = max(d[i - 1], exist[i] ? c[i] : 0);
+        for (int i = 1; i <= n; i++)
+            if (!exist[i])
+                ckmax(delta, d[i - 1] - c[i] + a[i].b + a[i].a);
+        ans -= delta;
+    }
+    write(ans, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

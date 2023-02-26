@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     A. DJ 数数
  *    author:   whitepaperdog (蒟蒻wjr)
- *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    located:  Changle District, Fuzhou City, Fujian Province, China
+ *    created:  2023.02.22 周三 08:09:56 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -37,7 +37,10 @@ namespace IO
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
-#define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+#define getchar()                                                                                       \
+    (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) \
+         ? EOF                                                                                          \
+         : *_now++)
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -56,7 +59,7 @@ namespace IO
             int _len = 0;
             while ((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20))
                 _s = (char)getchar();
-            while (!((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20)) && _s != EOF)
+            while (!((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20)))
             {
                 _x[_len++] = _s;
                 _s = (char)getchar();
@@ -96,7 +99,7 @@ namespace IO
 #define getchar getchar_unlocked
 #endif
 #endif
-    }
+    } // namespace INPUT
     namespace OUTPUT
     {
 #ifdef FAST_OUT
@@ -104,10 +107,7 @@ namespace IO
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
-        inline void flush()
-        {
-            fwrite(_buf, 1, _now - _buf, stdout), _now = _buf;
-        }
+        inline void flush() { fwrite(_buf, 1, _now - _buf, stdout), _now = _buf; }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
 #else
@@ -167,8 +167,8 @@ namespace IO
 #define putchar putchar_unlocked
 #endif
 #endif
-    }
-}
+    } // namespace OUTPUT
+} // namespace IO
 template <typename T>
 inline void ckmin(T &_x, T _y)
 {
@@ -186,14 +186,8 @@ struct modint
 {
     int x;
     constexpr modint(int _x = 0) : x(_x) {}
-    constexpr inline modint operator+() const
-    {
-        return *this;
-    }
-    constexpr inline modint operator-() const
-    {
-        return !x ? 0 : _mod - x;
-    }
+    constexpr inline modint operator+() const { return *this; }
+    constexpr inline modint operator-() const { return !x ? 0 : _mod - x; }
     constexpr inline modint &operator++()
     {
         ++x;
@@ -238,10 +232,7 @@ struct modint
             res += _mod;
         return res;
     }
-    constexpr inline modint operator*(const modint &rhs) const
-    {
-        return (int)((ll)x * rhs.x % _mod);
-    }
+    constexpr inline modint operator*(const modint &rhs) const { return (int)((ll)x * rhs.x % _mod); }
     constexpr inline modint &operator+=(const modint &rhs)
     {
         x += rhs.x;
@@ -274,26 +265,11 @@ struct modint
         }
         return res;
     }
-    constexpr inline modint inv() const
-    {
-        return *this ^ (_mod - 2);
-    }
-    constexpr inline modint operator/(const modint &rhs) const
-    {
-        return (*this) * rhs.inv();
-    }
-    constexpr inline modint &operator/=(const modint &rhs)
-    {
-        return (*this) *= rhs.inv();
-    }
-    constexpr inline modint &operator==(const modint &rhs)
-    {
-        return x == rhs.x;
-    }
-    constexpr inline int &data()
-    {
-        return x;
-    }
+    constexpr inline modint inv() const { return *this ^ (_mod - 2); }
+    constexpr inline modint operator/(const modint &rhs) const { return (*this) * rhs.inv(); }
+    constexpr inline modint &operator/=(const modint &rhs) { return (*this) *= rhs.inv(); }
+    constexpr inline modint &operator==(const modint &rhs) { return x == rhs.x; }
+    constexpr inline int &data() { return x; }
 };
 template <typename _T, const int MAXN, const int MAXM>
 struct Graph
@@ -315,9 +291,22 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e6 + 5;
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+int n, a[N];
 signed main()
 {
+    read(n);
+    node sum = 1, sumn = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        int x;
+        read(x);
+        sumn += (sum + sumn) * x;
+        sum *= (x + 1);
+    }
+    write(sumn.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

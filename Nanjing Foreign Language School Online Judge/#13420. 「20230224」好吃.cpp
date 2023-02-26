@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     B. 好吃
  *    author:   whitepaperdog (蒟蒻wjr)
- *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    located:  Changle District, Fuzhou City, Fujian Province, China
+ *    created:  2023.02.24 周五 12:01:40 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -56,7 +56,7 @@ namespace IO
             int _len = 0;
             while ((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20))
                 _s = (char)getchar();
-            while (!((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20)) && _s != EOF)
+            while (!((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20)))
             {
                 _x[_len++] = _s;
                 _s = (char)getchar();
@@ -315,9 +315,68 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 3e4 + 5;
+constexpr int mod = 1e9 + 7;
+typedef modint<mod> node;
+int n, m, a, b;
+node f[N], g[N];
+node fac[N], ifac[N];
+inline node C(int _x, int _y)
+{
+    return fac[_x] * ifac[_y] * ifac[_x - _y];
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("draw.in", "r", stdin);
+    freopen("draw.out", "w", stdout);
+#endif
+    read(n, m, a, b);
+    int limit = n + m;
+    fac[0] = 1;
+    for (int i = 1; i <= limit; ++i)
+        fac[i] = fac[i - 1] * i;
+    ifac[limit] = fac[limit].inv();
+    for (int i = limit; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i;
+    node p = (node)a / b, q = -p + 1;
+    node add = p.inv(), times = q / p;
+    node qwq = times.inv() ^ (n - 1);
+    f[0] = 1;
+    for (int i = 1; i <= limit; ++i)
+    {
+        node res = 0;
+        for (int j = 1; j < i; ++j)
+            res += C(i, j) * f[j];
+        f[i] = times * res + add;
+    }
+    for (int i = 0; i <= limit; ++i)
+        f[i] *= qwq;
+    if (n == 1)
+    {
+        for (int i = 0; i <= m; ++i)
+            write(f[i].data(), '\n');
+    }
+    else
+    {
+        g[0] = 1;
+        for (int i = 1; i < n; ++i)
+        {
+            for (int j = i; j >= 1; --j)
+                g[j] = g[j - 1] - g[j] * i;
+            g[0] = -g[0] * i;
+        }
+        for (int i = 0; i <= m; ++i)
+        {
+            qwq = 0;
+            for (int j = 0; j < n; ++j)
+                qwq += f[i + j] * g[j];
+            write((qwq * ifac[n - 1]).data(), '\n');
+        }
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

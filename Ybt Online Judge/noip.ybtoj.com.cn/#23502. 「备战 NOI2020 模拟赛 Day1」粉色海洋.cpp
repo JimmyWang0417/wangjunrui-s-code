@@ -1,31 +1,37 @@
 /**
- *    name:     
+ *    name:     B. 粉色海洋
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.25 周六 21:47:59 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
+
 // #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #define putchar putchar_unlocked
+
 #endif
 namespace IO
 {
 #ifdef FAST_IO
 #ifndef FAST_IN
 #define FAST_IN
+
 #endif
 #ifndef FAST_OUT
 #define FAST_OUT
+
 #endif
 #endif
 
@@ -34,13 +40,16 @@ namespace IO
 #ifdef FAST_IN
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
 #define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
         inline void read(char &_x)
@@ -94,6 +103,7 @@ namespace IO
 #undef getchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
     }
@@ -102,6 +112,7 @@ namespace IO
 #ifdef FAST_OUT
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
         inline void flush()
@@ -110,9 +121,11 @@ namespace IO
         }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
         inline void write(char _x)
@@ -165,6 +178,7 @@ namespace IO
 #undef putchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
     }
@@ -311,13 +325,106 @@ struct Graph
         head[from] = num_edge;
     }
 #define foreach(i, graph, u) for (int i = graph.head[u]; i; i = graph.edge[i].next)
+
 };
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e5 + 5;
+int tot;
+struct node
+{
+    int x, y;
+    node(int _x = 0, int _y = 0) : x(_x), y(_y) {}
+    inline bool operator<(const node &rhs) const
+    {
+        return x * rhs.y > rhs.x * y;
+    }
+} a[N];
+inline void print(int x, int y)
+{
+    write(x, ' ', y, '\n');
+}
+inline void work()
+{
+    int n;
+    read(n);
+    if (n == 3)
+        write("1\n1 1\n1 2\n2 1\n");
+    else if (n == 4)
+        write("4\n1 1\n1 2\n2 2\n2 1\n");
+    else if (n == 5)
+        write("3\n1 1\n1 3\n2 3\n3 2\n2 1\n");
+    else
+    {
+        write(n * 2 / 3 + 1, '\n');
+        int m = (n - 4) / 3;
+        int curx = 1, cury = 1;
+        for (int i = 1; i <= m; i++)
+            cury += a[i].y;
+        print(0, 0);
+        if (n % 3 == 0)
+        {
+            print(0, 5000);
+            print(1, 5000);
+            print(curx, cury);
+            for (int i = 1; i <= m; ++i)
+            {
+                print(curx + a[i].y, cury + a[i].x);
+                print(curx + a[i].x + a[i].y, cury + a[i].x - a[i].y);
+                print(curx + a[i].x, cury - a[i].y);
+                curx += a[i].x, cury -= a[i].y;
+            }
+            print(5000, 1);
+            print(5000, 0);
+        }
+        else if (n % 3 == 1)
+        {
+            print(0, cury);
+            print(curx, cury);
+            for (int i = 1; i <= m; ++i)
+            {
+                print(curx + a[i].y, cury + a[i].x);
+                print(curx + a[i].x + a[i].y, cury + a[i].x - a[i].y);
+                print(curx + a[i].x, cury - a[i].y);
+                curx += a[i].x, cury -= a[i].y;
+            }
+            print(curx, 0);
+        }
+        else
+        {
+            print(0, 5000);
+            print(1, 5000);
+            print(curx, cury);
+            for (int i = 1; i <= m; ++i)
+            {
+                print(curx + a[i].y, cury + a[i].x);
+                print(curx + a[i].x + a[i].y, cury + a[i].x - a[i].y);
+                print(curx + a[i].x, cury - a[i].y);
+                curx += a[i].x, cury -= a[i].y;
+            }
+            print(curx, 0);
+        }
+    }
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("polygon.in", "r", stdin);
+    freopen("polygon.out", "w", stdout);
+#endif
+    for (int i = 1; i <= 23; ++i)
+        for (int j = 1; j <= 23; ++j)
+            if (__gcd(i, j) == 1)
+                a[++tot] = node(i, j);
+    sort(a + 1, a + 1 + tot);
+    int T;
+    read(T);
+    while (T--)
+        work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

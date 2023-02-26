@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     B. 时间旅行
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.25 周六 08:10:57 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -315,9 +315,57 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int mod = 1e9 + 7;
+typedef modint<mod> node;
+ll A, B;
+int n;
+node dp[67][405][43];
+node C[43][43];
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("tt.in", "r", stdin);
+    freopen("tt.out", "w", stdout);
+#endif
+    read(A, B, n);
+    C[0][0] = 1;
+    for (int i = 1; i <= n; ++i)
+    {
+        C[i][0] = 1;
+        for (int j = 1; j <= i; ++j)
+            C[i][j] = C[i - 1][j] + C[i - 1][j - 1];
+    }
+    dp[61][0][n] = 1;
+    int qwq = (n / 2) * ((n + 1) / 2) * 2;
+    for (int i = 60; i >= 0; --i)
+        for (int j = 0; j <= qwq; ++j)
+            for (int k = 0; k <= n; ++k)
+                if (dp[i + 1][j][k].data())
+                {
+                    int x = j << 1 | ((A >> i) & 1);
+                    if (x > qwq)
+                        continue;
+                    if ((B >> i) & 1)
+                    {
+                        for (int l = 0; l <= n - k; ++l)
+                            for (int r = 0; r <= k; ++r)
+                                if (x >= (l + r) * (n - l - r))
+                                    dp[i][x - (l + r) * (n - l - r)][r] += dp[i + 1][j][k] * C[n - k][l] * C[k][r];
+                    }
+                    else
+                    {
+                        for (int l = 0; l <= n - k; ++l)
+                            if (x >= l * (n - l))
+                                dp[i][x - l * (n - l)][k] += dp[i + 1][j][k] * C[n - k][l];
+                    }
+                }
+    node res = 0;
+    for (int i = 0; i <= n; ++i)
+        res += dp[0][0][i];
+    write(res.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

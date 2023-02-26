@@ -1,12 +1,13 @@
 /**
- *    name:     
+ *    name:     et
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.25 周六 09:04:34 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
 #include <cstdio>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -315,9 +316,96 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 5e5 + 5;
+constexpr int mod = 1e9 + 7;
+typedef modint<mod> node;
+constexpr node inv2 = ((node)2).inv();
+int n, m;
+struct
+{
+    int u, v;
+} e[N];
+int deg[N];
+inline void print(int a, int b, int c, int d)
+{
+    if (a > b)
+        swap(a, b);
+    if (a > c)
+        swap(a, c);
+    if (a > d)
+        swap(a, d);
+    if (b > c)
+        swap(b, c);
+    if (b > d)
+        swap(b, d);
+    if (c > d)
+        swap(c, d);
+    printf("%d %d %d %d\n", a, b, c, d);
+}
+vector<int> g[N], h[N];
+int vis[N], vistime;
+int cnt[N];
+inline node solve()
+{
+    node res1 = (node)(n + m - 3) * m;
+    node res2 = 0;
+    for (int u = 1; u <= n; ++u)
+        res2 += (node)deg[u] * (deg[u] - 1) * inv2;
+    node res3 = 0;
+    for (int i = 1; i <= m; ++i)
+    {
+        int u = e[i].u, v = e[i].v;
+        if ((deg[v] == deg[u] && v < u) || (deg[v] < deg[u]))
+            swap(u, v);
+        g[u].push_back(v);
+        h[u].push_back(v);
+        h[v].push_back(u);
+    }
+    for (int u = 1; u <= n; u++)
+    {
+        vistime = u;
+        for (int v : g[u])
+            vis[v] = vistime;
+        for (int v : g[u])
+            for (int w : g[v])
+                if (vis[w] == vistime)
+                    ++res3;
+    }
+    node res4 = 0;
+    for (int u = 1; u <= n; ++u)
+    {
+        vistime = u;
+        for (int v : g[u])
+            for (int w : h[v])
+            {
+                if (deg[w] < deg[u] || (deg[w] == deg[u] && w <= u))
+                    continue;
+                if (vis[w] != vistime)
+                {
+                    vis[w] = vistime;
+                    cnt[w] = 0;
+                }
+                res4 += cnt[w]++;
+            }
+    }
+    return res1 + res2 + res3 * 3 + res4;
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("nt.in", "r", stdin);
+    freopen("nt.out", "w", stdout);
+#endif
+    read(n, m);
+    for (int i = 1; i <= m; ++i)
+    {
+        read(e[i].u, e[i].v);
+        ++deg[e[i].u], ++deg[e[i].v];
+    }
+    write(solve().data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

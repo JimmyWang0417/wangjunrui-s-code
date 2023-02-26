@@ -1,12 +1,13 @@
 /**
- *    name:     
+ *    name:     #2137. Words
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.25 周六 17:59:47 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -315,9 +316,45 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2e5 + 5;
+constexpr int mod = 1e9 + 7;
+typedef modint<mod> node;
+int n, m, q;
+char S[N], T[N];
+node a[31][31], b[31][31];
+node f[N][31], g[N][31];
 signed main()
 {
+    read(n, m, q);
+    read(S + 1);
+    read(T + 1);
+    for (int i = 0; i <= m; ++i)
+        a[i][i] = b[i][i] = 1;
+    for (int i = 1; i <= n; ++i)
+    {
+        for (int j = 0; j <= m; j++)
+            g[i][j] = b[0][j];
+        for (int j = m; j >= 1; j--)
+            if (S[j] == T[i])
+            {
+                for (int k = 0; k <= m; k++)
+                {
+                    a[k][j] += a[k][j - 1];
+                    b[j - 1][k] -= b[j][k];
+                }
+            }
+        for (int j = 0; j <= m; j++)
+            f[i][j] = a[j][m];
+    }
+    for (int kase = 1; kase <= q; ++kase)
+    {
+        node res = 0;
+        int l, r;
+        read(l, r);
+        for (int i = 0; i <= m; ++i)
+            res += g[l][i] * f[r][i];
+        write(res.data(), '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

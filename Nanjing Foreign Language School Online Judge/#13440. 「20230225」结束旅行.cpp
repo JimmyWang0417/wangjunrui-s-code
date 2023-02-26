@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     D. 结束旅行
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.25 周六 16:16:06 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -315,9 +315,85 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+constexpr node inv2 = ((node)2).inv();
+inline void exgcd(int a, int b, int &d, int &x, int &y)
+{
+    if (b == 0)
+    {
+        d = a;
+        x = 1;
+        y = 0;
+    }
+    else
+    {
+        exgcd(b, a % b, d, y, x);
+        y -= a / b * x;
+    }
+}
+inline int calc(int a, int b, int m)
+{
+    int d, x, y;
+    exgcd(a, m, d, x, y);
+    if (b % d)
+        return -1;
+    int op = m / d;
+    x = (int)((ll)(b / d) * x % op);
+    if (x < 0)
+        x += op;
+    return x;
+}
+inline void work()
+{
+    ll n;
+    int a, b;
+    read(n, a, b);
+    node res = 0;
+    if (n > b)
+    {
+        for (int i = 0; i < a; ++i)
+        {
+            int x = calc(i, -b, a);
+            if (x == -1)
+                continue;
+            int l = i > b ? 0 : (b - i) / a + 1;
+            int r = i > n ? -1 : (int)((n - i) / a % mod);
+            if (l > r)
+                continue;
+            res += (node)(r - l + 1) * (int)(((ll)(l + r) * x + ((ll)i * x + b) / a * 2) % mod) * inv2;
+        }
+        for (int i = b; i >= 1; --i)
+        {
+            int x = calc(a, b, i);
+            if (x == -1)
+                continue;
+            res += x;
+        }
+    }
+    else
+        for (int i = (int)n; i >= 1; --i)
+        {
+            int x = calc(a, b, i);
+            if (x == -1)
+                continue;
+            res += x;
+        }
+    write(res.data(), '\n');
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("et.in", "r", stdin);
+    freopen("et.out", "w", stdout);
+#endif
+    int T;
+    read(T);
+    while (T--)
+        work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

@@ -1,11 +1,12 @@
 /**
- *    name:     
+ *    name:     #13432. 「20230222」说藏话了
  *    author:   whitepaperdog (蒟蒻wjr)
- *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    located:  Changle District, Fuzhou City, Fujian Province, China
+ *    created:  2023.02.22 周三 15:24:55 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -37,7 +38,10 @@ namespace IO
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
-#define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+#define getchar()                                                                                       \
+    (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) \
+         ? EOF                                                                                          \
+         : *_now++)
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
@@ -56,7 +60,7 @@ namespace IO
             int _len = 0;
             while ((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20))
                 _s = (char)getchar();
-            while (!((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20)) && _s != EOF)
+            while (!((_s >= 0x0a && _s <= 0x0d) || (_s == 0x09) || (_s == 0x20)))
             {
                 _x[_len++] = _s;
                 _s = (char)getchar();
@@ -96,7 +100,7 @@ namespace IO
 #define getchar getchar_unlocked
 #endif
 #endif
-    }
+    } // namespace INPUT
     namespace OUTPUT
     {
 #ifdef FAST_OUT
@@ -104,10 +108,7 @@ namespace IO
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
-        inline void flush()
-        {
-            fwrite(_buf, 1, _now - _buf, stdout), _now = _buf;
-        }
+        inline void flush() { fwrite(_buf, 1, _now - _buf, stdout), _now = _buf; }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
 #else
@@ -167,8 +168,8 @@ namespace IO
 #define putchar putchar_unlocked
 #endif
 #endif
-    }
-}
+    } // namespace OUTPUT
+} // namespace IO
 template <typename T>
 inline void ckmin(T &_x, T _y)
 {
@@ -186,14 +187,8 @@ struct modint
 {
     int x;
     constexpr modint(int _x = 0) : x(_x) {}
-    constexpr inline modint operator+() const
-    {
-        return *this;
-    }
-    constexpr inline modint operator-() const
-    {
-        return !x ? 0 : _mod - x;
-    }
+    constexpr inline modint operator+() const { return *this; }
+    constexpr inline modint operator-() const { return !x ? 0 : _mod - x; }
     constexpr inline modint &operator++()
     {
         ++x;
@@ -238,10 +233,7 @@ struct modint
             res += _mod;
         return res;
     }
-    constexpr inline modint operator*(const modint &rhs) const
-    {
-        return (int)((ll)x * rhs.x % _mod);
-    }
+    constexpr inline modint operator*(const modint &rhs) const { return (int)((ll)x * rhs.x % _mod); }
     constexpr inline modint &operator+=(const modint &rhs)
     {
         x += rhs.x;
@@ -274,26 +266,11 @@ struct modint
         }
         return res;
     }
-    constexpr inline modint inv() const
-    {
-        return *this ^ (_mod - 2);
-    }
-    constexpr inline modint operator/(const modint &rhs) const
-    {
-        return (*this) * rhs.inv();
-    }
-    constexpr inline modint &operator/=(const modint &rhs)
-    {
-        return (*this) *= rhs.inv();
-    }
-    constexpr inline modint &operator==(const modint &rhs)
-    {
-        return x == rhs.x;
-    }
-    constexpr inline int &data()
-    {
-        return x;
-    }
+    constexpr inline modint inv() const { return *this ^ (_mod - 2); }
+    constexpr inline modint operator/(const modint &rhs) const { return (*this) * rhs.inv(); }
+    constexpr inline modint &operator/=(const modint &rhs) { return (*this) *= rhs.inv(); }
+    constexpr inline modint &operator==(const modint &rhs) { return x == rhs.x; }
+    constexpr inline int &data() { return x; }
 };
 template <typename _T, const int MAXN, const int MAXM>
 struct Graph
@@ -315,9 +292,76 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 5e6 + 5;
+int n, a[N], b[N];
+int sze[N][2];
+struct Edge
+{
+    int next, to;
+    bool vis;
+} edge[N * 2];
+int head[N][2], num_edge = 1;
+inline void add_edge(bool col, int from, int to)
+{
+    edge[++num_edge].next = head[from][col];
+    edge[num_edge].to = to;
+    head[from][col] = num_edge;
+}
+int st[N], top;
+inline void dfs(int u, int col = -1)
+{
+    if (col == -1)
+        col = sze[u][0] < sze[u][1];
+    for (int &i = head[u][col]; i; i = edge[i].next)
+    {
+        if (edge[i].vis)
+            continue;
+        int v = edge[i].to;
+        edge[i].vis = edge[i ^ 1].vis = true;
+        --sze[u][col], --sze[v][col ^ 1];
+        dfs(v, col);
+    }
+    if (b[u])
+    {
+        --b[u];
+        dfs(u);
+    }
+    col ^= 1;
+    for (int &i = head[u][col]; i; i = edge[i].next)
+    {
+        if (edge[i].vis)
+            continue;
+        int v = edge[i].to;
+        edge[i].vis = edge[i ^ 1].vis = true;
+        --sze[u][col], --sze[v][col ^ 1];
+        dfs(v, col);
+    }
+    st[++top] = u;
+}
 signed main()
 {
+    read(n);
+    for (int i = 1; i <= n; ++i)
+        read(a[i]);
+    for (int i = 1; i < n; ++i)
+    {
+        int u = a[i], v = a[i + 1];
+        if (u == v)
+            ++b[u];
+        else
+        {
+            if (u > v)
+                swap(u, v);
+            add_edge(0, u, v);
+            ++sze[u][0];
+            add_edge(1, v, u);
+            ++sze[v][1];
+        }
+    }
+    dfs(a[1]);
+    while (top)
+        write(st[top--], ' ');
+    write('\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

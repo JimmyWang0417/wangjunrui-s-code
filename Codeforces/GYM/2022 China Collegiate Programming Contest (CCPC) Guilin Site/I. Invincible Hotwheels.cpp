@@ -1,12 +1,14 @@
 /**
- *    name:     
+ *    name:     #13421. 「20230224」抱抱
  *    author:   whitepaperdog (蒟蒻wjr)
- *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    located:  Changle District, Fuzhou City, Fujian Province, China
+ *    created:  2023.02.24 周五 22:38:51 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
 #include <cstdio>
+#include <cstring>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -315,9 +317,202 @@ struct Graph
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2e6 + 5;
+int n;
+namespace ACA
+{
+    struct Point
+    {
+        int ch[26], fa;
+        int len;
+        int id, suf;
+    } point[N];
+    int tot;
+    inline void insert(char *s, int id, vector<int> &sta)
+    {
+        int u = 0;
+        for (int i = 0; s[i]; ++i)
+        {
+            int c = s[i] - 'a';
+            if (!point[u].ch[c])
+                point[point[u].ch[c] = ++tot].len = i;
+            u = point[u].ch[c];
+            sta[i] = u;
+        }
+        point[u].id = id;
+    }
+    int q[N], head, tail;
+    inline void build()
+    {
+        head = tail = 0;
+        for (int i = 0; i < 26; ++i)
+            if (point[0].ch[i])
+                q[++tail] = point[0].ch[i];
+        while (head < tail)
+        {
+            int u = q[++head];
+            point[u].suf = point[u].id ? u : point[point[u].fa].suf;
+            for (int i = 0; i < 26; ++i)
+                if (!point[u].ch[i])
+                    point[u].ch[i] = point[point[u].fa].ch[i];
+                else
+                {
+                    q[++tail] = point[u].ch[i];
+                    point[point[u].ch[i]].fa = point[point[u].fa].ch[i];
+                }
+        }
+    }
+}
+struct Edge
+{
+    int next, to;
+} edge[N * 2];
+int head[N], num_edge;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+vector<int> g[N];
+int dfn[N], low[N], dfstime;
+inline void dfs(int u, int _fa)
+{
+    dfn[u] = ++dfstime;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        dfs(v, u);
+    }
+    low[u] = dfstime;
+}
+inline int merge(int x, int y)
+{
+    if (!x || !y)
+        return x | y;
+    if (x == y)
+        return x;
+    return -1;
+}
+namespace BIT1
+{
+    int st[N], top;
+    int c[N];
+    inline void update(int pos, int val)
+    {
+        st[++top] = pos;
+        for (int i = pos; i <= dfstime; i += lowbit(i))
+            c[i] = merge(c[i], val);
+    }
+    inline int query(int pos)
+    {
+        int res = 0;
+        for (int i = pos; i; i -= lowbit(i))
+            res = merge(res, c[i]);
+        return res;
+    }
+    inline void clear()
+    {
+        while (top)
+        {
+            int pos = st[top--];
+            for (int i = pos; i <= dfstime && c[i]; i += lowbit(i))
+                c[i] = 0;
+        }
+        // memset(c, top = 0, sizeof(c));
+    }
+}
+namespace BIT2
+{
+    int st[N], top;
+    int c[N];
+    inline void update(int pos)
+    {
+        st[++top] = pos;
+        for (int i = pos; i <= dfstime; i += lowbit(i))
+            ++c[i];
+    }
+    inline int query(int pos)
+    {
+        int res = 0;
+        for (int i = pos; i; i -= lowbit(i))
+            res += c[i];
+        return res;
+    }
+    inline int query(int l, int r)
+    {
+        return query(r) - query(l - 1);
+    }
+    inline void clear()
+    {
+        while (top)
+        {
+            int pos = st[top--];
+            for (int i = pos; i <= dfstime && c[i]; i += lowbit(i))
+                c[i] = 0;
+        }
+        // memset(c, top = 0, sizeof(c));
+    }
+}
+char str[N];
+int cover[N];
+int st[N], top;
 signed main()
 {
+    read(n);
+    for (int i = 1; i <= n; ++i)
+    {
+        read(str);
+        g[i].resize(strlen(str));
+        ACA::insert(str, i, g[i]);
+    }
+    ACA::build();
+    using ACA::point;
+    for (int i = 1; i <= ACA::tot; ++i)
+        add_edge(point[i].fa, i);
+    dfs(0, 0);
+    int ans = 0;
+    for (int kase = 1; kase <= n; ++kase)
+    {
+        for (int i = (int)g[kase].size() - 1; i >= 0; --i)
+        {
+            int u = g[kase][i];
+            if (i == (int)g[kase].size() - 1)
+                u = point[u].fa;
+
+            u = point[u].suf;
+            if (!u)
+                continue;
+            int l = i - point[u].len + 1;
+            cover[point[u].id] = merge(cover[point[u].id], BIT1::query(l));
+            BIT1::update(l, point[u].id);
+            st[++top] = point[u].id;
+
+            u = point[point[u].fa].suf;
+            if (!u)
+                continue;
+            l = i - point[u].len + 1;
+            cover[point[u].id] = merge(cover[point[u].id], BIT1::query(l));
+            BIT1::update(l, point[u].id);
+            st[++top] = point[u].id;
+
+            u = point[u].fa;
+            if (u)
+                BIT2::update(dfn[u]);
+        }
+        while (top)
+        {
+            int u = st[top--];
+            if (cover[u] > 0 && BIT2::query(dfn[g[u].back()], low[g[u].back()]) == 0)
+                ++ans;
+            cover[u] = 0;
+        }
+        BIT1::clear();
+        BIT2::clear();
+    }
+    write(ans, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
