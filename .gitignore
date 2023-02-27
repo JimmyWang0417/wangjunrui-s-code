@@ -31,18 +31,12 @@
 *.app
 
 #feature
-Environment/project*
-Environment/make*
-Environment/std*
-Environment/checker
-Environment/atcoder-workspace/*
-Environment/spoj-tools/*
-!Environment/spoj-tools/*.py
+Environment/*
+!Environment/MultiGenerator
 credentials.*
 Program*
 spoj-submitter.dat
 __pycache__/*
-Environment/*.png
 *.ttf
 *.otf
 Environment/Contest
