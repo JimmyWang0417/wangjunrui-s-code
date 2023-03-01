@@ -33,6 +33,8 @@
 
 [<img src="./.image/libreoj.ico" width="100px" height = "100px" alt="Libre Online Judge"/>](https://loj.ac)
 
+[<img src="./.image/nfls.ico" width="100px" height = "100px" alt="Nanjing Foreign Language School Online Judge"/>](http://www.nfls.com.cn:10611/)
+
 [<img src="./.image/noi.ac.ico" width="100px" height = "100px" alt="NOI.AC"/>](https://noi.ac)
 
 [<img src="./.image/poj.ico" width="100px" height = "100px" alt="Peking University Online Judge"/>](http://poj.org)
