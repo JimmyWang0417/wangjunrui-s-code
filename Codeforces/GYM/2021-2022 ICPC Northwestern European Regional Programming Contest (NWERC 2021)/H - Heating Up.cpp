@@ -1,16 +1,19 @@
 /**
- *    name:     
+ *    name:     B. 小 H 的谜题
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.28 周二 14:32:02 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
+#include <bits/stl_pair.h>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
+#define int ll
 
 // #define FAST_IO
 
@@ -298,9 +301,59 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 4e6 + 5;
+int n, m, a[N];
+int st[N], top;
+int lc[N], rc[N];
+inline int build()
+{
+    top = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        lc[i] = rc[i] = 0;
+        while (top && a[st[top]] < a[i])
+            lc[i] = st[top--];
+        if (top)
+            rc[st[top]] = i;
+        st[++top] = i;
+    }
+    return st[1];
+}
+int f[N], g[N];
+inline void dfs(int u)
+{
+    f[u] = a[u], g[u] = a[u];
+    if (lc[u])
+    {
+        dfs(lc[u]);
+        f[u] += f[lc[u]];
+        ckmin(g[u], max(g[lc[u]], a[u] - f[lc[u]]));
+    }
+    if (rc[u])
+    {
+        dfs(rc[u]);
+        f[u] += f[rc[u]];
+        ckmin(g[u], max(g[rc[u]], a[u] - f[rc[u]]));
+    }
+}
+inline void work()
+{
+    read(n);
+    for (int i = 1; i <= n; ++i)
+    {
+        read(a[i]);
+        a[i + n] = a[i];
+        ckmax(m, a[i]);
+    }
+    n *= 2;
+    int root = build();
+    dfs(root);
+    write(g[root], '\n');
+    m = 0;
+}
 signed main()
 {
+    work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

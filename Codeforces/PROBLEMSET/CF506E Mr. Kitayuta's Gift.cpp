@@ -1,12 +1,13 @@
 /**
- *    name:     
+ *    name:     CF506E Mr. Kitayuta's Gift
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.28 周二 22:17:24 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -181,126 +182,133 @@ inline void ckmax(T &_x, T _y)
     if (_x < _y)
         _x = _y;
 }
-template <const int _mod>
-struct modint
-{
-    int x;
-    constexpr modint(int _x = 0) : x(_x) {}
-    constexpr inline modint operator+() const
-    {
-        return *this;
-    }
-    constexpr inline modint operator-() const
-    {
-        return !x ? 0 : _mod - x;
-    }
-    constexpr inline modint &operator++()
-    {
-        ++x;
-        if (x >= _mod)
-            x -= _mod;
-        return *this;
-    }
-    constexpr inline modint &operator--()
-    {
-        --x;
-        if (x < 0)
-            x += _mod;
-        return *this;
-    }
-    constexpr inline modint operator++(int)
-    {
-        int res = x;
-        if (x >= _mod)
-            x -= _mod;
-        return res;
-    }
-    constexpr inline modint operator--(int)
-    {
-        int res = x;
-        if (x < 0)
-            x += _mod;
-        return res;
-    }
-    constexpr inline modint operator+(const modint &rhs) const
-    {
-        int res = x;
-        res += rhs.x;
-        if (res >= _mod)
-            res -= _mod;
-        return res;
-    }
-    constexpr inline modint operator-(const modint &rhs) const
-    {
-        int res = x;
-        res -= rhs.x;
-        if (res < 0)
-            res += _mod;
-        return res;
-    }
-    constexpr inline modint operator*(const modint &rhs) const
-    {
-        return (int)((ll)x * rhs.x % _mod);
-    }
-    constexpr inline modint &operator+=(const modint &rhs)
-    {
-        x += rhs.x;
-        if (x >= _mod)
-            x -= _mod;
-        return *this;
-    }
-    constexpr inline modint &operator-=(const modint &rhs)
-    {
-        x -= rhs.x;
-        if (x < 0)
-            x += _mod;
-        return *this;
-    }
-    constexpr inline modint &operator*=(const modint &rhs)
-    {
-        x = (int)((ll)x * rhs.x % _mod);
-        return *this;
-    }
-    template <typename _G>
-    constexpr inline modint operator^(_G rhs) const
-    {
-        modint a = x, res = 1;
-        while (rhs)
-        {
-            if (rhs & 1)
-                res *= a;
-            a *= a;
-            rhs >>= 1;
-        }
-        return res;
-    }
-    constexpr inline modint inv() const
-    {
-        return *this ^ (_mod - 2);
-    }
-    constexpr inline modint operator/(const modint &rhs) const
-    {
-        return (*this) * rhs.inv();
-    }
-    constexpr inline modint &operator/=(const modint &rhs)
-    {
-        return (*this) *= rhs.inv();
-    }
-    constexpr inline modint &operator==(const modint &rhs)
-    {
-        return x == rhs.x;
-    }
-    constexpr inline int &data()
-    {
-        return x;
-    }
-};
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 205;
+constexpr int M = 305;
+constexpr int mod = 10007;
+inline void add(int &x, int y)
+{
+    x += y;
+    if (x >= mod)
+        x -= mod;
+}
+inline void del(int &x, int y)
+{
+    x -= y;
+    if (x < 0)
+        x += mod;
+}
+int n, m, limit;
+char str[N];
+inline int calc(int x) { return (x + 1) / 2; }
+int dp[N][N][N];
+bool vis[N][N][N];
+inline int dfs(int i, int j, int k)
+{
+    if (i < 0)
+        return 0;
+    if (j == 1 && k == m)
+        return !i;
+    if (vis[i][j][k])
+        return dp[i][j][k];
+    vis[i][j][k] = true;
+    int &res = dp[i][j][k];
+    if (j > 1 && k < m && str[j - 1] == str[k + 1])
+        add(res, dfs(i, j - 1, k + 1));
+    if (j > 1 && str[j - 1] != str[k])
+        add(res, dfs(i - 1, j - 1, k));
+    if (k < m && str[j] != str[k + 1])
+        add(res, dfs(i - 1, j, k + 1));
+    return res;
+}
+int f[M], g[M][M];
+int _f[M], _g[M][M];
+int a[M], b[M][M];
+inline void quickpow(int power)
+{
+    while (power)
+    {
+        if (power & 1)
+        {
+            for (int i = 1; i <= limit; ++i)
+                for (int j = 1; j <= limit; ++j)
+                    a[i] = (a[i] + f[j] * g[j][i]) % mod;
+            memcpy(f, a, sizeof(f));
+            memset(a, 0, sizeof(a));
+        }
+        for (int i = 1; i <= limit; ++i)
+            for (int k = 1; k <= limit; ++k)
+                for (int j = 1; j <= limit; ++j)
+                    b[i][j] = (b[i][j] + g[i][k] * g[k][j]) % mod;
+        memcpy(g, b, sizeof(g));
+        memset(b, 0, sizeof(b));
+        power >>= 1;
+    }
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#endif
+    m = read(str + 1);
+    read(n);
+    limit = m + calc(m);
+    for (int i = 0; i < m; ++i)
+    {
+        int res = 0;
+        for (int j = 1; j <= m; ++j)
+            add(res, dfs(i, j, j));
+        for (int j = 1; j < m; ++j)
+            if (str[j] == str[j + 1])
+                add(res, dfs(i, j, j + 1));
+        if (!i)
+        {
+            f[m] = res;
+            g[limit][limit] = 26;
+            for (int j = m; j < limit; ++j)
+                g[j][j + 1] = 1, g[j][j] = 25;
+        }
+        else
+        {
+            g[i][limit - calc(m - i)] = res;
+            g[i][i] = 24;
+            if (i > 1)
+                g[i - 1][i] = 1;
+            else
+                f[i] = 1;
+        }
+    }
+    memcpy(_f, f, sizeof(f));
+    memcpy(_g, g, sizeof(g));
+    quickpow(calc(n + m));
+    int ans = f[limit];
+    if ((n + m) % 2 == 0)
+        write(ans, '\n');
+    else
+    {
+        memcpy(f, _f, sizeof(f));
+        memcpy(g, _g, sizeof(g));
+        for (int i = 0; i < m; ++i)
+        {
+            int res = 0;
+            for (int j = 1; j < m; ++j)
+                if (str[j] == str[j + 1])
+                    add(res, dfs(i, j, j + 1));
+            if (i)
+                g[i][limit - calc(m - i)] = res;
+            else
+            {
+                f[m] = res;
+                g[limit][limit] = 0;
+            }
+        }
+        quickpow(calc(n + m));
+        del(ans, f[limit]);
+        write(ans, '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

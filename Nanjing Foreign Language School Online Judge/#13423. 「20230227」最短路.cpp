@@ -1,12 +1,13 @@
 /**
- *    name:     
+ *    name:     B. 最短路
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.27 周一 15:08:54 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
 #include <cstdio>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -295,12 +296,175 @@ struct modint
         return x;
     }
 };
+template <typename _T, const int MAXN, const int MAXM>
+struct Graph
+{
+    struct Edge
+    {
+        int next;
+        _T to;
+    } edge[MAXM];
+    int head[MAXN], num_edge;
+    inline void add_edge(int from, _T to)
+    {
+        edge[++num_edge].next = head[from];
+        edge[num_edge].to = to;
+        head[from] = num_edge;
+    }
+#define foreach(i, graph, u) for (int i = graph.head[u]; i; i = graph.edge[i].next)
+};
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 5e4 + 5;
+constexpr int M = 1e5 + 5;
+int n, m, q;
+struct Edge
+{
+    int next, to;
+} edge[N * 2];
+int head[2][N], num_edge;
+inline void add_edge(int from, int to, bool col)
+{
+    edge[++num_edge].next = head[col][from];
+    edge[num_edge].to = to;
+    head[col][from] = num_edge;
+}
+struct node
+{
+    int x, y;
+    node(int _x = 0, int _y = 0) : x(_x), y(_y) {}
+    inline bool operator<(const node &rhs) const
+    {
+        return x == rhs.x ? y < rhs.y : x < rhs.x;
+    }
+    inline node calc0() const
+    {
+        return node(x + 1, y);
+    }
+    inline node calc1() const
+    {
+        return node(x, y + 1);
+    }
+    inline node operator-(const node &rhs) const
+    {
+        return node(x - rhs.x, y - rhs.y);
+    }
+    inline ll operator*(const node &rhs) const
+    {
+        return (ll)x * rhs.y - (ll)y * rhs.x;
+    }
+};
+typedef vector<node> vec;
+vec g[N];
+node st[N];
+int top;
+inline void merge0(vec &u, const vec &v)
+{
+    int i = 0, j = 0;
+    while (i < (int)u.size() && j < (int)v.size())
+    {
+        node x;
+        if (u[i] < v[j].calc0())
+            x = u[i++];
+        else
+            x = v[j++].calc0();
+        while (top > 1 && (st[top - 1] - st[top]) * (x - st[top]) >= 0)
+            --top;
+        st[++top] = x;
+    }
+    while (i < (int)u.size())
+    {
+        node x = u[i++];
+        while (top > 1 && (st[top - 1] - st[top]) * (x - st[top]) >= 0)
+            --top;
+        st[++top] = x;
+    }
+    while (j < (int)v.size())
+    {
+        node x = v[j++].calc0();
+        while (top > 1 && (st[top - 1] - st[top]) * (x - st[top]) >= 0)
+            --top;
+        st[++top] = x;
+    }
+    u.resize(top);
+    for (i = 0; i < top; ++i)
+        u[i] = st[i + 1];
+    top = 0;
+}
+inline void merge1(vec &u, const vec &v)
+{
+    int i = 0, j = 0;
+    while (i < (int)u.size() && j < (int)v.size())
+    {
+        node x;
+        if (u[i] < v[j].calc1())
+            x = u[i++];
+        else
+            x = v[j++].calc1();
+        while (top > 1 && (st[top - 1] - st[top]) * (x - st[top]) >= 0)
+            --top;
+        st[++top] = x;
+    }
+    while (i < (int)u.size())
+    {
+        node x = u[i++];
+        while (top > 1 && (st[top - 1] - st[top]) * (x - st[top]) >= 0)
+            --top;
+        st[++top] = x;
+    }
+    while (j < (int)v.size())
+    {
+        node x = v[j++].calc1();
+        while (top > 1 && (st[top - 1] - st[top]) * (x - st[top]) >= 0)
+            --top;
+        st[++top] = x;
+    }
+    u.resize(top);
+    for (i = 0; i < top; ++i)
+        u[i] = st[i + 1];
+    top = 0;
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("graph.in", "r", stdin);
+    freopen("graph.out", "w", stdout);
+#endif
+    read(n, m);
+    for (int i = 1; i <= m; ++i)
+    {
+        int u, v, w;
+        read(u, v, w);
+        add_edge(u, v, w);
+    }
+    g[1].emplace_back(0, 0);
+    for (int u = 1; u <= n; ++u)
+    {
+        for (int i = head[0][u]; i; i = edge[i].next)
+        {
+            int v = edge[i].to;
+            merge0(g[v], g[u]);
+        }
+        for (int i = head[1][u]; i; i = edge[i].next)
+        {
+            int v = edge[i].to;
+            merge1(g[v], g[u]);
+        }
+    }
+    read(q);
+    for (int i = 1; i <= q; ++i)
+    {
+        int a, b, x;
+        read(a, b, x);
+        int minn = 0x7fffffff;
+        for (auto j : g[x])
+            ckmin(minn, a * j.x + b * j.y);
+        write(minn, '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

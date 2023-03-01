@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.27 周一 10:34:13 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -295,12 +295,56 @@ struct modint
         return x;
     }
 };
+template <typename _T, const int MAXN, const int MAXM>
+struct Graph
+{
+    struct Edge
+    {
+        int next;
+        _T to;
+    } edge[MAXM];
+    int head[MAXN], num_edge;
+    inline void add_edge(int from, _T to)
+    {
+        edge[++num_edge].next = head[from];
+        edge[num_edge].to = to;
+        head[from] = num_edge;
+    }
+#define foreach(i, graph, u) for (int i = graph.head[u]; i; i = graph.edge[i].next)
+};
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e5 + 5;
+int n, a[N];
+inline bool check(int x)
+{
+    for (int i = 1; i <= n; i++)
+        if (a[i] % x && (a[i] - 1) / 2 < x)
+            return false;
+    return true;
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("gcd.in", "r", stdin);
+    freopen("gcd.out", "w", stdout);
+#endif
+    read(n);
+    for (int i = 1; i <= n; i++)
+        read(a[i]);
+    int A = 0x7fffffff;
+    for (int i = 1; i <= n; i++)
+        ckmin(A, a[i]);
+    if (check(A))
+        write(A, '\n');
+    else if (A % 2 == 0 && check(A / 2))
+        write(A / 2, '\n');
+    else
+        write((A - 1) / 2, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     B. 投骰子
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.27 周一 16:36:34 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -298,9 +298,73 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+constexpr node inv2 = ((node)2).inv();
+int n;
+ll a[33], b[33];
+node answer;
+inline void dfs(int u, ll val, bool limit)
+{
+    if (u == -1)
+    {
+        if (val > 0)
+            answer += (int)(val % mod);
+        return;
+    }
+    if (val + b[u] <= 0)
+        return;
+    if (!limit && val - b[u] >= 0)
+    {
+        answer += (int)(((val % mod) << (u + 1)) % mod);
+        return;
+    }
+    if (limit)
+    {
+        if ((n >> u) & 1)
+        {
+            dfs(u - 1, val + a[u], false);
+            dfs(u - 1, val - a[u], true);
+        }
+        else
+            dfs(u - 1, val + a[u], true);
+    }
+    else
+    {
+        dfs(u - 1, val + a[u], false);
+        dfs(u - 1, val - a[u], false);
+    }
+}
+inline void work()
+{
+    read(n);
+    for (int i = 0; i < 31; ++i)
+        if ((n >> i) & 1)
+            a[i] = (ll)(n >> (i + 1) << i | (n & ((1 << i) - 1))) << i;
+        else
+            a[i] = (ll)(n >> (i + 1) << i) << i;
+    b[0] = a[0];
+    for (int i = 1; i < 31; ++i)
+        b[i] = b[i - 1] + a[i];
+    answer = (node)n * (n - 1) * inv2 * n;
+    auto invn = ((node)n).inv();
+    --n;
+    dfs(30, 0, true);
+    write((answer * invn * invn).data(), '\n');
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("dice.in", "r", stdin);
+    freopen("dice.out", "w", stdout);
+#endif
+    int T;
+    read(T);
+    while (T--)
+        work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

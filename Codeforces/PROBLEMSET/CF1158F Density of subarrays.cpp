@@ -1,11 +1,12 @@
 /**
- *    name:     
+ *    name:     Density of subarrays
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.27 周一 23:08:48 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -298,9 +299,112 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 3005;
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+int n, c;
+int a[N];
+namespace subtask1
+{
+    node buf[2][N][N];
+    inline void main()
+    {
+        auto f = buf[0], g = buf[1];
+        f[0][0] = 1;
+        for (int i = 1; i <= n; ++i)
+        {
+            swap(f, g);
+            for (int j = i / c; j >= 0; --j)
+                for (int k = (1 << c) - 2; k >= 0; --k)
+                    f[j][k] = 0;
+            for (int j = i / c; j >= 0; --j)
+                for (int k = (1 << c) - 2; k >= 0; --k)
+                {
+                    if (!g[j][k].data())
+                        continue;
+                    f[j][k] += g[j][k];
+                    int t = k | (1 << (a[i] - 1));
+                    if (t == (1 << c) - 1)
+                        f[j + 1][0] += g[j][k];
+                    else
+                        f[j][t] += g[j][k];
+                }
+        }
+        for (int i = 0; i <= n; ++i)
+        {
+            node ans = !i ? mod - 1 : 0;
+            for (int S = (1 << c); S >= 0; --S)
+                ans += f[i][S];
+            write(ans.data(), ' ');
+        }
+        write('\n');
+    }
+}
+namespace subtask2
+{
+    int cnt[N];
+    node power[N], inv[N];
+    node f[N][N], sum[N][N], g[N][N];
+    inline void main()
+    {
+        sum[n + 1][0] = power[0] = inv[0] = 1;
+        for (int i = 1; i <= n; ++i)
+        {
+            power[i] = power[i - 1] + power[i - 1];
+            inv[i] = (power[i] - 1).inv();
+        }
+        for (int i = 1; i <= n; ++i)
+        {
+            cnt[a[i]] = 1;
+            node res = 1;
+            int tot = 1;
+            if (tot == c)
+                g[i][i] = res;
+            for (int j = i + 1; j <= n; ++j)
+            {
+                if (a[i] == a[j])
+                    res *= 2;
+                else
+                {
+                    res *= inv[cnt[a[j]]];
+                    if (!cnt[a[j]]++)
+                        ++tot;
+                    res *= power[cnt[a[j]]] - 1;
+                    if (tot == c)
+                        g[i][j] = res * inv[cnt[a[j]]];
+                }
+            }
+            for (int j = 1; j <= c; ++j)
+                cnt[j] = 0;
+        }
+        for (int i = n; i >= 1; --i)
+        {
+            f[i][0] = power[n - i];
+            for (int j = (n - i + 1) / c; j >= 1; --j)
+            {
+                for (int k = i + c - 1; k <= n && sum[k + 1][j - 1].data(); ++k)
+                {
+                    f[i][j] += g[i][k] * sum[k + 1][j - 1];
+                }
+            }
+            for (int j = (n - i + 1) / c; j >= 0; --j)
+                sum[i][j] = sum[i + 1][j] + f[i][j];
+        }
+        --sum[1][0];
+        for (int i = 0; i <= n; ++i)
+            write((sum[1][i] - sum[1][i + 1]).data(), ' ');
+        write('\n');
+    }
+}
 signed main()
 {
+    read(n, c);
+    for (int i = 1; i <= n; ++i)
+        read(a[i]);
+    if (c <= 10)
+        subtask1::main();
+    else
+        subtask2::main();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

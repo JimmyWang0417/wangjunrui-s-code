@@ -1,12 +1,16 @@
 /**
- *    name:     
+ *    name:     P9062 [Ynoi2002] Adaptive Hsearch&Lsearch
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.02.27 周一 20:45:03 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
+#include <cmath>
 #include <cstdio>
+#include <cstring>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -298,9 +302,157 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2.5e5 + 5;
+constexpr int d = 3;
+constexpr int mod = 19260817;
+int n, m;
+pair<int, int> a[N];
+struct Edge
+{
+    int next;
+    int x, y;
+    int l, r;
+} edge[N * 100];
+int head[mod], num_edge;
+int st[N], top;
+inline void insert(int x, int y, int l, int r)
+{
+    int from = (int)(((ll)1e9 * x + y) % mod);
+    if (!head[from])
+        st[++top] = from;
+    edge[++num_edge].next = head[from];
+    edge[num_edge].x = x;
+    edge[num_edge].y = y;
+    edge[num_edge].l = l;
+    edge[num_edge].r = r;
+    head[from] = num_edge;
+}
+inline pair<int, int> query(int x, int y)
+{
+    if (x < 0 || y < 0)
+        return make_pair(-1, -1);
+    int from = (int)(((ll)1e9 * x + y) % mod);
+    for (int i = head[from]; i; i = edge[i].next)
+        if (x == edge[i].x && y == edge[i].y)
+            return make_pair(edge[i].l, edge[i].r);
+    return make_pair(-1, -1);
+}
+inline void clean()
+{
+    num_edge = 0;
+    while (top)
+        head[st[top--]] = 0;
+}
+vector<int> g[N];
+vector<pair<int, int>> q[N];
+int p[N];
+constexpr int dx[] = {-1, 0, 1, 1};
+constexpr int dy[] = {1, 1, 1, 0};
+int buf[N];
+ll answer[N];
+int block, belong[N];
+ll minn[N], minblock[N];
+inline void update(int pos, ll val)
+{
+    ckmin(minn[pos], val);
+    ckmin(minblock[belong[pos]], val);
+}
+inline ll query(int pos)
+{
+    ll res = 1e18;
+    for (int i = pos; belong[i] == belong[pos]; ++i)
+        ckmin(res, minn[i]);
+    for (int i = belong[pos] + 1; i <= belong[n]; ++i)
+        ckmin(res, minblock[i]);
+    return res;
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("closest.in", "r", stdin);
+    freopen("closest.out", "w", stdout);
+#endif
+    read(n, m);
+    block = (int)sqrt(n);
+    for (int i = 1; i <= n; ++i)
+        belong[i] = (i - 1) / block + 1;
+    for (int i = 1; i <= n; ++i)
+        read(a[i].first, a[i].second);
+    for (int i = 1; i <= n; ++i)
+        p[i] = i;
+    for (int k = 0; k < 27; ++k)
+    {
+        auto compare = [k](int x, int y)
+        {
+            int x1 = a[x].first >> k, y1 = a[x].second >> k;
+            int x2 = a[y].first >> k, y2 = a[y].second >> k;
+            return x1 == x2 ? y1 < y2 : x1 < x2;
+        };
+        sort(p + 1, p + 1 + n, compare);
+        auto equal = [k](int x, int y)
+        {
+            int x1 = a[x].first >> k, y1 = a[x].second >> k;
+            int x2 = a[y].first >> k, y2 = a[y].second >> k;
+            return x1 == x2 && y1 == y2;
+        };
+        for (int l = 1, r; l <= n; l = r)
+        {
+            r = l + 1;
+            while (r <= n && equal(p[l], p[r]))
+                ++r;
+            sort(p + l, p + r);
+            insert(a[p[l]].first >> k, a[p[l]].second >> k, l, r);
+            for (int i = l; i < r; ++i)
+                for (int j = i + 1; j <= i + d && j < r; ++j)
+                    g[p[j]].push_back(p[i]);
+        }
+        for (int l = 1, r; l <= n; l = r)
+        {
+            r = l + 1;
+            while (r <= n && equal(p[l], p[r]))
+                ++r;
+            int x = a[p[l]].first >> k, y = a[p[l]].second >> k;
+            for (int i = 0; i < 4; ++i)
+            {
+                auto qwq = query(x + dx[i], y + dy[i]);
+                if (qwq.first != -1)
+                {
+                    int pl = qwq.first, pr = qwq.second;
+                    int all = r - l + pr - pl;
+                    merge(p + l, p + r, p + pl, p + pr, buf);
+                    for (int j = 0; j < all; ++j)
+                        for (int kk = j + 1; kk <= j + d && kk < all; ++kk)
+                            g[buf[kk]].push_back(buf[j]);
+                }
+            }
+        }
+        clean();
+    }
+    memset(minn, 0x3f, sizeof(minn));
+    memset(minblock, 0x3f, sizeof(minblock));
+    auto distance = [](int x, int y)
+    {
+        return (ll)(a[x].first - a[y].first) * (a[x].first - a[y].first) +
+               (ll)(a[x].second - a[y].second) * (a[x].second - a[y].second);
+    };
+    for (int i = 1; i <= m; ++i)
+    {
+        int l, r;
+        read(l, r);
+        q[r].emplace_back(l, i);
+    }
+    for (int i = 1; i <= n; ++i)
+    {
+        for (int j : g[i])
+            update(j, distance(i, j));
+        for (auto j : q[i])
+            answer[j.second] = query(j.first);
+    }
+    for (int i = 1; i <= m; ++i)
+        write(answer[i], '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
