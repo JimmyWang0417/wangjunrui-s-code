@@ -65,13 +65,12 @@
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
  Autoconf               16      1885023      1885023            0            0
- C Header                1         4249         3536          299          414
- C++                  2002       261033       255149         4319         1565
- C++ Header             16         2179         1281          580          318
- Markdown                2         2301            0         2268           33
- Python                  7         1007          902           33           72
+ C++                  2072       289065       282220         5017         1828
+ C++ Header             14         1963         1108          568          287
+ Markdown                2         2399            0         2365           34
+ Python                  3          212          183            1           28
 ===============================================================================
- Total                2044      2155792      2145891         7499         2402
+ Total                2107      2178662      2168534         7951         2177
 ===============================================================================
 ```
 <!-- count the code end -->
@@ -80,7 +79,6 @@
 <!-- directory tree begin -->
 ```plain
 .
-├── #771. 「分块算法」历史序列.cpp
 ├── 2019 字符串训练
 │   ├── 1.哈希
 │   │   ├── Campaign.cpp
@@ -246,6 +244,7 @@
 │   ├── AT4439 [AGC028E] High Elements.cpp
 │   ├── AT4994 [AGC034D] Manhattan Max Matching.cpp
 │   ├── AT5800 [AGC043C] Giant Graph.cpp
+│   ├── AT_abc221_g [ABC221G] Jumping sequence.cpp
 │   └── AT_abc239_h [ABC239Ex] Dice Product 2.cpp
 ├── BZOJ
 │   ├── #1010. 玩具装箱toy.cpp
@@ -356,6 +355,7 @@
 │   ├── CCC Hit the Coconuts.cpp
 │   ├── CF1304F1 Animal Observation (easy version).cpp
 │   ├── COVERING Covering Sets.cpp
+│   ├── FNCS Chef and Churu.cpp
 │   └── STR_FUNC Strange Functions.cpp
 ├── Codeforces
 │   ├── Group
@@ -367,8 +367,26 @@
 │   │   │   └── F. Pipe Layout.cpp
 │   │   ├── 2017-2018 ACM-ICPC Southeastern European Regional Programming Contest (SEERC 2017)
 │   │   │   └── B. Bricks.cpp
-│   │   └── 2018-2019 Summer Petrozavodsk Camp, Oleksandr Kulkov Contest 2
-│   │       └── B. Yet Another Convolution.cpp
+│   │   ├── 2018-2019 Summer Petrozavodsk Camp, Oleksandr Kulkov Contest 2
+│   │   │   └── B. Yet Another Convolution.cpp
+│   │   ├── 2021-2022 ICPC Northwestern European Regional Programming Contest (NWERC 2021)
+│   │   │   ├── G - Glossary Arrangement.cpp
+│   │   │   └── H - Heating Up.cpp
+│   │   ├── 2022 China Collegiate Programming Contest (CCPC) Guangzhou Onsite
+│   │   │   └── F. Equations.cpp
+│   │   ├── 2022 China Collegiate Programming Contest (CCPC) Guilin Site
+│   │   │   ├── I. Invincible Hotwheels.cpp
+│   │   │   └── K. Barrel Theory.cpp
+│   │   ├── 2022 Hubei Provincial Collegiate Programming Contest
+│   │   │   └── J - Palindrome Reversion.cpp
+│   │   ├── 2022 Taiwan NHSPC Mock Contest
+│   │   │   ├── C. 頒獎音樂 (Ceremony).cpp
+│   │   │   └── I. 子集合和 (SOS).cpp
+│   │   └── The 2023 ICPC Asia Hong Kong Regional Programming Contest (The 1st Universal Cup, Stage 2:Hong Kong)
+│   │       ├── D - Shortest Path Query.cpp
+│   │       ├── I - Range Closest Pair of Points Query.cpp
+│   │       ├── J - Dice Game.cpp
+│   │       └── K. Maximum GCD.cpp
 │   └── PROBLEMSET
 │       ├── CF1000F One Occurrence.cpp
 │       ├── CF1007D Ants.cpp
@@ -396,6 +414,7 @@
 │       ├── CF1093F Vasya and Array.cpp
 │       ├── CF1093G Multidimensional Queries.cpp
 │       ├── CF1097F Alex and a TV Show.cpp
+│       ├── CF1097G Vladislav and a Great Legend.cpp
 │       ├── CF1100F Ivan and Burgers.cpp
 │       ├── CF1103E Radix sum.cpp
 │       ├── CF1109E Sasha and a Very Easy Test.cpp
@@ -418,6 +437,7 @@
 │       ├── CF1151F Sonya and Informatics.cpp
 │       ├── CF1152C Neko does Maths.cpp
 │       ├── CF1153D Serval and Rooted Tree.cpp
+│       ├── CF1158F Density of subarrays.cpp
 │       ├── CF1172E Nauuo and ODT.cpp
 │       ├── CF1174E Ehab and the Expected GCD Problem.cpp
 │       ├── CF1175G Yet Another Partiton Problem.cpp
@@ -430,6 +450,7 @@
 │       ├── CF1209E2 Rotate Columns (hard version).cpp
 │       ├── CF1209F Koala and Notebook.cpp
 │       ├── CF120J Minimum Sum.cpp
+│       ├── CF1225G To Make 1.cpp
 │       ├── CF1227F1 Wrong Answer on test 233 (Easy Version).cpp
 │       ├── CF1227F2 Wrong Answer on test 233 (Hard Version).cpp
 │       ├── CF1228E Another Filling the Grid.cpp
@@ -510,6 +531,7 @@
 │       ├── CF1363F Rotating Substrings.cpp
 │       ├── CF1367F1 Flying Sort (Easy Version).cpp
 │       ├── CF1367F2 Flying Sort (Hard Version).cpp
+│       ├── CF1368H1 Breadboard Capacity (easy version).cpp
 │       ├── CF1369E DeadLee.cpp
 │       ├── CF1372E Omkar and Last Floor.cpp
 │       ├── CF1375E Inversion SwapSort.cpp
@@ -526,6 +548,7 @@
 │       ├── CF1438E Yurii Can Do Everything.cpp
 │       ├── CF1439C Greedy Shopping.cpp
 │       ├── CF1442D Sum.cpp
+│       ├── CF1442E Black, White and Grey Tree.cpp
 │       ├── CF1444C Team-Building.cpp
 │       ├── CF1446D1 Frequency Problem (Easy Version).cpp
 │       ├── CF1446D2 Frequency Problem (Hard Version).cpp
@@ -534,6 +557,7 @@
 │       ├── CF1466G Song of the Sirens.cpp
 │       ├── CF1467E Distinctive Roots in a Tree.cpp
 │       ├── CF1473E Minimum Path.cpp
+│       ├── CF1476F Lanterns.cpp
 │       ├── CF147B Smile House.cpp
 │       ├── CF1481E Sorting Books.cpp
 │       ├── CF1485F Copy or Prefix Sum.cpp
@@ -543,6 +567,7 @@
 │       ├── CF1497E1 Square-free division (easy version).cpp
 │       ├── CF1497E2 Square-free division (hard version).cpp
 │       ├── CF1499E Chaotic Merge.cpp
+│       ├── CF1517F Reunion.cpp
 │       ├── CF1523E Crypto Lights.cpp
 │       ├── CF1527D MEX Tree.cpp
 │       ├── CF1527E Partition Game.cpp
@@ -557,6 +582,7 @@
 │       ├── CF1592E Bored Bakry.cpp
 │       ├── CF15D Map.cpp
 │       ├── CF1606F Tree Queries.cpp
+│       ├── CF1610G AmShZ Wins a Bet.cpp
 │       ├── CF161D Distance in Tree.cpp
 │       ├── CF1634F Fibonacci Additions.cpp
 │       ├── CF163E e-Government.cpp
@@ -631,6 +657,7 @@
 │       ├── CF498B Name That Tune.cpp
 │       ├── CF505E Mr. Kitayuta vs. Bamboos.cpp
 │       ├── CF506D Mr. Kitayuta's Colorful Graph.cpp
+│       ├── CF506E Mr. Kitayuta's Gift.cpp
 │       ├── CF510E Fox And Dinner.cpp
 │       ├── CF516D Drazil and Morning Exercise.cpp
 │       ├── CF518D Ilya and Escalator.cpp
@@ -650,6 +677,7 @@
 │       ├── CF55D Beautiful numbers.cpp
 │       ├── CF55E Very simple problem.cpp
 │       ├── CF570D Tree Requests.cpp
+│       ├── CF573D Bear and Cavalry.cpp
 │       ├── CF573E Bear and Bowling.cpp
 │       ├── CF576D Flights for Regular Customers.cpp
 │       ├── CF576E Painting Edges.cpp
@@ -794,7 +822,7 @@
 │   │   ├── sample.in
 │   │   └── sample.out
 │   └── Subset.cpp
-├── HDU Online Judge
+├── Hangzhou Dianzi University Online Judge
 │   ├── hdu1007 Quoit Design.cpp
 │   ├── hdu1400 Mondriaan's Dream.cpp
 │   ├── hdu1542 Atlantis.cpp
@@ -809,7 +837,8 @@
 │   ├── hdu4819 Mosaic.cpp
 │   ├── hdu4991 Ordered Subsequence(zkw线段树).cpp
 │   ├── hdu4991 Ordered Subsequence(树状数组).cpp
-│   └── hdu5157 Harry and magic string.cpp
+│   ├── hdu5157 Harry and magic string.cpp
+│   └── hdu6157 The Karting.cpp
 ├── hihoCoder
 │   └── 1602 本质不同的回文子串的数量.cpp
 ├── Libre Online Judge
@@ -910,10 +939,48 @@
 │   ├── #6283 数列分块入门 7.cpp
 │   ├── #6284 数列分块入门 8.cpp
 │   ├── #6285 数列分块入门 9.cpp
+│   ├── #6406. 「ICPC World Finals 2018」绿宝石之岛.cpp
 │   ├── #6485. LJJ 学二项式定理.cpp
 │   ├── #6490. 「XXOI 2018」暑假时在做什么？有没有空？可以来学物理吗？.cpp
 │   ├── #6669 Nauuo and Binary Tree.cpp
 │   └── #P5330 [SNOI2019]数论.cpp
+├── Nanjing Foreign Language School Online Judge
+│   ├── #10060. 服务器需求.cpp
+│   ├── #10241. 式神.cpp
+│   ├── #1154. 「2021六校联考WC #2」三角形.cpp
+│   ├── #1184. 「2021六校联考WC #12」人造感情.cpp
+│   ├── #12377. 送人匕首.cpp
+│   ├── #13414. 「20230218」基础逆序对练习题.cpp
+│   ├── #13415. 「20230218」基础全排列练习题.cpp
+│   ├── #13416. 「20230218」化纤.cpp
+│   ├── #13417. 「20230218」拍劣.cpp
+│   ├── #13419. 「20230224」笑脸和三个爱心.cpp
+│   ├── #13420. 「20230224」好吃.cpp
+│   ├── #13421. 「20230224」抱抱.cpp
+│   ├── #13422. 「20230227」最大公约数.cpp
+│   ├── #13423. 「20230227」最短路.cpp
+│   ├── #13424. 「20230227」投骰子.cpp
+│   ├── #13425. 「20230227」平面最近点对.cpp
+│   ├── #13426. 「20230221」代码旅行.cpp
+│   ├── #13427. 「20230221」奶牛旅行.cpp
+│   ├── #13428. 「20230221」图上旅行.cpp
+│   ├── #13429. 「20230221」序列旅行.cpp
+│   ├── #13430. 「20230222」DJ 数数.cpp
+│   ├── #13431. 「20230222」丁真马马.cpp
+│   ├── #13432. 「20230222」说藏话了.cpp
+│   ├── #13434. 「20230223」大回文.cpp
+│   ├── #13435. 「20230223」大马.cpp
+│   ├── #13436. 「20230223」大枝江.cpp
+│   ├── #13438. 「20230225」时间旅行.cpp
+│   ├── #13439. 「20230225」节点旅行.cpp
+│   ├── #13440. 「20230225」结束旅行.cpp
+│   ├── #13442. 「20230228」小 G 的 cmd.cpp
+│   ├── #13443. 「20230228」小 H 的谜题.cpp
+│   ├── #13445. 「20230301」Card.cpp
+│   ├── #13446. 「20230301」Cir.cpp
+│   ├── #13449. 「20230302」宣告春天.cpp
+│   ├── #13450. 「20230302」嘉然和向晚又在玩游戏.cpp
+│   └── #2137. Words.cpp
 ├── NOI.AC
 │   ├── #26. T1.cpp
 │   └── #922. lcalca.cpp
@@ -1097,6 +1164,9 @@
 │   └── UVA760 DNA Sequencing.cpp
 ├── Ybt Online Judge
 │   ├── noip.ybtoj.com.cn
+│   │   ├── #23501. 「备战 NOI2023 模拟赛 Day1」还在流浪.cpp
+│   │   ├── #23502. 「备战 NOI2020 模拟赛 Day1」粉色海洋.cpp
+│   │   ├── #23503. 「备战 NOI2023 模拟赛 Day1」红颜如霜.cpp
 │   │   ├── #455. 「概率期望 DP」期望题.cpp
 │   │   ├── #465. 「数据结构优化 DP」仰望星空.cpp
 │   │   ├── #485. 「单调队列优化 DP」出题人.cpp
@@ -1121,8 +1191,10 @@
 │   │   ├── #755. 「分治」买棉花糖.cpp
 │   │   ├── #765. 「启发式合并」集合比较.cpp
 │   │   ├── #775. 「分块」樱桃莓莓.cpp
+│   │   ├── #785. 「莫队算法」缺口一样.cpp
 │   │   ├── #795. 「CDQ 分治 & 整体二分」打怪兽.cpp
 │   │   ├── #826. 「计算几何初探」海妖沙龙.cpp
+│   │   ├── #827. 「计算几何初探」堵命运枪.cpp
 │   │   ├── #855. 「半平面交」切割蛋糕.cpp
 │   │   ├── #865. 「扫描线」百里守约.cpp
 │   │   ├── #885. 「线性基」异或路径.cpp
@@ -1130,6 +1202,7 @@
 │   │   ├── #905. 「拉格朗日插值」你的名字.cpp
 │   │   ├── #906. 「拉格朗日插值」树的计数(打表).cpp
 │   │   ├── #906. 「拉格朗日插值」树的计数.cpp
+│   │   ├── #925. 「Burnside 引理和 Polya 定理」破烂衣裳.cpp
 │   │   ├── #935. 「同余方程」鲁班七号.cpp
 │   │   ├── #945. 「莫比乌斯反演」网格与圆.cpp
 │   │   ├── #965. 「FFT」对峙绝望.cpp
@@ -1987,6 +2060,7 @@
 │   ├── P4884 多少个1？.cpp
 │   ├── P4887 【模板】莫队二次离线（第十四分块(前体)）.cpp
 │   ├── P4920 [WC2015]未来程序.zip
+│   ├── P4929 【模板】舞蹈链（DLX）.cpp
 │   ├── P4933 大师.cpp
 │   ├── P4980 【模板】Pólya 定理.cpp
 │   ├── P4983 忘情.cpp
@@ -2069,6 +2143,7 @@
 │   ├── P5591 小猪佩奇学数学.cpp
 │   ├── P5621 [DBOI2019]德丽莎世界第一可爱.cpp
 │   ├── P5631 最小mex生成树.cpp
+│   ├── P5642 人造情感（emotion）.cpp
 │   ├── P5657 格雷码.cpp
 │   ├── P5658 括号树.cpp
 │   ├── P5661 公交换乘.cpp
@@ -2179,6 +2254,7 @@
 │   ├── P8367 [LNOI2022] 盒.cpp
 │   ├── P8368 [LNOI2022] 串.cpp
 │   ├── P8867 [NOIP2022] 建造军营.cpp
+│   ├── P9062 [Ynoi2002] Adaptive Hsearch&Lsearch.cpp
 │   ├── T102431 柱状图（hist,1.5s,512MB）.cpp
 │   ├── T85975 高精度除法.cpp
 │   └── U41492 树上数颜色.cpp
