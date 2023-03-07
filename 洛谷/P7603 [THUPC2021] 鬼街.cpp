@@ -1,12 +1,15 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     C. 鬼街
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.04 周六 10:07:02 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <ext/pb_ds/priority_queue.hpp>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -298,32 +301,118 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
-typedef modint<mod> node;
+constexpr int N = 1e5 + 5;
 int n, m;
-node inv[N];
-inline node C(node _n, int _m)
+bool vis[N];
+int prime[N], mp[N], tot;
+inline void getprime()
 {
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
-    return res;
+    for (int i = 2; i <= n; ++i)
+    {
+        if (!vis[i])
+            prime[mp[i] = ++tot] = i;
+        for (int j = 1; j <= tot; ++j)
+        {
+            if (i * prime[j] > n)
+                break;
+            vis[i * prime[j]] = true;
+            if (i % prime[j] == 0)
+                break;
+        }
+    }
 }
+vector<int> g[N];
+__gnu_pbds::priority_queue<pair<ll, int>, greater<pair<ll, int>>> q[N];
+ll sum[N];
+int p[N];
+int a[N];
+ll b[N];
+__gnu_pbds::priority_queue<pair<ll, int>, greater<pair<ll, int>>>::point_iterator c[N][15];
+int ccf;
+int answer;
+inline void rebuild(int u)
+{
+    ll res = 0;
+    for (int i = 0; i < (int)g[a[u]].size(); ++i)
+        res += sum[g[a[u]][i]];
+    if (res >= b[u])
+    {
+        for (int i = 0; i < (int)g[a[u]].size(); ++i)
+            q[g[a[u]][i]].erase(c[u][i]);
+        p[++answer] = u;
+        return;
+    }
+    ll other = b[u] - res;
+    ll add = (other - 1) / (int)g[a[u]].size() + 1;
+    b[u] = other;
+    for (int i = (int)g[a[u]].size() - 1; i >= 0; --i)
+    {
+        q[g[a[u]][i]].modify(c[u][i], make_pair(add + sum[g[a[u]][i]], u));
+        b[u] += sum[g[a[u]][i]];
+    }
+}
+inline void build(int u)
+{
+    if (a[u] == 1)
+        return;
+    ll other = b[u];
+    ll add = (other - 1) / (int)g[a[u]].size() + 1;
+    b[u] = other;
+    for (int i = (int)g[a[u]].size() - 1; i >= 0; --i)
+    {
+        c[u][i] = q[g[a[u]][i]].push(make_pair(add + sum[g[a[u]][i]], u));
+        b[u] += sum[g[a[u]][i]];
+    }
+}
+int nmsl[N], wdnmd;
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#endif
     read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+    getprime();
+    for (int i = 1; i <= tot; ++i)
+        for (int j = prime[i]; j <= n; j += prime[i])
+            g[j].push_back(prime[i]);
+    while (m--)
+    {
+        int opt, x;
+        ll y;
+        read(opt, x, y);
+        y ^= answer;
+        if (!opt)
+        {
+            answer = 0;
+            for (int u : g[x])
+            {
+                sum[u] += y;
+                while (!q[u].empty() && q[u].top().first <= sum[u])
+                {
+                    auto z = q[u].top();
+                    rebuild(z.second);
+                }
+            }
+            for (int i = 1; i <= wdnmd; ++i)
+                p[++answer] = nmsl[i];
+            wdnmd = 0;
+            sort(p + 1, p + 1 + answer);
+            write(answer);
+            for (int i = 1; i <= answer; ++i)
+                write(' ', p[i]);
+            write('\n');
+        }
+        else
+        {
+            ++ccf;
+            a[ccf] = x, b[ccf] = y;
+            if (y)
+                build(ccf);
+            else
+                nmsl[++wdnmd] = ccf;
+        }
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

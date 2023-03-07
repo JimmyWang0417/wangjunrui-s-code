@@ -1,12 +1,14 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     CF1474F 1 2 3 4 ...
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.04 周六 18:01:32 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -298,32 +300,134 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
+constexpr int N = 55;
+constexpr int mod = 998244353;
 typedef modint<mod> node;
 int n, m;
-node inv[N];
-inline node C(node _n, int _m)
+ll a[N];
+ll p[N * 6], L[N], R[N];
+int tot;
+struct matrix
 {
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
+    node g[N][N];
+    matrix() { memset(g, 0, sizeof(g)); }
+    inline void clear()
+    {
+        memset(g, 0, sizeof(g));
+    }
+    inline auto operator[](int x)
+    {
+        return g[x];
+    }
+    inline auto operator[](int x) const
+    {
+        return g[x];
+    }
+    inline matrix operator*(const matrix &rhs) const
+    {
+        matrix res;
+        for (int i = 0; i <= m; ++i)
+            for (int k = 0; k <= m; ++k)
+                for (int j = 0; j <= m; ++j)
+                    res[i][j] += g[i][k] * rhs[k][j];
+        return res;
+    }
+    template <typename T>
+    inline matrix operator^(T power) const
+    {
+        matrix res, base = (*this);
+        for (int i = 0; i <= m; ++i)
+            res[i][i] = 1;
+        while (power)
+        {
+            if (power & 1)
+                res = res * base;
+            base = base * base;
+            power >>= 1;
+        }
+        return res;
+    }
+} A, B;
+inline node solve(int l, int r, ll ans)
+{
+    ll sum = 0;
+    m = 0;
+    for (int i = l; i <= r; ++i)
+    {
+        ++m;
+        if (a[i] > 0)
+            L[m] = sum + 1;
+        else
+            L[m] = sum - 1;
+        R[m] = (sum += a[i]);
+        p[++tot] = L[m] - 1, p[++tot] = L[m], p[++tot] = L[m] + 1;
+        p[++tot] = R[m] - 1, p[++tot] = R[m], p[++tot] = R[m] + 1;
+    }
+    L[1] = 0;
+    sort(p + 1, p + 1 + tot);
+    tot = (int)(unique(p + 1, p + 1 + tot) - p - 1);
+    A[0][0] = 1;
+    p[0] = -1;
+    for (int i = 1; i <= tot && p[i] <= ans; ++i)
+    {
+        for (int j = 1; j <= m; j++)
+            if (min(L[j], R[j]) <= p[i - 1] + 1 && max(L[j], R[j]) >= p[i])
+            {
+                for (int k = 0; k < j; k++)
+                    B[k][j] = 1;
+                if (L[j] < R[j])
+                    B[j][j] = 1;
+            }
+        A = A * (B ^ (p[i] - p[i - 1]));
+        B.clear();
+    }
+    node res = 0;
+    for (int i = 0; i <= m; ++i)
+        res += A[0][i];
+    A.clear();
     return res;
 }
 signed main()
 {
     read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+    for (int i = 1; i <= n; ++i)
+    {
+        read(a[i]);
+        if (!a[i])
+            --i, --n;
+        if (i > 1 && (a[i - 1] < 0) == (a[i] < 0))
+        {
+            a[i - 1] += a[i];
+            --i, --n;
+        }
+    }
+    ll ans = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        ll sum = a[i];
+        for (int j = i; j <= n; sum += a[++j])
+            ckmax(ans, sum);
+    }
+    if (!ans)
+        write(ans + 1, ' ', (-a[1] + 1) % mod, '\n');
+    else
+    {
+        node res = 0;
+        for (int i = 1; i <= n; ++i)
+        {
+            int r = 0;
+            ll sum = a[i];
+            for (int j = i; j <= n; sum += a[++j])
+                if (sum == ans)
+                    r = j;
+            if (i <= r)
+            {
+                res += solve(i, r, ans);
+                i = r;
+            }
+        }
+        write(ans + 1, ' ', res.data(), '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

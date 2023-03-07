@@ -1,11 +1,12 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     CF1463F Max Correct Set
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.05 周日 20:10:53 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -298,32 +299,36 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
-typedef modint<mod> node;
-int n, m;
-node inv[N];
-inline node C(node _n, int _m)
+constexpr int N = 1e5 + 5;
+int dp[50][2][2], cnt[50];
+inline int solve(int n, int x, int y)
 {
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
-    return res;
+    auto calc = [n, x, y](int val)
+    {
+        return (n - 1) / (x + y) + ((n - 1) % (x + y) >= val);
+    };
+    dp[0][1][1] = calc(0);
+    for (int i = 1; i < (x + y); ++i)
+    {
+        int add = calc((i * x) % (x + y));
+        dp[i][0][0] = max(dp[i - 1][1][0], dp[i - 1][0][0]);
+        dp[i][0][1] = max(dp[i - 1][1][1], dp[i - 1][0][1]);
+        dp[i][1][0] = dp[i - 1][0][0] + add;
+        dp[i][1][1] = dp[i - 1][0][1] + add;
+    }
+    return max({dp[x + y - 1][0][0], dp[x + y - 1][0][1], dp[x + y - 1][1][0]});
 }
 signed main()
 {
-    read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+    int n, x, y;
+    read(n, x, y);
+    int g = __gcd(x, y);
+    int res = 0;
+    if (g - n % g)
+        res += (g - n % g) * solve(n / g, x / g, y / g);
+    if (n % g)
+        res += (n % g) * solve(n / g + 1, x / g, y / g);
+    write(res, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

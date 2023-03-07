@@ -1,31 +1,37 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     C. 澜
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.05 周日 22:26:11 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
+
 // #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #define putchar putchar_unlocked
+
 #endif
 namespace IO
 {
 #ifdef FAST_IO
 #ifndef FAST_IN
 #define FAST_IN
+
 #endif
 #ifndef FAST_OUT
 #define FAST_OUT
+
 #endif
 #endif
 
@@ -34,13 +40,16 @@ namespace IO
 #ifdef FAST_IN
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
 #define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
         inline void read(char &_x)
@@ -94,6 +103,7 @@ namespace IO
 #undef getchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
     }
@@ -102,6 +112,7 @@ namespace IO
 #ifdef FAST_OUT
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
         inline void flush()
@@ -110,9 +121,11 @@ namespace IO
         }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
         inline void write(char _x)
@@ -165,6 +178,7 @@ namespace IO
 #undef putchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
     }
@@ -298,32 +312,163 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
-typedef modint<mod> node;
-int n, m;
-node inv[N];
-inline node C(node _n, int _m)
+constexpr int N = 2e5 + 5;
+constexpr int mod = 19260817;
+int n, a[N], b[N], c[N];
+struct Tree
 {
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
-    return res;
+    int l, r;
+    int size;
+} tree[N * 40];
+#define lc(rt) tree[rt].l
+
+#define rc(rt) tree[rt].r
+
+int root[N], cnt;
+inline void update(int pre, int &rt, int l, int r, int pos)
+{
+    tree[rt = ++cnt] = tree[pre];
+    ++tree[rt].size;
+    if (l == r)
+        return;
+    int mid = (l + r) >> 1;
+    if (pos <= mid)
+        update(lc(pre), lc(rt), l, mid, pos);
+    else
+        update(rc(pre), rc(rt), mid + 1, r, pos);
 }
+inline int query(int rt, int l, int r, int x, int y)
+{
+    if (r < x || l > y)
+        return 0;
+    if (x <= l && r <= y)
+        return tree[rt].size;
+    int mid = (l + r) >> 1;
+    return query(lc(rt), l, mid, x, y) + query(rc(rt), mid + 1, r, x, y);
+}
+struct
+{
+    int tree[N];
+    inline void update(int pos)
+    {
+        for (int i = pos; i; i -= lowbit(i))
+            ++tree[i];
+    }
+    inline int query(int pos)
+    {
+        int res = 0;
+        for (int i = pos; i <= n; i += lowbit(i))
+            res += tree[i];
+        return res;
+    }
+} index;
+struct
+{
+    int next;
+    ll key;
+    int val;
+} edge[N];
+int head[mod + 5], num_edge;
+inline int update(ll key, int val)
+{
+    int from = (int)(key % mod);
+    for (int i = head[from]; i; i = edge[i].next)
+        if (edge[i].key == key)
+        {
+            int res = edge[i].val;
+            edge[i].val = val;
+            return res;
+        }
+    edge[++num_edge].next = head[from];
+    edge[num_edge].key = key;
+    edge[num_edge].val = val;
+    head[from] = num_edge;
+    return 0;
+}
+int L[N];
+int f[N], g[N];
+struct
+{
+    int dp[25][N];
+    int log[N];
+    inline void init()
+    {
+        log[0] = -1;
+        for (int i = 1; i <= n; ++i)
+        {
+            dp[0][i] = a[i];
+            log[i] = log[i >> 1] + 1;
+        }
+        for (int j = 0; j < log[n]; ++j)
+            for (int i = 1; i + (2 << j) - 1 <= n; ++i)
+                dp[j + 1][i] = max(dp[j][i], dp[j][i + (1 << j)]);
+    }
+    inline int query(int l, int r)
+    {
+        int k = log[r - l + 1];
+        return max(dp[k][l], dp[k][r - (1 << k) + 1]);
+    }
+} sparse_table;
+int p[N], tot;
 signed main()
 {
-    read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("lan.in", "r", stdin);
+    freopen("lan.out", "w", stdout);
+#endif
+    read(n);
+    update(0, 1);
+    ll sum = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        read(a[i]);
+        update(root[i - 1], root[i], 1, n, a[i]);
+        b[i] = b[i - 1] + index.query(a[i] + 1);
+        index.update(a[i]);
+        L[i] = update(sum += a[i] - i, i + 1);
+        c[a[i]] = i;
+    }
+    sparse_table.init();
+    for (int i = 1; i <= n; ++i)
+    {
+        g[i] = g[i - 1];
+        if (L[i])
+        {
+            int l = L[i], r = i;
+            ll res = b[r] - b[l - 1];
+            res -= (ll)(r - l + 1) * query(root[l - 1], 1, n, r, n);
+            if (res == r - l && sparse_table.query(l, r) == r)
+            {
+                f[i] = f[g[l - 1]] + 1;
+                if (f[g[i - 1]] < f[i])
+                    g[i] = i;
+            }
+        }
+    }
+    int r = g[n];
+    while (r)
+    {
+        int l = L[r];
+        for (int i = r; i >= l; --i)
+        {
+            int x = c[i];
+            for (int j = x; j < i; ++j)
+            {
+                swap(a[j], a[j + 1]);
+                p[++tot] = j;
+                c[a[j]] = j;
+                c[a[j + 1]] = j + 1;
+            }
+        }
+        r = g[l - 1];
+    }
+    write(tot, '\n');
+    for (int i = 1; i <= tot; ++i)
+        write(p[i], ' ');
+    write('\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

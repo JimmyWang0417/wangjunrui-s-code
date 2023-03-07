@@ -1,12 +1,16 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     P7448 [Ynoi2007] rdiq
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.06 周一 16:52:53 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
+#include <tuple>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -298,32 +302,186 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
-typedef modint<mod> node;
-int n, m;
-node inv[N];
-inline node C(node _n, int _m)
+constexpr int N = 1e5 + 5;
+int n, m, a[N];
+struct
 {
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
-    return res;
+    int l, r, id;
+} q[N * 5];
+int belong[N], block;
+int belong1[N], block1;
+int belong2[N], block2;
+int L1[N], L2[N];
+vector<tuple<int, int, int>> g[N], h[N];
+ll answer[N * 5];
+int c1[31][31], c2[401][31], c3[31][401], c4[401][401], c5[N];
+#define ws _ws
+int b[N], c[N], ws[N];
+int prv[N], nxt[N];
+int mp[N];
+inline void add(int x)
+{
+    int y = b[x];
+    for (int i = 1; i < belong2[x]; ++i)
+        for (int j = 1; j < belong2[y]; ++j)
+            ++c1[i][j];
+    for (int i = L2[belong2[x]]; i < belong1[x]; ++i)
+        for (int j = 1; j < belong2[y]; ++j)
+            ++c2[i][j];
+    for (int i = 1; i < belong2[x]; ++i)
+        for (int j = L2[belong2[y]]; j < belong1[y]; ++j)
+            ++c3[i][j];
+    for (int i = L2[belong2[x]]; i < belong1[x]; ++i)
+        for (int j = L2[belong2[y]]; j < belong1[y]; ++j)
+            ++c4[i][j];
+    for (int i = L1[belong1[x]]; i < x; ++i)
+        if (b[i] < L1[belong1[y]])
+            ++c5[i];
+    for (int i = L1[belong1[y]]; i < y; ++i)
+        if (c[i] < x)
+            ++c5[c[i]];
+}
+inline void del(int x)
+{
+    int y = b[x];
+    for (int i = 1; i < belong2[x]; ++i)
+        for (int j = 1; j < belong2[y]; ++j)
+            --c1[i][j];
+    for (int i = L2[belong2[x]]; i < belong1[x]; ++i)
+        for (int j = 1; j < belong2[y]; ++j)
+            --c2[i][j];
+    for (int i = 1; i < belong2[x]; ++i)
+        for (int j = L2[belong2[y]]; j < belong1[y]; ++j)
+            --c3[i][j];
+    for (int i = L2[belong2[x]]; i < belong1[x]; ++i)
+        for (int j = L2[belong2[y]]; j < belong1[y]; ++j)
+            --c4[i][j];
+    for (int i = L1[belong1[x]]; i < x; ++i)
+        if (b[i] < L1[belong1[y]])
+            --c5[i];
+    for (int i = L1[belong1[y]]; i < y; ++i)
+        if (c[i] < x)
+            --c5[c[i]];
+}
+inline int query(int x)
+{
+    int y = b[x], _a = belong2[x], _b = belong1[x], _c = belong2[y], _d = belong1[y];
+    return c1[_a][_c] + c2[_b][_c] + c3[_a][_d] + c4[_b][_d] + c5[x];
+}
+inline void solve(vector<tuple<int, int, int>> *dp)
+{
+    for (int i = 1; i <= n; ++i)
+        ++ws[a[i]];
+    for (int i = 2; i <= n; ++i)
+        ws[i] += ws[i - 1];
+    for (int i = 1; i <= n; ++i)
+        c[b[i] = ws[a[i]]--] = i;
+    memset(ws, 0, sizeof(ws));
+    for (int i = 1; i <= n; ++i)
+    {
+        prv[i] = mp[a[i]];
+        mp[a[i]] = i;
+    }
+    memset(mp, 0, sizeof(mp));
+    for (int i = n; i >= 1; --i)
+    {
+        nxt[i] = mp[a[i]];
+        mp[a[i]] = i;
+    }
+    memset(mp, 0, sizeof(mp));
+    for (int i = 1; i <= n; ++i)
+    {
+        add(i);
+        if (prv[i])
+            del(prv[i]);
+        for (auto [l, r, id] : dp[i])
+        {
+            int res = 0;
+            for (int j = l; j <= r; ++j)
+            {
+                if (nxt[j] < i && nxt[j])
+                    res -= query(nxt[j]);
+                res += query(j);
+            }
+            if (id > 0)
+                answer[id] += res;
+            else 
+                answer[-id] -= res;
+        }
+    }
+    memset(c1, 0, sizeof(c1));
+    memset(c2, 0, sizeof(c2));
+    memset(c3, 0, sizeof(c3));
+    memset(c4, 0, sizeof(c4));
+    memset(c5, 0, sizeof(c5));
 }
 signed main()
 {
-    read(n, m);
-    inv[1] = 1;
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#endif
+    read(n);
+    for (int i = 1; i <= n; ++i)
+        read(a[i]);
+    read(m);
+    for (int i = 1; i <= m; ++i)
+    {
+        read(q[i].l, q[i].r);
+        q[i].id = i;
+    }
+    block = (int)(n / (int)__builtin_sqrt(m));
+    int qwq = (int)__builtin_pow(n, 0.25) + 1;
+    block1 = qwq * qwq;
+    block2 = qwq * qwq * qwq;
+    for (int i = 1; i <= n; ++i)
+    {
+        belong[i] = (i - 1) / block + 1;
+        belong1[i] = (i - 1) / block1 + 1;
+        belong2[i] = (i - 1) / block2 + 1;
+    }
+    for (int i = n; i >= 1; --i)
+        L1[L2[belong2[i]] = belong1[i]] = i;
+    sort(q + 1, q + 1 + m, [](auto x, auto y)
+         { return belong[x.l] == belong[y.l] ? (belong[x.l] & 1 ? x.r < y.r : x.r > y.r) : x.l < y.l; });
+    int l = 1, r = 0;
+    for (int i = 1; i <= m; ++i)
+    {
+        if (r < q[i].r)
+        {
+            g[n + 1 - l].emplace_back(n + 1 - q[i].r, n - r, q[i].id);
+            r = q[i].r;
+        }
+        if (l > q[i].l)
+        {
+            h[r].emplace_back(q[i].l, l - 1, q[i].id);
+            l = q[i].l;
+        }
+        if (r > q[i].r)
+        {
+            g[n + 1 - l].emplace_back(n + 1 - r, n - q[i].r, -q[i].id);
+            r = q[i].r;
+        }
+        if (l < q[i].l)
+        {
+            h[r].emplace_back(l, q[i].l - 1, -q[i].id);
+            l = q[i].l;
+        }
+    }
+
+    for (int i = 1; i <= n; ++i)
+        a[i] = n + 1 - a[i];
+    solve(h);
+
+    for (int i = 1; i <= n; ++i)
+        a[i] = n + 1 - a[i];
+    reverse(a + 1, a + 1 + n);
+    solve(g);
+
     for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+        answer[q[i].id] += answer[q[i - 1].id];
+    for (int i = 1; i <= m; ++i)
+        write(answer[i], '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

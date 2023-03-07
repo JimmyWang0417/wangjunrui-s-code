@@ -1,31 +1,37 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     A. 铠
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.04 周六 19:36:03 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
+
 // #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #define putchar putchar_unlocked
+
 #endif
 namespace IO
 {
 #ifdef FAST_IO
 #ifndef FAST_IN
 #define FAST_IN
+
 #endif
 #ifndef FAST_OUT
 #define FAST_OUT
+
 #endif
 #endif
 
@@ -34,13 +40,16 @@ namespace IO
 #ifdef FAST_IN
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
 #define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
         inline void read(char &_x)
@@ -94,6 +103,7 @@ namespace IO
 #undef getchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
     }
@@ -102,6 +112,7 @@ namespace IO
 #ifdef FAST_OUT
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
         inline void flush()
@@ -110,9 +121,11 @@ namespace IO
         }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
         inline void write(char _x)
@@ -161,10 +174,11 @@ namespace IO
             write(_x);
             write(_y...);
         }
-#ifdef FAST_OUT
+#ifdef FAST_OUTi
 #undef putchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
     }
@@ -298,32 +312,118 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
+constexpr int N = 2e5 + 5;
+constexpr int mod = 998244353;
 typedef modint<mod> node;
-int n, m;
-node inv[N];
-inline node C(node _n, int _m)
+constexpr node inv2 = ((node)2).inv();
+int n, a[N], b[N];
+int p[N], tot;
+struct point
 {
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
-    return res;
+    int size;
+    node sum, suf;
+    point(int _size = 0, node _sum = 0, node _suf = 0) : size(_size), sum(_sum), suf(_suf) {}
+    inline void update(node _val)
+    {
+        sum += _val * size;
+        suf += _val * size * size * inv2;
+    }
+    inline point operator+(const point &rhs) const
+    {
+        return point(size + rhs.size, sum + rhs.sum, rhs.sum * size + suf + rhs.suf);
+    }
+};
+struct Tree
+{
+    node tag;
+    point val;
+    inline void update(node _val)
+    {
+        tag += _val;
+        val.update(_val);
+    }
+} tree[N * 4];
+#define lc (rt << 1)
+
+#define rc (rt << 1 | 1)
+
+inline void pushup(int rt)
+{
+    tree[rt].val = tree[lc].val + tree[rc].val;
+}
+inline void pushdown(int rt)
+{
+    if (tree[rt].tag.data())
+    {
+        tree[lc].update(tree[rt].tag);
+        tree[rc].update(tree[rt].tag);
+        tree[rt].tag = 0;
+    }
+}
+inline void build(int rt, int l, int r)
+{
+    tree[rt].val.size = p[r] - p[l - 1];
+    if (l == r)
+        return;
+    int mid = (l + r) >> 1;
+    build(lc, l, mid);
+    build(rc, mid + 1, r);
+}
+inline void update(int rt, int l, int r, int x, int y, node val)
+{
+    if (r < x || l > y)
+        return;
+    if (x <= l && r <= y)
+        return tree[rt].update(val);
+    int mid = (l + r) >> 1;
+    pushdown(rt);
+    update(lc, l, mid, x, y, val);
+    update(rc, mid + 1, r, x, y, val);
+    pushup(rt);
+}
+inline point query(int rt, int l, int r, int x, int y)
+{
+    if (x <= l && r <= y)
+        return tree[rt].val;
+    int mid = (l + r) >> 1;
+    pushdown(rt);
+    if (y <= mid)
+        return query(lc, l, mid, x, y);
+    if (x > mid)
+        return query(rc, mid + 1, r, x, y);
+    return query(lc, l, mid, x, y) + query(rc, mid + 1, r, x, y);
 }
 signed main()
 {
-    read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("kai.in", "r", stdin);
+    freopen("kai.out", "w", stdout);
+#endif
+    read(n);
+    tot = -1;
+    for (int i = 1; i <= n; ++i)
+    {
+        read(a[i], b[i]);
+        p[++tot] = a[i];
+        p[++tot] = b[i];
+    }
+    sort(p, p + 1 + tot);
+    tot = (int)(unique(p, p + 1 + tot) - p - 1);
+    build(1, 1, tot);
+    node answer = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        int l = (int)(lower_bound(p, p + 1 + tot, a[i]) - p) + 1;
+        int r = (int)(lower_bound(p, p + 1 + tot, b[i]) - p);
+        node inv = ((node)(b[i] - a[i])).inv();
+        auto x = l <= r ? query(1, 1, tot, l, r) : point(), y = r < tot ? query(1, 1, tot, r + 1, tot) : point();
+        answer += y.sum + x.suf * inv;
+        update(1, 1, tot, l, r, inv);
+    }
+    write(answer.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

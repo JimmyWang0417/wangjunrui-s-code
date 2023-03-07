@@ -1,12 +1,14 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     P7214 [JOISC2020] 治療計画
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.06 周一 22:38:08 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <queue>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -298,32 +300,105 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
-typedef modint<mod> node;
+constexpr int N = 1e5 + 5;
+constexpr int INF = 0x7fffffff;
 int n, m;
-node inv[N];
-inline node C(node _n, int _m)
+struct node
 {
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
-    return res;
+    int t, l, r, c;
+    inline bool operator<(const node &rhs) const
+    {
+        return t < rhs.t;
+    }
+} a[N];
+struct
+{
+    int min1, min2;
+} tree[N * 4];
+#define lc (rt << 1)
+#define rc (rt << 1 | 1)
+inline void pushup(int rt)
+{
+    tree[rt].min1 = min(tree[lc].min1, tree[rc].min1);
+    tree[rt].min2 = min(tree[lc].min2, tree[rc].min2);
+}
+ll dis[N];
+priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> q;
+inline void build(int rt, int l, int r)
+{
+    if (l == r)
+    {
+        if (a[l].l == 1)
+        {
+            tree[rt].min1 = tree[rt].min2 = INF;
+            q.emplace(dis[l] = a[l].c, l);
+        }
+        else
+        {
+            tree[rt].min1 = a[l].l - a[l].t;
+            tree[rt].min2 = a[l].l + a[l].t;
+        }
+        return;
+    }
+    int mid = (l + r) >> 1;
+    build(lc, l, mid);
+    build(rc, mid + 1, r);
+    pushup(rt);
+}
+inline void query1(int rt, int l, int r, int x, int y, int v, ll w)
+{
+    if (r < x || l > y || tree[rt].min1 > v)
+        return;
+    if (l == r)
+    {
+        q.emplace(dis[l] = w + a[l].c, l);
+        tree[rt].min1 = tree[rt].min2 = INF;
+        return;
+    }
+    int mid = (l + r) >> 1;
+    query1(lc, l, mid, x, y, v, w);
+    query1(rc, mid + 1, r, x, y, v, w);
+    pushup(rt);
+}
+inline void query2(int rt, int l, int r, int x, int y, int v, ll w)
+{
+    if (r < x || l > y || tree[rt].min2 > v)
+        return;
+    if (l == r)
+    {
+        q.emplace(dis[l] = w + a[l].c, l);
+        tree[rt].min1 = tree[rt].min2 = INF;
+        return;
+    }
+    int mid = (l + r) >> 1;
+    query2(lc, l, mid, x, y, v, w);
+    query2(rc, mid + 1, r, x, y, v, w);
+    pushup(rt);
 }
 signed main()
 {
     read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+    for (int i = 1; i <= m; ++i)
+    {
+        auto &[t, l, r, c] = a[i];
+        read(t, l, r, c);
+    }
+    sort(a + 1, a + 1 + m);
+    build(1, 1, m);
+    ll ans = 1e18;
+    while (!q.empty())
+    {
+        int u = q.top().second;
+        q.pop();
+        if (a[u].r == n)
+            ckmin(ans, dis[u]);
+        query1(1, 1, m, 1, u - 1, a[u].r - a[u].t + 1, dis[u]);
+        query2(1, 1, m, u + 1, m, a[u].r + a[u].t + 1, dis[u]);
+    }
+    if (ans == (ll)1e18)
+        write("-1\n");
+    else
+        write(ans, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

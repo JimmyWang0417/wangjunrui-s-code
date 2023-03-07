@@ -1,12 +1,14 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     CF1188D Make Equal
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.06 周一 08:12:52 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -298,32 +300,41 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
-typedef modint<mod> node;
-int n, m;
-node inv[N];
-inline node C(node _n, int _m)
-{
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
-    return res;
-}
+constexpr int N = 1e5 + 5;
+int n;
+ll a[N];
+int dp[65][N];
+int sum[N][2];
 signed main()
 {
-    read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+    read(n);
+    ll maxx = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        read(a[i]);
+        ckmax(maxx, a[i]);
+    }
+    for (int i = 1; i <= n; ++i)
+        a[i] = maxx - a[i];
+    memset(dp, 0x3f, sizeof(dp));
+    dp[0][0] = 0;
+    for (int j = 0; j < 60; ++j)
+    {
+        sort(a + 1, a + 1 + n, [j](auto x, auto y)
+             { return (x & ((1ll << j) - 1)) < (y & ((1ll << j) - 1)); });
+        for (int i = 1; i <= n; ++i)
+        {
+            sum[i][0] = sum[i - 1][0];
+            sum[i][1] = sum[i - 1][1];
+            ++sum[i][(a[i] >> j) & 1];
+        }
+        for (int i = 0; i <= n; ++i)
+        {
+            ckmin(dp[j + 1][sum[n][1] - sum[n - i][1]], dp[j][i] + sum[n - i][1] + sum[n][0] - sum[n - i][0]);
+            ckmin(dp[j + 1][n - sum[n - i][0]], dp[j][i] + sum[n - i][0] + sum[n][1] - sum[n - i][1]);
+        }
+    }
+    write(dp[60][0], '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

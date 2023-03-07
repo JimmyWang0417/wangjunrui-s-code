@@ -93,7 +93,9 @@
         "spanstream": "cpp",
         "stacktrace": "cpp",
         "hash_map": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "stack": "cpp",
+        "queue": "cpp"
     },
     "python.testing.pytestArgs": [
         "UVA"

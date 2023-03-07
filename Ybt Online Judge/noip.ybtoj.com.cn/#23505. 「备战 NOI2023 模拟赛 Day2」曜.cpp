@@ -1,8 +1,8 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     B. 曜
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.04 周六 21:59:24 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -11,6 +11,7 @@ typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
+
 
 // #define FAST_IO
 
@@ -23,9 +24,11 @@ namespace IO
 #ifdef FAST_IO
 #ifndef FAST_IN
 #define FAST_IN
+
 #endif
 #ifndef FAST_OUT
 #define FAST_OUT
+
 #endif
 #endif
 
@@ -34,13 +37,16 @@ namespace IO
 #ifdef FAST_IN
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
 #define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
         inline void read(char &_x)
@@ -94,6 +100,7 @@ namespace IO
 #undef getchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
     }
@@ -102,6 +109,7 @@ namespace IO
 #ifdef FAST_OUT
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
         inline void flush()
@@ -110,9 +118,11 @@ namespace IO
         }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
         inline void write(char _x)
@@ -165,6 +175,7 @@ namespace IO
 #undef putchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
     }
@@ -298,32 +309,95 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
+constexpr int N = 2e5 + 5;
+constexpr int mod = 998244353;
+constexpr int _mod = 998244352;
 typedef modint<mod> node;
-int n, m;
-node inv[N];
-inline node C(node _n, int _m)
+typedef modint<_mod> _node;
+int prime[N], tot;
+int miu[N];
+bool vis[N];
+_node power[N];
+_node f[N], g[N];
+inline void getprimes(int n, int m)
 {
+    for (int i = 1; i <= m; ++i)
+        power[i] = ((_node)i) ^ n;
+    miu[1] = 1;
+    for (int i = 2; i <= m; ++i)
+    {
+        if (!vis[i])
+        {
+            prime[++tot] = i;
+            miu[i] = -1;
+        }
+        for (int j = 1; j <= tot; ++j)
+        {
+            if (i * prime[j] > m)
+                break;
+            vis[i * prime[j]] = true;
+            if (i % prime[j] == 0)
+                break;
+            miu[i * prime[j]] = -miu[i];
+        }
+    }
+}
+inline node solve(int m)
+{
+    for (int i = 1; i <= m; ++i)
+    {
+        f[i] = 0;
+        g[i] = power[m] - power[m - m / i];
+    }
+    // printf("%d:\n", m);
+    // for (int i = 1; i <= m; ++i)
+    //     printf("%d ", g[i].data());
+    // putchar('\n');
+    for (int i = 1; i <= m; ++i)
+        for (int j = i; j <= m; j += i)
+            if (miu[j / i] == 1)
+                f[i] += g[j];
+            else if (miu[j / i] == -1)
+                f[i] -= g[j];
     node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
+    for (int i = 1; i <= m; ++i)
+        res *= ((node)i) ^ f[i].data();
     return res;
 }
+node a[N], b[N], c[N], inv[N];
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("yao.in", "r", stdin);
+    freopen("yao.out", "w", stdout);
+#endif
+    int n, m;
     read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
-    write(res.data(), '\n');
+    getprimes(n, m);
+    for (int l = 1, r; l <= m; l = r + 1)
+    {
+        r = m / (m / l);
+        a[m / l] = solve(m / l);
+    }
+    for (int i = 1; i <= m; ++i)
+    {
+        b[i] = (((node)i) ^ power[m / i].data()) * a[m / i];
+        inv[i] = b[i].inv();
+        c[i] = 1;
+    }
+    for (int i = 1; i <= m; ++i)
+        for (int j = i; j <= m; j += i)
+            if (miu[j / i] == 1)
+                c[i] *= b[j];
+            else if (miu[j / i] == -1)
+                c[i] *= inv[j];
+    node ans = 1;
+    for (int i = 1; i <= m; ++i)
+        ans *= c[i] ^ i;
+    write(ans.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

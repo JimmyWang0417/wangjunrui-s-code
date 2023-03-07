@@ -1,12 +1,13 @@
 /**
- *    name:     P3214 [HNOI2011] 卡农
+ *    name:     I. 游戏
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  2023.03.05 周日 10:15:34 (Asia/Shanghai)
+ *    created:  2023.03.04 周六 08:04:51 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 // __extension__ typedef __int128 int128;
@@ -298,31 +299,167 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-constexpr int N = 1e6 + 5;
-constexpr int mod = 1e8 + 7;
+constexpr int N = (1 << 10) + 5;
+constexpr int mod = 998244353;
+constexpr int limit = 63;
 typedef modint<mod> node;
-int n, m;
-node inv[N];
-inline node C(node _n, int _m)
-{
-    node res = 1;
-    for (int i = 0; i < _m; ++i)
-        res *= inv[i + 1] * (_n - i);
-    return res;
-}
+int m;
+ll n, a[N];
+node dp[67][N][25], g[67][N][25];
+node C[N][N];
+int popcount[N];
 signed main()
 {
     read(n, m);
-    inv[1] = 1;
-    for (int i = 2; i <= m; ++i)
-        inv[i] = -inv[mod % i] * (mod / i);
-    node times1 = ((node)2) ^ (n - 1), times2 = times1 * 2;
-    node res = C(times1 - 1, m / 2);
-    if (((m + 1) / 2) & 1)
-        res = -res;
-    res *= (times2 - 1);
-    res += C(times2 - 1, m);
-    res *= times2.inv();
+    for (int i = 0; i < m; ++i)
+        read(a[i]);
+    C[0][0] = 1;
+    for (int i = 1; i <= m; ++i)
+    {
+        C[i][0] = 1;
+        for (int j = 1; j <= i; ++j)
+            C[i][j] = C[i - 1][j] + C[i - 1][j - 1];
+    }
+    for (int S = 1; S < (1 << m); ++S)
+        popcount[S] = popcount[S ^ lowbit(S)] + 1;
+    dp[limit + 1][(1 << m) - 1][0] = 1;
+    for (int i = limit; i >= 0; --i)
+        for (int S = 0; S < (1 << m); ++S)
+            for (int _j = 0; _j <= 20; ++_j)
+            {
+                if (dp[i + 1][S][_j].data())
+                {
+                    int j = (_j << 1) | ((n >> i) & 1);
+                    if (j > 20)
+                        continue;
+                    for (int T = S; T; T = (T - 1) & S)
+                    {
+                        bool flag = false;
+                        int cnt = 0;
+                        for (int k = 0; k < m; ++k)
+                            if (((T >> k) & 1))
+                            {
+                                if ((a[k] >> i) & 1)
+                                    ++cnt;
+                            }
+                            else
+                            {
+                                if ((a[k] >> i) & 1)
+                                    continue;
+                                if ((S >> k) & 1)
+                                    flag = true;
+                            }
+                        if (flag)
+                            continue;
+                        for (int k = m - popcount[S]; k >= 0; --k)
+                        {
+                            if (j - cnt - k < 0)
+                                continue;
+                            if ((cnt + k) & 1)
+                                continue;
+                            dp[i][T][j - cnt - k] += dp[i + 1][S][_j] * C[m - popcount[S]][k];
+                        }
+                    }
+                    int T = 0;
+                    bool flag = false;
+                    int cnt = 0;
+                    for (int k = 0; k < m; ++k)
+                        if (((T >> k) & 1))
+                        {
+                            if ((a[k] >> i) & 1)
+                                ++cnt;
+                        }
+                        else
+                        {
+                            if ((a[k] >> i) & 1)
+                                continue;
+                            if ((S >> k) & 1)
+                                flag = true;
+                        }
+                    if (flag)
+                        continue;
+                    for (int k = m - popcount[S]; k >= 0; --k)
+                    {
+                        if (j - cnt - k < 0)
+                            continue;
+                        if ((cnt + k) & 1)
+                            continue;
+                        dp[i][T][j - cnt - k] += dp[i + 1][S][_j] * C[m - popcount[S]][k];
+                    }
+                }
+            }
+    node res = 0;
+    for (int i = 0; i < (1 << m); ++i)
+        res -= dp[0][i][0];
+    memset(dp, 0, sizeof(dp));
+    dp[limit + 1][(1 << m) - 1][0] = 1;
+    for (int i = limit; i >= 0; --i)
+        for (int S = 0; S < (1 << m); ++S)
+            for (int _j = 0; _j <= 20; ++_j)
+            {
+                if (dp[i + 1][S][_j].data())
+                {
+                    int j = (_j << 1) | ((n >> i) & 1);
+                    if (j > 20)
+                        continue;
+                    for (int T = S; T; T = (T - 1) & S)
+                    {
+                        bool flag = false;
+                        int cnt = 0;
+                        for (int k = 0; k < m; ++k)
+                            if (((T >> k) & 1))
+                            {
+                                if ((a[k] >> i) & 1)
+                                    ++cnt;
+                            }
+                            else
+                            {
+                                if ((a[k] >> i) & 1)
+                                    continue;
+                                if ((S >> k) & 1)
+                                    flag = true;
+                            }
+                        if (flag)
+                            continue;
+                        for (int k = m - popcount[S]; k >= 0; --k)
+                        {
+                            if (j - cnt - k < 0)
+                                continue;
+                            // if ((cnt + k) & 1)
+                            //     continue;
+                            dp[i][T][j - cnt - k] += dp[i + 1][S][_j] * C[m - popcount[S]][k];
+                        }
+                    }
+                    int T = 0;
+                    bool flag = false;
+                    int cnt = 0;
+                    for (int k = 0; k < m; ++k)
+                        if (((T >> k) & 1))
+                        {
+                            if ((a[k] >> i) & 1)
+                                ++cnt;
+                        }
+                        else
+                        {
+                            if ((a[k] >> i) & 1)
+                                continue;
+                            if ((S >> k) & 1)
+                                flag = true;
+                        }
+                    if (flag)
+                        continue;
+                    for (int k = m - popcount[S]; k >= 0; --k)
+                    {
+                        if (j - cnt - k < 0)
+                            continue;
+                        // if ((cnt + k) & 1)
+                        //     continue;
+                        dp[i][T][j - cnt - k] += dp[i + 1][S][_j] * C[m - popcount[S]][k];
+                    }
+                }
+            }
+    for (int i = 0; i < (1 << m); ++i)
+        res += dp[0][i][0];
     write(res.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
