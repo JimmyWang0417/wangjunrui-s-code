@@ -33,7 +33,7 @@
 
 [<img src="./.image/libreoj.ico" width="100px" height = "100px" alt="Libre Online Judge"/>](https://loj.ac)
 
-[<img src="./.image/nfls.ico" width="100px" height = "100px" alt="Nanjing Foreign Language School Online Judge"/>](http://www.nfls.com.cn:10611/)
+[<img src="./.image/nfls.jpeg" width="100px" height = "100px" alt="Nanjing Foreign Language School Online Judge"/>](http://www.nfls.com.cn:10611/)
 
 [<img src="./.image/noi.ac.ico" width="100px" height = "100px" alt="NOI.AC"/>](https://noi.ac)
 
@@ -65,12 +65,12 @@
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
  Autoconf               16      1885023      1885023            0            0
- C++                  2072       289065       282220         5017         1828
+ C++                  2089       296333       289200         5204         1929
  C++ Header             14         1963         1108          568          287
- Markdown                2         2399            0         2365           34
+ Markdown                2         2492            0         2458           34
  Python                  3          212          183            1           28
 ===============================================================================
- Total                2107      2178662      2168534         7951         2177
+ Total                2124      2186023      2175514         8231         2278
 ===============================================================================
 ```
 <!-- count the code end -->
@@ -443,6 +443,7 @@
 │       ├── CF1175G Yet Another Partiton Problem.cpp
 │       ├── CF1178G The Awesomest Vertex.cpp
 │       ├── CF1188C Array Beauty.cpp
+│       ├── CF1188D Make Equal.cpp
 │       ├── CF1202E You Are Given Some Strings.cpp
 │       ├── CF1208F Bits And Pieces.cpp
 │       ├── CF1208G Polygons.cpp
@@ -554,9 +555,11 @@
 │       ├── CF1446D2 Frequency Problem (Hard Version).cpp
 │       ├── CF1452E Two Editorials.cpp
 │       ├── CF1458C Latin Square.cpp
+│       ├── CF1463F Max Correct Set.cpp
 │       ├── CF1466G Song of the Sirens.cpp
 │       ├── CF1467E Distinctive Roots in a Tree.cpp
 │       ├── CF1473E Minimum Path.cpp
+│       ├── CF1474F 1 2 3 4 ... .cpp
 │       ├── CF1476F Lanterns.cpp
 │       ├── CF147B Smile House.cpp
 │       ├── CF1481E Sorting Books.cpp
@@ -739,6 +742,7 @@
 │       ├── CF813D Two Melodies.cpp
 │       ├── CF815C Karen and Supermarket.cpp
 │       ├── CF827D Best Edge Weight.cpp
+│       ├── CF830D Singer House.cpp
 │       ├── CF835F Roads in the Kingdom.cpp
 │       ├── CF839D Winter is here.cpp
 │       ├── CF840C On the Bench.cpp
@@ -787,6 +791,7 @@
 │       ├── CF997C Sky Full of Stars.cpp
 │       └── CF997E Good Subsegments.cpp
 ├── custom_code_generator.py
+├── Generator.py
 ├── HackerRank
 │   ├── Subset
 │   │   ├── 1.in
@@ -980,6 +985,11 @@
 │   ├── #13446. 「20230301」Cir.cpp
 │   ├── #13449. 「20230302」宣告春天.cpp
 │   ├── #13450. 「20230302」嘉然和向晚又在玩游戏.cpp
+│   ├── #13458. 「20230307」津津的存钱计划.cpp
+│   ├── #13459. 「20230307」陶陶玩序列.cpp
+│   ├── #13461. 「20230308」铲雪.cpp
+│   ├── #13462. 「20230308」抽卡.cpp
+│   ├── #13463. 「20230308」樟.cpp
 │   └── #2137. Words.cpp
 ├── NOI.AC
 │   ├── #26. T1.cpp
@@ -1028,7 +1038,6 @@
 │   ├── #21626. 【PR #3】猜数.cpp
 │   └── #21627. 【PR #3】抽卡.cpp
 ├── README.md
-├── README.py
 ├── Sphere Online Judge
 │   ├── SP10264 METEORS - Meteors.cpp
 │   ├── SP10270 TEMPERAT - Temperature.cpp
@@ -1167,6 +1176,9 @@
 │   │   ├── #23501. 「备战 NOI2023 模拟赛 Day1」还在流浪.cpp
 │   │   ├── #23502. 「备战 NOI2020 模拟赛 Day1」粉色海洋.cpp
 │   │   ├── #23503. 「备战 NOI2023 模拟赛 Day1」红颜如霜.cpp
+│   │   ├── #23504. 「备战 NOI2023 模拟赛 Day2」铠.cpp
+│   │   ├── #23505. 「备战 NOI2023 模拟赛 Day2」曜.cpp
+│   │   ├── #23506. 「备战 NOI2023 模拟赛 Day2」澜.cpp
 │   │   ├── #455. 「概率期望 DP」期望题.cpp
 │   │   ├── #465. 「数据结构优化 DP」仰望星空.cpp
 │   │   ├── #485. 「单调队列优化 DP」出题人.cpp
@@ -2216,12 +2228,14 @@
 │   ├── P7078 贪吃蛇.cpp
 │   ├── P7113 [NOIP2020] 排水系统.cpp
 │   ├── P7114 [NOIP2020] 字符串匹配.cpp
+│   ├── P7214 [JOISC2020] 治療計画.cpp
 │   ├── P7215 [JOISC2020] 首都.cpp
 │   ├── P7219 [JOISC2020] 星座 3.cpp
 │   ├── P7302 [NOI1998] 免费的馅饼.cpp
 │   ├── P7360 「JZOI-1」红包.cpp
 │   ├── P7409 SvT.cpp
 │   ├── P7424 [THUPC2017] 天天爱射击.cpp
+│   ├── P7448 [Ynoi2007] rdiq.cpp
 │   ├── P7456 [CERC2018] The ABCD Murderer.cpp
 │   ├── P7462 [CERC2018] Shooter Island.cpp
 │   ├── P7515 [省选联考 2021 A 卷] 矩阵游戏.cpp
@@ -2229,6 +2243,9 @@
 │   ├── P7518 [省选联考 2021 A 或 B 卷] 宝石.cpp
 │   ├── P7519 [省选联考 2021 A 或 B 卷] 滚榜.cpp
 │   ├── P7520 [省选联考 2021 A 卷] 支配.cpp
+│   ├── P7601 [THUPC2021] 区间本质不同逆序对.cpp
+│   ├── P7603 [THUPC2021] 鬼街.cpp
+│   ├── P7609 [THUPC2021] 游戏.cpp
 │   ├── P7735 [NOI2021] 轻重边.cpp
 │   ├── P7736 [NOI2021] 路径交点.cpp
 │   ├── P7738 [NOI2021] 量子通信.cpp
