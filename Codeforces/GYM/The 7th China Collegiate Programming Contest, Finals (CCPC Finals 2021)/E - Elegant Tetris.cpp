@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     A. 消除罗结晶
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.15 周三 09:36:49 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -301,9 +301,101 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e5 + 5;
+int n, m;
+char str[N];
+struct node
+{
+    char opt;
+    int x, y;
+    node(char _opt = 0, int _x = 0, int _y = 0) : opt(_opt), x(_x), y(_y) {}
+} st[N];
+int top;
 signed main()
 {
+    read(m, n);
+    if (m == 1)
+        st[++top] = node('I', 1, 0);
+    else if (m == 2)
+        st[++top] = node('O', 1, 0);
+    else if (m == 3)
+    {
+        st[++top] = node('T', 1, 2);
+        st[++top] = node('T', 2, 1);
+        st[++top] = node('J', 1, 2);
+    }
+    else
+    {
+        int pos = 0;
+        for (int i = 1; i <= n; ++i)
+        {
+            read(str + 1);
+            for (int j = 1; j <= m; ++j)
+            {
+                if (str[j] == '#')
+                {
+                    pos = j;
+                    break;
+                }
+            }
+            if (pos)
+                break;
+        }
+        if (!pos)
+            pos = 1;
+        if (m & 1)
+        {
+            if (pos == m)
+                pos -= 2;
+            if (pos % 2 == 0)
+                --pos;
+            st[++top] = node('T', pos, 2);
+            for (int i = pos + 2; i + 2 <= m; i += 2)
+                st[++top] = node('Z', i, 0);
+            for (int i = pos; i - 2 >= 1; i -= 2)
+                st[++top] = node('S', i - 2, 0);
+            st[++top] = node('T', m - 1, 1);
+            st[++top] = node('T', 1, 3);
+            for (int i = 2; i + 2 < m - 1; i += 2)
+                st[++top] = node('Z', i, 0);
+            st[++top] = node('T', m - 3, 0);
+        }
+        else
+        {
+            if (pos % 2 == 0)
+                --pos;
+            if (pos == m - 1)
+            {
+                st [++top] = node('T', m - 2, 2);
+                for (int i = pos; i - 2 >= 3; i -= 2)
+                    st[++top] = node('S', i - 3, 0);
+                st[++top] = node('T', m - 1, 1);
+                st[++top] = node('T', 1, 3);
+                for (int i = m - 3; i >= 2; i -= 2)
+                    st[++top] = node('S', i, 0);
+                st[++top] = node('T', 1, 0);
+            }
+            else
+            {
+                st[++top] = node('T', pos, 2);
+                for (int i = pos + 2; i + 2 <= m; i += 2)
+                    st[++top] = node('Z', i, 0);
+                for (int i = pos; i - 2 >= 1; i -= 2)
+                    st[++top] = node('S', i - 2, 0);
+                st[++top] = node('T', m - 1, 1);
+                st[++top] = node('T', 1, 3);
+                for (int i = 2; i + 2 < m - 1; i += 2)
+                    st[++top] = node('Z', i, 0);
+                st[++top] = node('T', m - 2, 0);
+            }
+        }
+    }
+    write(top, '\n');
+    for (int i = 1; i <= top; ++i)
+    {
+        auto [opt, x, y] = st[i];
+        write(opt, ' ', y, ' ', x, '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

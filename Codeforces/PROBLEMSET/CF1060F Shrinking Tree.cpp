@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     Shrinking Tree
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.12 周日 18:59:00 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -301,9 +301,71 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 55;
+int n;
+struct Edge
+{
+    int next, to;
+} edge[N * 2];
+int head[N], num_edge;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+double C[N][N];
+int sze[N];
+double f[N][N], g[N], h[N];
+inline void dfs(int u, int _fa)
+{
+    f[u][0] = 1;
+    sze[u] = 1;
+    for (int e = head[u]; e; e = edge[e].next)
+    {
+        int v = edge[e].to;
+        if (v == _fa)
+            continue;
+        dfs(v, u);
+        for (int i = 0; i <= sze[v]; ++i)
+            g[i + 1] = g[i] + f[v][i];
+        for (int i = 0; i < sze[u]; ++i)
+            for (int j = 0; j <= sze[v]; ++j)
+                h[i + j] += f[u][i] * (g[j] / 2 + f[v][j] * (sze[v] - j)) *
+                            C[i + j][i] * C[sze[u] - i - 1 + sze[v] - j][sze[v] - j];
+        sze[u] += sze[v];
+        for (int i = 0; i < sze[u]; ++i)
+        {
+            f[u][i] = h[i];
+            h[i] = 0;
+        }
+    }
+}
 signed main()
 {
+    read(n);
+    C[0][0] = 1;
+    for (int i = 1; i <= n; ++i)
+    {
+        C[i][0] = 1;
+        for (int j = 1; j <= n; ++j)
+            C[i][j] = C[i - 1][j] + C[i - 1][j - 1];
+    }
+    for (int i = 1; i < n; ++i)
+    {
+        int u, v;
+        read(u, v);
+        add_edge(u, v);
+        add_edge(v, u);
+    }
+    double inv = 1;
+    for (int i = 1; i < n; ++i)
+        inv /= i;
+    for (int u = 1; u <= n; ++u)
+    {
+        dfs(u, 0);
+        printf("%lf\n", f[u][n - 1] * inv);
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

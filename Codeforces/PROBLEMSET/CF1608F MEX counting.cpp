@@ -1,14 +1,16 @@
 /**
- *    name:     
+ *    name:     CF1608F MEX counting
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.10 周五 20:57:41 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
+// __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
 // #define FAST_IO
@@ -301,9 +303,53 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2005;
+constexpr int M = 55;
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+int n, m;
+int L[N], R[N];
+node buf[2][2][N][N];
+node fac[N], ifac[N];
 signed main()
 {
+    read(n, m);
+    fac[0] = 1;
+    for (int i = 1; i <= n; ++i)
+        fac[i] = fac[i - 1] * i;
+    ifac[n] = fac[n].inv();
+    for (int i = n; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i;
+    auto f = buf[0], g = buf[1];
+    f[0][0][0] = f[1][0][0] = 1;
+    for (int i = 1; i <= n; ++i)
+    {
+        int x;
+        read(x);
+        L[i] = max(0, x - m);
+        R[i] = min(i, x + m);
+        swap(f, g);
+        for (int j = 0; j <= i; ++j)
+            for (int k = L[i]; k <= R[i] && k <= j; ++k)
+            {
+                f[0][j][k] += g[0][j][k] * j;
+                if (j)
+                    f[0][j][k] += g[0][j - 1][k];
+                if (j && k)
+                    f[0][j][k] += g[1][j - 1][min(k - 1, R[i - 1])] * ifac[j - k];
+                f[1][j][k] = f[0][j][k] * fac[j - k];
+                if (k)
+                    f[1][j][k] += f[1][j][k - 1];
+            }
+        for (int j = 0; j < i; ++j)
+            for (int k = L[i - 1]; k <= R[i - 1] && k <= j; ++k)
+                g[0][j][k] = g[1][j][k] = 0;
+    }
+    node ans = 0;
+    for (int j = 0; j <= n; ++j)
+        for (int k = L[n]; k <= R[n] && k <= j; ++k)
+            ans += f[0][j][k] * fac[n - k] * ifac[n - j];
+    write(ans.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

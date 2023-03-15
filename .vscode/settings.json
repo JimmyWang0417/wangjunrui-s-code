@@ -95,7 +95,8 @@
         "hash_map": "cpp",
         "ios": "cpp",
         "stack": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "graderlib.c": "cpp"
     },
     "python.testing.pytestArgs": [
         "UVA"

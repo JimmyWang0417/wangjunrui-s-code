@@ -1,12 +1,15 @@
 /**
- *    name:     
+ *    name:     A. 好吃
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.14 周二 08:14:10 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -301,9 +304,173 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e3 + 5;
+int n, a[N], b[N];
+struct Edge
+{
+    int next, to;
+} edge[N * N];
+int head[N], num_edge = 1;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+int dfn[N], low[N], dfstime;
+int st[N], top;
+int belong[N], color;
+vector<int> all[N];
+vector<int> G[N];
+inline void tarjan(int u)
+{
+    dfn[u] = low[u] = ++dfstime;
+    st[++top] = u;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (!dfn[v])
+        {
+            tarjan(v);
+            ckmin(low[u], low[v]);
+        }
+        else if (!belong[v])
+            ckmin(low[u], dfn[v]);
+    }
+    if (dfn[u] == low[u])
+    {
+        belong[u] = ++color;
+        all[color].push_back(u);
+        while (st[top] != u)
+        {
+            all[color].push_back(st[top]);
+            belong[st[top--]] = color;
+        }
+        --top;
+    }
+}
+int in[N];
+int f[N][N], g[N][N], h[N][N][2];
+int buf[N], answer[N];
+int sze[N];
+struct
+{
+    int head, tail, q[N];
+    inline void init()
+    {
+        head = 1, tail = 0;
+    }
+    inline void push(int x)
+    {
+        q[++tail] = x;
+    }
+    inline int front()
+    {
+        return q[head];
+    }
+    inline bool empty()
+    {
+        return head > tail;
+    }
+    inline void pop()
+    {
+        ++head;
+    }
+} que;
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("goodeat.in", "r", stdin);
+    freopen("goodeat.out", "w", stdout);
+#endif
+    read(n);
+    for (int i = 1; i <= n; ++i)
+    {
+        int cnt;
+        read(b[i], a[i], cnt);
+        while (cnt--)
+        {
+            int v;
+            read(v);
+            add_edge(i, v);
+        }
+    }
+    for (int i = 1; i <= n; ++i)
+        if (!dfn[i])
+            tarjan(i);
+    for (int u = 1; u <= n; ++u)
+    {
+        for (int i = head[u]; i; i = edge[i].next)
+        {
+            int v = edge[i].to;
+            if (belong[u] == belong[v])
+                continue;
+            G[belong[u]].push_back(belong[v]);
+            ++in[belong[v]];
+        }
+    }
+    memset(h, 0x3f, sizeof(h));
+    h[0][0][0] = 0;
+    for (int kase = 1; kase <= color; ++kase)
+    {
+        for (int i = 0; i < (int)all[kase].size(); ++i)
+        {
+            int u = all[kase][i];
+            for (int j = 0; j <= i; ++j)
+            {
+                ckmin(h[i + 1][j][0], h[i][j][0]);
+                ckmin(h[i + 1][j][1], h[i][j][1]);
+                ckmin(h[i + 1][j + 1][0], h[i][j][0] + b[u]);
+                ckmin(h[i + 1][j + 1][1], h[i][j][0] + a[u]);
+                ckmin(h[i + 1][j + 1][1], h[i][j][1] + b[u]);
+            }
+        }
+        g[kase][0] = 0;
+        for (int i = 1; i <= (int)all[kase].size(); ++i)
+            g[kase][i] = h[all[kase].size()][i][1];
+        // write(kase, ":\n");
+        // for (int i = 0; i <= (int)all[kase].size(); ++i)
+        //     write(g[kase][i], ' ');
+        // write('\n');
+        for (int i = 1; i <= (int)all[kase].size(); ++i)
+            memset(h[i], 0x3f, sizeof(h[i]));
+    }
+    memset(f, 0x3f, sizeof(f));
+    memset(buf, 0x3f, sizeof(buf));
+    memset(answer, 0x3f, sizeof(answer));
+    int len = 0;
+    que.init();
+    for (int i = 1; i <= color; ++i)
+        if (!in[i])
+            que.push(i);
+    while (!que.empty())
+    {
+        int u = que.front();
+        que.pop();
+        f[u][0] = 0;
+        for (int i = 0; i <= sze[u]; ++i)
+            for (int j = 0; j <= (int)all[u].size(); ++j)
+                ckmin(buf[i + j], f[u][i] + g[u][j]);
+        for (int i = (sze[u] += (int)all[u].size()); i >= 0; --i)
+        {
+            ckmin(answer[i], f[u][i] = buf[i]);
+            buf[i] = 0x3f3f3f3f;
+        }
+        ckmax(len, sze[u]);
+        for (int v : G[u])
+        {
+            ckmax(sze[v], sze[u]);
+            for (int i = 0; i <= sze[v]; ++i)
+                ckmin(f[v][i], f[u][i]);
+            if (!--in[v])
+                que.push(v);
+        }
+    }
+    for (int i = 1; i <= len; ++i)
+        write(answer[i], '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

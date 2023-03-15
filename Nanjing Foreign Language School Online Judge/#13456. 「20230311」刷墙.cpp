@@ -1,12 +1,16 @@
 /**
- *    name:     
+ *    name:     C. 刷墙
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.14 周二 20:04:10 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
+#include <tuple>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -301,9 +305,212 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e6 + 5;
+int n[2], k, type;
+int fa[N];
+inline int find(int x)
+{
+    return !fa[x] ? x : fa[x] = find(fa[x]);
+}
+tuple<int, int, int, int> que[N];
+int a[2][N], c[2][N];
+namespace subtask1
+{
+    int p[2][N];
+    int mp[N];
+    bool exist[N];
+    inline ll main()
+    {
+        for (int o = 0; o < 2; ++o)
+        {
+            for (int i = 1; i <= n[o]; ++i)
+                p[o][i] = i;
+            sort(p[o] + 1, p[o] + 1 + n[o], [o](int x, int y)
+                 { return a[o][x] > a[o][y]; });
+        }
+        ll ans = 0;
+        for (int o = 0; o < 2; ++o)
+        {
+            for (int i = 1, j = 1, cnt = n[o ^ 1] - 1; i <= n[o]; ++i)
+            {
+                int x = p[o][i];
+                while (j <= n[o ^ 1] && a[o ^ 1][p[o ^ 1][j]] > a[o][x])
+                {
+                    int y = p[o ^ 1][j];
+                    if (y > 1)
+                    {
+                        if (exist[y - 1])
+                        {
+                            --mp[c[o ^ 1][y - 1]];
+                            cnt += c[o ^ 1][y] == c[o ^ 1][y - 1];
+                        }
+                        else
+                        {
+                            ++mp[c[o ^ 1][y]];
+                            --cnt;
+                        }
+                    }
+                    if (y < n[o ^ 1])
+                    {
+                        if (exist[y + 1])
+                        {
+                            --mp[c[o ^ 1][y + 1]];
+                            cnt += c[o ^ 1][y] == c[o ^ 1][y + 1];
+                        }
+                        else
+                        {
+                            ++mp[c[o ^ 1][y]];
+                            --cnt;
+                        }
+                    }
+                    exist[y] = true;
+                    ++j;
+                }
+                ans += cnt + mp[c[o][x]];
+            }
+            memset(mp, 0, sizeof(mp));
+            memset(exist, 0, sizeof(exist));
+        }
+        return ans;
+    }
+}
+namespace subtask2
+{
+    struct
+    {
+        int limit;
+        int c[N];
+        inline void init(int _n)
+        {
+            limit = _n;
+        }
+        inline void add(int pos)
+        {
+            for (int i = pos; i <= limit; i += lowbit(i))
+                ++c[i];
+        }
+        inline int query(int pos)
+        {
+            int res = 0;
+            for (int i = pos; i; i -= lowbit(i))
+                res += c[i];
+            return res;
+        }
+        inline int query(int l, int r)
+        {
+            return query(r) - query(l - 1);
+        }
+        inline void clear(int pos)
+        {
+            for (int i = pos; i <= limit && c[i]; i += lowbit(i))
+                c[i] = 0;
+        }
+    } tree;
+    struct node
+    {
+        int opt, x, l, r;
+        node(int _opt = 0, int _x = 0, int _l = 0, int _r = 0) : opt(_opt), x(_x), l(_l), r(_r) {}
+        inline bool operator<(const node &rhs) const
+        {
+            return x < rhs.x;
+        }
+    };
+    inline ll solve(vector<node> &g)
+    {
+        ll res = 0;
+        sort(g.begin(), g.end());
+        for (auto [opt, x, l, r] : g)
+        {
+            if (opt == 0)
+                tree.add(l);
+            else
+                res += tree.query(l, r);
+        }
+        for (auto [opt, x, l, r] : g)
+        {
+            if (opt == 0)
+                tree.clear(l);
+        }
+        return res;
+    }
+    vector<node> qwq[N];
+    inline ll main()
+    {
+        ll res = 0;
+        tree.init(k + 2);
+        for (int o = 0; o < 2; ++o)
+        {
+            vector<node> p;
+            for (int i = 1; i < n[o]; ++i)
+                p.emplace_back(0, a[o][i], a[o][i + 1]);
+            for (int i = 1; i < n[o ^ 1]; ++i)
+                if (c[o ^ 1][i] == c[o ^ 1][i + 1])
+                {
+                    p.emplace_back(1, a[o ^ 1][i], 1, a[o ^ 1][i + 1]);
+                    p.emplace_back(1, a[o ^ 1][i + 1], 1, a[o ^ 1][i]);
+                }
+            res += solve(p);
+        }
+        for (int i = 1; i < n[0]; ++i)
+        {
+            qwq[c[0][i]].emplace_back(1, a[0][i], a[0][i + 1], tree.limit);
+            qwq[c[0][i + 1]].emplace_back(1, a[0][i + 1], a[0][i], tree.limit);
+        }
+        for (int i = 1; i < n[1]; ++i)
+        {
+            qwq[c[1][i]].emplace_back(0, a[1][i + 1], a[1][i]);
+            qwq[c[1][i + 1]].emplace_back(0, a[1][i], a[1][i + 1]);
+        }
+        for (int i = 0; i <= k; ++i)
+            res += solve(qwq[i]);
+        return res;
+    }
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("painting.in", "r", stdin);
+    freopen("painting.out", "w", stdout);
+#endif
+    read(n[0], n[1], k, type);
+    for (int o = 0; o < 2; ++o)
+        for (int i = 1; i <= n[o]; ++i)
+            a[o][i] = o + 1;
+    for (int i = 1; i <= k; ++i)
+    {
+        auto &[opt, l, r, col] = que[i];
+        read(opt, l, r, col);
+    }
+    for (int i = k; i >= 1; --i)
+    {
+        auto [opt, l, r, col] = que[i];
+        if (opt == 0)
+            for (int j = find(l); j <= r; j = find(j))
+            {
+                a[0][j] = i + 2;
+                c[0][j] = col;
+                fa[j] = j + 1;
+            }
+    }
+    memset(fa, 0, sizeof(fa));
+    for (int i = k; i >= 1; --i)
+    {
+        auto [opt, l, r, col] = que[i];
+        if (opt == 1)
+            for (int j = find(l); j <= r; j = find(j))
+            {
+                a[1][j] = i + 2;
+                c[1][j] = col;
+                fa[j] = j + 1;
+            }
+    }
+    ll answer = subtask1::main();
+    if (type)
+        answer += subtask2::main();
+    write(answer, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

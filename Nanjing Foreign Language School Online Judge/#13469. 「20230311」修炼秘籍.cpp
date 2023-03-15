@@ -1,11 +1,12 @@
 /**
- *    name:     
+ *    name:     A. 修炼秘籍
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.11 周六 08:10:42 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -301,9 +302,45 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = (1 << 20) + 5;
+ll P, Q;
+int mp[N];
+ll p[N];
+inline void work()
+{
+    ll a, b;
+    read(a, b);
+    p[0] = a % P;
+    mp[a % Q] = 1;
+    for (int i = 1;; ++i)
+    {
+        p[i] = (ll)(((__int128)p[i - 1] * p[i - 1] + b) % P);
+        if (mp[p[i] % Q])
+        {
+            if (abs(__gcd(p[i] - p[mp[p[i] % Q] - 1], P)) == Q)
+                write('1');
+            else
+                write('0');
+            for (int j = 0; j < i; ++j)
+                mp[p[j] % Q] = 0;
+            return;
+        }
+        mp[p[i] % Q] = i + 1;
+    }
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("skill.in", "r", stdin);
+    freopen("skill.out", "w", stdout);
+#endif
+    int T;
+    read(P, Q, T);
+    while (T--)
+        work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

@@ -1,11 +1,12 @@
 /**
- *    name:     
+ *    name:     A. 修炼秘籍
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.11 周六 08:10:42 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -301,9 +302,44 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = (1 << 20) + 5;
+ull P, Q;
+int mp[N];
+ull p[N];
+inline ull calc(ull x, ull y)
+{
+    if (x < y)
+        swap(x, y);
+    return x - y;
+}
+inline void work()
+{
+    ull a, b;
+    read(a, b);
+    p[0] = a % P;
+    mp[a % Q] = 1;
+    for (int i = 1;; ++i)
+    {
+        p[i] = (ull)(((__uint128_t)p[i - 1] * p[i - 1] + b) % P);
+        if (mp[p[i] % Q])
+        {
+            if (__gcd(calc(p[i], p[mp[p[i] % Q] - 1]), P) == Q)
+                write('1');
+            else
+                write('0');
+            for (int j = 0; j < i; ++j)
+                mp[p[j] % Q] = 0;
+            return;
+        }
+        mp[p[i] % Q] = i + 1;
+    }
+}
 signed main()
 {
+    int T;
+    read(P, Q, T);
+    while (T--)
+        work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

@@ -1,12 +1,14 @@
 /**
- *    name:     
+ *    name:     B. 替换排序
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.14 周二 16:52:40 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -168,14 +170,14 @@ namespace IO
 #endif
     }
 }
-template <typename T>
-inline void ckmin(T &_x, T _y)
+template <typename tree>
+inline void ckmin(tree &_x, tree _y)
 {
     if (_x > _y)
         _x = _y;
 }
-template <typename T>
-inline void ckmax(T &_x, T _y)
+template <typename tree>
+inline void ckmax(tree &_x, tree _y)
 {
     if (_x < _y)
         _x = _y;
@@ -301,9 +303,101 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e6 + 5;
+int n, m;
+int tot, base;
+int a[N], b[N];
+int L[N], R[N];
+struct
+{
+    int c[N];
+    inline void clear()
+    {
+        memset(c, ~0x3f, sizeof(c));
+    }
+    inline void update(int pos, int val)
+    {
+        for (int i = pos; i <= tot; i += lowbit(i))
+            ckmax(c[i], val);
+    }
+    inline int query(int pos)
+    {
+        int res = ~0x7fffffff;
+        for (int i = pos; i; i -= lowbit(i))
+            ckmax(res, c[i]);
+        return res;
+    }
+} tree;
+int c[N];
+int buf[2][N];
+inline void add(int x)
+{
+    if (x == n + 1)
+    {
+        tree.update(L[x], 0);
+        c[L[x]] = 0;
+        return;
+    }
+    int o = x & 1;
+    for (int i = L[x]; i <= R[x]; ++i)
+        ckmax(c[i], buf[o][i - L[x]]);
+    tree.update(R[x], buf[o][R[x] - L[x]]);
+    return;
+}
+inline void calc(int x)
+{
+    int o = x & 1;
+    int res = max(c[L[x]], tree.query(L[x]));
+    for (int i = L[x]; i <= R[x]; ++i)
+    {
+        ckmax(res, c[i + 1]);
+        buf[o][i - L[x]] = res + 1;
+    }
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("sort.in", "r", stdin);
+    freopen("sort.out", "w", stdout);
+#endif
+    read(n, m);
+    for (int i = 1; i <= n; ++i)
+        read(a[i]);
+    for (int i = 1; i <= m; ++i)
+        read(b[i]);
+    sort(b + 1, b + 1 + m);
+    tot = 2 * (5e5 + 5), base = 5e5 + 5;
+    L[0] = R[0] = 0 + base;
+    for (int i = 1; i <= n; ++i)
+    {
+        L[i] = i - (int)(upper_bound(b + 1, b + 1 + m, a[i]) - b - 1) + base;
+        R[i] = i - (int)(lower_bound(b + 1, b + 1 + m, a[i]) - b - 1) + base;
+    }
+    L[n + 1] = R[n + 1] = n + 1 - m + base;
+    memset(c, ~0x3f, sizeof(c));
+    tree.clear();
+    for (int i = n; i >= 1; --i)
+    {
+        if (i == n || a[i] <= a[i + 1])
+        {
+            add(i + 1);
+            calc(i);
+        }
+        else
+        {
+            calc(i);
+            add(i + 1);
+        }
+    }
+    add(1);
+    int res = max(tree.query(L[0] + 1), c[L[0] + 1]);
+    if (res < 0)
+        write("-1\n");
+    else
+        write(n - res, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

@@ -1,14 +1,16 @@
 /**
- *    name:     
+ *    name:     C. 简单串串题
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.09 周四 22:07:59 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
+// __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
 // #define FAST_IO
@@ -301,9 +303,118 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+struct node
+{
+    ll v;
+    int p;
+    node(ll _v = 0, int _p = 0) : v(_v), p(_p) {}
+    inline void next()
+    {
+        if (p > 0)
+            --p;
+        else
+            p = (int)__lg(++v);
+    }
+    inline void pre()
+    {
+        if (p < __lg(v))
+            ++p;
+        else
+        {
+            --v;
+            p = 0;
+        }
+    }
+    inline bool bit() const
+    {
+        return (v >> p) & 1;
+    }
+    inline friend bool operator<(node x, node y)
+    {
+        if (x.v == y.v && x.p == y.p)
+            return false;
+        while (x.bit() == y.bit())
+        {
+            x.next();
+            y.next();
+        }
+        return x.bit() < y.bit();
+    }
+    inline friend bool operator>(node x, node y)
+    {
+        if (x.v == y.v && x.p == y.p)
+            return false;
+        while (x.bit() == y.bit())
+        {
+            x.next();
+            y.next();
+        }
+        return x.bit() > y.bit();
+    }
+    inline void print(int n) const
+    {
+        node x = (*this);
+        for (int i = 0; i < n; ++i, x.next())
+            write((char)('0' + x.bit()));
+        write('\n');
+    }
+};
+inline node k_th(ll k)
+{
+    --k;
+    ll len = 1;
+    while (len << (len - 1) < k)
+    {
+        k -= len << (len - 1);
+        ++len;
+    }
+    return node((1ll << (len - 1)) + (k - 1) / len, (int)(len - (k - 1) % len - 1));
+}
+inline void work()
+{
+    ll l, r;
+    int n;
+    read(l, r, n);
+    auto L = k_th(l), R = k_th(r - n + 1);
+    auto ans = L;
+    if (L.v == R.v)
+    {
+        for (int i = L.p; i >= R.p; --i, L.next())
+            ckmax(ans, L);
+        return ans.print(n);
+    }
+    for (int i = L.p; i >= 0; --i, L.next())
+        ckmax(ans, L);
+    for (int i = (int)__lg(R.v) - R.p; i >= 0; --i, R.pre())
+        ckmax(ans, R);
+    if (L.v <= R.v)
+        for (int llen = (int)__lg(L.v) + 1, rlen = (int)__lg(R.v) + 1, a = llen; a <= rlen; a++)
+        {
+            l = (a == llen ? L.v : (1ll << (a - 1)));
+            r = (a == rlen ? R.v : (1ll << a) - 1) - 1;
+            if (l <= r)
+            {
+                for (int b = 1; b <= a; b++)
+                {
+                    if ((l >> b) == (r >> b))
+                        ckmax(ans, node(r, b - 1));
+                    else
+                        ckmax(ans, node((((r + 1) >> b) << b) - 1, b - 1));
+                }
+            }
+            node res((1ll << a) - 1, a - 1);
+            ckmin(res.v, R.v);
+            for (int i = res.p; i >= 0; i--, res.next())
+                ckmax(ans, res);
+        }
+    ans.print(n);
+}
 signed main()
 {
+    int T = 1;
+    read(T);
+    while (T--)
+        work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

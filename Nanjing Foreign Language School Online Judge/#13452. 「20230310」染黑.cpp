@@ -1,14 +1,15 @@
 /**
- *    name:     
+ *    name:     B. 染黑
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.10 周五 08:43:39 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
+// __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
 // #define FAST_IO
@@ -301,9 +302,89 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e6 + 5;
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+int n;
+node fac[N], ifac[N];
+inline node C(int _x, int _y)
+{
+    return fac[_x] * ifac[_y] * ifac[_x - _y];
+}
+struct Edge
+{
+    int next, to;
+} edge[N * 2];
+int head[N], num_edge;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+node f[N], g[N], h[N];
+int sze[N];
+inline void dfs1(int u, int _fa)
+{
+    sze[u] = 1;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        dfs1(v, u);
+        f[u] += f[v];
+        sze[u] += sze[v];
+    }
+    f[u] += h[sze[u]];
+}
+inline void dfs2(int u, int _fa, node res)
+{
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        res += f[v];
+    }
+    g[u] = res;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        dfs2(v, u, (res - f[v] + h[n - sze[v]]));
+    }
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("black.in", "r", stdin);
+    freopen("black.out", "w", stdout);
+#endif
+    read(n);
+    fac[0] = 1;
+    for (int i = 1; i <= n; ++i)
+        fac[i] = fac[i - 1] * i;
+    ifac[n] = fac[n].inv();
+    for (int i = n; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i;
+    for (int i = 1; i < n; ++i)
+    {
+        int u, v;
+        read(u, v);
+        add_edge(u, v);
+        add_edge(v, u);
+    }
+    for (int i = 1; i <= n; ++i)
+        h[i] = fac[n - i - 1] * fac[i] * C(n, i + 1) * i;
+    dfs1(1, 0);
+    dfs2(1, 0, 0);
+    for (int i = 1; i <= n; ++i)
+        write((g[i] + fac[n - 1] * (n - 1)).data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

@@ -1,14 +1,16 @@
 /**
- *    name:     
+ *    name:     A. 分数
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.10 周五 08:07:04 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
+// __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
 // #define FAST_IO
@@ -301,9 +303,58 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2e5 + 5;
+constexpr double eps = 1e-8;
+int n;
+ll k, c;
+int a[N], b[N];
+double pre[N];
+inline ll solve(double mid)
+{
+    ll res = 0;
+    for (int i = 1, j = 0; i <= n; ++i)
+    {
+        pre[i] = pre[i - 1] + max(a[i] - mid * b[i], 0.0);
+        // pre[i] = pre[i - 1] + a[i] - mid * b[i];
+        if (pre[i] - pre[j] >= mid * c)
+        {
+            while (pre[i] - pre[j + 1] >= mid * c)
+                ++j;
+            res += i - j - 1;
+        }
+        else
+            res += i;
+    }
+    // printf("%lf\n", mid * c);
+    // for (int i = 1; i <= n; ++i)
+    //     printf("%lf ", pre[i]);
+    // putchar('\n');
+    return res;
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("fraction.in", "r", stdin);
+    freopen("fraction.out", "w", stdout);
+#endif
+    read(n, k, c);
+    for (int i = 1; i <= n; ++i)
+        read(a[i]);
+    for (int i = 1; i <= n; ++i)
+        read(b[i]);
+    double l = 0, r = 2e12;
+    while (abs(l - r) > eps)
+    {
+        double mid = (l + r) / 2;
+        if (solve(mid) < k)
+            l = mid + eps;
+        else
+            r = mid - eps;
+    }
+    printf("%.7lf\n", l);
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

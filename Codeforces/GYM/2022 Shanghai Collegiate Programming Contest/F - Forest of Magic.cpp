@@ -1,12 +1,16 @@
 /**
- *    name:     
+ *    name:     B. 大仇得报
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.11 周六 16:40:51 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
+#include <cmath>
 #include <cstdio>
+#include <cstring>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -301,9 +305,226 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2e5 + 5;
+int n, m, type;
+struct
+{
+    int next, to;
+} edge[N * 2];
+int head[N], num_edge;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+int Log[N], dep[N];
+int fa[N][20];
+int rk[N];
+int dfn[N], low[N], dfstime;
+inline void init(int u, int _fa)
+{
+    rk[dfn[u] = ++dfstime] = u;
+    dep[u] = dep[fa[u][0] = _fa] + 1;
+    for (int i = 0; i < Log[dep[u]]; ++i)
+        fa[u][i + 1] = fa[fa[u][i]][i];
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        init(v, u);
+    }
+    low[u] = dfstime;
+}
+inline void dfs(int u, int _fa)
+{
+    rk[dfn[u] = ++dfstime] = u;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        dfs(v, u);
+    }
+    low[u] = dfstime;
+}
+inline int getlca(int u, int v)
+{
+    if (dep[u] < dep[v])
+        swap(u, v);
+    for (int i = Log[dep[u] - dep[v] + 1]; i >= 0; --i)
+        if (dep[fa[u][i]] >= dep[v])
+            u = fa[u][i];
+    if (u == v)
+        return u;
+    for (int i = Log[dep[u]]; i >= 0; --i)
+        if (fa[u][i] != fa[v][i])
+        {
+            u = fa[u][i];
+            v = fa[v][i];
+        }
+    return fa[u][0];
+}
+struct node
+{
+    int u, c, k;
+    node(int _u = 0, int _c = 0, int _k = 0) : u(_u), c(_c), k(_k) {}
+    inline bool operator<(const node &rhs) const
+    {
+        return dfn[u] < dfn[rhs.u];
+    }
+} p[N * 2];
+vector<pair<int, int>> g[N];
+struct Tree
+{
+    int l, r;
+    ll sum, ans;
+} tree[N * 50];
+#define lc(rt) tree[rt].l
+#define rc(rt) tree[rt].r
+int root[N], cnt;
+inline void update(int &rt, int l, int r, int pos, int val1, ll val2)
+{
+    tree[++cnt] = tree[rt];
+    rt = cnt;
+    tree[rt].sum += val1;
+    tree[rt].ans += val2;
+    if (l == r)
+        return;
+    int mid = (l + r) >> 1;
+    if (pos <= mid)
+        update(lc(rt), l, mid, pos, val1, val2);
+    else
+        update(rc(rt), mid + 1, r, pos, val1, val2);
+}
+inline pair<ll, ll> operator+(const pair<ll, ll> &x, const pair<ll, ll> &y)
+{
+    return make_pair(x.first + y.first, x.second + y.second);
+}
+inline pair<ll, ll> &operator+=(pair<ll, ll> &x, const pair<ll, ll> &y)
+{
+    x.first += y.first;
+    x.second += y.second;
+    return x;
+}
+inline pair<ll, ll> query(int pre, int rt, int l, int r, int x, int y)
+{
+    if (r < x || l > y)
+        return make_pair(0, 0);
+    if (x <= l && r <= y)
+        return make_pair(tree[rt].sum - tree[pre].sum, tree[rt].ans - tree[pre].ans);
+    int mid = (l + r) >> 1;
+    return query(lc(pre), lc(rt), l, mid, x, y) + query(rc(pre), rc(rt), mid + 1, r, x, y);
+}
+inline pair<ll, ll> calc(int u, int _fa, int c)
+{
+    pair<ll, ll> res = make_pair(0, 0);
+    for (auto [_c, k] : g[u])
+        if (_c <= c)
+            res += make_pair(k, (ll)k * dep[u]);
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        res += calc(v, u, c);
+    }
+    return res;
+}
+int fuck[N], ccf;
 signed main()
 {
+    read(n, m);
+    for (int i = 1; i < n; ++i)
+    {
+        int u, v;
+        read(u, v);
+        add_edge(u, v);
+        add_edge(v, u);
+    }
+    Log[0] = -1;
+    for (int i = 1; i <= 2 * n; ++i)
+        Log[i] = Log[i >> 1] + 1;
+    int block = (int)sqrt(n * log2(n)) * 12;
+    init(1, 0);
+    int lastans = 0;
+    for (int l = 1, r; l <= m; l = r + 1)
+    {
+        r = min(l + block - 1, m);
+        int tot = 0;
+        int qwq = n;
+        int wdnmd = ccf;
+        for (int kase = l; kase <= r; ++kase)
+        {
+            int _u, _v, __c, _k;
+            int opt, u, v, c, k, lca;
+            read(opt, _u);
+            u = (int)(_u ^ lastans);
+            if (opt == 1)
+            {
+                ++qwq;
+                dep[qwq] = dep[fa[qwq][0] = u] + 1;
+                for (int i = 0; i < Log[dep[qwq]]; ++i)
+                    fa[qwq][i + 1] = fa[fa[qwq][i]][i];
+                dfn[qwq] = dfn[fa[qwq][0]];
+                add_edge(qwq, u);
+                add_edge(u, qwq);
+            }
+            else if (opt == 2)
+            {
+                read(_v, __c, _k);
+                v = (int)(_v ^ lastans);
+                c = (int)(__c ^ lastans);
+                k = (int)(_k ^ lastans);
+                lca = getlca(u, v);
+                p[++tot] = node(u, c, k), g[u].emplace_back(c, k);
+                p[++tot] = node(v, c, k), g[v].emplace_back(c, k);
+                p[++tot] = node(lca, c, -k), g[lca].emplace_back(c, -k);
+                if (fa[lca][0])
+                    p[++tot] = node(fa[lca][0], c, -k), g[fa[lca][0]].emplace_back(c, -k);
+                fuck[++wdnmd] = c;
+            }
+            else
+            {
+                read(__c);
+                c = (int)(__c ^ lastans);
+                pair<ll, ll> res;
+                if (u <= n)
+                {
+                    res = query(root[dfn[u] - 1], root[low[u]], 1, ccf, 1,
+                                (int)(upper_bound(fuck + 1, fuck + 1 + ccf, c) - fuck - 1));
+                    for (int i = 1; i <= tot; ++i)
+                    {
+                        v = p[i].u, k = p[i].k;
+                        int _c = p[i].c;
+                        if (dfn[u] <= dfn[v] && dfn[v] <= low[u] && _c <= c)
+                            res += make_pair(k, (ll)k * dep[v]);
+                    }
+                }
+                else
+                    res = calc(u, fa[u][0], c);
+                write(res.second - res.first * (dep[u] - 1), '\n');
+                lastans = (int)((res.second - res.first * (dep[u] - 1)) & ((1ll << 31) - 1));
+            }
+        }
+        if (r < m)
+        {
+            dfstime = 0;
+            dfs(1, 0);
+            n = qwq;
+            cnt = 0;
+            sort(fuck + ccf + 1, fuck + wdnmd + 1);
+            inplace_merge(fuck + 1, fuck + ccf + 1, fuck + wdnmd + 1);
+            ccf = wdnmd;
+            for (int i = 1; i <= n; ++i)
+            {
+                root[i] = root[i - 1];
+                for (auto [c, k] : g[rk[i]])
+                    update(root[i], 1, ccf, (int)(lower_bound(fuck + 1, fuck + 1 + ccf, c) - fuck), k, (ll)k * dep[rk[i]]);
+            }
+        }
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

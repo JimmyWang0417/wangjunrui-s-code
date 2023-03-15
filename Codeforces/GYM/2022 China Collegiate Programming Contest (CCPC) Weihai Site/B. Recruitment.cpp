@@ -1,14 +1,19 @@
 /**
- *    name:     
+ *    name:
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.09 周四 09:18:28 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <set>
+#include <tuple>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
+// __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
 // #define FAST_IO
@@ -301,9 +306,119 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e5 + 5;
+int n, a[N];
+int p[N], tot;
+set<vector<int>> mp;
+vector<int> G[N];
+tuple<int, int, int> que[N];
+int b[N], c[N], d[N], cnt;
+inline bool dfs(int u, vector<int> g)
+{
+    if (u == -1)
+        return true;
+    if (a[u] > a[u + 1])
+        return dfs(u - 1, g);
+    sort(g.begin(), g.end());
+    if (mp.count(g))
+        return false;
+    mp.insert(g);
+    for (int i = 0; i < (int)g.size(); ++i)
+    {
+        int x = g[i];
+        for (int j = 0; j < (int)(G[x].size() + 1) / 2; ++j)
+        {
+            int v = G[x][j], w = G[x][(int)G[x].size() - j - 1];
+            if (a[u + 1] - p[x] + p[v] + p[w] == a[u])
+            {
+                vector<int> h;
+                for (int k = 0; k < i; ++k)
+                    h.push_back(g[k]);
+                h.push_back(v), h.push_back(w);
+                for (int k = i + 1; k < (int)g.size(); ++k)
+                    h.push_back(g[k]);
+                if (dfs(u - 1, h))
+                {
+                    que[u] = make_tuple(x, v, w);
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
 signed main()
 {
+    read(n);
+    for (int i = 0; i < n; ++i)
+        read(a[i]);
+    p[0] = 1;
+    for (int i = 2; i * i <= a[n - 1]; ++i)
+        if (a[n - 1] % i == 0)
+        {
+            p[++tot] = i;
+            if (i * i == a[n - 1])
+                continue;
+            p[++tot] = a[n - 1] / i;
+        }
+    p[++tot] = a[n - 1];
+    sort(p + 1, p + 1 + tot);
+    for (int i = 1; i <= tot; ++i)
+        for (int j = i + 1; j <= tot; ++j)
+        {
+            if (p[j] % p[i] == 0)
+                G[j].push_back(i);
+        }
+    for (int i = 1; i < n; ++i)
+        if (a[i - 1] - a[i] > 1)
+        {
+            write("-1\n");
+            return 0;
+        }
+    if (!dfs(n - 2, vector<int>(1, tot)))
+        write("-1\n");
+    else
+    {
+        b[cnt = 1] = tot;
+        int r = n;
+        for (int i = n - 2; i >= 0; --i)
+        {
+            if (a[i] > a[i + 1])
+            {
+                d[i] = --r;
+                continue;
+            }
+            int _tot = cnt;
+            cnt = 0;
+            auto [u, v, w] = que[i];
+            bool flag = true;
+            for (int j = 1; j <= _tot; ++j)
+            {
+                if (b[j] == u && flag)
+                {
+                    c[d[i] = ++cnt] = v;
+                    c[++cnt] = w;
+                    for (int k = i + 1; k <= n - 2; ++k)
+                        if (b[d[k]] && d[k] >= j)
+                            ++d[k];
+                    flag = false;
+                }
+                else
+                    c[++cnt] = b[j];
+            }
+            for (int j = 1; j <= cnt; ++j)
+                b[j] = c[j];
+            // printf("%d %d:\n", i, d[i]);
+            // for (int j = 1; j <= cnt; ++j)
+            //     write(p[b[j]], ' ');
+            // write('\n');
+        }
+        for (int i = 1; i <= n; ++i)
+            write(p[b[i]], ' ');
+        write('\n');
+        for (int i = 0; i <= n - 2; ++i)
+            write(d[i], '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

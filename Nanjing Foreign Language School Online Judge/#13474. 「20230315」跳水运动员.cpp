@@ -1,12 +1,14 @@
 /**
- *    name:     
+ *    name:     B. 跳水运动员
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.15 周三 22:47:36 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -301,9 +303,124 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2e5 + 5, M = 405;
+constexpr int mod = 998244353;
+typedef modint<mod> node;
+int n, m;
+struct Edge
+{
+    int next, to;
+} edge[N * 2];
+int head[N], num_edge;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+int fa[N];
+inline void dfs(int u, int _fa)
+{
+    fa[u] = _fa;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (v == _fa)
+            continue;
+        dfs(v, u);
+    }
+}
+node buf[2][N], h[N];
+auto f = buf[0], g = buf[1];
+int L0[N], L1[N], R[N];
+int totl0, totl1, totr;
+int st[N], top;
+inline void push0(int x)
+{
+    h[x] = g[x];
+    if (totl0)
+        h[x] += h[L0[totl0]];
+    L0[++totl0] = x;
+}
+inline void push1(int x)
+{
+    h[x] = g[x];
+    if (totl1)
+        h[x] += h[L1[totl1]];
+    L1[++totl1] = x;
+}
+int where0[N], where1[N];
+inline node solve0(int x, int y)
+{
+    int pos = where0[y] == -1 ? where0[y] = (int)(lower_bound(L0 + 1, L0 + 1 + totl0, x) - L0) : where0[y];
+    if (pos == 1 + totl0)
+        return 0;
+    if (pos == 1)
+        return h[L0[totl0]];
+    // printf(" %d %d %d %d %d %d\n", pos, totl0, L0[totl0], L0[pos - 1], h[L0[totl0]].data(), h[L0[pos - 1]].data());
+    return h[L0[totl0]] - h[L0[pos - 1]];
+}
+inline node solve1(int x, int y)
+{
+    int pos = where1[y] == -1 ? where1[y] = (int)(lower_bound(L1 + 1, L1 + 1 + totl1, x) - L1) : where1[y];
+    if (pos == 1 + totl1)
+        return 0;
+    if (pos == 1)
+        return h[L1[totl1]];
+    return h[L1[totl1]] - h[L1[pos - 1]];
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("diverluo.in", "r", stdin);
+    freopen("diverluo.out", "w", stdout);
+#endif
+    read(n, m);
+    for (int i = 1; i < n; ++i)
+    {
+        int u, v;
+        read(u, v);
+        add_edge(u, v);
+        add_edge(v, u);
+    }
+    dfs(1, 0);
+    f[0] = 1;
+    memset(where0, -1, sizeof(where0));
+    memset(where1, -1, sizeof(where1));
+    for (int kase = 1; kase <= m; ++kase)
+    {
+        swap(f, g);
+        f[0] = 0;
+        for (int i = 1; i <= n; ++i)
+        {
+            if (fa[i] > i)
+                R[++totr] = i;
+            while (totr && fa[R[totr]] <= i)
+                --totr;
+            while (totr > 1 && fa[R[totr - 1]] <= i)
+            {
+                R[totr - 1] = R[totr];
+                --totr;
+            }
+            push0(i - 1);
+            if (fa[i] < i)
+            {
+                while (totl1 && L1[totl1] >= fa[i])
+                    --totl1;
+                while (totl0 && L0[totl0] >= fa[i])
+                    st[++top] = L0[totl0--];
+                while (top)
+                    push1(st[top--]);
+            }
+            f[i] = solve0(totr > 1 ? R[totr - 1] : 0, i);
+            f[i] += solve1(totr ? R[totr] : 0, i);
+        }
+        totl0 = totl1 = totr = 0;
+        write(f[n].data(), '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

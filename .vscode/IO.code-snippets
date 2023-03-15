@@ -14,7 +14,6 @@
                   "${2|#include <cstdio>,#include <bits\/stdc++.h>,#include <bits\/extc++.h>|}",
                   "typedef long long ll;",
                   "typedef unsigned long long ull;",
-                  "// __extension__ typedef __int128 int128;",
                   "#define lowbit(x) ((x) & (-(x)))",
                   "",
                   "${3:// #define FAST_IO}",

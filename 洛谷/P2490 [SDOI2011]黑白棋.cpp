@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     B. 没有在
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.11 周六 21:47:07 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -11,20 +11,25 @@ typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
 
+
 // #define FAST_IO
 
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #define putchar putchar_unlocked
+
 #endif
 namespace IO
 {
 #ifdef FAST_IO
 #ifndef FAST_IN
 #define FAST_IN
+
 #endif
 #ifndef FAST_OUT
 #define FAST_OUT
+
 #endif
 #endif
 
@@ -33,13 +38,16 @@ namespace IO
 #ifdef FAST_IN
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf, *_end = _buf;
 #undef getchar
 #define getchar() (_now == _end && (_end = (_now = _buf) + fread(_buf, 1, FAST_OUT_BUFFER_SIZE, stdin), _now == _end) ? EOF : *_now++)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
         inline void read(char &_x)
@@ -93,6 +101,7 @@ namespace IO
 #undef getchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define getchar getchar_unlocked
+
 #endif
 #endif
     }
@@ -101,6 +110,7 @@ namespace IO
 #ifdef FAST_OUT
 #ifndef FAST_OUT_BUFFER_SIZE
 #define FAST_OUT_BUFFER_SIZE (1 << 21)
+
 #endif
         char _buf[FAST_OUT_BUFFER_SIZE], *_now = _buf;
         inline void flush()
@@ -109,9 +119,11 @@ namespace IO
         }
 #undef putchar
 #define putchar(c) (_now - _buf == FAST_OUT_BUFFER_SIZE ? flush(), *_now++ = c : *_now++ = c)
+
 #else
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
         inline void write(char _x)
@@ -164,6 +176,7 @@ namespace IO
 #undef putchar
 #if !defined(WIN32) && !defined(_WIN32)
 #define putchar putchar_unlocked
+
 #endif
 #endif
     }
@@ -301,9 +314,36 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e4 + 5;
+constexpr int mod = 1e9 + 7;
+typedef modint<mod> node;
+int n, k, m;
+node dp[17][N];
+node fac[N], ifac[N];
+inline node C(int _x, int _y)
+{
+    return fac[_x] * ifac[_y] * ifac[_x - _y];
+}
 signed main()
 {
+    read(n, k, m);
+    fac[0] = 1;
+    for (int i = 1; i <= n; ++i)
+        fac[i] = fac[i - 1] * i;
+    ifac[n] = fac[n].inv();
+    for (int i = n; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i;
+    node res = C(n, k);
+    n -= k;
+    k /= 2;
+    dp[14][0] = 1;
+    for (int i = 13; i >= 0; --i)
+        for (int j = 0; j <= n; ++j)
+            for (int l = 0; j + (l << i) <= n && l <= k; l += m + 1)
+                dp[i][j + (l << i)] += dp[i + 1][j] * C(k, l);
+    for (int i = 0; i <= n; ++i)
+        res -= dp[0][i] * C(n - i + k, k);
+    write(res.data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

@@ -1,14 +1,17 @@
 /**
- *    name:     
+ *    name:     C. 子序列
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.10 周五 13:57:54 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <iostream>
 typedef long long ll;
 typedef unsigned long long ull;
+// __extension__ typedef __int128 int128;
 #define lowbit(x) ((x) & (-(x)))
 
 // #define FAST_IO
@@ -301,9 +304,151 @@ struct modint
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 2e5 + 5;
+constexpr ll limit = (ll)1e18 + 114514;
+int n, q;
+int a[N], b[N];
+struct Tree
+{
+    int l, r;
+    int pos, val;
+    ll size;
+} tree[N * 100];
+#define lc(rt) tree[rt].l
+#define rc(rt) tree[rt].r
+int root[N], cnt;
+ll dp[N];
+inline void pushup(int rt)
+{
+    if (!lc(rt) || !rc(rt))
+    {
+        tree[rt].size = tree[lc(rt) | rc(rt)].size;
+        tree[rt].pos = tree[lc(rt) | rc(rt)].pos;
+        tree[rt].val = tree[lc(rt) | rc(rt)].val;
+        return;
+    }
+    tree[rt].size = min(tree[lc(rt)].size + tree[rc(rt)].size, limit);
+    if (dp[tree[lc(rt)].val] >= dp[tree[rc(rt)].val])
+    {
+        tree[rt].pos = tree[lc(rt)].pos;
+        tree[rt].val = tree[lc(rt)].val;
+    }
+    else
+    {
+        tree[rt].pos = tree[rc(rt)].pos;
+        tree[rt].val = tree[rc(rt)].val;
+    }
+}
+inline void update(int pre, int &rt, int l, int r, int pos, int val)
+{
+    rt = ++cnt;
+    tree[rt] = tree[pre];
+    if (l == r)
+    {
+        if (!tree[rt].val || tree[rt].val > val)
+        {
+            tree[rt].pos = l;
+            tree[rt].size = min(dp[tree[rt].val = val] + 1, limit);
+        }
+        return;
+    }
+    int mid = (l + r) >> 1;
+    if (pos <= mid)
+        update(lc(pre), lc(rt), l, mid, pos, val);
+    else
+        update(rc(pre), rc(rt), mid + 1, r, pos, val);
+    pushup(rt);
+}
+inline pair<int, int> query(int rt, int l, int r, ll &k_th)
+{
+    if (l == r)
+        return make_pair(tree[rt].val, l);
+    int mid = (l + r) >> 1;
+    if (tree[lc(rt)].size >= k_th)
+        return query(lc(rt), l, mid, k_th);
+    else
+        return query(rc(rt), mid + 1, r, k_th -= tree[lc(rt)].size);
+}
+inline ll query(int rt, int l, int r, int x, int y)
+{
+    if (r < x || l > y)
+        return 0;
+    if (x <= l && r <= y)
+        return tree[rt].size;
+    int mid = (l + r) >> 1;
+    return min(query(lc(rt), l, mid, x, y) + query(rc(rt), mid + 1, r, x, y), limit);
+}
+int fa[N][20];
+ll f[N][20], g[N][20];
+inline void work()
+{
+    // int cnt = 0;
+    ll k;
+    read(k);
+    int u = 1;
+    ll res = 0;
+    while (true)
+    {
+        for (int i = 19; i >= 0; --i)
+            if (fa[u][i] && f[u][i] < k && k <= dp[fa[u][i]] + f[u][i])
+            {
+                k -= f[u][i];
+                res += g[u][i];
+                u = fa[u][i];
+            }
+        auto [v, w] = query(root[u], 1, n, k);
+        // printf("%d %d\n", u, v);
+        res += w;
+        if (!--k)
+            break;
+        u = v;
+        // ++cnt;
+    }
+    write(res, '\n');
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("subsequence.in", "r", stdin);
+    freopen("subsequence.out", "w", stdout);
+#endif
+    read(n, q);
+    for (int i = 1; i <= n; ++i)
+        read(a[i]);
+    for (int i = 1; i <= n; ++i)
+        read(b[i]);
+    for (int i = n; i >= 1; --i)
+    {
+        update(root[i + 1], root[i], 1, n, a[i], b[i] + 1);
+        dp[i] = tree[root[i]].size;
+        fa[i][0] = tree[root[i]].val;
+        f[i][0] = min(query(root[i], 1, n, 1, tree[root[i]].pos - 1) + 1, limit);
+        g[i][0] = tree[root[i]].pos;
+        for (int j = 0; j < 19; ++j)
+        {
+            fa[i][j + 1] = fa[fa[i][j]][j];
+            f[i][j + 1] = min(f[i][j] + f[fa[i][j]][j], limit);
+            g[i][j + 1] = g[i][j] + g[fa[i][j]][j];
+        }
+    }
+    // printf("%d\n", cnt);
+    // for (int i = 1; i <= n; ++i)
+    //     write(dp[i], ' ');
+    // write('\n');
+    // for (int i = 1; i <= n; ++i)
+    //     write(fa[i][0], ' ');
+    // write('\n');
+    // for (int i = 1; i <= n; ++i)
+    //     write(f[i][0], ' ');
+    // write('\n');
+    // for (int i = 1; i <= n; ++i)
+    //     write(g[i][0], ' ');
+    // write('\n');
+    while (q--)
+        work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif
