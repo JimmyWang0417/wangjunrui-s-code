@@ -1,8 +1,8 @@
 /**
- *    name:     
+ *    name:     takuji
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.21 周二 20:34:26 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
@@ -304,9 +304,155 @@ namespace MODINT
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e6 + 5;
+constexpr int mod = 1e9 + 7;
+typedef MODINT::modint<mod> modint;
+int n, key, fa[N];
+int sze[N];
+int col[N];
+struct Edge
+{
+    int next, to;
+} edge[N * 2];
+int head[N], num_edge;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+modint inv[N];
+struct node
+{
+    modint k, b;
+    node(modint _k = 0, modint _b = 0) : k(_k), b(_b) {}
+    inline node operator+(const modint &rhs) const
+    {
+        return node(k, b + rhs);
+    }
+    inline node operator+(const node &rhs) const
+    {
+        return node(k + rhs.k, b + rhs.b);
+    }
+    inline node operator-(const modint &rhs) const
+    {
+        return node(k, b - rhs);
+    }
+    inline node operator-(const node &rhs) const
+    {
+        return node(k - rhs.k, b - rhs.b);
+    }
+    inline node operator*(const modint &rhs) const
+    {
+        return node(k * rhs, b * rhs);
+    }
+    inline node operator/(const int &rhs) const
+    {
+        return node(k * inv[rhs], b * inv[rhs]);
+    }
+};
+node dp[N];
+inline void dfs0(int u)
+{
+    sze[u] = 1;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        dfs0(v);
+        sze[u] += sze[v];
+    }
+}
+inline void dfs1(int u, node pre = node())
+{
+    if (u == key)
+        dp[u] = node();
+    if (fa[u])
+        pre = pre + dp[fa[u]] * (sze[fa[u]] - sze[u]);
+    int nxt = 0;
+    node sum = node();
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        if (col[v] == 2)
+        {
+            dp[v] = (pre + dp[u] * (sze[u] - sze[v]) + n) / (n - sze[v]);
+            sum = sum + dp[v] * sze[v];
+        }
+        else if (col[v] == 1)
+            nxt = v;
+    }
+    if (nxt)
+    {
+        dp[nxt] = (dp[u] * (sze[u] - sze[nxt] + n - 1) - sum) / n;
+        dfs1(nxt, pre);
+    }
+}
+ll answer;
+inline void dfs2(int u, int res)
+{
+    answer += res ^ u;
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        dfs2(v, res);
+    }
+}
 signed main()
 {
+    read(n);
+    inv[1] = 1;
+    for (int i = 2; i <= n; ++i)
+        inv[i] = -inv[mod % i] * (mod / i);
+    for (int i = 2; i <= n; ++i)
+    {
+        read(fa[i]);
+        add_edge(fa[i], i);
+    }
+    read(key);
+    for (int u = key; u; u = fa[u])
+    {
+        col[u] = 1;
+        for (int i = head[u]; i; i = edge[i].next)
+        {
+            int v = edge[i].to;
+            if (!col[v])
+                col[v] = 2;
+        }
+    }
+    dp[1] = node(1, 0);
+    dfs0(1);
+    dfs1(1);
+    if (key == 1)
+    {
+        answer = 1;
+        for (int i = head[1]; i; i = edge[i].next)
+        {
+            int v = edge[i].to;
+            dfs2(v, dp[v].b.data());
+        }
+    }
+    else
+    {
+        node sum = node();
+        for (int i = 1; i <= n; i++)
+            if (col[i] == 1)
+                sum = sum + dp[i];
+            else if (col[i] == 2)
+                sum = sum + dp[i] * sze[i];
+
+        sum = (sum / n) + 1 - node(1, 0);
+        modint X = (-sum.b) / sum.k;
+        for (int i = 1; i <= n; i++)
+        {
+            if (col[i] == 0)
+                continue;
+            if (col[i] == 1)
+                answer += ((dp[i].k * X + dp[i].b).data() ^ i);
+            else if (col[i] == 2)
+                dfs2(i, (dp[i].k * X + dp[i].b).data());
+        }
+    }
+    write(answer, '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

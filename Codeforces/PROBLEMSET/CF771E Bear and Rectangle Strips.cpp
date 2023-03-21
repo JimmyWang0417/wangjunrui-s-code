@@ -1,12 +1,14 @@
 /**
- *    name:     
+ *    name:     CF771E Bear and Rectangle Strips
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.21 周二 12:11:47 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
 #include <cstdio>
+#include <unordered_map>
+#include <vector>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -304,9 +306,75 @@ namespace MODINT
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 3e5 + 5;
+int n, a[2][N];
+vector<tuple<int, int, int>> g[N];
+unordered_map<ll, int> mp[3];
+int dp[N];
+inline void add(int x, int y, int c)
+{
+    ckmax(dp[max(x, y)], c);
+    g[min(x, y)].emplace_back(x, y, c);
+}
+int nxt[3][N];
+inline void solve(int x, int y, int c)
+{
+    if (x < n)
+    {
+        add(x + 1, y, c);
+        int z = nxt[0][x + 1];
+        if (z)
+            add(z, y, c + 1);
+    }
+    if (y < n)
+    {
+        add(x, y + 1, c);
+        int z = nxt[1][y + 1];
+        if (z)
+            add(x, z, c + 1);
+    }
+    if (x < n && x == y)
+    {
+        int z = nxt[2][x + 1];
+        if (z)
+            add(z, z, c + 1);
+    }
+}
 signed main()
 {
+    read(n);
+    for (int j = 0; j < 2; ++j)
+        for (int i = 1; i <= n; ++i)
+            read(a[j][i]);
+    for (int i = 1; i <= n; ++i)
+    {
+        static ll sum[3] = {};
+        for (int j = 0; j < 3; ++j)
+            mp[j][sum[j]] = i;
+        sum[0] += a[0][i];
+        sum[1] += a[1][i];
+        sum[2] += a[0][i] + a[1][i];
+        for (int j = 0; j < 3; j++)
+            if (mp[j][sum[j]])
+                nxt[j][mp[j][sum[j]]] = i;
+    }
+    for (int i = 0; i < n; ++i)
+    {
+        solve(i, i, dp[i]);
+        int l = n + 1, r = n + 1;
+        for (auto[x, y, c]  : g[i])
+        {
+            if (y == i && c == dp[i] + 1)
+                ckmin(l, x);
+            if (x == i && c == dp[i] + 1)
+                ckmin(r, y);
+        }
+        if (l <= n)
+            solve(l, i, dp[i] + 1);
+        if (r <= n)
+            solve(i, r, dp[i] + 1);
+    }
+    write(dp[n], '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

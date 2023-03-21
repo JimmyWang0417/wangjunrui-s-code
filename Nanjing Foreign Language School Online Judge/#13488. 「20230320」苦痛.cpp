@@ -1,12 +1,14 @@
 /**
- *    name:     
+ *    name:     A. 苦痛
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.20 周一 08:19:18 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -304,9 +306,90 @@ namespace MODINT
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 505;
+int n, m, H, S, b[N];
+double a[N];
+int t1, t2;
+double buf[2][N][N];
+auto f = buf[0], g = buf[1];
+inline void work()
+{
+    for (int i = n; i >= 1; --i)
+    {
+        swap(f, g);
+        memset(f, 0, sizeof(buf[0]));
+        if (b[i])
+        {
+            for (int j = 1; j <= H; ++j)
+            {
+                if (j == H)
+                    f[j][S] = a[i] * g[j][S] + (1 - a[i]) * f[j - 1][S] + 1;
+                else if (S)
+                    f[j][S] = g[j + 1][S] + (t1 + 1) / a[i];
+                else
+                    f[j][S] = g[j + 1][S] + (t2 + 1) / a[i];
+                if (j > 1)
+                    ckmin(f[j][S], a[i] * g[j][S] + (1 - a[i]) * f[j - 1][S] + 1);
+            }
+            for (int j = H; j >= 1; --j)
+            {
+                if (j + 1 < H)
+                {
+                    if (S)
+                        ckmin(f[j][S], f[j + 1][S] + t1);
+                    else
+                        ckmin(f[j][S], f[j + 1][S] + t2);
+                }
+                for (int k = 0; k < S; ++k)
+                    f[j][k] = f[j][S];
+            }
+        }
+        else
+        {
+            for (int j = 1; j <= H; ++j)
+                for (int k = 0; k <= S; ++k)
+                {
+                    if (j == 1)
+                    {
+                        if (k == 0)
+                            f[j][k] = g[j + 1][k] + (t2 + 1) / a[i];
+                        else
+                            f[j][k] = a[i] * g[j + 1][k - 1] + (1 - a[i]) * f[j][k - 1] + (t1 + 1);
+                    }
+                    else
+                        f[j][k] = a[i] * g[j][k] + (1 - a[i]) * f[j - 1][k] + 1;
+                }
+        }
+    }
+    printf("%.10lf\n", f[H][S]);
+}
 signed main()
 {
+#ifdef PAPERDOG
+    freopen("project.in", "r", stdin);
+    freopen("project.out", "w", stdout);
+#else
+    freopen("pain.in", "r", stdin);
+    freopen("pain.out", "w", stdout);
+#endif
+    read(n, H, S);
+    for (int i = 1; i <= n; ++i)
+    {
+        int x;
+        read(x);
+        a[i] = x / 100.0;
+    }
+    read(m);
+    for (int i = 1; i <= m; ++i)
+    {
+        int x;
+        read(x);
+        b[x] = true;
+    }
+    read(t1, t2);
+    if (t1 >= t2)
+        S = 0;
+    work();
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

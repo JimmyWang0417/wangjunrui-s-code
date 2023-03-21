@@ -1,11 +1,12 @@
 /**
- *    name:     
+ *    name:     A. Jane 的会议
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.16 周四 13:36:34 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -180,133 +181,157 @@ inline void ckmax(T &_x, T _y)
     if (_x < _y)
         _x = _y;
 }
-namespace MODINT
+template <const int _mod>
+struct modint
 {
-    template <const int _mod>
-    struct modint
+    int x;
+    constexpr modint(int _x = 0) : x(_x) {}
+    constexpr inline modint operator+() const
     {
-        int x;
-        constexpr modint(int _x = 0) : x(_x) {}
-        constexpr inline modint operator+() const
+        return *this;
+    }
+    constexpr inline modint operator-() const
+    {
+        return !x ? 0 : _mod - x;
+    }
+    constexpr inline modint &operator++()
+    {
+        ++x;
+        if (x >= _mod)
+            x -= _mod;
+        return *this;
+    }
+    constexpr inline modint &operator--()
+    {
+        --x;
+        if (x < 0)
+            x += _mod;
+        return *this;
+    }
+    constexpr inline modint operator++(int)
+    {
+        int res = x;
+        if (x >= _mod)
+            x -= _mod;
+        return res;
+    }
+    constexpr inline modint operator--(int)
+    {
+        int res = x;
+        if (x < 0)
+            x += _mod;
+        return res;
+    }
+    constexpr inline modint operator+(const modint &rhs) const
+    {
+        int res = x;
+        res += rhs.x;
+        if (res >= _mod)
+            res -= _mod;
+        return res;
+    }
+    constexpr inline modint operator-(const modint &rhs) const
+    {
+        int res = x;
+        res -= rhs.x;
+        if (res < 0)
+            res += _mod;
+        return res;
+    }
+    constexpr inline modint operator*(const modint &rhs) const
+    {
+        return (int)((ll)x * rhs.x % _mod);
+    }
+    constexpr inline modint &operator+=(const modint &rhs)
+    {
+        x += rhs.x;
+        if (x >= _mod)
+            x -= _mod;
+        return *this;
+    }
+    constexpr inline modint &operator-=(const modint &rhs)
+    {
+        x -= rhs.x;
+        if (x < 0)
+            x += _mod;
+        return *this;
+    }
+    constexpr inline modint &operator*=(const modint &rhs)
+    {
+        x = (int)((ll)x * rhs.x % _mod);
+        return *this;
+    }
+    template <typename _G>
+    constexpr inline modint operator^(_G rhs) const
+    {
+        modint a = x, res = 1;
+        while (rhs)
         {
-            return *this;
+            if (rhs & 1)
+                res *= a;
+            a *= a;
+            rhs >>= 1;
         }
-        constexpr inline modint operator-() const
-        {
-            return !x ? 0 : _mod - x;
-        }
-        constexpr inline modint &operator++()
-        {
-            ++x;
-            if (x >= _mod)
-                x -= _mod;
-            return *this;
-        }
-        constexpr inline modint &operator--()
-        {
-            --x;
-            if (x < 0)
-                x += _mod;
-            return *this;
-        }
-        constexpr inline modint operator++(int)
-        {
-            int res = x;
-            if (x >= _mod)
-                x -= _mod;
-            return res;
-        }
-        constexpr inline modint operator--(int)
-        {
-            int res = x;
-            if (x < 0)
-                x += _mod;
-            return res;
-        }
-        constexpr inline modint operator+(const modint &rhs) const
-        {
-            int res = x;
-            res += rhs.x;
-            if (res >= _mod)
-                res -= _mod;
-            return res;
-        }
-        constexpr inline modint operator-(const modint &rhs) const
-        {
-            int res = x;
-            res -= rhs.x;
-            if (res < 0)
-                res += _mod;
-            return res;
-        }
-        constexpr inline modint operator*(const modint &rhs) const
-        {
-            return (int)((ll)x * rhs.x % _mod);
-        }
-        constexpr inline modint &operator+=(const modint &rhs)
-        {
-            x += rhs.x;
-            if (x >= _mod)
-                x -= _mod;
-            return *this;
-        }
-        constexpr inline modint &operator-=(const modint &rhs)
-        {
-            x -= rhs.x;
-            if (x < 0)
-                x += _mod;
-            return *this;
-        }
-        constexpr inline modint &operator*=(const modint &rhs)
-        {
-            x = (int)((ll)x * rhs.x % _mod);
-            return *this;
-        }
-        template <typename _G>
-        constexpr inline modint operator^(_G rhs) const
-        {
-            modint a = x, res = 1;
-            while (rhs)
-            {
-                if (rhs & 1)
-                    res *= a;
-                a *= a;
-                rhs >>= 1;
-            }
-            return res;
-        }
-        constexpr inline modint inv() const
-        {
-            return *this ^ (_mod - 2);
-        }
-        constexpr inline modint operator/(const modint &rhs) const
-        {
-            return (*this) * rhs.inv();
-        }
-        constexpr inline modint &operator/=(const modint &rhs)
-        {
-            return (*this) *= rhs.inv();
-        }
-        constexpr inline bool operator==(const modint &rhs) const
-        {
-            return x == rhs.x;
-        }
-        constexpr inline bool operator!=(const modint &rhs) const
-        {
-            return x != rhs.x;
-        }
-        constexpr inline int &data()
-        {
-            return x;
-        }
-    };
-}
+        return res;
+    }
+    constexpr inline modint inv() const
+    {
+        return *this ^ (_mod - 2);
+    }
+    constexpr inline modint operator/(const modint &rhs) const
+    {
+        return (*this) * rhs.inv();
+    }
+    constexpr inline modint &operator/=(const modint &rhs)
+    {
+        return (*this) *= rhs.inv();
+    }
+    constexpr inline bool operator==(const modint &rhs) const
+    {
+        return x == rhs.x;
+    }
+    constexpr inline bool operator!=(const modint &rhs) const
+    {
+        return x != rhs.x;
+    }
+    constexpr inline int &data()
+    {
+        return x;
+    }
+};
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1e7 + 5;
+typedef long double ld;
+int n, L, V, v[N];
 signed main()
 {
+#ifdef PAPERDOG
+	freopen("project.in", "r", stdin);
+	freopen("project.out", "w", stdout);
+#else
+	freopen("meeting.in", "r", stdin);
+	freopen("meeting.out", "w", stdout);
+#endif
+    read(n, L, V);
+    for (int i = 1; i <= n; ++i)
+        read(v[i]);
+    ld res = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        if (i != 1)
+        {
+            if (res > 0)
+                res = res * (V + v[i]) / (V + v[i - 1]);
+            else
+                res = res * v[i] / v[i - 1];
+        }
+        res += (ld)1.0 * (V - v[i]) / V;
+    }
+    ld ans = 1.0 * L / V;
+    ans += min(res / v[n], res / (v[n] + V)) * L / n;
+	printf("%.10Lf\n", ans);
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

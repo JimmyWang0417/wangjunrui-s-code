@@ -1,12 +1,17 @@
 /**
- *    name:     
+ *    name:     C. 美好的每一天
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.21 周二 22:20:02 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
+#include <bits/move.h>
+#include <bits/stl_pair.h>
+#include <climits>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -304,9 +309,169 @@ namespace MODINT
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 5e4 + 5;
+typedef pair<ull, int> qwq;
+int n;
+struct Edge
+{
+    int next, to;
+} edge[N * 2];
+int head[N], num_edge;
+inline void add_edge(int from, int to)
+{
+    edge[++num_edge].next = head[from];
+    edge[num_edge].to = to;
+    head[from] = num_edge;
+}
+struct node
+{
+    ull d[64];
+    int dis[64];
+    inline void insert(ull u)
+    {
+        for (int i = 63; i >= 0; --i)
+            if ((u >> i) & 1)
+            {
+                if (!d[i])
+                {
+                    d[i] = u;
+                    break;
+                }
+                else
+                    u ^= d[i];
+            }
+    }
+    inline void _insert(ull u, int _dis)
+    {
+        for (int i = 0; i < 64; ++i)
+            if ((u >> i) & 1)
+            {
+                if (!d[i])
+                {
+                    d[i] = u;
+                    dis[i] = _dis;
+                    break;
+                }
+                else
+                {
+                    if (_dis < dis[i])
+                    {
+                        swap(d[i], u);
+                        swap(dis[i], _dis);
+                    }
+                    u ^= d[i];
+                }
+            }
+    }
+    inline void merge(const node &rhs)
+    {
+        for (int i = 0; i < 64; ++i)
+            if (rhs.d[i])
+                _insert(rhs.d[i], rhs.dis[i] + 1);
+    }
+    inline void T()
+    {
+        static ull e[64];
+        for (int i = 63; i >= 0; --i)
+            for (int j = i - 1; j >= 0; --j)
+                if ((d[i] >> j) & 1)
+                    d[i] ^= d[j];
+        for (int i = 63; i >= 0; --i)
+            for (int j = 63; j >= 0; --j)
+                if ((d[i] >> j) & 1)
+                    e[j] |= 1ull << i;
+        for (int i = 63; i >= 0; --i)
+            e[i] ^= 1ull << i;
+        for (int i = 63; i >= 0; --i)
+        {
+            d[i] = e[i];
+            if (e[i])
+                dis[i] = 0;
+            else
+                dis[i] = INT_MAX;
+            e[i] = 0;
+        }
+    }
+    inline qwq calc(int _dis)
+    {
+        qwq res = make_pair(0ull, n);
+        for (int i = 63; i >= 0; --i)
+        {
+            if (dis[i] > _dis)
+            {
+                res.first |= 1ull << i;
+                ckmin(res.second, dis[i]);
+            }
+            else if (__builtin_parityll(res.first & d[i]))
+                res.first |= 1ull << i;
+        }
+        return res;
+    }
+    inline ull solve()
+    {
+        ull ans = 0;
+        for (int l = 0, r; l < n; l = r)
+        {
+            auto res = calc(l);
+            r = res.second;
+            ans += res.first * (r - l);
+        }
+        return ans;
+    }
+    inline void print()
+    {
+        for (int i = 0; i < 64; ++i)
+            write(d[i], ' ');
+        write('\n');
+        for (int i = 0; i < 64; ++i)
+            write(dis[i], ' ');
+        write('\n');
+        write('\n');
+    }
+} tree[N];
+inline void dfs1(int u)
+{
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        dfs1(v);
+        tree[u].merge(tree[v]);
+    }
+}
+inline void dfs2(int u)
+{
+    for (int i = head[u]; i; i = edge[i].next)
+    {
+        int v = edge[i].to;
+        tree[v].merge(tree[u]);
+        dfs2(v);
+    }
+}
 signed main()
 {
+    read(n);
+    for (int i = 2; i <= n; ++i)
+    {
+        int _fa;
+        read(_fa);
+        add_edge(_fa, i);
+    }
+    for (int i = 1; i <= n; ++i)
+    {
+        int u;
+        read(u);
+        for (int j = 1; j <= u; ++j)
+        {
+            ull v;
+            read(v);
+            tree[i].insert(v);
+        }
+        tree[i].T();
+    }
+    dfs1(1);
+    dfs2(1);
+    for (int i = 1; i <= n; ++i)
+        write(tree[i].solve(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

@@ -1,11 +1,12 @@
 /**
- *    name:     
+ *    name:     P4786 [BalkanOI2018]Election
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.21 周二 15:34:38 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -304,9 +305,65 @@ namespace MODINT
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 5e5 + 5;
+int n, q;
+char str[N];
+struct node
+{
+    int pre, suf;
+    int sum, ans;
+    inline node operator+(const node &rhs) const
+    {
+        node res;
+        res.pre = max(pre, sum + rhs.pre);
+        res.suf = max(suf + rhs.sum, rhs.suf);
+        res.sum = sum + rhs.sum;
+        res.ans = max({ans, rhs.ans, suf + rhs.pre});
+        return res;
+    }
+} tree[N * 4];
+#define lc (rt << 1)
+#define rc (rt << 1 | 1)
+inline void pushup(int rt)
+{
+    tree[rt] = tree[lc] + tree[rc];
+}
+inline void build(int rt, int l, int r)
+{
+    if (l == r)
+    {
+        tree[rt].pre = tree[rt].suf = tree[rt].sum = tree[rt].ans = (str[l] == 'C' ? 1 : -1);
+        return;
+    }
+    int mid = (l + r) >> 1;
+    build(lc, l, mid);
+    build(rc, mid + 1, r);
+    pushup(rt);
+}
+inline node query(int rt, int l, int r, int x, int y)
+{
+    if (x <= l && r <= y)
+        return tree[rt];
+    int mid = (l + r) >> 1;
+    if (y <= mid)
+        return query(lc, l, mid, x, y);
+    if (x > mid)
+        return query(rc, mid + 1, r, x, y);
+    return query(lc, l, mid, x, y) + query(rc, mid + 1, r, x, y);
+}
 signed main()
 {
+    read(n);
+    read(str + 1);
+    build(1, 1, n);
+    read(q);
+    for (int i = 1; i <= q; ++i)
+    {
+        int l, r;
+        read(l, r);
+        auto res = query(1, 1, n, l, r);
+        write(max(res.ans, 0) - res.sum, '\n');
+    }
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

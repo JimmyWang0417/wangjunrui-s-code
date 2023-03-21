@@ -1,11 +1,12 @@
 /**
- *    name:     
+ *    name:     CF708E Student's Camp
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.20 周一 07:48:26 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
 typedef long long ll;
 typedef unsigned long long ull;
@@ -304,9 +305,44 @@ namespace MODINT
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = 1505;
+constexpr int mod = 1e9 + 7;
+typedef MODINT::modint<mod> modint;
+int n, m, a, b, k;
+modint p, fac[N * 100], ifac[N * 100];
+modint P[N], Q[N];
+inline modint C(int _x, int _y)
+{
+    return fac[_x] * ifac[_y] * ifac[_x - _y];
+}
+inline void init()
+{
+    p = modint(a) / b;
+    fac[0] = 1;
+    for (int i = 1; i <= k; ++i)
+        fac[i] = fac[i - 1] * i;
+    ifac[k] = fac[k].inv();
+    for (int i = k; i >= 1; --i)
+        ifac[i - 1] = ifac[i] * i;
+    for (int i = 0; i <= k && i <= m; ++i)
+        P[i] = C(k, i) * (p ^ i) * ((-p + 1) ^ (k - i));
+    for (int i = 1; i <= m; ++i)
+        Q[i] = Q[i - 1] + P[i - 1];
+}
+modint f[N][N], g[N][N], h[N][N];
 signed main()
 {
+    read(n, m, a, b, k);
+    init();
+    f[0][m] = h[0][m] = 1;
+    for (int i = 1; i <= n; ++i)
+        for (int j = 1; j <= m; ++j)
+        {
+            f[i][j] = P[m - j] * ((h[i - 1][m] - h[i - 1][m - j]) * Q[j] - g[i - 1][j]);
+            h[i][j] = h[i][j - 1] + f[i][j];
+            g[i][j] = g[i][j - 1] + P[j - 1] * h[i][j - 1];
+        }
+    write(h[n][m].data(), '\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

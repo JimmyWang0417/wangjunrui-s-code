@@ -1,12 +1,14 @@
 /**
- *    name:     
+ *    name:     CF1450G Communism
  *    author:   whitepaperdog (蒟蒻wjr)
  *    located:  Xuanwu District, Nanjing City, Jiangsu Province, China
- *    created:  
+ *    created:  2023.03.20 周一 21:48:24 (Asia/Shanghai)
  *    unicode:  UTF-8
  *    standard: c++23
  **/
+#include <algorithm>
 #include <cstdio>
+#include <cstring>
 typedef long long ll;
 typedef unsigned long long ull;
 #define lowbit(x) ((x) & (-(x)))
@@ -304,9 +306,53 @@ namespace MODINT
 using IO::INPUT::read;
 using IO::OUTPUT::write;
 using namespace std;
-
+constexpr int N = (1 << 20) + 5;
+int n, m, ka, kb;
+int id[30];
+int popcount[N], dp[N], L[N], R[N];
+int Log[N];
+char str[N];
+char answer[N], mp[30];
+int answertot;
 signed main()
 {
+    read(n, ka, kb, str);
+    memset(id, -1, sizeof(id));
+    memset(L, 0x3f, sizeof(L));
+    for (int i = 0; i < n; ++i)
+    {
+        int c = str[i] - 'a';
+        if (id[c] == -1)
+            mp[id[c] = m++] = str[i];
+        ++popcount[1 << id[c]];
+        ckmin(L[1 << id[c]], i);
+        ckmax(R[1 << id[c]], i);
+    }
+    for (int i = 0; i < m; ++i)
+        Log[1 << i] = i;
+    dp[0] = 1;
+    for (int S = 1; S < (1 << m); ++S)
+    {
+        int _S = lowbit(S);
+        L[S] = min(L[S ^ _S], L[_S]);
+        R[S] = max(R[S ^ _S], R[_S]);
+        popcount[S] = popcount[S ^ _S] + popcount[_S];
+        for (int _i = S, i; i = Log[lowbit(_i)], _i && !dp[S]; _i ^= lowbit(_i))
+        {
+            if (dp[S ^ (1 << i)] && ka * (R[S] - L[S] + 1) <= kb * popcount[S])
+                dp[S] = 1;
+            dp[S] |= (dp[S ^ _i] && dp[_i]);
+        }
+    }
+    int s = (1 << m) - 1;
+    for (int i = 0; i < m; i++)
+        if (dp[s ^ (1 << i)])
+            answer[++answertot] = mp[i];
+    sort(answer + 1, answer + answertot + 1);
+    write(answertot, ' ');
+    for (int i = 1; i <= answertot; i++)
+        write(answer[i], ' ');
+    write('\n');
 #ifdef FAST_OUT
     IO::OUTPUT::flush();
 #endif

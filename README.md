@@ -65,12 +65,12 @@
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
  Autoconf               16      1885023      1885023            0            0
- C++                  2089       296333       289200         5204         1929
+ C++                  2140       317251       309347         5710         2194
  C++ Header             14         1963         1108          568          287
  Markdown                2         2492            0         2458           34
  Python                  3          212          183            1           28
 ===============================================================================
- Total                2124      2186023      2175514         8231         2278
+ Total                2175      2206941      2195661         8737         2543
 ===============================================================================
 ```
 <!-- count the code end -->
@@ -377,16 +377,30 @@
 │   │   ├── 2022 China Collegiate Programming Contest (CCPC) Guilin Site
 │   │   │   ├── I. Invincible Hotwheels.cpp
 │   │   │   └── K. Barrel Theory.cpp
+│   │   ├── 2022 China Collegiate Programming Contest (CCPC) Weihai Site
+│   │   │   ├── B. Recruitment.cpp
+│   │   │   └── M - String Master.cpp
 │   │   ├── 2022 Hubei Provincial Collegiate Programming Contest
 │   │   │   └── J - Palindrome Reversion.cpp
+│   │   ├── 2022 Shanghai Collegiate Programming Contest
+│   │   │   ├── D. Demonstrational sequences.cpp
+│   │   │   └── F - Forest of Magic.cpp
 │   │   ├── 2022 Taiwan NHSPC Mock Contest
 │   │   │   ├── C. 頒獎音樂 (Ceremony).cpp
 │   │   │   └── I. 子集合和 (SOS).cpp
-│   │   └── The 2023 ICPC Asia Hong Kong Regional Programming Contest (The 1st Universal Cup, Stage 2:Hong Kong)
-│   │       ├── D - Shortest Path Query.cpp
-│   │       ├── I - Range Closest Pair of Points Query.cpp
-│   │       ├── J - Dice Game.cpp
-│   │       └── K. Maximum GCD.cpp
+│   │   ├── The 17th Heilongjiang Provincial Collegiate Programming Contest
+│   │   │   ├── B - Lovely Fish.cpp
+│   │   │   └── J - JOJO's Happy Tree Friends.cpp
+│   │   ├── The 2022 ICPC Asia Shenyang Regional Contest (The 1st Universal Cup, Stage 1: Shenyang)
+│   │   │   └── M - Vulpecula.cpp
+│   │   ├── The 2023 ICPC Asia Hong Kong Regional Programming Contest (The 1st Universal Cup, Stage 2:Hong Kong)
+│   │   │   ├── D - Shortest Path Query.cpp
+│   │   │   ├── I - Range Closest Pair of Points Query.cpp
+│   │   │   ├── J - Dice Game.cpp
+│   │   │   └── K. Maximum GCD.cpp
+│   │   └── The 7th China Collegiate Programming Contest, Finals (CCPC Finals 2021)
+│   │       ├── D - Tree Partition.cpp
+│   │       └── E - Elegant Tetris.cpp
 │   └── PROBLEMSET
 │       ├── CF1000F One Occurrence.cpp
 │       ├── CF1007D Ants.cpp
@@ -401,7 +415,9 @@
 │       ├── CF1039D You Are Given a Tree.cpp
 │       ├── CF1042E Vasya and Magic Matrix.cpp
 │       ├── CF1051F The Shortest Statement.cpp
+│       ├── CF1060F Shrinking Tree.cpp
 │       ├── CF1063F String Journey.cpp
+│       ├── CF1067D Computer Game.cpp
 │       ├── CF1070F Debate.cpp
 │       ├── CF1073E Segment Sum.cpp
 │       ├── CF1073G Yet Another LCP Problem.cpp
@@ -548,11 +564,13 @@
 │       ├── CF1437F Emotional Fishermen.cpp
 │       ├── CF1438E Yurii Can Do Everything.cpp
 │       ├── CF1439C Greedy Shopping.cpp
+│       ├── CF1439D INOI Final Contests.cpp
 │       ├── CF1442D Sum.cpp
 │       ├── CF1442E Black, White and Grey Tree.cpp
 │       ├── CF1444C Team-Building.cpp
 │       ├── CF1446D1 Frequency Problem (Easy Version).cpp
 │       ├── CF1446D2 Frequency Problem (Hard Version).cpp
+│       ├── CF1450G Communism.cpp
 │       ├── CF1452E Two Editorials.cpp
 │       ├── CF1458C Latin Square.cpp
 │       ├── CF1463F Max Correct Set.cpp
@@ -585,6 +603,7 @@
 │       ├── CF1592E Bored Bakry.cpp
 │       ├── CF15D Map.cpp
 │       ├── CF1606F Tree Queries.cpp
+│       ├── CF1608F MEX counting.cpp
 │       ├── CF1610G AmShZ Wins a Bet.cpp
 │       ├── CF161D Distance in Tree.cpp
 │       ├── CF1634F Fibonacci Additions.cpp
@@ -715,6 +734,7 @@
 │       ├── CF68D Half-decay tree.cpp
 │       ├── CF698C LRU.cpp
 │       ├── CF708C Centroids.cpp
+│       ├── CF708E Student's Camp.cpp
 │       ├── CF710F String Set Queries.cpp
 │       ├── CF713D Animals and Puzzle.cpp
 │       ├── CF715C Digit Tree.cpp
@@ -729,6 +749,7 @@
 │       ├── CF757F Team Rocket Rises Again.cpp
 │       ├── CF765F Souvenirs.cpp
 │       ├── CF771D Bear and Company.cpp
+│       ├── CF771E Bear and Rectangle Strips.cpp
 │       ├── CF785E Anton and Permutation.cpp
 │       ├── CF786C Till I Collapse.cpp
 │       ├── CF798D Mike and distribution.cpp
@@ -843,7 +864,8 @@
 │   ├── hdu4991 Ordered Subsequence(zkw线段树).cpp
 │   ├── hdu4991 Ordered Subsequence(树状数组).cpp
 │   ├── hdu5157 Harry and magic string.cpp
-│   └── hdu6157 The Karting.cpp
+│   ├── hdu6157 The Karting.cpp
+│   └── hdu6566 The Hanged Man.cpp
 ├── hihoCoder
 │   └── 1602 本质不同的回文子串的数量.cpp
 ├── Libre Online Judge
@@ -929,6 +951,7 @@
 │   ├── #3156 「NOI2019」回家路线.cpp
 │   ├── #3159. 「NOI2019」弹跳.cpp
 │   ├── #3277. 「JOISC 2020 Day3」星座 3.cpp
+│   ├── #3408. 「2020-2021 集训队作业」lancllords.cpp
 │   ├── #494. 「斜率优化 DP」最小划分.cpp
 │   ├── #508. 「LibreOJ NOI Round #1」失控的未来交通工具.cpp
 │   ├── #6001 「网络流 24 题」太空飞行计划.cpp
@@ -985,11 +1008,39 @@
 │   ├── #13446. 「20230301」Cir.cpp
 │   ├── #13449. 「20230302」宣告春天.cpp
 │   ├── #13450. 「20230302」嘉然和向晚又在玩游戏.cpp
+│   ├── #13451. 「20230310」分数.cpp
+│   ├── #13452. 「20230310」染黑.cpp
+│   ├── #13453. 「20230310」子序列.cpp
+│   ├── #13454. 「20230311」好吃.cpp
+│   ├── #13455. 「20230311」替换排序.cpp
+│   ├── #13456. 「20230311」刷墙.cpp
 │   ├── #13458. 「20230307」津津的存钱计划.cpp
 │   ├── #13459. 「20230307」陶陶玩序列.cpp
 │   ├── #13461. 「20230308」铲雪.cpp
 │   ├── #13462. 「20230308」抽卡.cpp
 │   ├── #13463. 「20230308」樟.cpp
+│   ├── #13467. 「20230309」简单串串题.cpp
+│   ├── #13469. 「20230311」修炼秘籍.cpp
+│   ├── #13470. 「20230311」大仇得报.cpp
+│   ├── #13471. 「20230311」主角不死定律.cpp
+│   ├── #13473. 「20230315」消除罗结晶.cpp
+│   ├── #13474. 「20230315」跳水运动员.cpp
+│   ├── #13475. 「20230315」罗必达法则.cpp
+│   ├── #13477. 「20230316」Jane 的会议.cpp
+│   ├── #13478. 「20230316」Firefox 的一血.cpp
+│   ├── #13479. 「20230316」Claire 的魔术.cpp
+│   ├── #13481. 「20230317」一瓶消毒液.cpp
+│   ├── #13482. 「20230317」一张桌子.cpp
+│   ├── #13483. 「20230317」11:23.zip
+│   ├── #13484. 「20230318」简单.cpp
+│   ├── #13485. 「20230318」中等.cpp
+│   ├── #13486. 「20230318」困难.cpp
+│   ├── #13488. 「20230320」苦痛.cpp
+│   ├── #13489. 「20230320」旅途.cpp
+│   ├── #13490. 「20230320」续作.cpp
+│   ├── #13492. 「20230321」镜之国的爱丽丝.cpp
+│   ├── #13493. 「20230321」终结与开始.cpp
+│   ├── #13494. 「20230321」美好的每一天.cpp
 │   └── #2137. Words.cpp
 ├── NOI.AC
 │   ├── #26. T1.cpp
@@ -1179,6 +1230,9 @@
 │   │   ├── #23504. 「备战 NOI2023 模拟赛 Day2」铠.cpp
 │   │   ├── #23505. 「备战 NOI2023 模拟赛 Day2」曜.cpp
 │   │   ├── #23506. 「备战 NOI2023 模拟赛 Day2」澜.cpp
+│   │   ├── #23510. 「备战 NOI2023 模拟赛 Day4」斯大林.cpp
+│   │   ├── #23511. 「备战 NOI2023 模拟赛 Day4」赫鲁晓夫.cpp
+│   │   ├── #23512. 「备战 NOI2023 模拟赛 Day4」勃列日涅夫.cpp
 │   │   ├── #455. 「概率期望 DP」期望题.cpp
 │   │   ├── #465. 「数据结构优化 DP」仰望星空.cpp
 │   │   ├── #485. 「单调队列优化 DP」出题人.cpp
@@ -1619,6 +1673,7 @@
 │   ├── P1642 规划.cpp
 │   ├── P1646 [国家集训队]happiness.cpp
 │   ├── P1659 [国家集训队]拉拉队排练.cpp
+│   ├── P1721 [NOI2016] 国王饮水记.cpp
 │   ├── P1742 最小圆覆盖.cpp
 │   ├── P1772 [ZJOI2006]物流运输.cpp
 │   ├── P1801 黑匣子.cpp
@@ -1716,6 +1771,7 @@
 │   ├── P2486 [SDOI2011]染色.cpp
 │   ├── P2487 [SDOI2011]拦截导弹.cpp
 │   ├── P2488 [SDOI2011]工作安排.cpp
+│   ├── P2490 [SDOI2011]黑白棋.cpp
 │   ├── P2491 [SDOI2011]消防.cpp
 │   ├── P2495 [SDOI2011]消耗战.cpp
 │   ├── P2496 [SDOI2012]体育课.cpp
@@ -2065,6 +2121,7 @@
 │   ├── P4777 【模板】扩展中国剩余定理（EXCRT）.cpp
 │   ├── P4779 【模板】单源最短路径（标准版）.cpp
 │   ├── P4781 【模板】拉格朗日插值.cpp
+│   ├── P4786 [BalkanOI2018]Election.cpp
 │   ├── P4827 [国家集训队] Crash 的文明世界.cpp
 │   ├── P4867 Gty的二逼妹子序列.cpp
 │   ├── P4868 Preprefix sum.cpp
