@@ -65,12 +65,12 @@
  Language            Files        Lines         Code     Comments       Blanks
 ===============================================================================
  Autoconf               16      1885023      1885023            0            0
- C++                  2140       317251       309347         5710         2194
+ C++                  2159       324853       316722         5867         2264
  C++ Header             14         1963         1108          568          287
- Markdown                2         2492            0         2458           34
+ Markdown                2         2549            0         2515           34
  Python                  3          212          183            1           28
 ===============================================================================
- Total                2175      2206941      2195661         8737         2543
+ Total                2194      2214600      2203036         8951         2613
 ===============================================================================
 ```
 <!-- count the code end -->
@@ -381,6 +381,9 @@
 │   │   │   ├── B. Recruitment.cpp
 │   │   │   └── M - String Master.cpp
 │   │   ├── 2022 Hubei Provincial Collegiate Programming Contest
+│   │   │   ├── B. Potion(easy version).cpp
+│   │   │   ├── C - Potion(hard version).cpp
+│   │   │   ├── G. Brick.cpp
 │   │   │   └── J - Palindrome Reversion.cpp
 │   │   ├── 2022 Shanghai Collegiate Programming Contest
 │   │   │   ├── D. Demonstrational sequences.cpp
@@ -388,9 +391,14 @@
 │   │   ├── 2022 Taiwan NHSPC Mock Contest
 │   │   │   ├── C. 頒獎音樂 (Ceremony).cpp
 │   │   │   └── I. 子集合和 (SOS).cpp
+│   │   ├── OCPC 2023, Oleksandr Kulkov Contest 3
+│   │   │   └── F. Palindromic Polynomial.cpp
 │   │   ├── The 17th Heilongjiang Provincial Collegiate Programming Contest
 │   │   │   ├── B - Lovely Fish.cpp
 │   │   │   └── J - JOJO's Happy Tree Friends.cpp
+│   │   ├── The 19th Zhejiang Provincial Collegiate Programming Contest
+│   │   │   ├── E - Easy Jump.cpp
+│   │   │   └── H - A=B.cpp
 │   │   ├── The 2022 ICPC Asia Shenyang Regional Contest (The 1st Universal Cup, Stage 1: Shenyang)
 │   │   │   └── M - Vulpecula.cpp
 │   │   ├── The 2023 ICPC Asia Hong Kong Regional Programming Contest (The 1st Universal Cup, Stage 2:Hong Kong)
@@ -432,6 +440,7 @@
 │       ├── CF1097F Alex and a TV Show.cpp
 │       ├── CF1097G Vladislav and a Great Legend.cpp
 │       ├── CF1100F Ivan and Burgers.cpp
+│       ├── CF1103D Professional layer.cpp
 │       ├── CF1103E Radix sum.cpp
 │       ├── CF1109E Sasha and a Very Easy Test.cpp
 │       ├── CF1110F Nearest Leaf.cpp
@@ -975,6 +984,7 @@
 ├── Nanjing Foreign Language School Online Judge
 │   ├── #10060. 服务器需求.cpp
 │   ├── #10241. 式神.cpp
+│   ├── #1153. 异或.cpp
 │   ├── #1154. 「2021六校联考WC #2」三角形.cpp
 │   ├── #1184. 「2021六校联考WC #12」人造感情.cpp
 │   ├── #12377. 送人匕首.cpp
@@ -1041,6 +1051,15 @@
 │   ├── #13492. 「20230321」镜之国的爱丽丝.cpp
 │   ├── #13493. 「20230321」终结与开始.cpp
 │   ├── #13494. 「20230321」美好的每一天.cpp
+│   ├── #13496. 「20230323」简单实验题.cpp
+│   ├── #13497. 「20230323」简单搬砖题.cpp
+│   ├── #14001. 「20230322」㙮防遊戏.cpp
+│   ├── #14002. 「20230322」囙父夕顼弍.cpp
+│   ├── #14003. 「20230322」堤文笿䅁.zip
+│   ├── #14005. 「20230324」屑题.cpp
+│   ├── #14006. 「20230324」鸡器人.cpp
+│   ├── #14009. 「20230325」实习.cpp
+│   ├── #14010. 「20230325」 园丁.cpp
 │   └── #2137. Words.cpp
 ├── NOI.AC
 │   ├── #26. T1.cpp
@@ -1233,6 +1252,9 @@
 │   │   ├── #23510. 「备战 NOI2023 模拟赛 Day4」斯大林.cpp
 │   │   ├── #23511. 「备战 NOI2023 模拟赛 Day4」赫鲁晓夫.cpp
 │   │   ├── #23512. 「备战 NOI2023 模拟赛 Day4」勃列日涅夫.cpp
+│   │   ├── #23513. 「备战 NOI2023 模拟赛 Day5」梦为·爱在.cpp
+│   │   ├── #23514. 「备战 NOI2023 模拟赛 Day5」努力·背后.cpp
+│   │   ├── #23515. 「备战 NOI2023 模拟赛 Day5」浇了水·往前推.cpp
 │   │   ├── #455. 「概率期望 DP」期望题.cpp
 │   │   ├── #465. 「数据结构优化 DP」仰望星空.cpp
 │   │   ├── #485. 「单调队列优化 DP」出题人.cpp
@@ -1687,6 +1709,8 @@
 │   ├── P1891 疯狂 LCM.cpp
 │   ├── P1903 [国家集训队]数颜色 或 维护队列.cpp
 │   ├── P1908 逆序对.cpp
+│   ├── P1915 [NOI2010] 成长快乐
+.zip
 │   ├── P1919 【模板】A mul B Problem升级版（FFT快速傅里叶）.cpp
 │   ├── P1935 [国家集训队]圈地计划.cpp
 │   ├── P1955 [NOI2015]程序自动分析.cpp
